@@ -1,0 +1,1385 @@
+[
+  {
+    "id": "communication-001",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの空欄に入れるべき、リクエストを初期化するためのメソッド名として正しいものはどれか。",
+    "code": "var xhr = new XMLHttpRequest();\nxhr.____________('GET', '/api/data', true);\nxhr.send();",
+    "choices": ["open", "send", "start", "connect"],
+    "correctAnswers": [0],
+    "explanation": "リクエストの初期化(HTTPメソッドやURL、非同期通信かどうかの指定)にはopen()メソッドを使う。実際の送信はsend()メソッド呼び出し時に行われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/open"
+  },
+  {
+    "id": "communication-002",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "XMLHttpRequestのreadyStateプロパティが4(DONE)を示すとき、何を意味するか。",
+    "choices": [
+      "リクエストの送受信が完了した状態",
+      "サーバーとの接続が確立した直後の状態",
+      "リクエストヘッダーを受信した状態",
+      "オブジェクトが生成されただけでopen()が呼ばれていない状態"
+    ],
+    "correctAnswers": [0],
+    "explanation": "readyStateは0(UNSENT)、1(OPENED)、2(HEADERS_RECEIVED)、3(LOADING)、4(DONE)の5段階で状態を表し、4はレスポンスの受信が完了したことを示す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/readyState"
+  },
+  {
+    "id": "communication-003",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードにおいて、空欄に入れるべき最も適切な条件式はどれか。",
+    "code": "var xhr = new XMLHttpRequest();\nxhr.open('GET', '/api/data', true);\nxhr.onreadystatechange = function() {\n  if (____________) {\n    console.log(xhr.responseText);\n  }\n};\nxhr.send();",
+    "choices": [
+      "xhr.readyState === 4 && xhr.status === 200",
+      "xhr.readyState === 1 && xhr.status === 200",
+      "xhr.status === 4",
+      "xhr.readyState === 'DONE'"
+    ],
+    "correctAnswers": [0],
+    "explanation": "readyStateが4(DONE)になり、かつHTTPステータスが200(成功)であることを確認するのが典型的な判定方法である。readyStateは数値の定数(0〜4)で表され、文字列'DONE'ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/readystatechange_event"
+  },
+  {
+    "id": "communication-004",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "XMLHttpRequestのresponseTypeプロパティに指定できる値として正しいものを全て選べ。",
+    "choices": ["\"text\"", "\"json\"", "\"blob\"", "\"arraybuffer\"", "\"stream\"", "\"xmlhttprequest\""],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "responseTypeには空文字列(デフォルト、textと同等)、\"text\"、\"json\"、\"blob\"、\"arraybuffer\"、\"document\"を指定できる。\"stream\"や\"xmlhttprequest\"という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/responseType"
+  },
+  {
+    "id": "communication-005",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "XMLHttpRequestでPOSTメソッドによりフォームデータを送信する場合のsend()メソッドの使い方として正しいものはどれか。",
+    "choices": [
+      "xhr.send('key=value')のように送信するデータを引数として渡す",
+      "send()メソッドには引数を渡すことはできない",
+      "送信するデータはopen()メソッドの第3引数として渡す",
+      "send()を呼び出す前にresponseTextにデータを設定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "POSTなどでリクエストボディを送信する場合、send()メソッドの引数に送信データ(文字列やFormDataなど)を渡す。GETリクエストの場合は通常send()やsend(null)を呼び出す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/send"
+  },
+  {
+    "id": "communication-006",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードの動作について、正しい説明はどれか。",
+    "code": "var xhr = new XMLHttpRequest();\nxhr.open('GET', '/api/data', false);\nxhr.send();\nconsole.log('この行はレスポンス受信後に実行される');",
+    "choices": [
+      "open()の第3引数がfalseのため同期通信となり、send()の呼び出しがレスポンス受信までブロックされてからconsole.logが実行される",
+      "open()の第3引数がfalseの場合、非同期通信として動作し、console.logは先に実行される",
+      "第3引数にfalseを指定するとopen()自体がエラーをスローする",
+      "第3引数はメソッド(GET/POST)を上書きするためのものであり、通信方式には影響しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "open()の第3引数(async)にfalseを指定すると同期通信となり、レスポンスを受け取るまでJavaScriptの実行がブロックされる。同期XHRはメインスレッドをブロックしユーザー体験を損なうため非推奨とされている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/open"
+  },
+  {
+    "id": "communication-007",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Fetch APIのfetch()関数について正しい説明はどれか。",
+    "choices": [
+      "fetch()はPromiseを返す関数である",
+      "fetch()はコールバック関数を第2引数に渡して結果を受け取る",
+      "fetch()は同期的に実行され、戻り値としてレスポンスの本文を直接返す",
+      "fetch()はXMLHttpRequestを内部で置き換えるために非推奨となった"
+    ],
+    "correctAnswers": [0],
+    "explanation": "fetch()はPromiseベースのAPIであり、リクエストの結果はthen()やasync/awaitを用いて非同期に取得する。コールバック関数を渡す方式ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/fetch"
+  },
+  {
+    "id": "communication-008",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードを実行したとき、送信されるHTTPリクエストのメソッドはどれか。",
+    "code": "fetch('/api/users');",
+    "choices": ["GET", "POST", "PUT", "メソッドが省略されているためエラーになる"],
+    "correctAnswers": [0],
+    "explanation": "fetch()の第2引数(オプション)を省略した場合、デフォルトのHTTPメソッドはGETになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/fetch"
+  },
+  {
+    "id": "communication-009",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのように、Responseオブジェクトのokプロパティを使ってエラー処理を行っている。okプロパティがtrueになる条件として正しいものはどれか。",
+    "code": "fetch('/api/data')\n  .then(function(response) {\n    if (!response.ok) {\n      throw new Error('HTTPエラー: ' + response.status);\n    }\n    return response.json();\n  });",
+    "choices": [
+      "HTTPステータスコードが200〜299の範囲にある場合",
+      "レスポンスボディが空でない場合",
+      "Content-Typeヘッダーがapplication/jsonの場合",
+      "リクエストがCORSの制約を受けていない場合"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Response.okはステータスコードが200〜299の範囲(成功レンジ)である場合にtrueとなるプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Response/ok"
+  },
+  {
+    "id": "communication-010",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Fetch APIのfetch()が返すPromiseがreject(拒否)される状況として正しいものを全て選べ。",
+    "choices": [
+      "ネットワーク接続に失敗した場合",
+      "サーバーが404 Not Foundを返した場合",
+      "サーバーが500 Internal Server Errorを返した場合",
+      "CORSの制約によりリクエストがブロックされた場合",
+      "リクエストURLが不正な形式である場合"
+    ],
+    "correctAnswers": [0, 3, 4],
+    "explanation": "fetch()はHTTPステータスが404や500などのエラーであってもリクエスト自体は成立しているためPromiseはresolveされる(response.okがfalseになるだけ)。rejectされるのは、ネットワーク障害やCORSによるブロック、不正なURLなど、リクエストそのものが完了できない場合である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/fetch"
+  },
+  {
+    "id": "communication-011",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Responseオブジェクトのjson()メソッドについて正しい説明はどれか。",
+    "choices": [
+      "レスポンスボディをJSONとしてパースし、その結果を解決値とするPromiseを返す",
+      "レスポンスボディを同期的にパースし、JavaScriptオブジェクトを直接返す",
+      "json()メソッドはContent-Typeがapplication/jsonでない場合は例外を送出せず、常にnullを返す",
+      "json()メソッドは一度のResponseオブジェクトに対して何度でも呼び出せる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "json()はストリームを読み取ってJSONとしてパースするため非同期処理となり、Promiseを返す。レスポンスボディは一度しか読み取れないため、json()を複数回呼び出すと2回目以降はエラーになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Response/json"
+  },
+  {
+    "id": "communication-012",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードと同等の処理をasync/await構文を使わずにthen()チェーンで書き換えたものとして正しいものはどれか。",
+    "code": "async function getData() {\n  const response = await fetch('/api/data');\n  const data = await response.json();\n  return data;\n}",
+    "choices": [
+      "fetch('/api/data').then(function(response) { return response.json(); }).then(function(data) { return data; });",
+      "fetch('/api/data', function(response) { return response.json(); });",
+      "fetch('/api/data').json().then(function(data) { return data; });",
+      "fetch('/api/data').catch(function(response) { return response.json(); });"
+    ],
+    "correctAnswers": [0],
+    "explanation": "async/awaitはPromiseチェーンの糖衣構文である。fetch()のPromiseをthen()で受け取りresponse.json()を返し、さらにthen()でJSONデータを受け取る形が同等の処理となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/async_function"
+  },
+  {
+    "id": "communication-013",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードのfetch()の第2引数に指定できるオプションのプロパティとして正しいものを全て選べ。",
+    "code": "fetch('/api/users', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ name: 'Taro' })\n});",
+    "choices": ["method", "headers", "body", "credentials", "responseText", "async"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "fetch()の第2引数(init)にはmethod、headers、body、credentials、mode、cache、signalなどのプロパティを指定できる。responseTextやasyncはXMLHttpRequestのプロパティであり、fetchのオプションには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/fetch"
+  },
+  {
+    "id": "communication-014",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Fetch APIのHeadersオブジェクトが提供するメソッドとして正しいものを全て選べ。",
+    "choices": ["append()", "get()", "has()", "delete()", "remove()", "toString()"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "Headersオブジェクトはappend()、get()、has()、set()、delete()、entries()、keys()、values()、forEach()などのメソッドを提供する。remove()やtoString()は存在しないメソッドである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Headers"
+  },
+  {
+    "id": "communication-015",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードでサーバーにJSON形式のデータを正しく送信するために、空欄に入れるべきヘッダー指定はどれか。",
+    "code": "fetch('/api/users', {\n  method: 'POST',\n  headers: { ____________ },\n  body: JSON.stringify({ name: 'Taro' })\n});",
+    "choices": [
+      "'Content-Type': 'application/json'",
+      "'Accept': 'application/json'のみで十分であり、Content-Typeの指定は不要",
+      "'Content-Length': 'application/json'",
+      "'Body-Type': 'json'"
+    ],
+    "correctAnswers": [0],
+    "explanation": "fetch()はbodyに指定した文字列の内容に応じてContent-Typeを自動判別しないため、JSON文字列を送信する場合は明示的に'Content-Type': 'application/json'ヘッダーを指定する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/fetch"
+  },
+  {
+    "id": "communication-016",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードは3秒後にfetch()のリクエストをキャンセルする処理である。空欄に入れるべきコードとして正しいものはどれか。",
+    "code": "const controller = new AbortController();\nsetTimeout(function() {\n  ____________;\n}, 3000);\n\nfetch('/api/data', { signal: controller.signal })\n  .catch(function(err) {\n    if (err.name === 'AbortError') {\n      console.log('リクエストがキャンセルされました');\n    }\n  });",
+    "choices": ["controller.abort()", "controller.cancel()", "controller.signal.abort()", "fetch.abort()"],
+    "correctAnswers": [0],
+    "explanation": "AbortControllerのabort()メソッドを呼び出すことで、そのcontrollerのsignalを渡したfetch()リクエストをキャンセルできる。キャンセルされるとfetch()が返すPromiseはAbortErrorという名前のDOMExceptionでrejectされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AbortController"
+  },
+  {
+    "id": "communication-017",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "AbortControllerによってキャンセルされたfetch()のPromiseがrejectされた際、catch()で受け取るエラーオブジェクトの特徴として正しいものはどれか。",
+    "choices": [
+      "エラーオブジェクトのnameプロパティが'AbortError'になる",
+      "エラーオブジェクトのnameプロパティが'TypeError'になる",
+      "エラーは発生せず、response.statusが0で返る",
+      "エラーオブジェクトのnameプロパティは常に'NetworkError'になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AbortControllerのabort()によってキャンセルされたfetchのPromiseは、nameプロパティが'AbortError'であるDOMExceptionでrejectされる。通常のネットワークエラーの場合はTypeErrorになるため区別できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AbortController"
+  },
+  {
+    "id": "communication-018",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのように、Requestオブジェクトを利用してfetch()を呼び出す方法について正しい説明はどれか。",
+    "code": "const request = new Request('/api/data', { method: 'GET' });\nfetch(request).then(function(response) {\n  return response.json();\n});",
+    "choices": [
+      "Requestオブジェクトはリクエストの情報(URL、メソッド、ヘッダーなど)をまとめてカプセル化し、fetch()の引数として渡すことができる",
+      "Requestオブジェクトを使う場合、fetch()の第2引数は指定できなくなる",
+      "Requestオブジェクトはレスポンスの内容を保持するために使われる",
+      "Requestオブジェクトはfetch()専用ではなく、XMLHttpRequestのopen()の代わりに直接使用できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Requestオブジェクトはリクエスト内容をカプセル化するオブジェクトであり、fetch(request)のように渡すことができる。同一のRequestを複数のfetch呼び出しに再利用することも可能である。レスポンスの内容を保持するのはResponseオブジェクトの役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Request"
+  },
+  {
+    "id": "communication-019",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "fetch()のオプションで指定できるcredentialsプロパティに設定できる値として正しいものを全て選べ。",
+    "choices": ["'omit'", "'same-origin'", "'include'", "'cors'", "'no-cors'"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "credentialsプロパティには'omit'(Cookie等を送信しない)、'same-origin'(同一オリジンの場合のみ送信)、'include'(クロスオリジンでも常に送信)の3つの値を指定できる。'cors'と'no-cors'はmodeプロパティに指定する値である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/fetch"
+  },
+  {
+    "id": "communication-020",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "fetch()のオプションのmodeプロパティに'no-cors'を指定した場合の動作について、正しい説明はどれか。",
+    "choices": [
+      "レスポンスはopaque(不透明)なレスポンスとなり、JavaScriptからステータスコードやボディの内容を読み取ることができない",
+      "CORSの制約を完全に無視してクロスオリジンのレスポンス内容を自由に読み取れるようになる",
+      "'no-cors'を指定するとリクエスト自体が送信されずに即座にPromiseがrejectされる",
+      "'no-cors'はmodeではなくcredentialsプロパティの値である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "mode: 'no-cors'を指定すると、単純リクエストの範囲でクロスオリジンリクエストを送信できるが、レスポンスはopaqueとなりJavaScriptからステータスやボディを参照できない。CORSの制限を回避して内容を読み取れるようになるわけではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/fetch"
+  },
+  {
+    "id": "communication-021",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードでWebSocket通信を開始する際の正しい記述はどれか。",
+    "code": "var socket = ____________;\nsocket.onopen = function() {\n  console.log('接続しました');\n};",
+    "choices": [
+      "new WebSocket('wss://example.com/socket')",
+      "WebSocket.connect('wss://example.com/socket')",
+      "new WebSocket().open('wss://example.com/socket')",
+      "fetch.webSocket('wss://example.com/socket')"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebSocket接続を確立するには、new WebSocket(url)のようにコンストラクタにURL(ws://またはwss://で始まる)を渡してインスタンスを生成する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/WebSocket"
+  },
+  {
+    "id": "communication-022",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "WebSocketオブジェクトのreadyStateプロパティが取り得る値の組み合わせとして正しいものを全て選べ。",
+    "choices": ["CONNECTING (0)", "OPEN (1)", "CLOSING (2)", "CLOSED (3)", "RECONNECTING (4)"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "WebSocketのreadyStateはCONNECTING(0)、OPEN(1)、CLOSING(2)、CLOSED(3)の4つの状態を取る。RECONNECTINGという状態は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/readyState"
+  },
+  {
+    "id": "communication-023",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの空欄に入れるべきイベントハンドラの組み合わせとして正しいものはどれか。サーバーからメッセージを受信した時と、接続がエラーになった時にそれぞれログを出力したい。",
+    "code": "var socket = new WebSocket('wss://example.com/socket');\nsocket.____A____ = function(event) {\n  console.log('受信:', event.data);\n};\nsocket.____B____ = function(event) {\n  console.log('エラーが発生しました');\n};",
+    "choices": [
+      "A: onmessage, B: onerror",
+      "A: onreceive, B: onfail",
+      "A: onmessage, B: onclose",
+      "A: ondata, B: onerror"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebSocketにはonopen、onmessage、onerror、oncloseの4つのイベントハンドラがある。メッセージ受信時はonmessage、エラー発生時はonerrorが呼び出される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket"
+  },
+  {
+    "id": "communication-024",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "WebSocketのsend()メソッドで送信できるデータの型として正しいものを全て選べ。",
+    "choices": ["文字列(String)", "Blob", "ArrayBuffer", "ArrayBufferView", "Promise"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "send()メソッドの引数には文字列、Blob、ArrayBuffer、ArrayBufferView(TypedArrayなど)を指定できる。Promiseオブジェクトをそのまま送信することはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/send"
+  },
+  {
+    "id": "communication-025",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "WebSocketのclose()メソッドについて正しい説明はどれか。",
+    "choices": [
+      "close(code, reason)のように終了コードと理由となる文字列を指定できる",
+      "close()を呼び出すと即座にreadyStateがCLOSEDになり、closeイベントは発火しない",
+      "close()メソッドには引数を渡すことができない",
+      "close()を呼び出すとサーバー側の処理は中断されるが、クライアント側のソケットはOPEN状態のままになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "close()メソッドはオプションで終了コード(code)と理由(reason)の文字列を引数に取ることができる。呼び出し後、readyStateはまずCLOSING(2)になり、実際に接続が終了するとCLOSED(3)になってcloseイベントが発火する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/close"
+  },
+  {
+    "id": "communication-026",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "WebSocketのonmessageイベントハンドラの引数として渡されるイベントオブジェクトから、サーバーから送られたデータを取得するために参照するプロパティはどれか。",
+    "choices": ["event.data", "event.message", "event.body", "event.response"],
+    "correctAnswers": [0],
+    "explanation": "onmessageイベントのイベントオブジェクト(MessageEvent)のdataプロパティに、サーバーから送信されたメッセージの内容が格納される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/message_event"
+  },
+  {
+    "id": "communication-027",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "WebSocket通信の特徴として正しいものを全て選べ。",
+    "choices": [
+      "一度接続が確立すると、クライアントとサーバーの双方から任意のタイミングでデータを送信できる全二重通信である",
+      "HTTPのリクエスト/レスポンスモデルとは異なり、1つのコネクションを維持したまま双方向にデータをやり取りできる",
+      "WebSocketは常にポーリング(定期的なリクエスト送信)によって実現されている",
+      "WebSocketは一度確立した接続内で複数回のメッセージ送受信が可能である",
+      "サーバーからクライアントへのデータ送信は一切できない"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "WebSocketは一度ハンドシェイクを完了すると、単一のTCPコネクション上でクライアント・サーバー双方から任意のタイミングでメッセージを送受信できる全二重通信を実現する。ポーリングのように定期的にリクエストを送る必要はなく、サーバーからのプッシュ配信も可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API"
+  },
+  {
+    "id": "communication-028",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "WebSocketのURLスキームであるws://とwss://の違いについて正しい説明はどれか。",
+    "choices": [
+      "wss://はTLSによって通信が暗号化される、ws://の暗号化版である",
+      "ws://はWebSocket専用の暗号化通信であり、wss://はレガシー用途である",
+      "wss://はサーバー側でのみ使用され、クライアントはws://のみ指定できる",
+      "ws://とwss://はどちらも暗号化されるが、対応するポート番号が異なるだけである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ws://は平文(非暗号化)のWebSocket通信、wss://はTLSによって暗号化されたWebSocket通信を表す。HTTPとHTTPSの関係に対応しており、デフォルトポートはws://が80、wss://が443である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API"
+  },
+  {
+    "id": "communication-029",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのように、WebSocketのコンストラクタの第2引数にサブプロトコルを指定した場合の動作について正しい説明はどれか。",
+    "code": "var socket = new WebSocket('wss://example.com/socket', ['chat', 'superchat']);",
+    "choices": [
+      "クライアントが対応可能なサブプロトコルの候補をサーバーに提示し、サーバーがその中から1つを選択して応答する",
+      "指定した複数のサブプロトコルすべてが同時に有効になる",
+      "第2引数は接続先のポート番号を指定するためのものである",
+      "サブプロトコルはWebSocketの仕様には存在せず、このコードはエラーになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebSocketコンストラクタの第2引数には、クライアントが使用可能なサブプロトコル名を文字列または配列で指定できる。ハンドシェイク時にSec-WebSocket-Protocolヘッダーとしてサーバーに送られ、サーバーはその中から1つを選択してレスポンスヘッダーで返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/WebSocket"
+  },
+  {
+    "id": "communication-030",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "WebSocketの接続確立時に行われるハンドシェイクについて、正しい説明はどれか。",
+    "choices": [
+      "クライアントがUpgradeヘッダーを含むHTTPリクエストを送信し、サーバーが101 Switching Protocolsで応答することでWebSocket通信に切り替わる",
+      "WebSocketはHTTPとは無関係な独自のポートで最初から通信を開始する",
+      "ハンドシェイクは常にサーバー側から開始される",
+      "ハンドシェイクにはSSL証明書が必須であり、ws://では通信を確立できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebSocketの接続確立時、クライアントはUpgrade: websocketおよびConnection: Upgradeヘッダーを含むHTTPリクエストを送信する。サーバーがこれを受理するとステータスコード101 Switching Protocolsで応答し、以後はWebSocketの独自フレームプロトコルによる通信に切り替わる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API"
+  },
+  {
+    "id": "communication-031",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "WebSocketのハンドシェイク完了後の通信について、正しい説明はどれか。",
+    "choices": [
+      "HTTPのリクエスト/レスポンスとは異なる、WebSocket独自のフレーム形式でデータがやり取りされる",
+      "ハンドシェイク完了後も、メッセージの送受信のたびにHTTPリクエストヘッダーが付与される",
+      "ハンドシェイク完了後は通信内容がすべてBase64エンコードされて送受信される",
+      "ハンドシェイク完了後はTCP接続を都度切断・再接続しながら通信する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebSocketはハンドシェイクによってHTTPからプロトコルを切り替えた後、単一のTCPコネクション上でWebSocket独自のフレーミング形式によりデータを送受信する。HTTPヘッダーの付与や都度の接続の切断・再接続は不要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API"
+  },
+  {
+    "id": "communication-032",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードのように、Server-Sent Eventsを利用してサーバーからのイベントを受信する際、正しい記述はどれか。",
+    "code": "var source = ____________;\nsource.onmessage = function(event) {\n  console.log(event.data);\n};",
+    "choices": [
+      "new EventSource('/events')",
+      "new WebSocket('/events', 'sse')",
+      "new ServerSentEvent('/events')",
+      "fetch.stream('/events')"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Server-Sent Eventsを利用する際は、EventSourceコンストラクタにエンドポイントのURLを渡してインスタンスを生成する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventSource"
+  },
+  {
+    "id": "communication-033",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Server-Sent Events(SSE)の通信の特性について、正しい説明はどれか。",
+    "choices": [
+      "サーバーからクライアントへの一方向の通信のみをサポートし、クライアントからサーバーへのデータ送信にはSSEの仕組みを使えない",
+      "SSEはWebSocketと同様にクライアント・サーバー間の双方向通信を実現する",
+      "SSEはクライアントからサーバーへの一方向通信専用の仕組みである",
+      "SSEはUDPを利用した通信方式である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Server-Sent Eventsはサーバーからクライアントへの一方向のプッシュ配信に特化した仕組みであり、HTTP上に構築されている。クライアントからサーバーへの継続的なデータ送信が必要な場合は別途XHR/fetchを使うかWebSocketを検討する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events"
+  },
+  {
+    "id": "communication-034",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "サーバーがServer-Sent Eventsのレスポンスを返す際の形式として正しいものはどれか。",
+    "code": "HTTP/1.1 200 OK\nContent-Type: ____A____\n\n____B____",
+    "choices": [
+      "A: text/event-stream, B: data: こんにちは\\n\\n",
+      "A: application/json, B: {\"data\": \"こんにちは\"}",
+      "A: text/event-stream, B: <event>こんにちは</event>",
+      "A: multipart/event, B: data=こんにちは"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SSEのレスポンスはContent-Type: text/event-streamで返し、本文は\"data: メッセージ内容\"の後に空行を挟む形式で1件のイベントを表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events/Using_server-sent_events"
+  },
+  {
+    "id": "communication-035",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "EventSourceオブジェクトが提供するイベント/イベントハンドラとして正しいものを全て選べ。",
+    "choices": ["open", "message", "error", "close", "abort"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "EventSourceにはopen(接続確立時)、message(データ受信時)、error(エラー発生時)の3つの標準イベントが存在する。WebSocketとは異なり、closeイベントは定義されていない(接続を明示的に閉じるにはclose()メソッドを呼び出す)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventSource"
+  },
+  {
+    "id": "communication-036",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Server-Sent Eventsの自動再接続の仕組みについて、正しい説明はどれか。",
+    "choices": [
+      "接続が切断されると、ブラウザは自動的に再接続を試み、サーバーはretry:フィールドで再接続までの待機時間(ミリ秒)を指定できる",
+      "接続が切断された場合、再接続はJavaScript側で明示的にnew EventSource()を再実行しない限り行われない",
+      "retry:フィールドは再接続の最大試行回数を指定するものである",
+      "SSEには再接続の仕組みは存在せず、切断されると二度と接続できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SSEはコネクションが切断された場合、ブラウザ(EventSourceの実装)が自動的に再接続を試みる。サーバーはレスポンス中にretry:フィールドを含めることで、再接続までの待機時間をミリ秒単位で指定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events/Using_server-sent_events"
+  },
+  {
+    "id": "communication-037",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のようにサーバーがカスタムイベント名を指定して送信したデータを、クライアント側で受信するための正しい記述はどれか。",
+    "code": "event: notice\ndata: 在庫が残りわずかです\n",
+    "choices": [
+      "source.addEventListener('notice', function(event) { console.log(event.data); });",
+      "source.onmessage = function(event) { console.log(event.notice); };",
+      "source.on('notice', function(data) { console.log(data); });",
+      "カスタムイベント名を使う場合、onmessageハンドラでイベント名を判定する以外に受信する方法はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "event:フィールドでイベント名を指定して送信されたデータは、onmessageではなくaddEventListener()でそのイベント名を指定したリスナーによって受信する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events/Using_server-sent_events"
+  },
+  {
+    "id": "communication-038",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CORSにおける「単純リクエスト」と見なされる条件として正しいものを全て選べ。",
+    "choices": [
+      "メソッドがGET、HEAD、POSTのいずれかである",
+      "Content-Typeがapplication/x-www-form-urlencoded、multipart/form-data、text/plainのいずれかである(POSTの場合)",
+      "Authorizationなどのカスタムヘッダーを付与していない",
+      "Content-Typeにapplication/jsonを指定している",
+      "リクエストにCookieを含めている"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "単純リクエストとみなされるには、メソッドがGET/HEAD/POSTのいずれかであること、Content-Typeが規定の3種類のいずれかであること、カスタムヘッダーを付与していないことなどの条件を満たす必要がある。application/jsonはこの3種類に含まれないため、単純リクエストの条件を満たさずプリフライトの対象となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  {
+    "id": "communication-039",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "クロスオリジンリクエストの送信前にプリフライトリクエスト(OPTIONSメソッド)が発生する条件として正しいものを全て選べ。",
+    "choices": [
+      "PUTやDELETEなど、単純リクエストで許可されたメソッド以外を使用する場合",
+      "Content-Typeにapplication/jsonを指定する場合",
+      "X-Requested-Withなどのカスタムヘッダーを追加する場合",
+      "GETメソッドでContent-Typeを指定せずにリクエストする場合",
+      "同一オリジンに対してPOSTリクエストを送信する場合"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "プリフライトリクエストは、単純リクエストの条件を満たさないクロスオリジンリクエスト、すなわちPUT/DELETEなどの独自メソッドの使用、application/jsonなど許可されたContent-Type以外の指定、カスタムヘッダーの付与などがある場合に発生する。同一オリジンへのリクエストにはそもそもCORSの機構自体が関与しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  {
+    "id": "communication-040",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "サーバーがクロスオリジンからのアクセスを許可するために、レスポンスに含めるべきヘッダーとして正しいものはどれか。",
+    "choices": ["Access-Control-Allow-Origin", "X-Frame-Options", "Content-Security-Policy", "Cross-Origin-Resource"],
+    "correctAnswers": [0],
+    "explanation": "Access-Control-Allow-Originヘッダーは、そのリソースへのアクセスを許可するオリジンを指定するCORS関連のレスポンスヘッダーである。値には特定のオリジンまたはワイルドカード(*)を指定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Origin"
+  },
+  {
+    "id": "communication-041",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記はプリフライトリクエストに対するレスポンスの例である。この内容から読み取れる説明として正しいものはどれか。",
+    "code": "HTTP/1.1 204 No Content\nAccess-Control-Allow-Origin: https://client.example.com\nAccess-Control-Allow-Methods: PUT, DELETE\nAccess-Control-Allow-Headers: X-Custom-Header",
+    "choices": [
+      "実際のリクエストではPUTやDELETEメソッド、X-Custom-Headerヘッダーの使用が許可されている",
+      "このレスポンスは実際のリクエストそのものに対する応答であり、プリフライトとは無関係である",
+      "Access-Control-Allow-Methodsにはブラウザが対応する全てのHTTPメソッドを列挙しなければならない",
+      "このレスポンスではクロスオリジンからのアクセスは一切許可されていない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "このレスポンスはプリフライトリクエスト(OPTIONS)に対する応答であり、指定されたオリジンからのPUT/DELETEメソッド、X-Custom-Headerヘッダーを用いた実際のリクエストが許可されることを示している。204 No Contentはプリフライト応答として一般的なステータスコードである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Methods"
+  },
+  {
+    "id": "communication-042",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "クロスオリジンリクエストでCookieなどの資格情報を送受信するための設定について、正しいものを全て選べ。",
+    "choices": [
+      "クライアント側でfetch()のcredentialsオプションに'include'を指定する必要がある",
+      "サーバー側のレスポンスにAccess-Control-Allow-Credentials: trueを含める必要がある",
+      "資格情報を許可する場合、サーバーのAccess-Control-Allow-Originにワイルドカード(*)を指定することはできず、具体的なオリジンを指定する必要がある",
+      "資格情報の送信を許可するかどうかはクライアント側の設定のみで決定され、サーバー側の設定は不要である",
+      "Access-Control-Allow-Credentialsはプリフライトの可否を判定する唯一の条件である"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "クロスオリジンでCookie等を送受信するには、クライアント側でcredentials: 'include'を指定し、サーバー側でAccess-Control-Allow-Credentials: trueを返す必要がある。さらにこの場合、Access-Control-Allow-Originにはワイルドカードを指定できず、具体的なオリジンを明示しなければならない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials"
+  },
+  {
+    "id": "communication-043",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Access-Control-Max-Ageヘッダーの役割として正しいものはどれか。",
+    "choices": [
+      "プリフライトリクエストの結果をブラウザがキャッシュしておく時間を秒単位で指定する",
+      "実際のリクエストのタイムアウト時間を指定する",
+      "WebSocket接続を維持できる最大時間を指定する",
+      "CORSエラーが発生した場合の再試行回数を指定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Access-Control-Max-Ageは、プリフライトリクエストの結果(許可されるメソッドやヘッダーの情報)をブラウザがキャッシュしてよい期間を秒単位で指定するヘッダーである。この期間内は同じリクエストに対してプリフライトが再送されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Max-Age"
+  },
+  {
+    "id": "communication-044",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "2つのURLが「同一オリジン」であると判定されるために一致していなければならない要素を全て選べ。",
+    "choices": ["スキーム(プロトコル、例: https)", "ホスト名(ドメイン)", "ポート番号", "URLパス", "クエリ文字列"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "オリジンはスキーム、ホスト、ポート番号の組み合わせによって定義される。これら3つが一致していれば同一オリジンと判定され、URLパスやクエリ文字列は同一オリジンの判定には関係しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "communication-045",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードを、api.other-domain.comがCORSレスポンスヘッダーを一切返さない状態で実行した場合の挙動として、正しい説明はどれか。",
+    "code": "fetch('https://api.other-domain.com/data')\n  .then(function(response) {\n    return response.json();\n  })\n  .catch(function(error) {\n    console.error(error);\n  });",
+    "choices": [
+      "ブラウザがレスポンスをブロックし、catch()節でエラーとして捕捉される",
+      "レスポンスは正常に取得でき、response.json()の内容をそのまま利用できる",
+      "リクエスト自体がブラウザによって送信されないため、サーバーに到達しない",
+      "同一オリジンポリシーはfetch()には適用されないため、常に正常に取得できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "クロスオリジン先がCORSヘッダー(Access-Control-Allow-Originなど)を返さない場合、ブラウザはレスポンスの中身へのアクセスをブロックし、fetch()のPromiseはネットワークエラーとしてrejectされ、catch()節で捕捉される。なお単純リクエストの条件を満たす場合、リクエスト自体はサーバーに届いていることがある点に注意。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "communication-046",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "同一オリジンポリシーの制限を受けにくい、クロスオリジンリソースの埋め込みの例として正しいものを全て選べ。",
+    "choices": [
+      "<img>タグによる画像の読み込み",
+      "<script>タグによる外部JavaScriptファイルの読み込み",
+      "<link>タグによる外部CSSファイルの読み込み",
+      "fetch()によるクロスオリジンJSONレスポンスの内容取得",
+      "XMLHttpRequestによるクロスオリジンのレスポンス本文の読み取り"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "img、script、linkなどのタグによるクロスオリジンリソースの埋め込みは、歴史的経緯もあり同一オリジンポリシーの直接的な制限を受けにくい(ただしscriptの実行結果の詳細な読み取りなどには制限がある)。一方、fetch()やXMLHttpRequestによるレスポンス内容の読み取りはCORSが許可されない限り制限される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "communication-047",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "WebRTCを利用してブラウザ間でP2P(ピアツーピア)通信を確立する際、シグナリングサーバーが必要とされる理由として最も適切なものはどれか。",
+    "choices": [
+      "接続の確立に必要なSDP(セッション情報)やICE候補などのメタデータを、通信相手同士が事前に交換するための仲介役が必要なため",
+      "WebRTCの映像・音声データそのものを常にシグナリングサーバー経由で中継する必要があるため",
+      "シグナリングサーバーがなければRTCPeerConnectionオブジェクトを生成できないため",
+      "WebRTCの仕様上、シグナリングの方式(プロトコルや実装)が標準で1つに定められているため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebRTCの仕様自体はシグナリングの方法を規定しておらず、開発者はWebSocketやHTTPなど任意の方式でシグナリングサーバーを実装する必要がある。シグナリングは、P2P接続を確立するために必要なSDP情報やICE候補を、通信相手同士が交換するための仲介として機能する。実際のメディアデータはP2P確立後は直接(またはTURN経由で)やり取りされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API/Signaling_and_video_calling"
+  },
+  {
+    "id": "communication-048",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "WebRTCにおけるSTUNサーバーとTURNサーバーの役割について、正しい説明を全て選べ。",
+    "choices": [
+      "STUNサーバーは、NAT配下の端末が自身のグローバルIPアドレスとポート番号を知るために利用される",
+      "TURNサーバーは、P2Pの直接接続が確立できない場合にメディアデータを中継する役割を持つ",
+      "STUNサーバーは常にメディアデータの中継を行い、帯域を多く消費する",
+      "TURNサーバーはシグナリングメッセージ(SDPの交換)を行うために必須のサーバーである"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "STUNサーバーはNAT越えのために端末のグローバルIPアドレス・ポートを調べる目的で利用され、メディアデータの中継は行わない。TURNサーバーは対称型NATなどによりP2Pの直接接続が確立できない場合に、メディアデータそのものを中継するリレーサーバーとして機能する。シグナリングはSTUN/TURNとは別の仕組み(任意のシグナリングサーバー)で行われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API/Protocols"
+  },
+  {
+    "id": "communication-049",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのようにページ離脱時にログデータを送信する場合、navigator.sendBeacon()を使う利点として最も適切なものはどれか。",
+    "code": "window.addEventListener('unload', function() {\n  navigator.sendBeacon('/log', JSON.stringify({ event: 'leave' }));\n});",
+    "choices": [
+      "ページのアンロード処理をブロックすることなく、非同期かつ確実にデータ送信を試みることができる",
+      "sendBeacon()は同期的に実行され、送信が完了するまでページの遷移を保留する",
+      "sendBeacon()はWebSocketを利用して常に双方向通信を行う",
+      "sendBeacon()はGETリクエストのみをサポートしており、データの内容は常にURLのクエリ文字列に付与される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.sendBeacon()は、ページのアンロード時などに、ページの遷移や閉鎖をブロックすることなく小さなデータを非同期的にサーバーへ送信するためのAPIである。通常のXHR/fetchではunloadイベント中に送信したリクエストが中断される可能性があるが、sendBeacon()はブラウザによって送信の完了が保証されやすい。戻り値はキューイングに成功したかを示すbooleanである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/sendBeacon"
+  },
+  {
+    "id": "communication-050",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CORSが標準化される以前からクロスドメイン通信の回避策として使われてきたJSONPの仕組みと、その限界について正しい説明はどれか。",
+    "choices": [
+      "<script>タグを使ってクロスドメインのURLからJavaScriptコードとしてデータを取得する手法であり、GETリクエストしか利用できず、任意のスクリプトが実行されるセキュリティリスクがある",
+      "JSONPはXMLHttpRequestの一機能であり、CORSヘッダーを使わずにPOSTリクエストを可能にする仕組みである",
+      "JSONPはWebSocketの前身となったプロトコルであり、現在のWebSocketの基盤技術である",
+      "JSONPはCORSよりも後に登場した技術であり、CORSの機能を包含する上位互換の仕組みである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "JSONPは<script>タグがドメインを問わず外部リソースを読み込める性質を利用し、サーバーがコールバック関数呼び出しの形でデータを返すことでクロスドメイン通信を実現する手法である。GETリクエストしか使えないことや、任意のJavaScriptコードが実行されてしまうセキュリティ上のリスクがあるため、CORSが標準化された現在では代替手段として推奨されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/JSONP"
+  },
+  {
+    "id": "communication-051",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Fetch APIのResponseオブジェクトのbodyプロパティについて、正しい説明はどれか。",
+    "choices": [
+      "レスポンスボディをストリームとして読み取るためのReadableStreamオブジェクトを返す",
+      "レスポンスボディを文字列として同期的に返す",
+      "レスポンスヘッダーの一覧を格納したオブジェクトを返す",
+      "常にnullを返し、body情報はjson()やtext()を通じてのみ取得できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Response.bodyはレスポンスボディをストリーミングで読み取るためのReadableStreamを返すプロパティである。json()やtext()はこのストリームを内部的に読み取って結果を生成するヘルパーメソッドである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Response/body"
+  },
+  {
+    "id": "communication-052",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードのように、一定時間経過後に自動的にリクエストをキャンセルしたい場合、空欄に入れるべき静的メソッドはどれか。",
+    "code": "fetch('/api/data', { signal: ____________ })\n  .catch(function(err) {\n    console.log(err.name);\n  });",
+    "choices": [
+      "AbortSignal.timeout(5000)",
+      "AbortController.timeout(5000)",
+      "setTimeout(5000)",
+      "fetch.timeout(5000)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AbortSignal.timeout(ms)は、指定したミリ秒が経過すると自動的にabortされるAbortSignalを生成する静的メソッドである。AbortControllerを自前で生成してsetTimeoutからabort()を呼ぶ処理を簡潔に書き換えることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AbortSignal/timeout_static"
+  },
+  {
+    "id": "communication-053",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "WebSocketオブジェクトのbinaryTypeプロパティのデフォルト値として正しいものはどれか。",
+    "choices": ["\"blob\"", "\"arraybuffer\"", "\"string\"", "\"text\""],
+    "correctAnswers": [0],
+    "explanation": "binaryTypeプロパティのデフォルト値は\"blob\"であり、バイナリデータを受信した際はBlobオブジェクトとしてevent.dataに格納される。\"arraybuffer\"に設定するとArrayBufferとして受信できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/binaryType"
+  },
+  {
+    "id": "communication-054",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "navigator.sendBeacon()メソッドの戻り値について、正しい説明はどれか。",
+    "choices": [
+      "データがブラウザの送信キューに正常に追加されたかどうかを示すbooleanを返す",
+      "サーバーからのレスポンス本文を表す文字列を返す",
+      "送信の完了を待つPromiseオブジェクトを返す",
+      "常にundefinedを返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "sendBeacon()はデータの送信完了を待たず、キューへの登録が成功したかどうかを示すbooleanを同期的に返す。サーバーからのレスポンス内容を取得する手段は提供されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/sendBeacon"
+  },
+  {
+    "id": "communication-055",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTTPレスポンスヘッダーのVaryについて、正しい説明はどれか。",
+    "choices": [
+      "指定したリクエストヘッダーの値によってレスポンス内容が変化することを示し、キャッシュの判定に利用される",
+      "サーバーが許可するHTTPメソッドの一覧を示す",
+      "CORSにおいて許可するオリジンを動的に変更するためのヘッダーである",
+      "レスポンスボディの文字エンコーディングを指定するヘッダーである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Varyヘッダーはキャッシュサーバーやブラウザのキャッシュに対して、指定したリクエストヘッダー(例: OriginやAccept-Encoding)の値が異なる場合は別々のレスポンスとして扱うべきことを伝える。CORSで動的にAccess-Control-Allow-Originを返す場合、Vary: Originを付けないと異なるオリジン向けのレスポンスが誤ってキャッシュされ流用される恐れがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Vary"
+  },
+  {
+    "id": "communication-056",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Cross-Origin-Opener-Policy(COOP)ヘッダーの目的として正しいものはどれか。",
+    "choices": [
+      "自身のウィンドウと、window.openerなどで参照される他オリジンのウィンドウとの間のブラウジングコンテキストグループを分離し、相互参照を防ぐ",
+      "クロスオリジンのリクエストに対してCORSの許可オリジンを指定する",
+      "WebSocketのオリジン制限を緩和するためのヘッダーである",
+      "SSEのイベントストリームを暗号化するためのヘッダーである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cross-Origin-Opener-Policyは、自身のトップレベルドキュメントを、window.openerなどを通じて他オリジンのウィンドウから参照されないように分離するためのレスポンスヘッダーである。same-originなどの値を指定することで、クロスオリジン攻撃対策やクロスオリジン分離環境の構築に利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy"
+  },
+  {
+    "id": "communication-057",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Cross-Origin-Embedder-Policy(COEP)ヘッダーの目的として正しいものはどれか。",
+    "choices": [
+      "適切なCORPまたはCORSの許可がないクロスオリジンリソースの読み込みをブロックする",
+      "クロスオリジンのCookie送信を常に許可する",
+      "WebSocketのハンドシェイクを暗号化必須にする",
+      "同一オリジンのリソースの読み込みを制限する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cross-Origin-Embedder-Policyをrequire-corpに設定すると、明示的なCORPヘッダーやCORS許可のないクロスオリジンリソースの読み込みがブロックされる。COOPと組み合わせることで「クロスオリジン分離」状態を実現し、SharedArrayBufferなど高精度な機能を利用できるようになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy"
+  },
+  {
+    "id": "communication-058",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "fetch()のオプションに指定できるkeepaliveプロパティの目的として正しいものはどれか。",
+    "choices": [
+      "ページが破棄(アンロード)された後もリクエストの送信を継続させる",
+      "レスポンスをキャッシュに保持する期間を指定する",
+      "WebSocketのように接続を維持し続けて双方向通信を行う",
+      "リクエストヘッダーにKeep-Alive: trueを自動的に付与する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "keepaliveをtrueに指定すると、そのリクエストを発生させたドキュメントがページ遷移などで破棄されても、リクエストの送信が継続される。ページ離脱時にログを送信する用途でnavigator.sendBeacon()と似た役割を果たすが、fetch()のため任意のメソッドやレスポンスの取得も可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Request/keepalive"
+  },
+  {
+    "id": "communication-059",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "WebTransportについて、正しい説明はどれか。",
+    "choices": [
+      "HTTP/3(QUIC)を基盤とし、信頼性のある通信と信頼性のないデータグラム通信の両方を低遅延でサポートするAPIである",
+      "WebSocketの旧バージョンの名称であり、現在は非推奨である",
+      "XMLHttpRequestの後継として標準化されたAPIであり、WebSocketとは無関係である",
+      "SSEにおいてバイナリデータを送信するために用いられる専用オブジェクトである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebTransportはQUIC(HTTP/3)を基盤とするAPIで、TCPベースのWebSocketとは異なり、信頼性のあるストリーム通信に加えて、順序保証や再送を必要としない低遅延なデータグラム通信もサポートする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebTransport"
+  },
+  {
+    "id": "communication-060",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Server-Sent Eventsにおいて、id:フィールドとLast-Event-IDヘッダーの関係について正しい説明はどれか。",
+    "choices": [
+      "サーバーが送信するイベントにid:フィールドを含めておくと、接続切断後の再接続リクエストのLast-Event-IDヘッダーにブラウザがその値を自動的に設定する",
+      "Last-Event-IDはクライアントが独自に生成しCookieとして保存する値である",
+      "id:フィールドはイベントの表示順序を並び替えるためだけに使われ、再接続には関係しない",
+      "Last-Event-IDヘッダーはレスポンス側にのみ含まれ、リクエストには含まれない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "サーバーがイベントごとにid:フィールドを付与すると、ブラウザはその値を記憶し、接続が切断されて自動再接続する際にHTTPリクエストヘッダーLast-Event-IDとして送信する。サーバーはこれを利用して、切断中に発生したイベントから配信を再開できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events/Using_server-sent_events"
+  },
+  {
+    "id": "communication-061",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードを実行した場合の出力結果について、正しいものはどれか。",
+    "code": "fetch('/api/data').then(function(response) {\n  console.log(response.headers.get('Content-Type'));\n});",
+    "choices": [
+      "サーバーが返したレスポンスのContent-Typeヘッダーの値(存在しない場合はnull)",
+      "常に文字列'Content-Type'そのもの",
+      "リクエスト時に指定したヘッダーの値であり、レスポンスの内容には影響されない",
+      "ヘッダー名を配列として返すため、get()の戻り値は常に配列になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "response.headersはResponseに対応するHeadersオブジェクトであり、get(name)メソッドは指定した名前のヘッダー値を文字列で返す(該当するヘッダーが存在しない場合はnullを返す)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Headers/get"
+  },
+  {
+    "id": "communication-062",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "XMLHttpRequestを使ってファイルアップロードの進捗を取得したい場合、空欄に入れるべき正しい記述はどれか。",
+    "code": "var xhr = new XMLHttpRequest();\nxhr.open('POST', '/upload');\n____________ = function(event) {\n  console.log(event.loaded / event.total);\n};\nxhr.send(formData);",
+    "choices": [
+      "xhr.upload.onprogress",
+      "xhr.onuploadprogress",
+      "xhr.onprogress",
+      "xhr.upload.onload"
+    ],
+    "correctAnswers": [0],
+    "explanation": "アップロード中の進捗イベントは、xhrのuploadプロパティ(XMLHttpRequestUploadオブジェクト)のonprogressハンドラで監視する。xhr.onprogressはダウンロード(レスポンス受信)側の進捗を扱うハンドラである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequestUpload"
+  },
+  {
+    "id": "communication-063",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "fetch()のオプションでmodeプロパティを省略した場合のデフォルト値として正しいものはどれか。",
+    "choices": ["'cors'", "'no-cors'", "'same-origin'", "'navigate'"],
+    "correctAnswers": [0],
+    "explanation": "fetch()のmodeオプションを省略した場合のデフォルト値は'cors'である。クロスオリジンへのリクエストの場合、通常のCORSの仕組みに従ってレスポンスへのアクセスが許可されるかどうかが判定される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Request/mode"
+  },
+  {
+    "id": "communication-064",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Responseオブジェクトのredirectedプロパティについて、正しい説明はどれか。",
+    "choices": [
+      "リクエストの途中で1回以上リダイレクトが発生したかどうかを示すbooleanである",
+      "リダイレクト先のURLの一覧を格納した配列である",
+      "リダイレクトの回数を示す数値である",
+      "リダイレクトが発生した場合、常にtrueとなりfalseを取ることはない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Response.redirectedは、そのレスポンスを取得するまでに1回以上リダイレクトが発生したかどうかを示すboolean値である。回数や遷移先URLの一覧までは保持しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Response/redirected"
+  },
+  {
+    "id": "communication-065",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "WebSocket接続確立後、サーバーが選択したサブプロトコル名を確認するために参照するプロパティはどれか。",
+    "choices": ["socket.protocol", "socket.subprotocol", "socket.extensions", "socket.acceptedProtocol"],
+    "correctAnswers": [0],
+    "explanation": "WebSocketオブジェクトのprotocolプロパティには、コンストラクタで提示した候補の中からサーバーが選択したサブプロトコル名が格納される。選択されなかった場合は空文字列となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/protocol"
+  },
+  {
+    "id": "communication-066",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードは、ReadableStreamからチャンクを順に読み取る処理である。空欄に入れるべき正しい記述はどれか。",
+    "code": "fetch('/api/large-data').then(function(response) {\n  var reader = response.body.getReader();\n  function read() {\n    reader.read().then(function(result) {\n      if (result.done) {\n        console.log('読み込み完了');\n        return;\n      }\n      console.log(result.value);\n      ____________;\n    });\n  }\n  read();\n});",
+    "choices": ["read()", "reader.close()", "result.next()", "response.body.read()"],
+    "correctAnswers": [0],
+    "explanation": "ReadableStreamDefaultReaderのread()メソッドは{ done, value }という形のオブジェクトを解決値とするPromiseを返す。doneがfalseの間は再帰的にread()を呼び出してチャンクを読み進める必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ReadableStreamDefaultReader/read"
+  },
+  {
+    "id": "communication-067",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの実行結果について、正しい説明はどれか。",
+    "code": "var headers = new Headers();\nheaders.append('Content-Type', 'text/plain');\nconsole.log(headers.get('content-type'));",
+    "choices": [
+      "'text/plain'が出力される。ヘッダー名の大文字・小文字は区別されない",
+      "nullが出力される。get()に渡す名前は大文字・小文字が完全に一致していなければならない",
+      "例外がスローされる",
+      "空文字列が出力される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "HTTPヘッダー名は大文字・小文字を区別しないため、Headersオブジェクトのget()やappend()、set()、has()などのメソッドはヘッダー名の大文字・小文字を区別せずに処理する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Headers"
+  },
+  {
+    "id": "communication-068",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Responseオブジェクトのtypeプロパティが取り得る値として正しいものを全て選べ。",
+    "choices": ["\"basic\"", "\"cors\"", "\"opaque\"", "\"opaqueredirect\"", "\"blocked\""],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "Response.typeには、同一オリジンからの応答を示す\"basic\"、CORSが許可されたクロスオリジン応答の\"cors\"、no-corsモード等で内容が読み取れない\"opaque\"、リダイレクトをmanualモードで受け取った際の\"opaqueredirect\"などの値がある。\"blocked\"という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Response/type"
+  },
+  {
+    "id": "communication-069",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのように、WebSocketで受信したバイナリデータをArrayBufferとして扱いたい場合、空欄に入れるべき設定はどれか。",
+    "code": "var socket = new WebSocket('wss://example.com/socket');\n____________;\nsocket.onmessage = function(event) {\n  var buffer = event.data; // ArrayBufferとして扱う\n};",
+    "choices": [
+      "socket.binaryType = 'arraybuffer'",
+      "socket.dataType = 'arraybuffer'",
+      "socket.send.binaryType = 'arraybuffer'",
+      "特に設定しなくても常にArrayBufferとして受信される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebSocketで受信するバイナリデータの型は、binaryTypeプロパティに'blob'(デフォルト)または'arraybuffer'を設定することで制御できる。'arraybuffer'に設定するとevent.dataはArrayBufferのインスタンスになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/binaryType"
+  },
+  {
+    "id": "communication-070",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のレスポンスヘッダーが返された場合のプリフライトキャッシュの挙動について、正しい説明はどれか。",
+    "code": "Access-Control-Max-Age: 86400",
+    "choices": [
+      "多くのブラウザには実装上のキャッシュ時間の上限があり、指定値がそれを超える場合は上限値に制限される(例: Chromiumは2時間、Firefoxは24時間が上限)",
+      "86400秒という指定値は必ずそのまま適用され、ブラウザによる上限は存在しない",
+      "この値は秒ではなくミリ秒として解釈される",
+      "Access-Control-Max-Ageは数値ではなく日付形式の文字列で指定しなければならない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Access-Control-Max-Ageで指定した秒数はブラウザがプリフライト結果をキャッシュする期間だが、多くのブラウザには実装上の上限が設けられており、指定値がそれを超えていても上限値でキャップされる。単位は秒である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Max-Age"
+  },
+  {
+    "id": "communication-071",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "fetch()のkeepaliveオプションとnavigator.sendBeacon()を比較した説明として、正しいものはどれか。",
+    "choices": [
+      "keepalive付きのfetch()はPUTなど任意のメソッドを使え、レスポンスを取得することもできるが、送信できるボディサイズには実装上の制限(多くのブラウザで64KB程度)がある",
+      "keepalive付きのfetch()はレスポンスを取得できない点でsendBeacon()と完全に同一の機能である",
+      "sendBeacon()には送信データサイズの制限は一切存在しない",
+      "keepaliveオプションを使うとページ離脱後もJavaScriptの実行が継続される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "keepalive: trueを指定したfetch()は、ページ離脱後も送信を継続しつつ任意のHTTPメソッドやレスポンスの取得が可能な点でsendBeacon()より柔軟だが、送信可能なボディサイズには上限がある(多くの実装で64KB程度)。sendBeacon()にも同様のペイロードサイズ制限があり、無制限ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Request/keepalive"
+  },
+  {
+    "id": "communication-072",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "WebTransportがWebSocketに対して持つ利点として正しいものを全て選べ。",
+    "choices": [
+      "1つの接続上で複数の独立したストリームを開くことができ、片方のストリームのパケットロスが他のストリームをブロックしない",
+      "順序保証や再送を必要としない用途向けにデータグラムによる送受信をサポートする",
+      "常にTCPよりも信頼性の高い通信を提供し、パケットロストが発生しない",
+      "サーバーが証明書なしで平文通信を行うことを標準で許可している"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "WebTransportはQUIC上に構築されるため、複数の独立したストリームを多重化でき、1つのストリームでのパケットロスが他のストリームの配信をブロックしない(ヘッドオブラインブロッキングの回避)。また信頼性や順序保証が不要な場合はデータグラムAPIで低遅延に送受信できる。パケットロス自体は発生し得るため「発生しない」という説明は誤りであり、平文通信を許可する仕組みでもない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebTransport"
+  },
+  {
+    "id": "communication-073",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "サーバーがリクエストのOriginヘッダーの値をそのままAccess-Control-Allow-Originに反映して返す実装をしている場合、Vary: Originヘッダーを付与すべき理由として最も適切なものはどれか。",
+    "choices": [
+      "中間キャッシュやブラウザキャッシュが、あるオリジン向けに生成したレスポンスを別のオリジンからのリクエストにそのまま使い回してしまうことを防ぐため",
+      "Vary: Originを付けなければブラウザがそもそもCORSレスポンスを受理しないため",
+      "Access-Control-Allow-Originを動的に生成する場合、Vary: Originの指定が仕様上必須であり、指定がなければ常にプリフライトが失敗するため",
+      "Vary: OriginはCookieの送信を許可するために必要なヘッダーである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Access-Control-Allow-Originの値をOriginヘッダーの値に応じて動的に変える場合、キャッシュ機構がリクエストのOriginを区別せずにレスポンスを再利用してしまうと、意図しないオリジンに対して別オリジン用のレスポンスが返される恐れがある。Vary: Originを指定することで、Originヘッダーの値ごとに異なるキャッシュエントリとして扱われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Vary"
+  },
+  {
+    "id": "communication-074",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "SharedArrayBufferの利用など、高精度なタイミング情報を扱う機能をブラウザで有効にするために必要な設定として正しいものはどれか。",
+    "choices": [
+      "Cross-Origin-Opener-Policy: same-originとCross-Origin-Embedder-Policy: require-corpを組み合わせてページを「クロスオリジン分離」状態にする",
+      "Content-Security-Policyヘッダーにshared-array-buffer: enabledを指定する",
+      "Access-Control-Allow-Originにワイルドカード(*)を指定する",
+      "WebSocketのサブプロトコルとしてsharedbufferを指定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Spectreなどのサイドチャネル攻撃対策として、多くのブラウザはSharedArrayBufferなどの機能を利用するページに対し、COOPとCOEPを組み合わせて明示的に「クロスオリジン分離」された状態(self.crossOriginIsolatedがtrue)にすることを要求している。CSPのディレクティブやCORSのワイルドカード指定では代替できない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/crossOriginIsolated"
+  },
+  {
+    "id": "communication-075",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のようにサーバーがイベントを送信している場合、接続が切断されて自動再接続が行われた際のクライアントの挙動について、正しい説明はどれか。",
+    "code": "id: 42\ndata: 通知A\n\nid: 43\ndata: 通知B\n",
+    "choices": [
+      "再接続時のHTTPリクエストにLast-Event-ID: 43ヘッダーが付与され、サーバーはこれを参照して43より後のイベントから再送するなどの制御ができる",
+      "id:フィールドはクライアント側の表示順序にのみ影響し、再接続時のリクエストには何も反映されない",
+      "再接続時は常にLast-Event-ID: 1から送信し直される",
+      "id:フィールドを使うとEventSourceは自動再接続を行わなくなる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "EventSourceは最後に受信したイベントのid:フィールドの値を記憶し、接続切断後の自動再接続リクエストのヘッダーにLast-Event-IDとして付与する。サーバーはこの値を見て、切断中に発生した以降のイベントのみを再送するといった実装が可能になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events/Using_server-sent_events"
+  },
+  {
+    "id": "communication-076",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードについて、TextDecoderのdecode()メソッドに{ stream: true }を渡す理由として正しいものはどれか。",
+    "code": "var reader = response.body.getReader();\nvar decoder = new TextDecoder('utf-8');\nreader.read().then(function(result) {\n  var chunk = decoder.decode(result.value, { stream: true });\n  console.log(chunk);\n});",
+    "choices": [
+      "マルチバイト文字がチャンクの境界で分断された場合に備え、不完全なバイト列を内部に保持して次回のdecode()呼び出しで正しく結合するため",
+      "受信したデータを常に非同期に変換するため",
+      "decode()の戻り値をPromiseにするため",
+      "ストリームの読み込み速度を制限(スロットリング)するため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ネットワークから受信するチャンクは任意のバイト境界で分割されるため、UTF-8のようなマルチバイト文字がチャンクの途中で分断される可能性がある。{ stream: true }を指定すると、TextDecoderは未完成のバイト列を内部状態として保持し、次のdecode()呼び出し時にcontinuationとして正しく結合してデコードする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/TextDecoder/decode"
+  },
+  {
+    "id": "communication-077",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Responseオブジェクトのclone()メソッドについて、正しい説明はどれか。",
+    "choices": [
+      "レスポンスボディが未消費(bodyUsedがfalse)の状態でのみ呼び出すことができ、既に消費済みのレスポンスに対してclone()を呼ぶと例外がスローされる",
+      "clone()を呼び出すと元のレスポンスのボディが即座に消費され、以後元のレスポンスからは読み取れなくなる",
+      "clone()は新しいネットワークリクエストを送信し、サーバーから再度レスポンスを取得する",
+      "clone()によって複製されたレスポンスは、元のレスポンスのヘッダー情報を引き継がない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Response.clone()は、ボディが消費される前(bodyUsedがfalseの間)にのみ呼び出せる。同一のレスポンス内容を複数の処理(例: キャッシュへの保存とJavaScriptでの利用)に使いたい場合、消費前にclone()で複製を作成し、それぞれのオブジェクトに対してjson()やtext()を呼び出す。既に消費済みのレスポンスに対してclone()を呼ぶとTypeErrorがスローされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Response/clone"
+  },
+  {
+    "id": "communication-078",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのようにfetch()のredirectオプションに'manual'を指定した場合の動作について、正しい説明はどれか。",
+    "code": "fetch('/api/data', { redirect: 'manual' }).then(function(response) {\n  console.log(response.type, response.status);\n});",
+    "choices": [
+      "リダイレクトが発生してもブラウザは自動的に追従せず、response.typeは'opaqueredirect'となり、ステータスやレスポンス内容の詳細を読み取ることができない",
+      "'manual'を指定するとリダイレクトが発生した時点でPromiseがrejectされる",
+      "'manual'はリダイレクト先のURLを手動でJavaScriptから指定するためのオプションである",
+      "'manual'を指定してもデフォルトの'follow'と同様にリダイレクト先まで自動的に追従する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "redirect: 'manual'を指定すると、サーバーがリダイレクトレスポンス(3xx)を返してもブラウザは自動的に追従せず、response.typeは'opaqueredirect'という不透明な値になり、ステータスコードやヘッダー等の詳細はJavaScriptから参照できなくなる。デフォルト値は'follow'で自動的に追従する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Request/redirect"
+  },
+  {
+    "id": "communication-079",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードについて、catch()節で受け取るエラーの内容として正しいものはどれか。",
+    "code": "const signal = AbortSignal.timeout(3000);\nfetch('/api/slow', { signal: signal })\n  .catch(function(err) {\n    console.log(err.name);\n  });",
+    "choices": [
+      "3秒経過してもレスポンスがない場合、'TimeoutError'という名前のDOMExceptionでrejectされる",
+      "3秒経過すると常に'AbortError'という名前のエラーになる",
+      "AbortSignal.timeout()を使った場合、catch()が呼ばれることはない",
+      "3秒経過する前にレスポンスが返ってきても必ずcatch()が呼ばれる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AbortSignal.timeout()によって生成されたシグナルがタイムアウトした場合、fetch()のPromiseはnameプロパティが'TimeoutError'であるDOMExceptionでrejectされる。これは開発者が明示的にAbortController.abort()を呼んだ場合の'AbortError'とは区別される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AbortSignal/timeout_static"
+  },
+  {
+    "id": "communication-080",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのように、クロスオリジンのレスポンスからカスタムヘッダーの値を読み取りたい場合、サーバー側で必要な対応として正しいものはどれか。",
+    "code": "fetch('https://api.example.com/data').then(function(response) {\n  console.log(response.headers.get('X-Custom-Total'));\n});",
+    "choices": [
+      "レスポンスヘッダーにAccess-Control-Expose-Headers: X-Custom-Totalを含める",
+      "レスポンスヘッダーにAccess-Control-Allow-Headers: X-Custom-Totalを含める",
+      "何もしなくても単純リクエストであれば全てのレスポンスヘッダーをJavaScriptから読み取れる",
+      "クライアント側でheaders.expose('X-Custom-Total')を呼び出す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CORSレスポンスにおいて、JavaScriptから読み取れるヘッダーはデフォルトでは限られた安全な既定ヘッダー(Cache-Control、Content-Language、Content-Type等)に限られる。カスタムヘッダーをJavaScriptから参照可能にするには、サーバーがAccess-Control-Expose-Headersでそのヘッダー名を明示的に列挙する必要がある。Access-Control-Allow-Headersはリクエスト側で許可するヘッダーを指定するものであり用途が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Expose-Headers"
+  },
+  {
+    "id": "communication-081",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Streams APIにおける「バックプレッシャー」の概念について、正しい説明はどれか。",
+    "choices": [
+      "データの生成(書き込み)側の速度が消費(読み取り)側の処理速度を上回った場合に、内部キューの状態に基づいて生成側の処理を調整する仕組み",
+      "ネットワーク帯域を強制的に制限する機能であり、Streams APIには実装されていない",
+      "ストリームが閉じられた後にも読み取り操作を継続させるための仕組み",
+      "複数のReadableStreamを1つに結合するための機能"
+    ],
+    "correctAnswers": [0],
+    "explanation": "バックプレッシャーとは、消費側の処理速度がデータ生成側より遅い場合に、内部キューの状態(highWaterMarkなど)に基づいて生成側の処理を一時停止させたり調整させたりする仕組みである。Streams APIはこの仕組みを標準でサポートしている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Streams_API/Concepts"
+  },
+  {
+    "id": "communication-082",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "navigator.sendBeacon()で送信されるリクエストの制約について、正しい説明はどれか。",
+    "choices": [
+      "リクエストヘッダーを自由に追加するオプションはなく、Content-Typeはdataの型(文字列やBlobのtype等)から決定される",
+      "任意のカスタムリクエストヘッダーを第3引数で指定できる",
+      "sendBeacon()はWebSocketと同じ接続を再利用するため、追加のTCP接続を必要としない",
+      "sendBeacon()はCORSの制約を受けず、常にどのオリジンにも送信できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "sendBeacon(url, data)はカスタムヘッダーを指定する仕組みを提供しておらず、Content-Typeは渡されたdataの型(Blobのtypeプロパティなど)によって決定される。クロスオリジンへの送信もCORSの制約を受ける点は通常のリクエストと同様である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/sendBeacon"
+  },
+  {
+    "id": "communication-083",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードについて、pipeThrough()メソッドの役割として正しい説明はどれか。",
+    "code": "fetch('/api/data')\n  .then(function(response) {\n    return response.body\n      .pipeThrough(new TextDecoderStream())\n      .pipeThrough(new TransformStream({\n        transform(chunk, controller) {\n          controller.enqueue(chunk.toUpperCase());\n        }\n      }));\n  });",
+    "choices": [
+      "ReadableStreamを別のTransformStreamに通し、変換処理を適用した新たなReadableStreamを返す",
+      "ストリームの内容をすぐに配列としてメモリ上に展開する",
+      "pipeThrough()はストリームを閉じるためのメソッドであり、変換処理は行わない",
+      "pipeThrough()はWritableStreamに対してのみ呼び出せるメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ReadableStream.pipeThrough()は、TransformStreamのようなペアのReadable/WritableStreamを持つオブジェクトにストリームを通し、変換後の新しいReadableStreamを返すメソッドである。複数のpipeThrough()をチェーンすることで、デコードや変換処理を段階的に適用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ReadableStream/pipeThrough"
+  },
+  {
+    "id": "communication-084",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cross-Origin-Resource-Policy(CORP)ヘッダーとCORSの違いについて、正しい説明はどれか。",
+    "choices": [
+      "CORPはリソースを提供する側が、どのオリジンからの読み込み(埋め込みなど)を許可するかを一方的に宣言する仕組みであり、CORSのようにプリフライトや動的な許可オリジンの判定は行わない",
+      "CORPはCORSの別名であり、両者は完全に同じ仕組みを指す",
+      "CORPを設定すると、Access-Control-Allow-Originの設定は不要になる",
+      "CORPはWebSocket専用のヘッダーであり、fetch()やimg要素には適用されない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cross-Origin-Resource-Policyは、リソースの提供側が同一オリジン・同一サイト・クロスオリジンのいずれからの読み込みを許可するかを宣言するシンプルな仕組みであり、CORSのようなプリフライトやAccess-Control-Allow-Originの動的な判定機構とは独立している。COEPによるクロスオリジン分離の実現にも利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Resource-Policy"
+  },
+  {
+    "id": "communication-085",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "fetch()のオプションに指定できるcacheプロパティのうち、'no-store'を指定した場合の挙動として正しいものはどれか。",
+    "choices": [
+      "HTTPキャッシュを一切参照せず、レスポンスをキャッシュにも保存しない",
+      "常にキャッシュされたレスポンスのみを返し、キャッシュが存在しない場合はエラーになる",
+      "ブラウザキャッシュを無視してサーバーに問い合わせるが、取得したレスポンスはキャッシュに保存する",
+      "'no-store'はcacheプロパティではなくmodeプロパティに指定する値である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "cache: 'no-store'を指定すると、HTTPキャッシュを完全にバイパスしてリクエストを送信し、取得したレスポンスもキャッシュに保存しない。キャッシュを無視して取得するが結果を保存する動作は'no-cache'や'reload'に相当する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Request/cache"
+  },
+  {
+    "id": "communication-086",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "プリフライトリクエストの結果のキャッシュ範囲について、正しい説明はどれか。",
+    "choices": [
+      "キャッシュは(オリジン、URL、メソッド)の組み合わせごとに管理され、使用するカスタムヘッダーの構成が変わると新たにプリフライトが必要になる場合がある",
+      "1度でもプリフライトが成功すれば、そのオリジンからの以降の全てのクロスオリジンリクエストでプリフライトが不要になる",
+      "プリフライトのキャッシュはサーバー側のメモリに保存され、ブラウザ側はキャッシュを保持しない",
+      "Access-Control-Max-Ageを指定しない場合、プリフライトの結果は無期限にキャッシュされる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "プリフライトのキャッシュはブラウザ側で管理され、対象のURLやメソッド、許可されたヘッダーの構成に基づいて判断される。使用するカスタムヘッダーの組み合わせが変わるなど、キャッシュされた許可内容を超えるリクエストを行う場合は再度プリフライトが発生する。Access-Control-Max-Ageを省略した場合のデフォルト値は5秒であり、無期限にキャッシュされるわけではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Max-Age"
+  },
+  {
+    "id": "communication-087",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "クロスオリジンリクエストでCookieを送信する設定(credentials: 'include')を行っている場合、サーバーのAccess-Control-Allow-HeadersやAccess-Control-Allow-Methodsについて正しい説明はどれか。",
+    "choices": [
+      "資格情報を伴うリクエストでは、これらのヘッダーにワイルドカード(*)を指定しても許可として機能せず、許可するヘッダー名・メソッド名を明示的に列挙する必要がある",
+      "資格情報を伴う場合でも、これらのヘッダーにはワイルドカード(*)を問題なく指定できる",
+      "Access-Control-Allow-HeadersとAccess-Control-Allow-Methodsは資格情報の有無に関わらず常に省略可能である",
+      "資格情報を伴うリクエストではこれらのヘッダーの代わりにAccess-Control-Allow-Credentialsのみで全てのヘッダー・メソッドが許可される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Access-Control-Allow-Originと同様に、資格情報(Cookie等)を伴うリクエストにおいてはAccess-Control-Allow-HeadersやAccess-Control-Allow-Methodsにワイルドカード(*)を指定しても仕様上は特別なワイルドカードとして解釈されず、許可するヘッダー名・メソッド名を具体的に列挙する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Headers"
+  },
+  {
+    "id": "communication-088",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "WebSocketオブジェクトのextensionsプロパティについて、正しい説明はどれか。",
+    "choices": [
+      "ハンドシェイク時にサーバーとの間で合意された拡張機能(例: permessage-deflateによるメッセージ圧縮)の名前を文字列で保持する",
+      "クライアントが送信可能なファイル拡張子の一覧を保持する",
+      "接続に使用しているTLSのバージョン情報を保持する",
+      "extensionsプロパティは常に空配列を返す読み取り専用の配列型プロパティである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "extensionsプロパティは、WebSocketのハンドシェイク時にクライアントとサーバーの間で合意された拡張機能(例えばpermessage-deflateによるメッセージの圧縮)を示す文字列を保持する読み取り専用プロパティである。拡張が使われていない場合は空文字列になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/extensions"
+  },
+  {
+    "id": "communication-089",
+    "category": "communication",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CORSレスポンスにおいて、Access-Control-Expose-Headersを指定しなくてもJavaScriptから参照できる「セーフリスト」に含まれるレスポンスヘッダーとして正しいものを全て選べ。",
+    "choices": ["Cache-Control", "Content-Language", "Content-Type", "X-Custom-Header", "Authorization"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "CORSの仕様では、Cache-Control、Content-Language、Content-Type、Content-Length、Expires、Last-Modified、Pragmaといった限られたレスポンスヘッダーが、Access-Control-Expose-Headersの指定なしでもJavaScriptから参照できる「セーフリスト」に含まれる。X-Custom-Headerのような独自ヘッダーやAuthorizationはセーフリストに含まれず、参照するにはAccess-Control-Expose-Headersでの明示が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Expose-Headers"
+  },
+  {
+    "id": "communication-090",
+    "category": "communication",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "リアルタイム性が求められるアプリケーションの通信方式選択について、次のシナリオに最も適した技術はどれか。「サーバーから不特定多数のクライアントへ一方向に通知を配信したいが、クライアントからのメッセージ送信は不要であり、HTTPのみが許可されたプロキシ環境でも動作させたい」",
+    "choices": [
+      "Server-Sent Events(EventSource)",
+      "WebSocket",
+      "WebTransportのbidirectional stream",
+      "UDPソケットを直接使用するAPI"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Server-Sent EventsはHTTP上に構築された一方向のプッシュ配信技術であり、通常のHTTPリクエストとして扱われるため、WebSocketのプロトコルアップグレードを許可しないプロキシ環境でも動作しやすい。クライアントからの送信が不要な一方向配信のシナリオに適している。WebSocketやWebTransportは双方向通信を前提とし、環境によってはプロキシ制約を受ける場合がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events"
+  }
+]

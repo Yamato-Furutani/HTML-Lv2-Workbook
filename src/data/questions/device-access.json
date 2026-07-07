@@ -1,0 +1,1312 @@
+[
+  {
+    "id": "device-access-001",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "現在の位置情報を1回だけ取得するためのGeolocation APIのメソッドはどれか。",
+    "code": "navigator.geolocation.getCurrentPosition((position) => {\n  console.log(position.coords.latitude, position.coords.longitude);\n});",
+    "choices": [
+      "navigator.geolocation.getCurrentPosition()",
+      "navigator.geolocation.watchPosition()",
+      "navigator.geolocation.clearWatch()",
+      "navigator.geolocation.getPosition()"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getCurrentPosition()は現在位置を1回だけ非同期に取得するメソッドである。watchPosition()は位置の変化を継続的に監視し、clearWatch()はwatchPosition()による監視を停止する。getPosition()というメソッドは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/getCurrentPosition"
+  },
+  {
+    "id": "device-access-002",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "デバイスの位置情報の変化を継続的に監視し、位置が変わるたびにコールバック関数を呼び出すメソッドはどれか。",
+    "choices": [
+      "navigator.geolocation.watchPosition()",
+      "navigator.geolocation.getCurrentPosition()",
+      "navigator.geolocation.observePosition()",
+      "navigator.geolocation.trackPosition()"
+    ],
+    "correctAnswers": [0],
+    "explanation": "watchPosition()は位置情報の変化を継続的に監視し、更新のたびに指定したコールバックを呼び出す。戻り値の監視IDはclearWatch()に渡して監視を停止できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/watchPosition"
+  },
+  {
+    "id": "device-access-003",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Geolocation APIのgetCurrentPosition()やwatchPosition()に渡すPositionOptionsオブジェクトに指定できる正しいプロパティを全て選べ。",
+    "choices": [
+      "enableHighAccuracy",
+      "timeout",
+      "maximumAge",
+      "accuracy",
+      "highAccuracy",
+      "watchInterval"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "PositionOptionsにはenableHighAccuracy(高精度要求)、timeout(タイムアウト時間)、maximumAge(キャッシュ許容時間)の3つのプロパティを指定できる。accuracy、highAccuracy、watchIntervalという名前のプロパティはPositionOptionsには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/getCurrentPosition#options"
+  },
+  {
+    "id": "device-access-004",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Geolocation APIのgetCurrentPosition()に渡すPositionOptionsのmaximumAgeプロパティの説明として正しいものはどれか。",
+    "choices": [
+      "キャッシュされた位置情報を許容する最大の経過時間(ミリ秒)を指定する",
+      "位置情報取得を待機する最大時間(ミリ秒)を指定する",
+      "取得できる位置情報の最大精度(メートル)を指定する",
+      "位置情報の監視を継続する最大時間(ミリ秒)を指定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "maximumAgeは、指定したミリ秒以内に取得されたキャッシュ済みの位置情報であれば再利用してよいことを示す。デフォルトは0で、常に新しい位置情報を取得しようとする。取得の待機時間を指定するのはtimeoutプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/getCurrentPosition#options"
+  },
+  {
+    "id": "device-access-005",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Geolocation APIの位置情報取得が失敗した場合、エラーコールバックに渡されるGeolocationPositionErrorオブジェクトのcodeプロパティが取りうる値(エラー種別)として正しいものを全て選べ。",
+    "choices": [
+      "PERMISSION_DENIED(ユーザーが位置情報の利用を許可しなかった)",
+      "POSITION_UNAVAILABLE(位置情報を取得できなかった)",
+      "TIMEOUT(指定時間内に位置情報を取得できなかった)",
+      "NETWORK_ERROR(通信回線が切断された)",
+      "DEVICE_NOT_SUPPORTED(デバイスがAPI自体に非対応)"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "GeolocationPositionErrorのcodeにはPERMISSION_DENIED(1)、POSITION_UNAVAILABLE(2)、TIMEOUT(3)の3種類が定義されている。NETWORK_ERRORやDEVICE_NOT_SUPPORTEDという定数は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/GeolocationPositionError"
+  },
+  {
+    "id": "device-access-006",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "近年の主要ブラウザにおけるGeolocation APIの利用制限に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "HTTPSなどのセキュアコンテキストでの利用が必要である(localhostを除く)",
+      "利用にはユーザーの明示的な許可(パーミッション)が必要である",
+      "HTTP接続でも警告なく無条件に動作する",
+      "位置情報の取得に許可は不要で、ブラウザ設定に関わらず常に利用できる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "主要ブラウザでは、プライバシー保護の観点からGeolocation APIの利用をセキュアコンテキスト(HTTPSやlocalhost)に限定しており、利用のたびにユーザーの許可(パーミッション)を必要とする。通常のHTTP接続では利用できず、無許可で位置情報を取得することはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Secure_Contexts"
+  },
+  {
+    "id": "device-access-007",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "デバイスの傾きや向きの変化を検知するために使用するイベントはどれか。",
+    "choices": [
+      "deviceorientation",
+      "devicemotion",
+      "orientationchange",
+      "screenorientation"
+    ],
+    "correctAnswers": [0],
+    "explanation": "deviceorientationイベントは、デバイスの物理的な向き(傾き)が変化したときに発生し、alpha・beta・gammaという3つの角度情報を提供する。devicemotionは加速度や回転速度を扱うイベントであり、orientationchangeは画面の向きの変化を扱う別のイベントである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/deviceorientation_event"
+  },
+  {
+    "id": "device-access-008",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のイベントハンドラで、コンパスの方位(Z軸を軸とした回転)を表す値が格納されるプロパティはどれか。",
+    "code": "window.addEventListener('deviceorientation', (event) => {\n  console.log(event.alpha, event.beta, event.gamma);\n});",
+    "choices": ["alpha", "beta", "gamma", "heading"],
+    "correctAnswers": [0],
+    "explanation": "alphaはZ軸を中心とした回転角度(0〜360度)を表し、デバイスが向いている方位に相当する。betaはX軸周りの前後の傾き(-180〜180度)、gammaはY軸周りの左右の傾き(-90〜90度)を表す。headingというプロパティはDeviceOrientationEventには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceOrientationEvent/alpha"
+  },
+  {
+    "id": "device-access-009",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "DeviceOrientationEventのbetaプロパティが表す値の範囲として正しいものはどれか。",
+    "choices": [
+      "-180度から180度",
+      "0度から360度",
+      "-90度から90度",
+      "-360度から360度"
+    ],
+    "correctAnswers": [0],
+    "explanation": "betaはデバイスの前後方向の傾き(X軸周りの回転)を表し、-180度から180度の範囲を取る。0度から360度はalpha、-90度から90度はgammaの範囲である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceOrientationEvent/beta"
+  },
+  {
+    "id": "device-access-010",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "DeviceOrientationEventのgammaプロパティが表す内容として正しいものはどれか。",
+    "choices": [
+      "Y軸を中心とした左右方向の傾き(-90度から90度)",
+      "Z軸を中心とした方位(0度から360度)",
+      "X軸を中心とした前後方向の傾き(-180度から180度)",
+      "デバイスの移動速度(m/s)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "gammaはY軸を中心とした左右の傾きを表し、-90度から90度の範囲を取る。方位を表すのはalpha、前後の傾きを表すのはbetaである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceOrientationEvent/gamma"
+  },
+  {
+    "id": "device-access-011",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "iOS 13以降のSafariにおいて、JavaScriptからdeviceorientationイベントを利用するために必要な追加の手続きとして正しいものはどれか。",
+    "choices": [
+      "ユーザー操作(タップなど)を契機に DeviceOrientationEvent.requestPermission() を呼び出し、許可を得る",
+      "HTMLのmeta要素に allow=\"orientation\" を指定する",
+      "Service Workerを登録してからイベントを購読する",
+      "特別な手続きは不要で、ページ読み込み時から自動的に有効になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "iOS 13以降のSafariでは、プライバシー保護のためdeviceorientationおよびdevicemotionイベントの利用にユーザーの明示的な許可が必要となり、ユーザー操作をトリガーにDeviceOrientationEvent.requestPermission()を呼び出してPromiseの結果が'granted'であることを確認する必要がある。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/requestPermission"
+  },
+  {
+    "id": "device-access-012",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "デバイスの加速度や回転速度の変化を検知するために使用するイベントはどれか。",
+    "code": "window.addEventListener('devicemotion', (event) => {\n  console.log(event.rotationRate.alpha);\n});",
+    "choices": ["devicemotion", "deviceorientation", "accelerationchange", "motiondetect"],
+    "correctAnswers": [0],
+    "explanation": "devicemotionイベントは加速度センサーやジャイロセンサーの値の変化を検知し、acceleration、accelerationIncludingGravity、rotationRateなどのプロパティを通じて値を提供する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/devicemotion_event"
+  },
+  {
+    "id": "device-access-013",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードにおいて、accelerationプロパティとaccelerationIncludingGravityプロパティの違いとして正しいものはどれか。",
+    "code": "window.addEventListener('devicemotion', (event) => {\n  console.log(event.acceleration);\n  console.log(event.accelerationIncludingGravity);\n});",
+    "choices": [
+      "accelerationは重力の影響を除いた加速度、accelerationIncludingGravityは重力を含んだ加速度を表す",
+      "accelerationは水平方向、accelerationIncludingGravityは垂直方向の加速度のみを表す",
+      "accelerationは瞬間加速度、accelerationIncludingGravityは平均加速度を表す",
+      "両者は同じ値を返すため実質的な違いはない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "accelerationは端末が重力の影響を取り除いた(実際の運動による)加速度、accelerationIncludingGravityは重力の影響を含んだ加速度を表す。端末に重力を除去するハードウェアがない場合、accelerationはnullになることがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceMotionEvent/acceleration"
+  },
+  {
+    "id": "device-access-014",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "DeviceMotionEventのrotationRateプロパティが表す値の単位はどれか。",
+    "choices": [
+      "度毎秒(degrees/second)",
+      "ラジアン毎秒(radians/second)",
+      "メートル毎秒毎秒(m/s²)",
+      "回転数毎分(rpm)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "rotationRateはalpha・beta・gammaの各軸周りの回転速度を度毎秒(degrees/second)の単位で表す。加速度を表すacceleration系のプロパティはm/s²の単位を用いる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceMotionEvent/rotationRate"
+  },
+  {
+    "id": "device-access-015",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "DeviceMotionEventのintervalプロパティが表す内容として正しいものはどれか。",
+    "choices": [
+      "デバイスからモーションデータを取得する時間間隔(ミリ秒)",
+      "次のdevicemotionイベントが発火するまでの遅延を指定する値",
+      "加速度センサーの測定誤差の許容範囲",
+      "回転角度が更新される最小変化量"
+    ],
+    "correctAnswers": [0],
+    "explanation": "intervalは、デバイスがモーションデータを取得する周期をミリ秒単位で表すプロパティであり、イベント発火のたびにその時点でのセンサーの取得間隔が格納される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceMotionEvent/interval"
+  },
+  {
+    "id": "device-access-016",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "DeviceMotionEventが持つプロパティとして正しいものを全て選べ。",
+    "choices": ["acceleration", "accelerationIncludingGravity", "rotationRate", "interval", "heading", "speed"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "DeviceMotionEventはacceleration、accelerationIncludingGravity、rotationRate、intervalの各プロパティを持つ。headingとspeedはGeolocation APIのGeolocationCoordinatesが持つプロパティであり、DeviceMotionEventには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceMotionEvent"
+  },
+  {
+    "id": "device-access-017",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "デバイスのバッテリー状態(充電の有無や残量)を取得するためのAPIの呼び出し方として正しいものはどれか。",
+    "code": "navigator.getBattery().then((battery) => {\n  console.log(battery.level, battery.charging);\n});",
+    "choices": [
+      "navigator.getBattery() を呼び出し、Promiseで解決されるBatteryManagerを利用する",
+      "navigator.battery.status を直接参照する",
+      "navigator.getBatteryStatus() を呼び出し、同期的にオブジェクトを取得する",
+      "document.battery オブジェクトのプロパティを参照する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Battery Status APIでは、navigator.getBattery()を呼び出すとBatteryManagerで解決されるPromiseが返され、そのオブジェクトを通じて充電状態や残量を取得する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/getBattery"
+  },
+  {
+    "id": "device-access-018",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "BatteryManagerのlevelプロパティが表す値の範囲として正しいものはどれか。",
+    "choices": [
+      "0.0(空)から1.0(満充電)までの小数",
+      "0(空)から100(満充電)までの整数",
+      "-1.0から1.0までの小数",
+      "文字列で\"low\"、\"medium\"、\"high\"のいずれか"
+    ],
+    "correctAnswers": [0],
+    "explanation": "levelプロパティは0.0(バッテリー残量が空)から1.0(満充電)までの小数値でバッテリー残量の割合を表す。パーセント表示する場合はlevel * 100のように変換する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BatteryManager/level"
+  },
+  {
+    "id": "device-access-019",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "BatteryManagerのchargingTimeプロパティがInfinityになるのはどのような場合か。",
+    "choices": [
+      "バッテリーが充電中でない、または満充電までの時間が算出できない場合",
+      "バッテリーが満充電に達した瞬間",
+      "デバイスが常時電源に接続されているデスクトップ機である場合",
+      "ブラウザがBattery Status APIをサポートしていない場合"
+    ],
+    "correctAnswers": [0],
+    "explanation": "chargingTimeは満充電までの推定時間(秒)を表すが、充電中でない場合や推定できない場合はInfinityになる。なお満充電時のchargingTimeは0になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BatteryManager/chargingTime"
+  },
+  {
+    "id": "device-access-020",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Battery Status APIに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "フィンガープリンティング(端末追跡)への悪用が懸念され、Firefoxではデフォルトで無効化されている",
+      "Chromeでは実装されており、navigator.getBattery()が利用できる",
+      "HTML5.2で全ブラウザへの実装が義務化された必須APIである",
+      "バッテリー残量の取得には必ずユーザーへの許可プロンプトが表示される"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Battery Status APIはバッテリー残量などの情報がフィンガープリンティングに悪用される懸念から、Firefoxではデフォルトで無効化されている。一方でChromeなどでは実装されnavigator.getBattery()が利用できる。全ブラウザでの実装義務や許可プロンプトの表示は仕様上定められていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Battery_Status_API"
+  },
+  {
+    "id": "device-access-021",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "デバイスを振動させるためのAPIはどれか。",
+    "code": "navigator.vibrate(200);",
+    "choices": ["navigator.vibrate()", "navigator.shake()", "window.vibrate()", "navigator.haptic()"],
+    "correctAnswers": [0],
+    "explanation": "Vibration APIはnavigator.vibrate()メソッドとして提供され、対応デバイス上でバイブレーションハードウェアを操作できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/vibrate"
+  },
+  {
+    "id": "device-access-022",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードを実行した場合の動作として正しいものはどれか。",
+    "code": "navigator.vibrate([200, 100, 200]);",
+    "choices": [
+      "200ミリ秒振動→100ミリ秒停止→200ミリ秒振動、という順序でバイブレーションする",
+      "200ミリ秒間隔で合計100回振動を繰り返す",
+      "振動の強さを200→100→200の順に変化させる",
+      "200ミリ秒後に振動を開始し、100ミリ秒後、200ミリ秒後にも同じ振動を繰り返す(3回振動)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "vibrate()に配列を渡すと、要素が「振動時間, 停止時間, 振動時間, 停止時間…」と交互に解釈される。この例では200ミリ秒振動、100ミリ秒停止、200ミリ秒振動という一連のパターンが実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/vibrate"
+  },
+  {
+    "id": "device-access-023",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "実行中のバイブレーションを停止する方法として正しいものを全て選べ。",
+    "choices": ["navigator.vibrate(0)", "navigator.vibrate([])", "navigator.vibrate(-1)", "navigator.stopVibrate()", "navigator.vibrate(false)"],
+    "correctAnswers": [0, 1],
+    "explanation": "navigator.vibrate(0)、または空配列を渡すnavigator.vibrate([])は、いずれも実行中の振動をキャンセルする。負の値や存在しないメソッド呼び出しでは振動を停止できない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/vibrate"
+  },
+  {
+    "id": "device-access-024",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Vibration APIに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "iOSのSafariではサポートされていない",
+      "vibrate()は振動のリクエストが受理されたかどうかを示すbooleanを返す",
+      "HTTPS(セキュアコンテキスト)でなければどのブラウザでも一切動作しない",
+      "ユーザー操作(タップなど)に伴わない長時間の振動はブラウザによって制限される場合がある"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "Vibration APIはiOSのSafariでは長らくサポートされておらず、vibrate()は振動リクエストが受理されたかを示すbooleanを返す。また、乱用防止のためユーザー操作を伴わない長時間の振動などを制限するブラウザ実装もある。なお、Vibration API自体はセキュアコンテキストを必須とはしていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Vibration_API"
+  },
+  {
+    "id": "device-access-025",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "マウス、タッチ、ペンなど異なる入力デバイスからの入力を統一的なイベントモデルで扱うために設計されたAPIはどれか。",
+    "choices": ["Pointer Events", "Touch Events", "Mouse Events", "Input Events"],
+    "correctAnswers": [0],
+    "explanation": "Pointer Eventsは、マウス・タッチ・ペンなどの多様なポインティングデバイスからの入力を、pointerdownやpointermoveなど共通のイベントセットで扱えるように設計されたAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "device-access-026",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ポインタ(マウス、指、ペン)が要素上で押下された時に発生するPointer Eventsのイベント名はどれか。",
+    "choices": ["pointerdown", "pointerpress", "pointerclick", "pointertouch"],
+    "correctAnswers": [0],
+    "explanation": "pointerdownは、ポインタが押下(マウスボタンの押下、指やペンの接触)された時に発生するイベントである。pointerpress、pointerclick、pointertouchという名前のイベントは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/pointerdown_event"
+  },
+  {
+    "id": "device-access-027",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードのevent.pointerTypeが返す値として正しいものを全て選べ。",
+    "code": "element.addEventListener('pointerdown', (event) => {\n  console.log(event.pointerType);\n});",
+    "choices": ["mouse", "pen", "touch", "stylus", "keyboard", "gamepad"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "PointerEvent.pointerTypeは、入力デバイスの種別として\"mouse\"、\"pen\"、\"touch\"のいずれかの文字列を返す。\"stylus\"、\"keyboard\"、\"gamepad\"という値は定義されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PointerEvent/pointerType"
+  },
+  {
+    "id": "device-access-028",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのsetPointerCapture()の目的として最も適切なものはどれか。",
+    "code": "element.addEventListener('pointerdown', (event) => {\n  element.setPointerCapture(event.pointerId);\n});",
+    "choices": [
+      "以降のポインタイベントを、ポインタが要素の外に出てもその要素に対して送り続けるようにする",
+      "ポインタの座標情報を要素内にキャッシュして再利用可能にする",
+      "ポインタイベントの伝播(バブリング)を停止する",
+      "複数の指によるマルチタッチ入力を1本の指の入力に強制的に変換する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "setPointerCapture()を呼び出すと、指定したpointerIdを持つポインタからの以降のイベントは、ポインタが要素の外に移動しても、その要素に対して送出され続ける(ポインタキャプチャ)。ドラッグ操作の実装などで利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/setPointerCapture"
+  },
+  {
+    "id": "device-access-029",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Pointer Eventsで定義されているイベントとして正しいものを全て選べ。",
+    "choices": ["pointerdown", "pointermove", "pointercancel", "pointerleave", "pointerclick", "pointerscroll"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "Pointer Eventsにはpointerdown、pointermove、pointerup、pointercancel、pointerover、pointerout、pointerenter、pointerleaveなどが定義されている。pointerclickやpointerscrollという名前のイベントは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "device-access-030",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "PointerEventのisPrimaryプロパティの説明として正しいものはどれか。",
+    "choices": [
+      "マルチタッチ操作において、最初に接触したポインタなど、一連の操作の基準となるポインタであることを示す",
+      "そのポインタがマウスであるかどうかを示す真偽値",
+      "そのポインタがページ内で最も長く滞在していることを示す真偽値",
+      "ポインタがプライマリボタン(左クリック)で操作されたかどうかを示す真偽値"
+    ],
+    "correctAnswers": [0],
+    "explanation": "isPrimaryは、複数のポインタが同時に存在する状況(マルチタッチなど)において、そのポインタが操作の基準となるプライマリポインタであるかどうかを示す真偽値である。単一のマウスポインタなどは常にtrueとなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PointerEvent/isPrimary"
+  },
+  {
+    "id": "device-access-031",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "指がタッチスクリーンに触れた時に発生するTouch Eventsのイベント名はどれか。",
+    "code": "element.addEventListener('touchstart', (event) => {\n  console.log(event.touches.length);\n});",
+    "choices": ["touchstart", "touchbegin", "touchdown", "touchenter"],
+    "correctAnswers": [0],
+    "explanation": "touchstartは、タッチポイント(指)がタッチ面に触れた時に発生するイベントである。touchbegin、touchdown、touchenterというイベント名は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/touchstart_event"
+  },
+  {
+    "id": "device-access-032",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "TouchEventが持つtouches、targetTouches、changedTouchesの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "touchesは画面上の全ての接触点、targetTouchesはイベント発生要素上の接触点、changedTouchesは今回のイベントで状態が変化した接触点を表す",
+      "touchesは今回変化した接触点、targetTouchesは画面上の全接触点、changedTouchesはイベント発生要素上の接触点を表す",
+      "3つとも同じ内容を異なるブラウザ向けに提供しているだけで、値に違いはない",
+      "touchesは過去の履歴、targetTouchesは現在の状態、changedTouchesは将来予測される接触点を表す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "touchesは現在画面に触れている全ての接触点のリスト、targetTouchesはイベントの対象となった要素上に限定した接触点のリスト、changedTouchesは直前の状態から変化(開始・移動・終了)した接触点のリストを表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/TouchEvent"
+  },
+  {
+    "id": "device-access-033",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のようにtouchmoveイベントでpreventDefault()を呼び出す主な目的はどれか。",
+    "code": "element.addEventListener('touchmove', (event) => {\n  event.preventDefault();\n  // カスタムのドラッグ処理\n}, { passive: false });",
+    "choices": [
+      "ブラウザ標準のスクロールやピンチズームなどのデフォルト動作を抑制し、独自のタッチ操作処理を優先させる",
+      "タッチイベントの発火頻度を間引いてパフォーマンスを向上させる",
+      "複数の指によるマルチタッチを禁止し、シングルタッチのみを許可する",
+      "touchendイベントが発火しないようにする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "touchmove中にpreventDefault()を呼び出すことで、ブラウザ標準のスクロールやズームといったデフォルト動作をキャンセルし、独自のドラッグ処理などを優先して実行できる。パフォーマンスのためデフォルトでpassive:trueとして扱われる場合があるため、preventDefault()を有効にするには明示的に{ passive: false }を指定する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/touchmove_event"
+  },
+  {
+    "id": "device-access-034",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Touchオブジェクトのidentifierプロパティの役割として正しいものはどれか。",
+    "choices": [
+      "一連のタッチ操作(接触開始から終了まで)を通じて、個々の接触点を一意に識別する番号",
+      "接触した指の太さ(半径)を表す数値",
+      "タッチが発生した要素のDOM上のIDを表す文字列",
+      "タッチイベントが発生した順序を表すカウンタ"
+    ],
+    "correctAnswers": [0],
+    "explanation": "identifierは、touchstartからtouchendまでの一連のタッチ操作において、同一の接触点(指)を追跡するために使われる一意な数値である。マルチタッチで複数の指を区別する際に利用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Touch/identifier"
+  },
+  {
+    "id": "device-access-035",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "touchcancelイベントが発生する状況として適切なものはどれか。",
+    "choices": [
+      "着信やアラートの表示など、システムの割り込みによってタッチ操作の追跡が中断された場合",
+      "ユーザーが指を画面から正常に離した場合",
+      "タッチした要素がフォーカスを得た場合",
+      "タッチ開始から一定時間が経過してタイムアウトした場合(仕様で時間が規定されている)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "touchcancelは、着信や通知ダイアログの表示、あるいはブラウザがそのタッチをスクロールやジェスチャーとして扱うことにしたなど、ブラウザ側の事情でタッチの追跡を継続できなくなった場合に発生する。正常に指を離した場合はtouchendが発生する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/touchcancel_event"
+  },
+  {
+    "id": "device-access-036",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "指定した要素を全画面表示にするためのメソッドはどれか。",
+    "code": "document.getElementById('video').requestFullscreen();",
+    "choices": ["element.requestFullscreen()", "element.goFullscreen()", "document.enterFullscreen()", "element.showFullscreen()"],
+    "correctAnswers": [0],
+    "explanation": "Fullscreen APIでは、全画面表示にしたい要素に対してrequestFullscreen()を呼び出す。このメソッドはPromiseを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/requestFullscreen"
+  },
+  {
+    "id": "device-access-037",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "全画面表示を解除するためのメソッドはどれか。",
+    "choices": ["document.exitFullscreen()", "element.exitFullscreen()", "document.cancelFullscreen()", "window.closeFullscreen()"],
+    "correctAnswers": [0],
+    "explanation": "全画面表示の解除には、要素ではなくdocumentオブジェクトに対してexitFullscreen()を呼び出す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/exitFullscreen"
+  },
+  {
+    "id": "device-access-038",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードを踏まえ、Fullscreen APIに関する記述として正しいものを全て選べ。",
+    "code": "if (document.fullscreenElement) {\n  console.log('全画面表示中:', document.fullscreenElement);\n} else {\n  console.log('全画面表示ではない');\n}",
+    "choices": [
+      "document.fullscreenElementは全画面表示中の要素を返し、非全画面時はnullを返す",
+      "document.fullscreenEnabledは全画面表示が許可されているかを示す真偽値である",
+      "全画面表示は必ずbody要素に対してのみ要求できる",
+      "全画面表示はユーザー操作(クリックなど)なしにページ読み込み時に自動実行できる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "document.fullscreenElementは全画面表示中の要素(非全画面時はnull)を返し、document.fullscreenEnabledは全画面表示機能が利用可能かどうかを示す真偽値である。全画面表示はbody以外の任意の要素に対しても要求でき、多くのブラウザではユーザー操作(クリックなど)を契機とした呼び出しでなければ拒否される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/fullscreenElement"
+  },
+  {
+    "id": "device-access-039",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Fullscreen APIに関連して定義されているイベントとして正しいものを全て選べ。",
+    "choices": ["fullscreenchange", "fullscreenerror", "fullscreenrequest", "fullscreenexit", "fullscreentoggle"],
+    "correctAnswers": [0, 1],
+    "explanation": "Fullscreen APIでは、全画面表示の状態が変化した際に発生するfullscreenchangeイベントと、全画面表示への切り替えが失敗した際に発生するfullscreenerrorイベントが定義されている。fullscreenrequest、fullscreenexit、fullscreentoggleというイベントは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/fullscreenerror_event"
+  },
+  {
+    "id": "device-access-040",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "全画面表示中の要素に対して特別なスタイルを適用するために使用できるCSS疑似クラスはどれか。",
+    "choices": [":fullscreen", ":full-screen", ":modal-view", ":maximized"],
+    "correctAnswers": [0],
+    "explanation": ":fullscreen疑似クラスは、Fullscreen APIによって全画面表示されている要素に一致し、全画面表示時専用のスタイルを適用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/:fullscreen"
+  },
+  {
+    "id": "device-access-041",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画面の向き(縦向き・横向き)の現在の状態を取得するためのプロパティはどれか。",
+    "code": "console.log(screen.orientation.type, screen.orientation.angle);",
+    "choices": ["screen.orientation.type", "screen.orientation.mode", "window.orientation.state", "navigator.orientation.type"],
+    "correctAnswers": [0],
+    "explanation": "screen.orientation.typeは、'portrait-primary'、'landscape-primary'などの文字列で現在の画面の向きを表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ScreenOrientation/type"
+  },
+  {
+    "id": "device-access-042",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの目的として正しいものはどれか。",
+    "code": "await document.getElementById('video').requestFullscreen();\nawait screen.orientation.lock('landscape');",
+    "choices": [
+      "画面の向きを横向きに固定する",
+      "画面の解像度を横長に変更する",
+      "デバイスの物理的な回転を検知して自動でレイアウトを切り替える",
+      "要素のCSSのtransformプロパティを使って表示を90度回転させる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "screen.orientation.lock()は、指定した向き(この例では横向き)に画面表示を固定するメソッドである。多くのデスクトップブラウザではフルスクリーン状態でのみ有効という制約がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ScreenOrientation/lock"
+  },
+  {
+    "id": "device-access-043",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "screen.orientation.typeが取りうる値として正しいものを全て選べ。",
+    "choices": ["portrait-primary", "portrait-secondary", "landscape-primary", "landscape-secondary", "portrait-flat", "landscape-reverse"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "ScreenOrientationのtypeプロパティは、portrait-primary、portrait-secondary、landscape-primary、landscape-secondaryの4種類の値を取る。portrait-flatやlandscape-reverseという値は定義されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ScreenOrientation/type"
+  },
+  {
+    "id": "device-access-044",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "screen.orientationオブジェクトで画面の向きの変化を検知するために利用するイベントはどれか。",
+    "choices": ["change", "orientationchange", "rotate", "screenrotate"],
+    "correctAnswers": [0],
+    "explanation": "screen.orientationオブジェクトはchangeイベントを発火し、画面の向きが変化したことを検知できる。window.onorientationchangeは古い非標準のAPIであり、Screen Orientation APIとは別物である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ScreenOrientation/change_event"
+  },
+  {
+    "id": "device-access-045",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ネットワークの接続状況(接続の種類や速度の目安)に関する情報を取得するために使用するプロパティはどれか。",
+    "code": "if (navigator.connection) {\n  console.log(navigator.connection.effectiveType);\n}",
+    "choices": ["navigator.connection", "navigator.network", "window.networkInfo", "navigator.online"],
+    "correctAnswers": [0],
+    "explanation": "Network Information APIでは、navigator.connectionプロパティを通じてNetworkInformationオブジェクトにアクセスし、接続種別や速度の目安などを取得できる。navigator.onLineはオンライン・オフラインの状態のみを示す別のプロパティである。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API"
+  },
+  {
+    "id": "device-access-046",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "NetworkInformationのeffectiveTypeプロパティが表す内容として正しいものはどれか。",
+    "choices": [
+      "実測の速度や往復遅延時間などをもとに推定した実効的な接続の種類('slow-2g'、'2g'、'3g'、'4g'のいずれか)",
+      "実際に接続している物理的な回線種別('wifi'、'cellular'、'ethernet'のいずれか)",
+      "通信の暗号化方式('http'または'https')",
+      "ブラウザが対応しているネットワークプロトコルのバージョン"
+    ],
+    "correctAnswers": [0],
+    "explanation": "effectiveTypeは、実測されたラウンドトリップ時間や帯域幅をもとに、'slow-2g'、'2g'、'3g'、'4g'のいずれかとして推定される実効的な接続品質を表す。物理的な回線種別を表すのはtypeプロパティである。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation/effectiveType"
+  },
+  {
+    "id": "device-access-047",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Network Information API(navigator.connection)に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "実験的な仕様であり、Safariおよび Firefoxでは標準では対応していない",
+      "Chromeなど一部のブラウザでnavigator.connectionとして実装されている",
+      "W3C勧告として全ブラウザへの実装が義務化されている",
+      "通信内容の暗号化・復号を行うための低レベルAPIである"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Network Information APIは非標準・実験的な段階の仕様であり、Chromeなど一部のブラウザでnavigator.connectionとして実装されているが、SafariやFirefoxでは標準では対応していない。全ブラウザへの実装義務や、暗号化に関わる機能は持たない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API"
+  },
+  {
+    "id": "device-access-048",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードで取得できるPermissionStatusのstateプロパティが取りうる値として正しいものはどれか。",
+    "code": "const status = await navigator.permissions.query({ name: 'geolocation' });\nconsole.log(status.state);",
+    "choices": [
+      "'granted'、'denied'、'prompt' のいずれか",
+      "'true' または 'false' のいずれか",
+      "'allowed'、'blocked'、'unknown' のいずれか",
+      "0(拒否)から100(許可)までの数値"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Permissions APIのPermissionStatus.stateは、'granted'(許可済み)、'denied'(拒否済み)、'prompt'(まだユーザーに確認していない)のいずれかの文字列となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PermissionStatus/state"
+  },
+  {
+    "id": "device-access-049",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "現在の主要ブラウザにおいて、セキュアコンテキスト(HTTPSやlocalhost)であることが利用の前提条件とされているAPIを全て選べ。",
+    "choices": ["Geolocation API", "getUserMedia()(カメラ・マイクの利用)", "Notifications API", "Vibration API", "Pointer Events", "requestFullscreen()"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Geolocation API、getUserMedia()、Notifications APIなどは、プライバシーやセキュリティ上のリスクが大きいことから主要ブラウザにおいてセキュアコンテキストでの利用が必須とされている。一方、Vibration API、Pointer Events、Fullscreen APIのrequestFullscreen()はセキュアコンテキストを必須としていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Secure_Contexts/features_restricted_to_secure_contexts"
+  },
+  {
+    "id": "device-access-050",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "位置情報やカメラなど、ユーザーのプライバシーに関わるデバイスアクセスAPIに共通する仕組みに関する記述として最も適切なものはどれか。",
+    "choices": [
+      "利用時にブラウザがユーザーに許可を求めるパーミッションダイアログを表示し、ユーザーが許可した場合にのみ機能が利用可能になる",
+      "Webページを開いた時点で自動的に全ての機能が有効になり、ユーザーへの確認は行われない",
+      "開発者がサーバー証明書に特別なフラグを設定すればユーザーへの確認なしに利用できる",
+      "HTMLのmeta要素に記述するだけで、ブラウザの確認なしに全ユーザーへ自動許可される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Geolocation、カメラ・マイク(getUserMedia)、通知など、プライバシーに影響するデバイスアクセスAPIの多くは、初回利用時にブラウザ標準のパーミッションダイアログでユーザーに許可を求め、許可されない限り機能を利用できない共通の仕組みを持つ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Permissions_API"
+  },
+  {
+    "id": "device-access-051",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Generic Sensor API(各種センサークラスの基盤となる仕組み)において、センサーの値の取得を開始し、値が更新されるたびに通知を受け取るための標準的な手順として正しいものはどれか。",
+    "code": "const sensor = new AmbientLightSensor();\nsensor.addEventListener('reading', () => {\n  console.log(sensor.illuminance);\n});\nsensor.start();",
+    "choices": [
+      "start()メソッドを呼び出してセンサーを起動し、readingイベントで最新の値を取得する",
+      "poll()メソッドを定期的に呼び出して値を取得する",
+      "センサーはコンストラクタ生成時に自動的に計測を開始し、値はvalueプロパティに常に同期される",
+      "getReading()メソッドを呼び出すたびに最新の値が同期的に返る"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Generic Sensor APIを基盤とする各種センサークラス(AmbientLightSensor、Accelerometerなど)は共通してstart()メソッドで計測を開始し、値が更新されるとreadingイベントが発生する。値の取得はイベント駆動であり、poll()やgetReading()という同期的な取得メソッドは存在しない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Sensor"
+  },
+  {
+    "id": "device-access-052",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "周囲の明るさ(照度)をルクス単位で取得するためのGeneric Sensor APIのセンサークラスはどれか。",
+    "choices": ["AmbientLightSensor", "LightSensor", "LuxSensor", "BrightnessSensor"],
+    "correctAnswers": [0],
+    "explanation": "AmbientLightSensorは周囲光の照度をルクス(lux)単位のilluminanceプロパティとして提供するセンサークラスである。実験的な機能であり対応はChromeなど一部ブラウザに限られ、利用にはPermissions Policyでの許可が必要である。LightSensor、LuxSensor、BrightnessSensorという名前のクラスは存在しない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/AmbientLightSensor"
+  },
+  {
+    "id": "device-access-053",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "接続されているゲームパッド(コントローラ)の状態を取得するためのメソッドはどれか。",
+    "code": "const gamepads = navigator.getGamepads();\nconsole.log(gamepads[0]);",
+    "choices": ["navigator.getGamepads()", "navigator.gamepads", "navigator.getGamepad()", "navigator.connectedGamepads()"],
+    "correctAnswers": [0],
+    "explanation": "navigator.getGamepads()は、接続されているGamepadオブジェクト(未接続のスロットはnull)からなる配列的なオブジェクトを返す。navigator.gamepadsというプロパティやgetGamepad()という単数形のメソッドは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/getGamepads"
+  },
+  {
+    "id": "device-access-054",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ゲームパッドが新たに接続された時に発生するイベントはどれか。",
+    "choices": ["gamepadconnected", "gamepadconnect", "padconnected", "controllerconnected"],
+    "correctAnswers": [0],
+    "explanation": "gamepadconnectedイベントはwindowオブジェクトに対して発生し、ゲームパッドが接続されたことを検知できる。対になるイベントとして、切断時に発生するgamepaddisconnectedがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/gamepadconnected_event"
+  },
+  {
+    "id": "device-access-055",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画面が自動的にスリープ(消灯)しないように要求するためのAPIはどれか。",
+    "code": "const wakeLock = await navigator.wakeLock.request('screen');",
+    "choices": ["navigator.wakeLock.request('screen')", "navigator.screen.keepAwake()", "navigator.preventSleep()", "document.wakeLock.enable()"],
+    "correctAnswers": [0],
+    "explanation": "Screen Wake Lock APIでは、navigator.wakeLock.request('screen')を呼び出すことで画面が自動スリープしないようにロックを要求でき、WakeLockSentinelで解決されるPromiseが返る。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API"
+  },
+  {
+    "id": "device-access-056",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Bluetooth Low Energy(BLE)対応デバイスをWebページから探索・接続するためのAPIの呼び出し方として正しいものはどれか。",
+    "code": "const device = await navigator.bluetooth.requestDevice({\n  filters: [{ services: ['heart_rate'] }]\n});",
+    "choices": ["navigator.bluetooth.requestDevice()", "navigator.bluetooth.connect()", "navigator.ble.scan()", "navigator.bluetooth.pair()"],
+    "correctAnswers": [0],
+    "explanation": "Web Bluetooth APIでは、navigator.bluetooth.requestDevice()を呼び出すとブラウザがデバイス選択ダイアログを表示し、ユーザーが選択したBluetoothDeviceで解決されるPromiseを返す。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth/requestDevice"
+  },
+  {
+    "id": "device-access-057",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "NFC(近距離無線通信)タグの読み書きを行うためのWeb NFC APIのクラスはどれか。",
+    "code": "const reader = new NDEFReader();\nawait reader.scan();\nreader.onreading = (event) => {\n  console.log(event.message);\n};",
+    "choices": ["NDEFReader", "NFCReader", "WebNFC", "TagReader"],
+    "correctAnswers": [0],
+    "explanation": "Web NFC APIはNDEFReaderクラスを提供し、scan()メソッドの呼び出しでNFCタグの読み取りを開始し、readingイベントでNDEFメッセージを受け取る。NFCReader、WebNFC、TagReaderというクラス名は存在しない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader"
+  },
+  {
+    "id": "device-access-058",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "接続されているカメラ・マイク・スピーカーなどの入出力デバイスの一覧を取得するためのメソッドはどれか。",
+    "code": "const devices = await navigator.mediaDevices.enumerateDevices();",
+    "choices": ["navigator.mediaDevices.enumerateDevices()", "navigator.mediaDevices.getDevices()", "navigator.enumerateDevices()", "navigator.mediaDevices.listDevices()"],
+    "correctAnswers": [0],
+    "explanation": "navigator.mediaDevices.enumerateDevices()は、利用可能なメディア入出力デバイスの情報(MediaDeviceInfo)を配列で返すPromiseを返す。getDevices()やlistDevices()というメソッド名は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/enumerateDevices"
+  },
+  {
+    "id": "device-access-059",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Webページからカメラ映像とマイク音声を取得するための正しい呼び出し方はどれか。",
+    "code": "const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });",
+    "choices": [
+      "navigator.mediaDevices.getUserMedia({ video: true, audio: true })",
+      "navigator.getUserMedia({ video: true, audio: true })",
+      "navigator.mediaDevices.capture({ video: true, audio: true })",
+      "navigator.camera.start()"
+    ],
+    "correctAnswers": [0],
+    "explanation": "現在の標準的な呼び出し方はnavigator.mediaDevices.getUserMedia()であり、MediaStreamで解決されるPromiseを返す。かつて存在したコールバック形式のnavigator.getUserMedia()は既に廃止された古いAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/getUserMedia"
+  },
+  {
+    "id": "device-access-060",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ユーザーが一定時間操作を行っていない(アイドル状態である)ことや、画面がロックされたことを検知するためのAPIはどれか。",
+    "code": "const idleDetector = new IdleDetector();\nawait idleDetector.start({ threshold: 60000 });",
+    "choices": ["Idle Detection API(IdleDetector)", "Screen Wake Lock API", "Page Visibility API", "Battery Status API"],
+    "correctAnswers": [0],
+    "explanation": "Idle Detection APIはIdleDetectorクラスを通じて、ユーザーの無操作状態(userState)や画面ロック状態(screenState)を検知できる。プライバシーへの影響が大きいため利用には許可が必要で、対応はChromiumベースのブラウザに限られる実験的なAPIである。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/IdleDetector"
+  },
+  {
+    "id": "device-access-061",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ユーザーの端末の連絡先(アドレス帳)から連絡先情報を選択して取得するためのAPIはどれか。",
+    "code": "const contacts = await navigator.contacts.select(['name', 'email'], { multiple: true });",
+    "choices": ["Contact Picker API(navigator.contacts.select())", "Web Share API", "navigator.getContacts()", "Address Book API"],
+    "correctAnswers": [0],
+    "explanation": "Contact Picker APIは、navigator.contacts.select()を呼び出すことでOS標準の連絡先選択UIを表示し、ユーザーが選んだ連絡先情報を取得できる。主にモバイル版Chromeなど一部ブラウザで実装されている。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API"
+  },
+  {
+    "id": "device-access-062",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "PointerEventのpressureプロパティの説明として正しいものはどれか。",
+    "choices": [
+      "ポインタの筆圧を0(圧力なし)から1(最大圧力)の範囲で正規化した値",
+      "ポインタがボタンを押している時間(ミリ秒)",
+      "ポインタの移動速度(ピクセル毎秒)",
+      "ポインタの接触面積(平方ピクセル)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "pressureは筆圧など入力の圧力を0から1に正規化した値である。圧力を検出できないマウスなどのデバイスでは、ボタン押下中は0.5、非押下時は0という既定値になる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pressure"
+  },
+  {
+    "id": "device-access-063",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "要素上でのタッチ操作に対してブラウザが標準で行うスクロールやズームなどのジェスチャー処理を制御するためのCSSプロパティはどれか。",
+    "code": "#canvas {\n  touch-action: none;\n}",
+    "choices": ["touch-action", "pointer-events", "user-select", "overscroll-behavior"],
+    "correctAnswers": [0],
+    "explanation": "touch-actionは、要素に対するタッチ操作でブラウザが標準的に行うパン(スクロール)やピンチズームなどのジェスチャー処理を許可・禁止するCSSプロパティである。pointer-eventsは要素がポインタイベントの対象になるか、user-selectはテキスト選択の可否を制御するプロパティであり目的が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/touch-action"
+  },
+  {
+    "id": "device-access-064",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "USB接続された周辺機器に対してWebページから直接アクセスするためのAPIはどれか。",
+    "code": "const device = await navigator.usb.requestDevice({ filters: [] });",
+    "choices": ["WebUSB API(navigator.usb.requestDevice())", "Web Serial API", "WebHID API", "Web Bluetooth API"],
+    "correctAnswers": [0],
+    "explanation": "WebUSB APIは、navigator.usb.requestDevice()でユーザーにUSBデバイスを選択させ、選択されたデバイスに対して低レベルなUSB通信を行うためのAPIである。Web Serial APIはシリアルポート、WebHID APIはヒューマンインタフェースデバイス、Web Bluetooth APIはBluetoothデバイスを対象とする別のAPIである。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API"
+  },
+  {
+    "id": "device-access-065",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Contact Picker APIのnavigator.contacts.select()の第1引数に指定できる、取得したいプロパティの名前として正しいものを全て選べ。",
+    "code": "await navigator.contacts.select(['name', 'email', 'tel'], { multiple: true });",
+    "choices": ["name", "email", "tel", "address", "icon", "password"],
+    "correctAnswers": [0, 1, 2, 3, 4],
+    "explanation": "Contact Picker APIでは取得したい情報の種類として'name'、'email'、'tel'、'address'、'icon'を指定できる。連絡先の情報にpasswordという概念は存在しない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API"
+  },
+  {
+    "id": "device-access-066",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Gamepadオブジェクトのbuttonsおよびaxesプロパティが表す内容として正しいものはどれか。",
+    "choices": [
+      "buttonsは各ボタンの押下状態や値を格納した配列、axesはスティックなどの傾き具合を格納した配列である",
+      "buttonsはボタンの名前の配列、axesはボタンの座標の配列である",
+      "buttonsとaxesはどちらも同じ内容を異なる形式で表す",
+      "buttonsは接続されているコントローラの台数、axesは対応入力軸の総数を表す整数値である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "buttonsは各ボタンの押下状態(pressed)や押し込み量(value)を持つGamepadButtonオブジェクトの配列であり、axesはアナログスティックなどの入力値(-1.0〜1.0)を格納した数値の配列である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Gamepad/buttons"
+  },
+  {
+    "id": "device-access-067",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードにおけるGamepad APIのプロパティに関する記述として正しいものを全て選べ。",
+    "code": "const gp = navigator.getGamepads()[0];\nconsole.log(gp.axes[0], gp.buttons[0].value, gp.buttons[0].pressed);",
+    "choices": [
+      "axesの各要素は-1.0から1.0の範囲の数値である",
+      "buttons[0].valueはボタンの押し込み具合を0から1の範囲で表す",
+      "buttons[0].pressedはボタンが押されているかどうかを示す真偽値である",
+      "axesの値は常に0または1のいずれかである",
+      "buttons[0].valueは常にtrueかfalseのいずれかである"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "axesはアナログスティックの傾きなどを-1.0から1.0の範囲の数値で表し、GamepadButtonのvalueは押し込み量を0から1の範囲で、pressedは押下の有無を真偽値で表す。axesが0/1のみになったり、valueが真偽値になったりすることはない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Gamepad/axes"
+  },
+  {
+    "id": "device-access-068",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "スタイラスペンなどの入力で、ペン先が画面に対して垂直な状態からどれだけ傾いているかを表すPointerEventのプロパティはどれか。",
+    "code": "element.addEventListener('pointermove', (event) => {\n  console.log(event.tiltX, event.tiltY);\n});",
+    "choices": ["tiltX、tiltY", "angleX、angleY", "slantX、slantY", "rotationX、rotationY"],
+    "correctAnswers": [0],
+    "explanation": "tiltXとtiltYは、ペンの軸とY-Z平面・X-Z平面それぞれとのなす角度を-90度から90度の範囲で表し、ペン先の傾きを表現する。マウスやタッチでは通常0となる。angleX/angleYなどのプロパティ名は存在しない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/tiltX"
+  },
+  {
+    "id": "device-access-069",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "navigator.mediaDevices.enumerateDevices()で取得できるMediaDeviceInfoのkindプロパティが取りうる値として正しいものを全て選べ。",
+    "choices": ["audioinput", "audiooutput", "videoinput", "videooutput", "networkinput"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "MediaDeviceInfo.kindには、マイクなどの音声入力を表すaudioinput、スピーカーなどの音声出力を表すaudiooutput、カメラなどの映像入力を表すvideoinputの3種類が定義されている。videooutputやnetworkinputという値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDeviceInfo/kind"
+  },
+  {
+    "id": "device-access-070",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードに関する説明として正しいものはどれか。",
+    "code": "const sentinel = await navigator.wakeLock.request('screen');\n// ...\nawait sentinel.release();",
+    "choices": [
+      "sentinel.release()を呼び出すことで取得していたスリープ防止のロックを明示的に解放できる。また、タブが非表示になるとブラウザによって自動的にロックが解放されることがある",
+      "sentinel.release()を呼び出すと画面が即座にスリープ状態に入る",
+      "release()は常にfalseを返し、失敗を示す",
+      "一度取得したWake Lockはページを閉じるまで解放することができない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WakeLockSentinelのrelease()メソッドを呼び出すと明示的にスリープ防止を解除できる。また、ブラウザはタブが非表示(document.visibilityStateがhidden)になった際などに自動的にロックを解放する仕様になっている。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/WakeLockSentinel/release"
+  },
+  {
+    "id": "device-access-071",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "USBマイクの抜き差しなど、利用可能なメディア入出力デバイスの構成が変化した時に発生するイベントはどれか。",
+    "code": "navigator.mediaDevices.addEventListener('devicechange', () => {\n  console.log('デバイス構成が変化しました');\n});",
+    "choices": ["devicechange", "mediadevicechange", "deviceupdate", "hardwarechange"],
+    "correctAnswers": [0],
+    "explanation": "navigator.mediaDevicesはdevicechangeイベントを発火し、接続されているカメラ・マイクなどのデバイス構成が変化したことを通知する。mediadevicechangeなどのイベント名は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/devicechange_event"
+  },
+  {
+    "id": "device-access-072",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "DeviceOrientationEventのabsoluteプロパティの意味として正しいものはどれか。",
+    "choices": [
+      "alphaの値が地球の磁北などの絶対的な基準に対する向きを表しているかどうかを示す真偽値",
+      "デバイスが完全に静止していることを示す真偽値",
+      "センサーの測定値に誤差がないことを保証する真偽値",
+      "デバイスの画面が絶対座標系で固定されているかを示す真偽値"
+    ],
+    "correctAnswers": [0],
+    "explanation": "absoluteは、alpha(方位)の値が地磁気センサーなどに基づく絶対的な基準(コンパス方位)から算出されたものであるか、それとも端末起動時など任意の基準からの相対値であるかを示す真偽値である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/absolute"
+  },
+  {
+    "id": "device-access-073",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Chromeなど一部のブラウザで提供されている、常に絶対方位に基づいた向きの情報を提供するイベントはどれか。",
+    "choices": ["deviceorientationabsolute", "deviceorientation(absolute: true)", "absoluteorientation", "compasschange"],
+    "correctAnswers": [0],
+    "explanation": "deviceorientationabsoluteは、absoluteプロパティが常にtrueとなる(絶対方位に基づく)向き情報を提供するイベントであり、Chromeなど一部のブラウザで実装されている。全てのブラウザで標準的にサポートされているわけではない点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Window/deviceorientationabsolute_event"
+  },
+  {
+    "id": "device-access-074",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのようにWeb Bluetooth APIでBLEデバイスのデータを読み取るまでの一般的な手順として正しいものはどれか。",
+    "code": "const device = await navigator.bluetooth.requestDevice({ filters: [{ services: ['heart_rate'] }] });\nconst server = await device.gatt.connect();\nconst service = await server.getPrimaryService('heart_rate');\nconst characteristic = await service.getCharacteristic('heart_rate_measurement');\nconst value = await characteristic.readValue();",
+    "choices": [
+      "デバイス選択(requestDevice)→GATTサーバーへの接続(gatt.connect)→サービス取得(getPrimaryService)→キャラクタリスティック取得(getCharacteristic)→値の読み取り(readValue)の順に行う",
+      "サービス取得を最初に行い、その後にデバイスを選択する",
+      "readValue()を呼び出すだけで、デバイス選択や接続の手順は自動的に省略される",
+      "getCharacteristic()の戻り値がそのままBluetoothDeviceオブジェクトになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Bluetooth APIでは、requestDevice()でデバイスを選択した後、device.gatt.connect()でGATTサーバーに接続し、getPrimaryService()でサービス、getCharacteristic()で特性(キャラクタリスティック)を取得し、最後にreadValue()などで値を読み書きするという一連の手順を踏む。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API"
+  },
+  {
+    "id": "device-access-075",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Web Bluetooth APIに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "requestDevice()の呼び出しはユーザー操作(クリックなど)を契機とする必要がある",
+      "セキュアコンテキスト(HTTPS)での利用が必要である",
+      "Safari(macOS/iOS)は標準でサポートしていない",
+      "全てのブラウザで無条件に利用可能であり、ブラウザ間の対応差はない",
+      "デバイス選択時にユーザーへの確認ダイアログは表示されない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Web Bluetooth APIはセキュリティ・プライバシー上の理由から、ユーザー操作を契機としたrequestDevice()の呼び出しとセキュアコンテキストでの利用が必須とされる。また対応状況にはブラウザ間で差があり、Safariは標準でサポートしていない。デバイス選択時には必ずブラウザ標準の選択ダイアログが表示される。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API"
+  },
+  {
+    "id": "device-access-076",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Web NFC API(NDEFReader)に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "Android版Chromeを中心に実装されており、デスクトップやiOSのSafariでは利用できない",
+      "利用にはセキュアコンテキスト(HTTPS)が必要である",
+      "scan()の呼び出しにはユーザーの許可が必要である",
+      "パソコンのBluetoothモジュールを使ってNFC通信をエミュレートする仕組みである",
+      "全てのブラウザ・全てのOSで標準搭載されている枯れた技術である"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Web NFC APIは実験的な機能であり、NFCハードウェアを持つAndroid版Chromeなど限られた環境でのみ実装されている。利用にはHTTPSなどのセキュアコンテキストとユーザーの許可が必要であり、Bluetoothでエミュレートするものではなく、全ブラウザで標準搭載された技術でもない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Web_NFC_API"
+  },
+  {
+    "id": "device-access-077",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "スマートフォンを耳に近づけた際に画面を消灯するなど、物体との近接を検知するProximity Sensor(近接センサー)に関するAPIの現状として正しいものはどれか。",
+    "choices": [
+      "仕様は提案されているものの、プライバシー上の懸念などから主要ブラウザでの実装は進んでおらず、標準APIとして安定的に利用できる状況にはない",
+      "全てのモダンブラウザにおいてnavigator.proximitySensorとして安定的に実装されている",
+      "HTML5.2で必須APIとして標準化され、広く普及している",
+      "CSSのメディアクエリのみで近接センサーの値を判定できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "近接センサーに関するAPI(ProximitySensorや過去のuserproximity/deviceproximityイベントなど)は提案・試験実装にとどまっており、プライバシーへの懸念や利用実態の乏しさから主要ブラウザでの安定的な実装は進んでいない。試験対策上は「広く実装された標準APIではない」という点を理解しておく必要がある。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs"
+  },
+  {
+    "id": "device-access-078",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Generic Sensor API(Accelerometer、Gyroscope、AmbientLightSensorなど)の利用に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "利用にはPermissions Policy(旧Feature Policy)による許可、および多くの場合Permissions APIを通じたユーザーの許可が必要である",
+      "セキュアコンテキスト(HTTPS)での利用が前提となる",
+      "全てのセンサークラスはnew演算子でインスタンス化し、start()で計測を開始する共通のインターフェースを持つ",
+      "iframe内では許可設定に関わらず常にどのセンサーも利用できる",
+      "仕様上、全てのセンサーが全てのブラウザで実装されていることが保証されている"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Generic Sensor APIに属する各センサークラスは、Permissions PolicyやPermissions APIによる許可、セキュアコンテキストでの実行を前提とし、いずれもコンストラクタで生成しstart()で計測を開始する共通のインターフェースを持つ。iframe内ではPermissions Policyによって明示的に許可されない限り利用できず、また全ブラウザでの実装が保証されているわけではない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs"
+  },
+  {
+    "id": "device-access-079",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Generic Sensor APIのAccelerometerクラスと、従来のdevicemotionイベント(DeviceMotionEvent)の関係についての説明として適切なものはどれか。",
+    "code": "const accelerometer = new Accelerometer({ frequency: 60 });\naccelerometer.addEventListener('reading', () => {\n  console.log(accelerometer.x, accelerometer.y, accelerometer.z);\n});\naccelerometer.start();",
+    "choices": [
+      "どちらも加速度に関する情報を提供するが、Accelerometerはより新しい統一的なセンサーAPIの枠組みに基づく別系統のAPIであり、互換性のあるプロパティ名を持つわけではない",
+      "AccelerometerはDeviceMotionEventの別名(エイリアス)であり、内部的に全く同じ処理を行う",
+      "Accelerometerクラスはdevicemotionイベントのpolyfillとしてすべてのブラウザに標準搭載されている",
+      "Accelerometerクラスを使うとdevicemotionイベントの発火頻度が自動的に変更される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AccelerometerはGeneric Sensor APIに属する新しい系統のセンサークラスで、x/y/zプロパティなど独自のインターフェースを持ち、従来のwindowのdevicemotionイベント(DeviceMotionEvent)とはプロパティ体系が異なる別のAPIである。両者は同じ物理量を扱うが互換性のある同一APIではない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Accelerometer"
+  },
+  {
+    "id": "device-access-080",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Generic Sensor APIのGyroscopeクラスが提供するx/y/zプロパティの単位として正しいものはどれか。",
+    "choices": ["ラジアン毎秒(rad/s)", "度毎秒(degrees/s)", "回転数毎分(rpm)", "メートル毎秒毎秒(m/s²)"],
+    "correctAnswers": [0],
+    "explanation": "GyroscopeクラスのX/Y/Zプロパティは各軸周りの角速度をラジアン毎秒(rad/s)で表す。従来のDeviceMotionEvent.rotationRateが度毎秒(degrees/s)を使うのとは単位が異なる点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Gyroscope"
+  },
+  {
+    "id": "device-access-081",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Generic Sensor APIのMagnetometerクラスに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "磁力(磁束密度)をX・Y・Z軸方向のマイクロテスラ(µT)単位で提供するセンサークラスである",
+      "実験的な機能であり、主要ブラウザ全てで安定的に利用できるわけではない",
+      "利用にはPermissions Policyでの'magnetometer'の許可が必要になる",
+      "GPS衛星からの信号を直接解析して方位を算出する",
+      "全てのブラウザでデフォルトで有効になっている安定版APIである"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "MagnetometerクラスはX・Y・Z軸の磁束密度をマイクロテスラ単位で提供するGeneric Sensor APIの一種で、Permissions Policyでの許可が必要な実験的機能である。GPS信号の解析やデフォルト有効化とは無関係である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Magnetometer"
+  },
+  {
+    "id": "device-access-082",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードにおいて、タブを切り替えて非表示にした場合の一般的な挙動として正しいものはどれか。",
+    "code": "let wakeLock = await navigator.wakeLock.request('screen');\ndocument.addEventListener('visibilitychange', async () => {\n  if (wakeLock !== null && document.visibilityState === 'visible') {\n    wakeLock = await navigator.wakeLock.request('screen');\n  }\n});",
+    "choices": [
+      "ブラウザによってWake Lockが自動的に解放されるため、再表示時に再取得する必要がある",
+      "タブが非表示になってもWake Lockは維持され続け、再取得の処理は無意味である",
+      "visibilitychangeイベントはWake Lock APIとは無関係で、この処理は何の効果もない",
+      "Wake Lockは一度取得すると解放不可能で、ブラウザを閉じるまで保持される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Screen Wake Lock APIの仕様上、タブが非表示になるとブラウザによって自動的にWake Lockが解放される。そのため、再びタブが表示状態(visible)になった際にvisibilitychangeイベントを利用して改めてリクエストし直すのが一般的な実装パターンである。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API"
+  },
+  {
+    "id": "device-access-083",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Gamepad APIの設計に関する記述として正しいものはどれか。",
+    "choices": [
+      "ボタンやスティックの状態変化を通知するイベントは用意されておらず、requestAnimationFrame()などを使ってnavigator.getGamepads()を定期的に呼び出し(ポーリングし)、状態の変化を自前で検出する必要がある",
+      "ボタンが押されるたびにbuttondownイベントが自動的に発火する",
+      "スティックの傾きが変化するたびにaxeschangeイベントが自動的に発火する",
+      "Gamepad APIはWebSocketを介してサーバーに状態を送信する仕組みを内蔵している"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Gamepad APIには接続・切断を通知するgamepadconnected/gamepaddisconnectedイベントはあるものの、ボタンやスティックの入力状態の変化そのものを通知するイベントは定義されていない。そのため、requestAnimationFrame()のループ内などでnavigator.getGamepads()を定期的に呼び出し、前フレームとの差分を比較して変化を検出するポーリング方式が一般的に用いられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Gamepad_API/Using_the_Gamepad_API"
+  },
+  {
+    "id": "device-access-084",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードにおけるgetCoalescedEvents()メソッドの目的として正しいものはどれか。",
+    "code": "element.addEventListener('pointermove', (event) => {\n  const events = event.getCoalescedEvents();\n  events.forEach((e) => drawLine(e.clientX, e.clientY));\n});",
+    "choices": [
+      "ブラウザの表示更新レート(フレームレート)に合わせて間引かれる前の、より高頻度で発生していた実際のポインタ移動イベントを取得する",
+      "将来発生すると予測されるポインタイベントを取得する",
+      "複数の異なる種類のポインタ(マウスとタッチなど)のイベントをまとめて取得する",
+      "イベントの発生を意図的に遅延させ、まとめて処理するためのタイマーを設定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "高頻度でサンプリングできる入力デバイスでは、画面更新レートに合わせて複数のpointermoveが1つのイベントにまとめられる(合体させられる)ことがある。getCoalescedEvents()は、その合体前の一連の詳細なイベント群を取得するためのメソッドで、滑らかな描画などに利用される。将来を予測するのはgetPredictedEvents()の役割である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/getCoalescedEvents"
+  },
+  {
+    "id": "device-access-085",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "描画アプリなどで入力の遅延(レイテンシ)を体感上減らすために、PointerEventのgetPredictedEvents()メソッドが提供する情報として正しいものはどれか。",
+    "choices": [
+      "これまでの移動の軌跡をもとにブラウザが予測した、まだ発生していない将来のポインタイベント",
+      "過去に発生した全てのポインタイベントの履歴",
+      "ポインタが今後押下される確率を示す数値",
+      "デバイスの入力遅延時間そのものを示すミリ秒の数値"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getPredictedEvents()は、これまでの移動軌跡をもとにブラウザが予測した、まだ実際には発生していない将来のポインタ位置に関するイベント群を返す。手書き入力アプリなどで、実際の入力が届く前に予測位置を仮描画し体感速度を向上させる用途で利用される。予測結果はあくまで推定であり、実際の入力と異なる場合がある。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/getPredictedEvents"
+  },
+  {
+    "id": "device-access-086",
+    "category": "device-access",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "タッチ操作におけるPointerEventのwidthおよびheightプロパティが表す内容として正しいものはどれか。",
+    "choices": [
+      "指などの接触面の大きさ(接触範囲)をCSSピクセル単位で表す",
+      "要素自体の幅と高さを表す",
+      "ブラウザのウィンドウ全体の幅と高さを表す",
+      "ポインタが移動した距離の水平・垂直成分を表す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "widthとheightは、指の接触面積のように入力デバイスとの接触範囲の大きさをCSSピクセル単位で表すプロパティである。マウスなど接触面を持たないデバイスでは通常1になる。要素やウィンドウのサイズ、移動距離とは異なる情報である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/width"
+  },
+  {
+    "id": "device-access-087",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "touch-actionプロパティの値に関する記述として正しいものを全て選べ。",
+    "code": "#a { touch-action: none; }\n#b { touch-action: manipulation; }",
+    "choices": [
+      "noneを指定すると、その要素上ではブラウザ標準のパンやズームなどのタッチジェスチャー処理が全て無効になる",
+      "manipulationを指定すると、パンとピンチズームは許可されるが、ダブルタップによるズームは無効になる",
+      "autoは初期値であり、ブラウザ標準のタッチジェスチャー処理を全て許可する",
+      "noneとmanipulationは常に全く同じ挙動になる",
+      "touch-actionはタッチ操作だけでなくマウスの見た目(カーソル形状)も変更する"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "touch-action: noneは対象要素上での標準的なタッチジェスチャー処理を全て無効にし、manipulationはパン・ピンチズームは許可しつつダブルタップズームなどを無効化する。初期値のautoはブラウザ標準の挙動を全て許可する。noneとmanipulationは挙動が異なり、カーソル形状の変更はcursorプロパティの役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/touch-action"
+  },
+  {
+    "id": "device-access-088",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "WebUSB APIに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "任意の周辺機器へ低レベルアクセスできる強力さゆえにセキュリティ上の懸念があり、Safari・Firefoxは標準で実装していない",
+      "requestDevice()の呼び出しにはユーザー操作とセキュアコンテキストが必要である",
+      "HID規格のキーボードやマウス全般を自由に操作するために標準搭載されている",
+      "USBデバイスドライバの代わりとして、ベンダー固有プロトコルを話すデバイス向けにJavaScriptから直接通信する用途などに使われる",
+      "全てのブラウザで有効化されており対応状況に差はない"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "WebUSB APIは強力なハードウェアアクセスを提供するため、Safari・Firefoxは標準でサポートしておらず、requestDevice()の呼び出しにはユーザー操作とセキュアコンテキストが必要である。用途としては専用ドライバを持たないベンダー固有デバイスとの通信などが想定されており、標準的なHIDデバイス操作を目的としたものではない(それはWebHID APIの領域である)。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API"
+  },
+  {
+    "id": "device-access-089",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Idle Detection APIに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "利用開始前にIdleDetector.requestPermission()を呼び出し、'idle-detection'に対するユーザーの許可を得る必要がある",
+      "ユーザーの活動状況を推測できてしまうためプライバシー上の懸念があり、対応ブラウザは限られている",
+      "changeイベントでuserStateやscreenStateの変化を検知できる",
+      "許可なしに任意のオリジンからユーザーの操作履歴を常時収集できる仕組みである",
+      "全てのブラウザで標準搭載されているAPIである"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Idle Detection APIはユーザーのアイドル状態や画面ロック状態を検知できる一方、ユーザーの行動を推測できてしまうためプライバシー上の懸念があり、利用にはIdleDetector.requestPermission()による明示的な許可が必要で、対応ブラウザもChromiumベースなど限定的である。許可なしに常時収集できる仕組みではない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/IdleDetector"
+  },
+  {
+    "id": "device-access-090",
+    "category": "device-access",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Contact Picker APIに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "navigator.contacts.select()の呼び出しはユーザー操作(タップなど)を契機とする必要がある",
+      "主にモバイル端末のブラウザ(Android版Chromeなど)を中心に実装されており、デスクトップの全ブラウザで利用できるわけではない",
+      "セキュアコンテキスト(HTTPS)での利用が前提となる",
+      "呼び出すだけでユーザーへの確認なしに端末の全連絡先を自動的に取得できる",
+      "デスクトップ・モバイルを問わず全てのブラウザで等しく利用できる枯れたAPIである"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Contact Picker APIはプライバシーへの配慮から、ユーザー操作を契機とした呼び出しとセキュアコンテキストでの実行が必須とされ、ユーザーはOS標準の選択UIで連絡先を個別に選ぶ必要がある。実装は主にモバイル端末向けブラウザに限られ、確認なしに全連絡先を自動取得することはできない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API"
+  }
+]

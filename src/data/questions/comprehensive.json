@@ -1,0 +1,1527 @@
+[
+  {
+    "id": "comprehensive-001",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "オフラインでも一覧・詳細を閲覧できる写真編集PWAを実装する。用いる技術の組み合わせとして適切なものを全て選べ。",
+    "choices": [
+      "Service Workerでネットワークリクエストをインターセプトする",
+      "Web App Manifestでホーム画面への追加やスタンドアロン表示を可能にする",
+      "Cache APIで静的アセット(HTML/CSS/JS/画像)をキャッシュする",
+      "IndexedDBで編集履歴や画像メタデータなどの構造化データを保存する",
+      "Geolocation APIでオフライン時のデータ整合性を保証する",
+      "WebSocketで常時接続を維持しオフライン動作を実現する"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "オフライン対応PWAの典型構成は、Service Workerによるリクエスト制御、Web App Manifestによるインストール可能化、Cache APIによる静的リソースのキャッシュ、IndexedDBによる構造化データの永続化である。Geolocation APIは位置情報取得用でオフライン対応そのものとは無関係。WebSocketは常時オンライン接続を前提とする技術であり、オフライン動作の実現手段にはならない(接続が切れれば通信不能になる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps/Offline_and_background_operation"
+  },
+  {
+    "id": "comprehensive-002",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "以下はService Workerのinstallイベントで静的アセットをキャッシュするコードである。空欄に入る最も適切なメソッドはどれか。",
+    "code": "self.addEventListener('install', (event) => {\n  event.waitUntil(\n    caches.open('v1').then((cache) => {\n      return cache.____(['/', '/index.html', '/style.css']);\n    })\n  );\n});",
+    "choices": [
+      "addAll",
+      "add",
+      "put",
+      "match"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cache.addAll()はURLの配列を受け取り、それぞれをfetchしてキャッシュに一括登録するメソッドで、いずれか1つでも失敗すると全体が失敗する。add()は単一URL用。put()はRequestとResponseのペアを個別に登録する際に使う。match()はキャッシュからの検索用でキャッシュへの追加はできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/addAll"
+  },
+  {
+    "id": "comprehensive-003",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のService Workerのfetchイベントハンドラーはどのようなキャッシュ戦略を実装しているか。",
+    "code": "self.addEventListener('fetch', (event) => {\n  event.respondWith(\n    caches.match(event.request).then((response) => {\n      return response || fetch(event.request);\n    })\n  );\n});",
+    "choices": [
+      "Cache First(キャッシュがあればそれを返し、なければネットワークから取得する)",
+      "Network First(常にネットワークを優先し、失敗時のみキャッシュを使う)",
+      "Cache Only(常にキャッシュのみを参照しネットワークには一切アクセスしない)",
+      "Stale-While-Revalidate(キャッシュを即座に返しつつ裏で常に更新する)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "caches.match()でキャッシュに一致するレスポンスがあればそれを返し、なければfetch()でネットワークから取得するのはCache Firstと呼ばれる戦略。Network Firstはまずfetch()を試みる実装、Stale-While-Revalidateはキャッシュを返しつつ裏でfetchしてキャッシュを更新する実装であり、いずれもこのコードとは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/match"
+  },
+  {
+    "id": "comprehensive-004",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Web App Manifestに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "start_urlはアプリ起動時に最初に表示するURLを指定する",
+      "display: standaloneを指定するとブラウザのアドレスバーなどのUIを非表示にしてネイティブアプリのように表示できる",
+      "manifestファイルはJSON形式で記述し、HTMLのlink要素(rel=\"manifest\")で参照する",
+      "iconsプロパティはService Workerがキャッシュすべきファイル一覧を指定するものである",
+      "theme_colorはページ内のCSSのcolorプロパティの値を強制的に上書きするものである"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Web App Manifestはアプリのアイコン・表示方法・起動URLなどをJSONで定義し、link rel=\"manifest\"で読み込む。iconsはホーム画面等に表示するアイコン画像を指定するものであり、Service Workerのキャッシュ対象とは無関係。theme_colorはブラウザのUI(タブやツールバーなど)の色付けに使われるもので、ページ内テキストの色を上書きするものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps/Manifest"
+  },
+  {
+    "id": "comprehensive-005",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "オフラインでも数万件の商品データをキャッシュし、条件検索できるようにしたい。適切なストレージ選択とその理由として正しいものはどれか。",
+    "choices": [
+      "IndexedDBを使う。非同期APIでJavaScriptオブジェクトを構造化複製アルゴリズムによりそのまま保存でき、インデックスを使った検索も可能なため",
+      "localStorageを使う。同期APIで実装が簡単なうえ容量制限が存在しないため",
+      "Cookieを使う。すべてのHTTPリクエストに自動送信されるため検索に便利なため",
+      "sessionStorageを使う。ブラウザを閉じてもデータが永続的に保持されるため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "IndexedDBは非同期のトランザクション型データベースで、オブジェクトをそのまま(構造化複製で)保存でき、インデックスによる効率的な検索が可能なため大量データの管理に適する。localStorageは同期APIで文字列しか扱えず容量も一般に5MB程度に制限される。Cookieは容量が数KB程度でリクエストごとに送信されるためオーバーヘッドが大きい。sessionStorageはタブ・セッションが閉じられると破棄される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "comprehensive-006",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "1秒間に数百件のメッセージを受信するチャットアプリで、受信データのパースとフィルタリング処理をメインスレッドから分離しつつ、UI更新はブラウザの描画タイミングに合わせて滑らかに行いたい。最も適切な設計はどれか。",
+    "choices": [
+      "WebSocketの受信・JSON.parse・フィルタリングをWeb Worker内で行い、結果をpostMessageでメインスレッドに送り、requestAnimationFrame内でまとめてDOMを更新する",
+      "メインスレッドでWebSocketを受信し、メッセージ到着のたびに同期的にinnerHTMLへ追記する",
+      "Service Workerを常駐させてメッセージを処理し、localStorageを定期的にポーリングしてUIを更新する",
+      "受信からDOM更新まですべての処理をWeb Worker内で行い、Workerから直接document.getElementByIdでDOMを更新する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "重いパース・フィルタリング処理をWeb Workerに隔離しメインスレッドの負荷を下げ、結果はpostMessageで受け渡す。DOM更新はrequestAnimationFrameでブラウザの描画タイミングに合わせてまとめて行うことで無駄な再描画を避け滑らかな表示になる。Web WorkerはDOMに直接アクセスできないため選択肢4は成立しない。localStorageポーリングはリアルタイム性・効率の点で不適切。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers"
+  },
+  {
+    "id": "comprehensive-007",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Web Workerの特性に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "DOM(documentオブジェクト)へ直接アクセスすることはできない",
+      "メインスレッドとは構造化複製アルゴリズムに基づくpostMessageでデータをやり取りする",
+      "importScripts()で他のスクリプトファイルを読み込むことができる",
+      "fetch()やXMLHttpRequestを使ってネットワーク通信を行うことができる",
+      "windowオブジェクトに直接アクセスでき、DOM操作以外は制限なくメインスレッドと同じ実行環境を持つ",
+      "SharedWorkerは同一オリジンの複数のブラウジングコンテキスト(タブ)から接続を共有できる"
+    ],
+    "correctAnswers": [0, 1, 2, 3, 5],
+    "explanation": "Web WorkerはDOMにアクセスできず、専用のグローバルスコープ(DedicatedWorkerGlobalScopeなど、selfで参照)を持つ。windowオブジェクトは存在せず、windowに直接アクセスできるという記述は誤り。データのやり取りはpostMessageによる構造化複製が基本、importScriptsでのスクリプト読み込みやfetch/XHRによる通信は可能。SharedWorkerは複数タブ間で1つのWorkerインスタンスを共有できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers"
+  },
+  {
+    "id": "comprehensive-008",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のコードのように、WebSocket接続がまだOPEN状態でない段階でsend()を呼び出した場合の挙動として正しいものはどれか。",
+    "code": "const ws = new WebSocket('wss://example.com/socket');\nws.send('hello'); // openイベントを待たずに直後に呼び出した場合",
+    "choices": [
+      "InvalidStateError例外がスローされる",
+      "送信データは自動的にキューイングされ、接続確立後に送信される",
+      "何も起こらず、警告もエラーもなく静かに無視される",
+      "ブラウザが自動的にCONNECTIONが確立するまで処理をブロックして待機する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebSocket.send()は接続状態がOPENでない(CONNECTING中など)場合にInvalidStateError例外をスローする。そのため実装ではopenイベント発火後にsend()を呼び出すか、readyStateを確認する必要がある。自動キューイングや無視といった仕様は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSocket/send"
+  },
+  {
+    "id": "comprehensive-009",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "ブラウザのタブが閉じられている状態でも、サーバーからの通知をユーザーに届けたい。適切な組み合わせを全て選べ。",
+    "choices": [
+      "Push API",
+      "Service Worker",
+      "Notifications API",
+      "WebSocket接続をページが開いている間ずっと維持する方式",
+      "Web Workerでタイマーを回し続けてサーバーをポーリングする方式"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "タブが閉じられた状態でもプッシュ通知を受け取るには、Service Workerを介してPush APIでサーバーからのプッシュメッセージを受信し、Notifications APIで通知を表示する構成が必要。WebSocketもWeb Workerもページ(ブラウジングコンテキスト)が終了すれば動作が停止するため、タブを閉じた状態での通知配信には利用できない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Push_API"
+  },
+  {
+    "id": "comprehensive-010",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "同一オリジンの複数タブから重複してWebSocket接続を張らないよう、接続を1本に集約し全タブへデータを配信したい。最も適切な実装はどれか。",
+    "choices": [
+      "SharedWorker内でWebSocket接続を管理し、各タブとはMessagePort経由でデータを配信する",
+      "各タブでそれぞれ専用のWeb Workerを生成し、個別にWebSocket接続を張る",
+      "Service Workerのfetchイベントの中でWebSocket通信を仲介する",
+      "各タブがlocalStorageのstorageイベントを使って定期的にデータをポーリングし合う"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SharedWorkerは同一オリジンの複数のタブ・ウィンドウから接続を共有できるWorkerで、WebSocket接続をSharedWorker内に1本だけ張り、各タブとはMessagePortで通信することで接続の重複を避けられる。Service Workerのfetchイベントはネットワークリクエストのインターセプト用でWebSocketの仲介には使えない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/SharedWorker"
+  },
+  {
+    "id": "comprehensive-011",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のコードでmaximumAge: 0を指定する意図として正しいものはどれか。",
+    "code": "navigator.geolocation.watchPosition(success, error, {\n  enableHighAccuracy: true,\n  timeout: 5000,\n  maximumAge: 0\n});",
+    "choices": [
+      "ブラウザがキャッシュしている過去の位置情報を使わず、常に新しく取得した位置情報のみを使う",
+      "位置情報の取得を無期限に待ち続ける",
+      "高精度モード(GPS等)を無効化しバッテリー消費を抑える",
+      "位置情報の取得間隔を0ミリ秒、つまり即時連続で行う"
+    ],
+    "correctAnswers": [0],
+    "explanation": "maximumAgeはブラウザがキャッシュした位置情報をどれだけ古いものまで許容するかをミリ秒で指定するオプションで、0を指定するとキャッシュを使わず常に新規取得を強制する。取得待機時間を指定するのはtimeout、精度指定はenableHighAccuracyの役割であり、maximumAgeとは独立した設定。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/watchPosition"
+  },
+  {
+    "id": "comprehensive-012",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "ユーザーの移動軌跡をCanvasに描画し、履歴をlocalStorageに保存する地図アプリを実装する。適切な実装として正しいものを全て選べ。",
+    "choices": [
+      "watchPosition()で継続的に位置情報を取得し、取得のたびに座標配列へ追加していく",
+      "取得した緯度経度をCanvasの描画座標系(ピクセル)へ変換してからlineTo()等で軌跡を描く",
+      "履歴データはJSON.stringify()で文字列化してからlocalStorageに保存する",
+      "緯度経度の値はそのままCanvasのピクセル座標と一致するため、座標変換の処理は不要である",
+      "Geolocation APIは値を同期的に返すため、コールバック関数を用意する必要はない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "watchPositionで継続的に位置を取得し座標を蓄積、緯度経度は地理座標系でありCanvasのピクセル座標系とは異なるため描画前に投影・スケール変換が必要、localStorageには文字列しか保存できないためJSON.stringifyでの直列化が必要となる。Geolocation APIは非同期APIでありコールバック(またはPromiseラッパー)を用いて結果を受け取る必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation_API"
+  },
+  {
+    "id": "comprehensive-013",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "数千件の位置履歴点を地図上にプロットし、高頻度で再描画(アニメーション)する必要がある場合、CanvasとSVGのどちらが適しているか、その理由も含めて正しいものを選べ。",
+    "choices": [
+      "Canvas。ピクセルベースの即時モード描画のため大量オブジェクトの高頻度再描画に強く、SVGのようにDOM要素数増加によるパフォーマンス低下が起きにくい",
+      "SVG。各点をDOM要素として保持できるため、要素数が増えるほど描画性能が向上する",
+      "CanvasとSVGはレンダリング方式が同じため、この用途において性能上の違いは生じない",
+      "Canvasは描画した図形ごとに個別のイベントハンドラを自動的に割り当てられるため大量描画に有利である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Canvasはピクセルベースの即時モード(immediate mode)描画であり、描画内容はDOMツリーとして保持されないため大量のオブジェクトを高頻度で再描画してもDOM操作のオーバーヘッドが発生しない。SVGは各図形がDOM要素(保持モード)として存在するため、要素数が増えるとDOM管理コストが増大し性能が低下しやすい。Canvas上の図形には個別のDOMイベントは発生せず、ヒットテストは自前で実装する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Canvas_API"
+  },
+  {
+    "id": "comprehensive-014",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Geolocation APIを呼び出す前に、ユーザーが既に許可・拒否しているかどうかを確認してUIを出し分けたい。使用すべきAPIはどれか。",
+    "choices": [
+      "navigator.permissions.query({ name: 'geolocation' })",
+      "navigator.geolocation.getCurrentPosition()を一度呼び出しエラーコールバックの内容のみで判定する",
+      "document.permissionsStateプロパティを参照する",
+      "navigator.geolocation.permissionState()メソッドを呼び出す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Permissions APIのnavigator.permissions.query({name: 'geolocation'})を使うことで、実際に位置情報取得を実行することなく現在の許可状態(granted/denied/prompt)を確認できる。document.permissionsStateやnavigator.geolocation.permissionState()という仕様は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Permissions_API"
+  },
+  {
+    "id": "comprehensive-015",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "以下のGeolocationのエラーハンドリングコードに関する記述として正しいものを全て選べ。",
+    "code": "navigator.geolocation.getCurrentPosition(success, (err) => {\n  switch (err.code) {\n    case err.PERMISSION_DENIED: /* ... */ break;\n    case err.POSITION_UNAVAILABLE: /* ... */ break;\n    case err.TIMEOUT: /* ... */ break;\n  }\n});",
+    "choices": [
+      "PERMISSION_DENIEDはユーザーが位置情報の取得を拒否した場合に発生する",
+      "POSITION_UNAVAILABLEは内部的な位置情報取得処理が失敗した場合に発生する",
+      "TIMEOUTはoptionsで指定したtimeout時間内に位置情報を取得できなかった場合に発生する",
+      "Geolocation APIはHTTP(非セキュアコンテキスト)のページでも制限なく利用できる",
+      "errオブジェクトのcodeプロパティは文字列型で、'PERMISSION_DENIED'のような値を持つ"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "GeolocationPositionErrorのcodeは数値の定数で、PERMISSION_DENIED(1)・POSITION_UNAVAILABLE(2)・TIMEOUT(3)が定義されている。文字列ではなく数値である点に注意。また現在の主要ブラウザではGeolocation APIはセキュアコンテキスト(HTTPSまたはlocalhost)でのみ利用可能であり、通常のHTTPページでは利用できない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/GeolocationPositionError"
+  },
+  {
+    "id": "comprehensive-016",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のコードの説明として正しいものはどれか。",
+    "code": "const reader = new FileReader();\nreader.onload = (e) => {\n  const img = new Image();\n  img.onload = () => {\n    const canvas = document.createElement('canvas');\n    canvas.width = 100;\n    canvas.height = 100;\n    canvas.getContext('2d').drawImage(img, 0, 0, 100, 100);\n    const thumbnail = canvas.toDataURL('image/jpeg', 0.8);\n  };\n  img.src = e.target.result;\n};\nreader.readAsDataURL(file);",
+    "choices": [
+      "選択されたファイルをData URLとして読み込み、Imageオブジェクトに読み込ませたうえでCanvasに縮小描画し、JPEG形式のサムネイル画像を生成している",
+      "選択されたファイルをArrayBufferとして読み込み、WebGLコンテキストでデコードしている",
+      "readAsDataURL()は同期的に画像データを返すため、onloadイベントは発火しない",
+      "canvas.toDataURL()はBlobオブジェクトを返すメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "FileReader.readAsDataURL()はファイルを非同期に読み込みDataURL形式の文字列として結果を返す(onloadイベントで取得)。それをImageのsrcに設定し読み込み完了後にCanvasへ縮小描画、toDataURL('image/jpeg', 0.8)で画質0.8のJPEGのData URL文字列(Blobではなく文字列)を生成している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FileReader"
+  },
+  {
+    "id": "comprehensive-017",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Canvasで生成したサムネイル画像をIndexedDBに保存する実装として適切なものを全て選べ。",
+    "choices": [
+      "canvas.toBlob()でBlobを取得し、そのままIndexedDBのオブジェクトストアに保存する",
+      "canvas.toDataURL()で得た文字列をそのままオブジェクトストアの値として保存する",
+      "データを書き込むトランザクションはreadwriteモードで開く必要がある",
+      "Blobは構造化複製アルゴリズムに対応していないため、必ずBase64文字列に変換してから保存しなければならない",
+      "オブジェクトストア(テーブルに相当する構造)の新規作成はonupgradeneededイベントの中で行う"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "現在の主要ブラウザのIndexedDBはBlobオブジェクトを構造化複製アルゴリズムでそのまま保存できるため、Base64変換は必須ではない(むしろBlobのまま保存する方が効率的)。Data URL文字列をそのまま保存することも可能。書き込みにはreadwriteトランザクションが必要で、オブジェクトストアの作成やスキーマ変更はversionchange時に発火するonupgradeneededイベント内でのみ行える。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement/toBlob"
+  },
+  {
+    "id": "comprehensive-018",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のコードにあるfile.typeプロパティに関する説明として正しいものはどれか。",
+    "code": "input.addEventListener('change', (e) => {\n  const files = Array.from(e.target.files).filter(f => f.type.startsWith('image/'));\n  files.forEach(processFile);\n});",
+    "choices": [
+      "ファイルのMIMEタイプを表す文字列で、ブラウザがファイルの内容や拡張子から推測して設定する",
+      "ファイルの拡張子そのもの(例: \".jpg\")を返す",
+      "常に正確でありサーバー側での検証は不要である",
+      "画像ファイルであれば拡張子に関わらず必ず'image/jpeg'という固定値を返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "File.typeはブラウザが推測したMIMEタイプの文字列(例: 'image/png'、'image/jpeg')を返す。拡張子そのものではなく、また推測に基づくため必ずしも正確とは限らずクライアント側の判定だけに頼らずサーバー側でも内容の検証を行うべきである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/File/type"
+  },
+  {
+    "id": "comprehensive-019",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "既存のメディアギャラリーアプリのIndexedDBに、新たにタグ検索用のインデックスを追加したい。適切な手順はどれか。",
+    "choices": [
+      "open()に渡すバージョン番号をインクリメントして接続し、発火したonupgradeneededイベント内でobjectStore.createIndex()を呼び出す",
+      "既存のオブジェクトストアに対して、バージョンを変えずにいつでもcreateIndex()を呼び出せる",
+      "readwriteモードのトランザクションを開けば、バージョンを上げずにインデックスを追加できる",
+      "IndexedDBはスキーマ変更(インデックス追加)をサポートしないため、データベース自体を削除して作り直す必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "IndexedDBでオブジェクトストアの追加やインデックスの追加といったスキーマ変更は、open()時に指定するバージョン番号を上げて接続し、発火するonupgradeneededイベントハンドラー内でのみ行える。通常のreadwriteトランザクションではデータの読み書きはできてもスキーマ変更はできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/createIndex"
+  },
+  {
+    "id": "comprehensive-020",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "大量の画像サムネイルを一覧表示するギャラリー画面で、表示領域外の画像読み込みを遅延させつつ、サムネイル生成処理も分割して初期表示の負荷を抑えたい。適切な組み合わせを全て選べ。",
+    "choices": [
+      "IntersectionObserverで要素がビューポートに交差したタイミングを検知し、そのときに初めて画像を読み込む",
+      "優先度の低いサムネイル生成処理をrequestIdleCallbackでアイドル時間に分割実行する",
+      "すべての画像をページ読み込み時に同期的に一括でCanvas処理してから表示する",
+      "img要素にloading=\"lazy\"属性を付与し、ネイティブの遅延読み込みも併用する",
+      "画像処理は必ずメインスレッドで一括実行するのが最も高速である"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "IntersectionObserverによる遅延読み込みとrequestIdleCallbackによる処理分割、img要素のloading=\"lazy\"の併用は初期表示負荷を下げる適切な組み合わせ。全画像を最初に同期的に一括処理するとメインスレッドをブロックし初期表示が大きく遅延するため不適切。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IntersectionObserver"
+  },
+  {
+    "id": "comprehensive-021",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のコードでsetCustomValidity('')を呼び出す理由として正しいものはどれか。",
+    "code": "const input = document.querySelector('#password');\ninput.addEventListener('input', () => {\n  if (input.value.length < 8) {\n    input.setCustomValidity('パスワードは8文字以上で入力してください');\n  } else {\n    input.setCustomValidity('');\n  }\n});",
+    "choices": [
+      "カスタムのエラーメッセージをクリアし、条件を満たした際にフォーム要素を有効(valid)な状態に戻すため",
+      "バリデーション機能そのものを完全に無効化するため",
+      "ブラウザ標準のバリデーションUIを強制的に表示させるため",
+      "サーバー側でのバリデーション処理を明示的にスキップさせるため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "setCustomValidity()に空文字以外の文字列を渡すとその要素はinvalid状態となりカスタムメッセージが表示される。空文字を渡すとカスタムエラーがクリアされ、他の制約(required等)に違反していなければ要素はvalid状態に戻る。この仕組みはクライアント側の入力補助であり、サーバー側検証を代替するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Constraint_validation"
+  },
+  {
+    "id": "comprehensive-022",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "セキュアなフォーム送信を実装する際に適切な対策として正しいものを全て選べ。",
+    "choices": [
+      "CSRFトークンをhiddenフィールドやリクエストヘッダーに含め、サーバー側で値を検証する",
+      "セッションIDを保持するCookieにSameSite=StrictまたはLax属性を設定し、クロスサイトリクエストでの送信を制限してCSRFリスクを軽減する",
+      "fetch送信時にcredentials: 'include'を設定し、サーバー側のAccess-Control-Allow-Originをワイルドカード(*)にすれば、それだけで十分安全である",
+      "パスワードなどの機密情報はGETリクエストのクエリパラメータに含めて送信してもよい",
+      "Cookieが通信経路上で盗聴されないよう、Secure属性を付与しHTTPS経由でのみ送信されるようにする"
+    ],
+    "correctAnswers": [0, 1, 4],
+    "explanation": "CSRF対策としてのトークン検証、SameSite CookieによるクロスサイトCookie送信の制限、Secure属性によるHTTPS限定送信は代表的な対策である。credentials: 'include'とAccess-Control-Allow-Origin: *の組み合わせは仕様上禁止されており(資格情報付きリクエストではワイルドカード指定は許可されない)、安全性を担保しない。GETのクエリパラメータは履歴やログ、Refererヘッダーなどに残るため機密情報の送信には不適切。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie/SameSite"
+  },
+  {
+    "id": "comprehensive-023",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のfetch呼び出しにおけるcredentials: 'same-origin'の意味として正しいものはどれか。",
+    "code": "fetch('/api/submit', {\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/json',\n    'X-CSRF-Token': csrfToken\n  },\n  body: JSON.stringify(data),\n  credentials: 'same-origin'\n});",
+    "choices": [
+      "リクエスト先が自分と同一オリジンの場合のみ、Cookieなどの資格情報を送信する",
+      "リクエスト先に関係なく常にCookieなどの資格情報を送信する",
+      "Cookieなどの資格情報を一切送信しない",
+      "レスポンスに含まれるSet-Cookieヘッダーをブラウザが無視するようになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "fetchのcredentialsオプションはCookieなど資格情報の送受信可否を制御する。'same-origin'はリクエスト先が呼び出し元と同一オリジンの場合のみ資格情報を送受信する(既定値でもある、ブラウザにより異なる場合がある)。'include'は常に送信、'omit'は常に送信しない設定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Fetch_API"
+  },
+  {
+    "id": "comprehensive-024",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "input要素のvalidity.patternMismatchプロパティがtrueになるのはどのような場合か。",
+    "choices": [
+      "pattern属性で指定された正規表現に入力値がマッチしない場合",
+      "required属性が指定されているのに値が空の場合",
+      "maxlength属性で指定された文字数を超えて入力した場合",
+      "type属性がemail以外に設定されている場合"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ValidityState.patternMismatchはpattern属性に指定された正規表現と入力値がマッチしない場合にtrueになる。値が空の場合はvalueMissing、文字数超過に関する制約はmaxlength自体が入力を制限するため通常patternMismatchとは関係ない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ValidityState"
+  },
+  {
+    "id": "comprehensive-025",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Cookieの SameSite属性に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "SameSite=Strictを指定すると、クロスサイトのリクエストでは一切そのCookieが送信されなくなる",
+      "SameSite=Laxを指定すると、トップレベルナビゲーションを伴う一部のGETリクエストなど限定的な場合にクロスサイトでもCookieが送信される",
+      "SameSite=Noneを使用する場合は、Secure属性の付与も必須となる",
+      "SameSite属性を指定しなければ、常にすべてのクロスサイトリクエストでCookieが送信される",
+      "SameSite属性は、JavaScriptのdocument.cookieからの読み取りを禁止するための属性である"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "SameSite=StrictはクロスサイトリクエストでCookieを送信しない最も厳格な設定、LaxはリンククリックによるGETナビゲーションなど一部のケースでは送信を許可する。SameSite=Noneでクロスサイト送信を許可する場合はSecure属性(HTTPS限定)の同時指定が必須となる。近年の主要ブラウザはSameSite未指定の場合Laxとして扱うためすべて送信されるわけではない。JavaScriptからの読み取り制限はHttpOnly属性の役割であり、SameSiteとは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie/SameSite"
+  },
+  {
+    "id": "comprehensive-026",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のCanvasアニメーションのコードにおけるtimestamp引数の説明として正しいものはどれか。",
+    "code": "function loop(timestamp) {\n  update(timestamp);\n  render();\n  requestAnimationFrame(loop);\n}\nrequestAnimationFrame(loop);",
+    "choices": [
+      "DOMHighResTimeStamp型で、ページ読み込み開始などの基準時刻からの経過時間をミリ秒(小数点以下も含む高精度)で表す",
+      "1970年1月1日(Unixエポック)からの経過秒数を表す",
+      "アニメーション開始からのフレーム番号(整数のカウンタ)を表す",
+      "常に直前のフレームからの差分時間(deltaTime)のみを表す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestAnimationFrameのコールバックに渡されるtimestampはDOMHighResTimeStamp型で、Performance APIの基準時刻(通常はナビゲーション開始時刻)からの経過時間をミリ秒単位・小数点以下も含む高精度で表す絶対的な値であり、フレーム間の差分やUnixエポック基準ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/window/requestAnimationFrame"
+  },
+  {
+    "id": "comprehensive-027",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Canvasを用いたゲームでマウス・タッチ両対応の入力処理にPointer Eventsを採用する利点として正しいものを全て選べ。",
+    "choices": [
+      "マウス・タッチ・ペンなど異なる入力デバイスからの入力を統一的なイベントモデルで扱える",
+      "pointerIdプロパティにより、マルチタッチのような複数の同時入力を区別して扱える",
+      "touch-actionのCSSプロパティと組み合わせて、スクロールなどのブラウザ標準ジェスチャーの発生を制御できる",
+      "Pointer EventsはCanvas要素専用のAPIであり、通常のDOM要素には使用できない",
+      "mousedown/touchstartなど複数種類のイベントを個別に実装する場合と比べ、一般に実装が単純になる"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "Pointer Eventsはマウス・タッチ・ペンなどの入力を抽象化した統一イベントモデルで、pointerIdで個々のポインターを識別できるためマルチタッチにも対応できる。touch-actionと組み合わせることでブラウザのデフォルトジェスチャーを制御できる。特定の要素専用というわけではなく、Canvasに限らず任意のDOM要素で利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "comprehensive-028",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のWeb Audio APIを用いたゲーム効果音再生コードに関する説明として正しいものはどれか。",
+    "code": "const ctx = new AudioContext();\nfetch('se.mp3')\n  .then(res => res.arrayBuffer())\n  .then(buf => ctx.decodeAudioData(buf))\n  .then(audioBuffer => {\n    const source = ctx.createBufferSource();\n    source.buffer = audioBuffer;\n    source.connect(ctx.destination);\n    source.start(0);\n  });",
+    "choices": [
+      "fetchで取得したバイナリデータをdecodeAudioDataでデコードし、AudioBufferSourceNodeを介して再生している",
+      "内部的にHTMLMediaElementのplay()メソッドを呼び出して再生している",
+      "AudioContextはページ読み込み直後であればユーザー操作なしに必ず自動再生を開始できる",
+      "decodeAudioData()は同期的にAudioBufferを返すメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "fetchで取得したArrayBufferをdecodeAudioData()で非同期にデコードしAudioBufferを得て、createBufferSource()で生成したノードのbufferに設定しdestinationへ接続、start()で再生する流れ。これはHTMLMediaElementを経由しない。多くのブラウザは自動再生ポリシーによりユーザー操作(クリック等)なしのAudioContext開始・再生を制限しており、無条件に自動再生できるわけではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Audio_API"
+  },
+  {
+    "id": "comprehensive-029",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のコードのように、ゲームを全画面表示にし、終了時にはUIを元に戻したい。適切な実装はどれか。",
+    "code": "canvasElement.addEventListener('click', () => {\n  canvasElement.requestFullscreen();\n});\ndocument.addEventListener('fullscreenchange', () => {\n  if (!document.fullscreenElement) {\n    // 通常UIに戻す処理\n  }\n});",
+    "choices": [
+      "requestFullscreen()で対象要素を全画面化し、fullscreenchangeイベントのdocument.fullscreenElementで現在の全画面状態を判定してUIを制御する",
+      "window.fullscreenプロパティにtrueを代入することで全画面化できる",
+      "document.exitFullscreen()は全画面表示を開始するために呼び出すメソッドである",
+      "Fullscreen APIはユーザー操作を伴わないページ読み込み時の自動実行でも問題なく動作する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Element.requestFullscreen()で要素を全画面表示にし、document.fullscreenchangeイベントとdocument.fullscreenElement(全画面中はその要素、非全画面時はnull)で状態を判定できる。exitFullscreen()は全画面表示を終了するためのメソッドである。Fullscreen APIはセキュリティ上、原則としてユーザーの操作(クリックなど)をきっかけとした呼び出しでなければ動作しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Fullscreen_API"
+  },
+  {
+    "id": "comprehensive-030",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Canvasアニメーションで60fpsを維持するための最適化として適切なものを全て選べ。",
+    "choices": [
+      "requestAnimationFrameを使い、ブラウザの描画タイミングに合わせて更新処理を実行する",
+      "setIntervalで16ミリ秒ごとに強制的に描画するほうがrequestAnimationFrameより高精度でバッテリー効率も良い",
+      "変化のない背景をオフスクリーンCanvasに事前描画してキャッシュし、毎フレームの再描画コストを減らす",
+      "ctx.save()/restore()の多用を避け、clearRectで再描画が必要な範囲のみをクリアするようにする",
+      "Web Workerから直接メインスレッドの2D描画コンテキストを操作するのが最も高速である"
+    ],
+    "correctAnswers": [0, 2, 3],
+    "explanation": "requestAnimationFrameはディスプレイのリフレッシュレートに同期し非表示タブでは自動的に抑制されるため、setIntervalによる強制描画より高精度かつ省電力である。背景のオフスクリーンキャッシュや再描画範囲の限定は定番の最適化手法。Web WorkerはメインスレッドのCanvas 2Dコンテキストを直接操作できず、Workerから描画を行うにはOffscreenCanvasへ転送する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/OffscreenCanvas"
+  },
+  {
+    "id": "comprehensive-031",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のfetchリクエストでOPTIONSメソッドによるプリフライトリクエストが発生する理由として正しいものはどれか。",
+    "code": "fetch('https://api.example.com/data', {\n  method: 'PUT',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify(data)\n});",
+    "choices": [
+      "PUTは単純メソッド(GET/HEAD/POST)に該当せず、また Content-Type: application/jsonも単純ヘッダーの条件を満たさないため",
+      "GETメソッドを使用したリクエストは常にプリフライトが発生する仕様になっているため",
+      "リクエスト先が呼び出し元と同一オリジンであるため",
+      "Content-Type: application/jsonは単純ヘッダーに該当するため、通常はプリフライトが発生しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CORSにおいて「単純リクエスト」に該当するのはGET/HEAD/POSTの一部の条件を満たすリクエストのみで、PUTなどの他のメソッドや、Content-Type: application/jsonのような単純ヘッダーの許容値(text/plain, multipart/form-data, application/x-www-form-urlencoded)に含まれないヘッダーを使う場合はプリフライト(OPTIONSメソッドでの事前確認)が発生する。同一オリジンへのリクエストはそもそもCORSの対象外である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Guides/CORS"
+  },
+  {
+    "id": "comprehensive-032",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CORSのレスポンスヘッダーに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "Access-Control-Allow-Originで、リソースへのアクセスを許可するオリジンを指定する",
+      "Access-Control-Allow-Credentials: trueを指定する場合、Access-Control-Allow-Originにワイルドカード(*)を指定できる",
+      "Access-Control-Allow-Methodsで、プリフライトリクエストに対して許可するHTTPメソッドを返す",
+      "Access-Control-Allow-Headersで、クライアントが送信可能なリクエストヘッダーを指定する",
+      "CORSはサーバー側のレスポンスヘッダー設定のみで完結し、クライアント側のリクエスト時の設定は一切関与しない"
+    ],
+    "correctAnswers": [0, 2, 3],
+    "explanation": "Access-Control-Allow-Originでアクセス許可オリジンを、Access-Control-Allow-Methods/Headersでプリフライトに対する許可内容を返す。ただし資格情報(Cookie等)を伴うリクエストではAccess-Control-Allow-Originにワイルドカードを指定することは仕様上認められておらず、具体的なオリジンを明示する必要がある。またクライアント側でもcredentialsオプションの指定などが必要となるため、サーバー設定のみで完結するわけではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin"
+  },
+  {
+    "id": "comprehensive-033",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のContent Security Policy(CSP)の設定の説明として正しいものはどれか。",
+    "code": "<meta http-equiv='Content-Security-Policy' content=\"default-src 'self'; script-src 'self' https://cdn.example.com\">",
+    "choices": [
+      "スクリプトは自オリジンとhttps://cdn.example.comからの読み込みのみを許可し、それ以外の種類のリソース(画像・スタイル等)は自オリジンからのみ許可する",
+      "すべての種類のリソースをどのオリジンからでも読み込めるようにする設定である",
+      "インラインスクリプトを含め、あらゆるスクリプトソースを無条件に許可する設定である",
+      "default-srcディレクティブはimg要素にのみ適用され、他のリソースには影響しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "script-srcディレクティブで明示的に許可されたスクリプトの読み込み元(自オリジンとcdn.example.com)以外からのスクリプト読み込みはブロックされ、script-src以外のリソース種別についてはdefault-src 'self'が適用され自オリジンのみ許可される。'self'や個別ホストの指定のみでは`unsafe-inline`が無い限りインラインスクリプトは許可されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Guides/CSP"
+  },
+  {
+    "id": "comprehensive-034",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のscriptタグのintegrity属性の目的として正しいものはどれか。",
+    "code": "<script src='https://cdn.example.com/lib.js'\n        integrity='sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC'\n        crossorigin='anonymous'></script>",
+    "choices": [
+      "CDNから配信されたファイルが改ざん・破損されていないことをハッシュ値で検証し、一致しない場合は読み込み・実行をブロックする",
+      "スクリプトファイルの読み込み速度を向上させるためのキャッシュ制御機能である",
+      "CORSに関するエラーを回避するための代替設定である",
+      "ファイルを自動的に圧縮(minify)するための指示である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Subresource Integrity(SRI)のintegrity属性は、取得したリソースの内容から計算したハッシュ値が指定した値と一致するかを検証する仕組みで、CDN改ざんなどによる不正なコード混入を防ぐ。crossorigin属性はSRI検証のためにCORSモードでリソースを取得する目的で併用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Subresource_Integrity"
+  },
+  {
+    "id": "comprehensive-035",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "外部のクロスオリジンAPIと安全に連携するために組み合わせるべき対策として正しいものを全て選べ。",
+    "choices": [
+      "CSPのconnect-srcディレクティブで、fetch/XHR/WebSocket等の通信先として許可するオリジンを制限する",
+      "外部ホストから読み込むスクリプトにはSRI(integrity属性)を付与し改ざんを検知できるようにする",
+      "CORS設定はワイルドカード(*)かつ資格情報を許可する形で運用するのが最も安全である",
+      "外部APIからのレスポンスは常に信頼できるものとして扱い、バリデーションなしで直接innerHTMLに挿入してよい",
+      "APIキーなどの秘匿情報はクライアント側のJavaScriptに直接埋め込まず、可能な限りサーバー経由でアクセスする"
+    ],
+    "correctAnswers": [0, 1, 4],
+    "explanation": "connect-srcによる通信先の制限、SRIによる改ざん検知、秘匿情報のサーバーサイドでの管理は代表的な安全対策である。CORSのワイルドカード指定と資格情報付きリクエストの組み合わせは仕様上許可されておらず、また外部APIのレスポンスを無検証でDOMに挿入するとXSSの原因になり得るため避けるべきである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Guides/CSP"
+  },
+  {
+    "id": "comprehensive-036",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "以下のコードが実現している仕組みとして正しいものはどれか。",
+    "code": "const mediaSource = new MediaSource();\nvideo.src = URL.createObjectURL(mediaSource);\nmediaSource.addEventListener('sourceopen', () => {\n  const sourceBuffer = mediaSource.addSourceBuffer('video/mp4; codecs=\"avc1.64001f\"');\n  fetch('segment1.mp4')\n    .then(res => res.arrayBuffer())\n    .then(buf => sourceBuffer.appendBuffer(buf));\n});",
+    "choices": [
+      "動画のメディアセグメントを動的に取得してSourceBufferへ追加していく仕組みで、アダプティブストリーミングのような再生方式を実現する基盤となる",
+      "video要素のsrc属性に動画ファイルのURLを直接指定する通常のシンプルな再生方法である",
+      "WebRTCを利用してブラウザ間でピアツーピア通信を行っている",
+      "Web Audio APIを利用して音声トラックのみを処理している"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Media Source Extensions(MSE)はMediaSourceオブジェクトをvideo要素のソースとして割り当て、SourceBufferに対しネットワーク経由で取得したメディアセグメントを動的に追加していくAPIで、HLSやDASHのようなアダプティブビットレートストリーミングを実装する際の基盤となる。単純なsrc属性指定による再生やWebRTC、Web Audio APIとは異なる仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Media_Source_Extensions_API"
+  },
+  {
+    "id": "comprehensive-037",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のtrack要素におけるkind=\"subtitles\"とkind=\"captions\"の違いとして正しいものはどれか。",
+    "code": "<video controls>\n  <source src='movie.mp4' type='video/mp4'>\n  <track kind='subtitles' src='subtitles_ja.vtt' srclang='ja' label='日本語' default>\n</video>",
+    "choices": [
+      "subtitlesは音声を理解できる視聴者向けの翻訳・言語字幕であり、captionsは効果音やスピーカーの識別など音声情報を含む聴覚障害者向けの字幕である",
+      "subtitlesとcaptionsは表記が違うだけで機能・用途に違いは一切ない",
+      "subtitlesは自動音声認識による自動生成トラック、captionsは人手で作成したトラックを表す区分である",
+      "kind属性の値がブラウザの字幕表示スタイルに影響を与えることはない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "track要素のkind属性はトラックの種類を区別し、subtitlesは言語が異なる視聴者向けのセリフの翻訳、captionsは音声を聞き取れない視聴者向けに効果音や話者情報なども含めて文字化したものという用途上の違いがある。生成方法(自動/手動)による区分ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/track"
+  },
+  {
+    "id": "comprehensive-038",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のPicture-in-Picture APIを利用したコードの動作として正しいものはどれか。",
+    "code": "videoElement.addEventListener('click', async () => {\n  if (document.pictureInPictureElement) {\n    await document.exitPictureInPicture();\n  } else {\n    await videoElement.requestPictureInPicture();\n  }\n});",
+    "choices": [
+      "既にPinP表示中であれば解除し、そうでなければ現在のvideo要素をPinPウィンドウとして表示する",
+      "常にPinP表示を新規に開始するだけであり、exitPictureInPicture()の呼び出しは無効である",
+      "Picture-in-Pictureは複数のvideo要素を同時にPinP表示するためのAPIである",
+      "Picture-in-Picture APIを利用するにはService Workerの登録が必須である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "document.pictureInPictureElementで現在PinP表示中の要素の有無を確認し、表示中ならexitPictureInPicture()で解除、表示中でなければ対象のvideo要素に対してrequestPictureInPicture()を呼び出してPinPウィンドウとして表示するトグル処理になっている。PinPは一度に1つの動画のみ表示可能で、Service Workerとは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Picture-in-Picture_API"
+  },
+  {
+    "id": "comprehensive-039",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "動画配信アプリで、ネットワーク帯域や再生環境に応じて動画品質を切り替えたい場合に関わる技術・概念として正しいものを全て選べ。",
+    "choices": [
+      "Media Source Extensionsを用いてセグメント単位で異なるビットレートのデータを動的に切り替えて再生する",
+      "Network Information APIで接続の種類や推定帯域といった目安情報を取得し、初期ビットレート選択の判断材料にする",
+      "video要素のposter属性を調整することで、再生中のビットレートを動的に変更できる",
+      "MSEと組み合わせてHLSやMPEG-DASHのようなアダプティブストリーミングの再生プレイヤーを実装できる",
+      "canvas要素上で動画コーデットを変換することで、帯域に応じた品質切り替えを実現するのが一般的な方法である"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "MSEを使ったセグメント単位の動的切り替えと、それを利用したHLS/DASH互換プレイヤーの実装、Network Information APIによる接続状況の把握はアダプティブストリーミング実装に関わる代表的な要素である。video要素のposter属性は再生前に表示するサムネイル画像を指定するだけで、ビットレート制御とは無関係。動画コーデックの変換にCanvas APIを用いるのは一般的な手法ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Network_Information_API"
+  },
+  {
+    "id": "comprehensive-040",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "video要素のバッファリング状況や再生可能範囲に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "video.bufferedプロパティは、ダウンロード済みの時間範囲をTimeRangesオブジェクトとして返す",
+      "video.seekableプロパティは、現在シーク可能な時間範囲を返す",
+      "progressイベントは、リソースのダウンロードが進行するたびに発火する",
+      "video.durationプロパティは、常にバッファ済みの動画の長さのみを返す",
+      "waitingイベントは、バッファ不足により再生が一時的に停止した際に発火する"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "bufferedはダウンロード済み範囲、seekableはシーク可能範囲をそれぞれTimeRangesで返す。progressイベントはダウンロード進捗に応じ発火し、waitingイベントはバッファ不足により再生が止まった際に発火する。durationは動画全体の再生時間を表すプロパティであり、バッファ済み範囲の長さを表すものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/buffered"
+  },
+  {
+    "id": "comprehensive-041",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のIntersectionObserverを用いた画像の遅延読み込みコードにおいて、rootMargin: '200px'を指定する効果として正しいものはどれか。",
+    "code": "const observer = new IntersectionObserver((entries) => {\n  entries.forEach(entry => {\n    if (entry.isIntersecting) {\n      const img = entry.target;\n      img.src = img.dataset.src;\n      observer.unobserve(img);\n    }\n  });\n}, { rootMargin: '200px' });\ndocument.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));",
+    "choices": [
+      "ビューポート(root)の判定領域を上下左右に200pxずつ拡張して交差判定を行い、要素が実際に見える少し手前のタイミングで読み込みを開始できる",
+      "対象画像の表示サイズを200px分拡大して表示する",
+      "監視対象の要素を200px間隔で間引いて監視する",
+      "IntersectionObserverのコールバックの発火頻度を200ミリ秒に一度に制限する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "rootMarginはIntersectionObserverが交差判定を行う際のroot(既定ではビューポート)の境界を拡張・縮小するオフセットで、CSSのmarginと同様の書式で指定する。200pxを指定すると判定領域が実際のビューポートより200px分広がり、要素が画面に入る前倒しのタイミングでコールバックが発火するため、画像が見える直前に先読みを開始できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IntersectionObserver"
+  },
+  {
+    "id": "comprehensive-042",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のコードの意図として正しいものはどれか。",
+    "code": "requestIdleCallback((deadline) => {\n  while (deadline.timeRemaining() > 0 && tasks.length > 0) {\n    processTask(tasks.shift());\n  }\n});",
+    "choices": [
+      "メインスレッドがアイドル状態にある間、残り時間を確認しながら優先度の低いタスクを少しずつ処理し、UIの応答性を損なわないようにする",
+      "常に処理を即座に同期的に実行し、可能な限り最速で全タスクを完了させる",
+      "deadline.timeRemaining()は常にInfinity(無限大)を返すため、while文は永久に終了しない",
+      "requestIdleCallbackはCSSアニメーションのフレーム更新タイミングに同期させるためのAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestIdleCallbackはブラウザがアイドル状態になったタイミングでコールバックを実行するAPIで、deadline.timeRemaining()で残り利用可能時間を確認しながら低優先度のタスクを少しずつ処理することで、メインスレッドをブロックせずUIの応答性を維持できる。フレーム同期が目的のAPIはrequestAnimationFrameである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback"
+  },
+  {
+    "id": "comprehensive-043",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Performance APIを用いてページの読み込みパフォーマンスを計測する方法として正しいものを全て選べ。",
+    "choices": [
+      "performance.getEntriesByType('navigation')でナビゲーションタイミング情報を取得する",
+      "performance.mark()とperformance.measure()を組み合わせて、任意の処理区間の所要時間を計測できる",
+      "PerformanceObserverを使い、LCPやCLSなどのWeb Vitalsに関連するエントリを継続的に監視できる",
+      "performance.now()は1970年1月1日からの経過ミリ秒(Unixエポック)を返す",
+      "performance.timingは現在も推奨される最新の計測手段であり、Navigation Timing Level 2への移行は不要である"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "getEntriesByType('navigation')によるナビゲーションタイミング取得、mark/measureによる任意区間の計測、PerformanceObserverによるLCP等の監視はいずれも適切な利用法。performance.now()はUnixエポックではなく、ページ読み込み開始などの基準時刻からの高精度な経過時間を返す。performance.timingは非推奨(deprecated)であり、Navigation Timing Level 2のAPI(PerformanceNavigationTiming)への移行が推奨されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Performance_API"
+  },
+  {
+    "id": "comprehensive-044",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "img要素のloading=\"lazy\"属性と、IntersectionObserverを使った自前実装による画像の遅延読み込みの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "loading=\"lazy\"はブラウザ組み込みの機能でシンプルに導入できるが、しきい値や余白の細かい制御・読み込み前後のカスタム処理についてはIntersectionObserverによる実装のほうが柔軟に対応できる",
+      "loading=\"lazy\"はすべてのブラウザ・状況で完全に同一の挙動を保証しており、カスタマイズの余地は一切必要ない",
+      "IntersectionObserverは要素の可視性判定のみを行うAPIであり、画像のネットワーク読み込みには一切利用できない",
+      "loading=\"lazy\"を利用するにはあらかじめService Workerを登録しておく必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "loading=\"lazy\"はブラウザが標準で提供する遅延読み込み機構で実装が容易だが、読み込み開始のタイミングの詳細な調整や読み込み前後の独自処理の追加はできない。IntersectionObserverを使った自前実装であれば、rootMarginやthresholdで発火条件を細かく制御したり、読み込み前後に任意の処理を挟んだりできる柔軟性がある。IntersectionObserver自体はコールバックのトリガーを提供するものであり、それを使って画像のsrc設定などの読み込み処理を行うのは開発者側の実装次第である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/img#loading"
+  },
+  {
+    "id": "comprehensive-045",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "数千件のアイテムを含む一覧画面の初期表示を高速化するための組み合わせとして適切なものを全て選べ。",
+    "choices": [
+      "表示領域外にあるアイテムの画像読み込みや重い描画処理をIntersectionObserverで遅延させる",
+      "優先度の低い初期化処理をrequestIdleCallbackでアイドル時間に分割実行する",
+      "Performance APIのmark/measureで実際にボトルネックとなっている処理を計測してから最適化に着手する",
+      "すべてのアイテムのDOM要素を最初に一括生成し、CSSのdisplay:noneで非表示にしておくのが最も高速である",
+      "画面に表示されているアイテムだけをDOM生成する仮想スクロール(virtual scrolling)のような手法を検討する必要はない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "IntersectionObserverによる遅延処理、requestIdleCallbackによる処理分割、Performance APIによる計測に基づく最適化は妥当なアプローチ。数千件のDOM要素をすべて生成してからdisplay:noneで隠す方法は要素生成自体のコストが発生するため初期表示の高速化にはならず、大量データの一覧では画面に必要な分だけをDOM化する仮想スクロールの検討も有効な選択肢となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IntersectionObserver"
+  },
+  {
+    "id": "comprehensive-046",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のカスタム要素の定義におけるattachShadow({ mode: 'open' })によって得られる効果として正しいものはどれか。",
+    "code": "class MyCounter extends HTMLElement {\n  connectedCallback() {\n    this.attachShadow({ mode: 'open' });\n    this.shadowRoot.innerHTML = `<style>:host{display:block;}</style><button>+1</button><span>0</span>`;\n  }\n}\ncustomElements.define('my-counter', MyCounter);",
+    "choices": [
+      "コンポーネント内部のDOM構造とスタイルをカプセル化して外部のCSSやDOM操作から隔離しつつ、要素のshadowRootプロパティを通じて外部のJavaScriptからも内部のDOMへアクセスできるようにする",
+      "ページ全体に適用されているグローバルCSSのスタイルをすべてリセットする",
+      "mode: 'open'を指定すると、外部のJavaScriptからは一切shadowRoot内部にアクセスできなくなる",
+      "Shadow DOMを利用すると、そのカスタム要素はService Workerによるキャッシュ対象から除外される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "attachShadow({mode: 'open'})はShadow DOMを生成し、内部のマークアップ・スタイルを外部から隔離(カプセル化)しつつ、element.shadowRootプロパティを通じて外部のJavaScriptからも内部DOMにアクセスできる状態にする。mode: 'closed'を指定した場合はshadowRootプロパティがnullを返し外部からのアクセスが制限される。Shadow DOMの使用とService Workerのキャッシュ対象可否は無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/attachShadow"
+  },
+  {
+    "id": "comprehensive-047",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "以下のコードにおけるnavigator.onLineおよびonline/offlineイベントに関する説明として正しいものはどれか。",
+    "code": "window.addEventListener('online', () => syncPendingData());\nwindow.addEventListener('offline', () => showOfflineBanner());\nconsole.log(navigator.onLine);",
+    "choices": [
+      "ネットワークインターフェースの接続有無を反映する目安であり、実際にインターネット(目的のサーバー)へ到達できるかまでは保証しないため、trueの場合でも実際の通信(fetch等)で到達性を確認するのが望ましい",
+      "navigator.onLineがtrueであれば、目的のAPIサーバーに必ず到達できることが保証されている",
+      "offlineイベントは、Service Workerが登録されていない環境では発火しない",
+      "online/offlineイベントは、WebSocket接続の切断・再接続のみを監視するためのイベントである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.onLineとonline/offlineイベントはブラウザが把握しているネットワークインターフェースの状態(例えばWi-Fiに接続されているか)を反映するものであり、実際に目的のサーバーへ到達できるかどうかまでは保証しない。ローカルネットワークには繋がっていてもインターネットに出られない状況などもあり得るため、確実な到達性確認にはfetchなどによる実通信の確認を併用することが推奨される。このAPIとService Workerの登録有無は無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/onLine"
+  },
+  {
+    "id": "comprehensive-048",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "ブラウザのタブがバックグラウンドになった際に、リソース消費を抑えつつユーザー体験を損なわない設計として正しいものを全て選べ。",
+    "choices": [
+      "document.visibilityStateが'hidden'になったタイミングで、動画再生やCanvasアニメーションを一時停止する",
+      "visibilitychangeイベントを監視して、フォアグラウンド・バックグラウンドの状態変化を検知する",
+      "setIntervalで動作する定期的なポーリング処理についても、バックグラウンド時には間隔を緩めるか停止するようにする",
+      "バックグラウンドのタブでも常にrequestAnimationFrameを高頻度で回し続けて処理を進めるべきである",
+      "Page Visibility APIは、ネットワークのオンライン・オフライン状態を検知するためのAPIである"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Page Visibility APIのvisibilitychangeイベントとdocument.visibilityStateを使い、タブが非表示になった際に動画・アニメーション・ポーリング処理などを抑制することでバッテリー消費やCPU使用率を抑えられる。多くのブラウザはバックグラウンドタブに対してrequestAnimationFrameの実行を自動的にスロットリング(間引き)するため、高頻度で回し続ける設計は意図通りに動作しないうえリソースの無駄になる。ネットワーク状態の検知はnavigator.onLineやonline/offlineイベントの役割であり、Page Visibility APIとは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Page_Visibility_API"
+  },
+  {
+    "id": "comprehensive-049",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "プログレッシブエンハンスメントの考え方に基づき、オフラインでも動作する再利用可能なUIコンポーネントを設計したい。組み合わせて使う技術として適切なものを全て選べ。",
+    "choices": [
+      "Web ComponentsでUIをカプセル化し、他のページやプロジェクトでも再利用しやすくする",
+      "navigator.onLineやonline/offlineイベントを使い、通信状態に応じてUI表示や機能を切り替える",
+      "Cache APIやIndexedDBを使い、オフライン時に必要なリソースやデータを事前に保持しておく",
+      "Web ComponentsでShadow DOMを使ってさえいれば、オフライン動作は自動的に保証される",
+      "すべての表示・機能をJavaScriptの実行に依存させ、HTML/CSSのみでは何も表示されないようにするのが望ましい"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Web Componentsによる再利用可能なUIのカプセル化、オンライン状態に応じたUI切り替え、Cache API・IndexedDBによるオフラインデータの保持は妥当な組み合わせ。Shadow DOMはあくまでDOM・スタイルのカプセル化技術であり、それ自体はオフライン動作(リソースキャッシュやデータ永続化)を保証するものではない。またJavaScript前提で何も表示されない設計は、段階的に機能を強化していくプログレッシブエンハンスメントの考え方に反する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_components"
+  },
+  {
+    "id": "comprehensive-050",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "オフラインでも記事一覧を閲覧でき、オンライン復帰時には自動的に最新データへ同期するニュースリーダーアプリを実装したい。次の設計のうち最も適切なものはどれか。",
+    "choices": [
+      "Service WorkerとCache APIで静的リソースをキャッシュし、記事データはIndexedDBに保存する。さらにonlineイベントやBackground Synchronization APIを利用して、オンライン復帰時にバックグラウンドで同期処理を実行する",
+      "すべての記事データをCookieに保存し、以降のすべてのHTTPリクエストで自動送信させることで同期を実現する",
+      "localStorageのみを使用し、5MB程度の容量制限を超えた場合は確認なしに古いデータを無条件で上書きする",
+      "WebSocketを常時接続し続けることで、オフライン中であってもサーバーからデータを受信できるようにする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "オフライン閲覧にはService Worker + Cache APIによる静的リソースのキャッシュとIndexedDBによる記事データの永続化が適しており、オンライン復帰時の同期にはBackground Synchronization APIを使うことで、たとえページが閉じられていてもservice worker経由で復帰後に同期処理を実行できる。Cookieは容量が小さく毎リクエスト送信されるため大量データの保存・同期には不向き、WebSocketは接続が確立していなければ通信できないためオフライン中のデータ受信はそもそも不可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Background_Synchronization_API"
+  },
+  {
+    "id": "comprehensive-051",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "動画に日本語字幕を表示するための最も基本的な実装として正しいものはどれか。",
+    "code": "<video controls>\n  <source src='movie.mp4' type='video/mp4'>\n  <track kind='subtitles' src='ja.vtt' srclang='ja' label='日本語'>\n</video>",
+    "choices": [
+      "video要素の子要素としてtrack要素を配置し、kind・src・srclang・label属性でWebVTT形式の字幕ファイルを指定する",
+      "video要素のsubtitles属性に直接字幕ファイルのURLを指定する",
+      "track要素はaudio要素専用であり、video要素には配置できない",
+      "字幕を表示するには必ずJavaScriptでCanvas上に文字を描画する必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "track要素はvideo(またはaudio)要素の子要素として配置し、kind属性で種類、src属性でWebVTT形式(.vtt)の字幕ファイル、srclang属性で言語コード、label属性で表示名を指定する。subtitlesという属性は存在せず、字幕表示にCanvasへの描画は不要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/track"
+  },
+  {
+    "id": "comprehensive-052",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "オブジェクトをlocalStorageに保存し、後で復元するための基本的な実装として正しいものはどれか。",
+    "code": "const user = { name: '田中', age: 25 };\nlocalStorage.setItem('user', JSON.stringify(user));\n\nconst restored = JSON.parse(localStorage.getItem('user'));",
+    "choices": [
+      "localStorageは文字列しか保存できないため、JSON.stringify()でオブジェクトを文字列化して保存し、取得時にJSON.parse()でオブジェクトに戻す",
+      "localStorage.setItem()はオブジェクトをそのままの型で保存できるため、JSON.stringify()は不要である",
+      "JSON.parse()は文字列をBase64にエンコードするためのメソッドである",
+      "localStorageに保存したデータはブラウザを閉じると同時に自動的に削除される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "localStorageのキーと値はいずれも文字列型でしか保存できないため、オブジェクトを保存する場合はJSON.stringify()で文字列化し、取得時にJSON.parse()で元のオブジェクトに復元する必要がある。localStorageのデータはブラウザを閉じても消えず明示的に削除するまで保持される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API"
+  },
+  {
+    "id": "comprehensive-053",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のように入力途中のフォーム内容を保存する処理について、sessionStorageを使う場合の特性として正しいものはどれか。",
+    "code": "window.addEventListener('beforeunload', () => {\n  sessionStorage.setItem('draft', textarea.value);\n});",
+    "choices": [
+      "sessionStorageに保存したデータはタブ(ブラウジングコンテキスト)を閉じると失われ、同一タブ内でのページ再読み込みでは保持される",
+      "sessionStorageはlocalStorageと同様、ブラウザを完全に終了しても保存内容が保持される",
+      "sessionStorageは複数のタブ間でデータを自動的に共有する",
+      "beforeunloadイベントはページの読み込みが完了した直後に発火する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "sessionStorageはタブ(セッション)単位でデータを保持し、同一タブ内でのリロードでは維持されるが、タブを閉じると破棄される。localStorageのように永続的ではなく、また別タブとはデータを共有しない点がlocalStorageとの違いである。beforeunloadはページを離脱・閉じる直前に発火するイベントである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage"
+  },
+  {
+    "id": "comprehensive-054",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ファイルをドラッグ&ドロップで受け取り、画像プレビューを表示する基本的な実装として正しいものはどれか。",
+    "code": "dropZone.addEventListener('drop', (e) => {\n  e.preventDefault();\n  const file = e.dataTransfer.files[0];\n  const reader = new FileReader();\n  reader.onload = () => {\n    previewImg.src = reader.result;\n  };\n  reader.readAsDataURL(file);\n});\ndropZone.addEventListener('dragover', (e) => e.preventDefault());",
+    "choices": [
+      "dragoverイベントでpreventDefault()を呼び既定動作(ブラウザによるファイルの開封など)を抑止し、dropイベントのdataTransfer.filesからFileを取得してFileReaderで読み込む",
+      "dropイベントは既定でファイルのプレビュー表示を自動的に行うため、FileReaderは不要である",
+      "dragoverイベントでpreventDefault()を呼ばなくても、dropイベントは正常に発火する",
+      "dataTransfer.filesはFileオブジェクトではなく、ファイルパスの文字列を返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ドロップされたファイルを受け取るには、dragoverイベントでpreventDefault()を呼んでブラウザの既定動作(ファイルを開く等)を防ぐ必要があり、これを怠るとdropイベントが正しく発火しない場合がある。dropイベントのe.dataTransfer.filesにはFileオブジェクトのリストが入り、FileReaderで読み込むことでプレビュー表示ができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTML_Drag_and_Drop_API"
+  },
+  {
+    "id": "comprehensive-055",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Webページからブラウザ通知を表示するための基本的な手順として正しいものはどれか。",
+    "code": "Notification.requestPermission().then((permission) => {\n  if (permission === 'granted') {\n    new Notification('お知らせ', { body: '新着メッセージがあります' });\n  }\n});",
+    "choices": [
+      "Notification.requestPermission()でユーザーに許可を求め、permissionが'granted'になった場合にのみNotificationコンストラクタで通知を生成する",
+      "許可を求めずにいつでもnew Notification()を呼び出すだけで通知が表示される",
+      "Notification.requestPermission()は常に同期的にbooleanを返す",
+      "通知を表示するには必ずService Workerを事前に登録しておく必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Notifications APIはプライバシーに関わるため、Notification.requestPermission()でユーザーの許可を得る必要がある。許可状態(granted/denied/default)を確認し、grantedの場合のみnew Notification()で通知を表示できる。requestPermission()はPromiseを返す非同期APIであり、ページ表示中の通知にService Workerの登録は必須ではない(バックグラウンド配信には必要となる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Notifications_API"
+  },
+  {
+    "id": "comprehensive-056",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "外部の画像ファイルをCanvasに描画する基本的な実装として正しいものはどれか。",
+    "code": "const img = new Image();\nimg.onload = () => {\n  ctx.drawImage(img, 0, 0);\n};\nimg.src = 'photo.jpg';",
+    "choices": [
+      "Imageオブジェクトのonloadイベントで画像の読み込み完了を待ってから、ctx.drawImage()でCanvasに描画する",
+      "img.srcに画像パスを設定した直後、画像は同期的に読み込まれるためonloadを待つ必要はない",
+      "ctx.drawImage()はURL文字列を直接引数として受け取り画像を読み込む",
+      "Canvasに画像を描画するには、あらかじめその画像をIndexedDBに保存しておく必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "画像の読み込みは非同期に行われるため、img.srcを設定した直後にすぐdrawImage()を呼んでも画像データがまだ読み込まれていない可能性がある。そのためonloadイベントで読み込み完了を確認した後にdrawImage()を呼び出すのが基本的な実装である。drawImage()の引数にはHTMLImageElementなどのCanvasImageSourceを渡す必要があり、URL文字列は直接渡せない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/drawImage"
+  },
+  {
+    "id": "comprehensive-057",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画面幅に応じてCanvasの描画サイズを切り替えたい。以下のコードの説明として正しいものはどれか。",
+    "code": "const mq = window.matchMedia('(max-width: 600px)');\nfunction applyLayout(e) {\n  canvas.width = e.matches ? 300 : 600;\n  drawScene();\n}\napplyLayout(mq);\nmq.addEventListener('change', applyLayout);",
+    "choices": [
+      "matchMediaで生成したMediaQueryListのchangeイベントを監視し、指定したメディアクエリの一致状態が変化するたびにCanvasの幅を切り替えて再描画している",
+      "matchMediaはCSSのメディアクエリをJavaScriptから変更(上書き)するためのAPIである",
+      "MediaQueryListのchangeイベントは、ウィンドウのリサイズ以外の要因では発火しない",
+      "canvas.widthに値を代入しても、Canvasの描画内容(ピクセルデータ)はリサイズ後もそのまま保持される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "window.matchMedia()は指定したメディアクエリの一致状態を表すMediaQueryListを返し、changeイベントで一致状態の変化(画面幅の変化やデバイスの回転など)を検知できる。canvas.widthに値を代入するとCanvasの描画内容は消去され再描画が必要になる点にも注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/matchMedia"
+  },
+  {
+    "id": "comprehensive-058",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "現在の画面の向き(縦向き・横向き)に応じて表示するUIを切り替えたい。向きを判定するための基本的な方法として正しいものはどれか。",
+    "code": "if (screen.orientation.type.startsWith('landscape')) {\n  showLandscapeUI();\n} else {\n  showPortraitUI();\n}\nscreen.orientation.addEventListener('change', updateUI);",
+    "choices": [
+      "screen.orientation.typeプロパティで現在の向き('portrait-primary'等)を取得し、changeイベントで向きの変化を検知する",
+      "screen.orientation.typeは向きが変わっても再取得しない限り常に同じ値を返し続ける",
+      "画面の向きを検知するにはGeolocation APIを利用する必要がある",
+      "screen.orientationはCSSのメディアクエリを完全に置き換えるものであり、@mediaは不要になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Screen Orientation APIのscreen.orientation.typeは現在の画面の向きを'portrait-primary'などの文字列で返し、向きが変化するとchangeイベントが発火する。画面の向きの検知にGeolocation APIは無関係であり、CSSのメディアクエリ(orientation)と役割が重なる部分もあるが完全に置き換えるものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ScreenOrientation"
+  },
+  {
+    "id": "comprehensive-059",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ボタンタップ時に端末を短く振動させてフィードバックを返す基本的な実装として正しいものはどれか。",
+    "code": "button.addEventListener('click', () => {\n  if ('vibrate' in navigator) {\n    navigator.vibrate(100);\n  }\n});",
+    "choices": [
+      "navigator.vibrate()に振動させたい時間(ミリ秒)を渡し、対応デバイス・ブラウザでのみ振動を発生させる。in演算子による機能検出は未対応環境でのエラーを避けるための一般的な書き方である",
+      "navigator.vibrate()は全てのブラウザ・OSで必ず振動を発生させることが保証されている",
+      "振動を発生させるには事前にPermissions APIで許可を得る必要がある",
+      "navigator.vibrate(100)は100回振動を繰り返すことを意味する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Vibration APIのnavigator.vibrate()は引数にミリ秒単位の振動時間(または振動・停止パターンの配列)を渡して振動させる。対応していないブラウザ・デバイス(例: iOS Safari)もあるため'vibrate' in navigatorのような機能検出を行うのが安全である。100は振動させる時間(ミリ秒)であり回数ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Vibration_API"
+  },
+  {
+    "id": "comprehensive-060",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ボタンをクリックした際にテキストをクリップボードにコピーする基本的な実装として正しいものはどれか。",
+    "code": "copyButton.addEventListener('click', async () => {\n  await navigator.clipboard.writeText(codeSnippet.textContent);\n});",
+    "choices": [
+      "navigator.clipboard.writeText()は指定した文字列をクリップボードに書き込むPromiseを返す非同期APIであり、多くのブラウザでセキュアコンテキストとユーザー操作を必要とする",
+      "document.execCommand('copy')が唯一の標準的なコピー手段であり、Clipboard APIは存在しない",
+      "navigator.clipboard.writeText()は同期的に実行され、常に即座に完了する",
+      "クリップボードへの書き込みには事前にファイル選択ダイアログを表示する必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Clipboard APIのnavigator.clipboard.writeText()は文字列をクリップボードへ書き込む非同期メソッドでPromiseを返す。プライバシー保護のため、多くのブラウザではHTTPSなどのセキュアコンテキストであることや、クリックなどのユーザー操作をきっかけとした呼び出しであることが要求される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Clipboard/writeText"
+  },
+  {
+    "id": "comprehensive-061",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "モバイル端末で、他のアプリ(SNSやメールなど)にページのURLを共有するための基本的な実装として正しいものはどれか。",
+    "code": "shareButton.addEventListener('click', async () => {\n  if (navigator.share) {\n    await navigator.share({\n      title: document.title,\n      url: location.href\n    });\n  }\n});",
+    "choices": [
+      "navigator.share()にtitleやurlなどを含むオブジェクトを渡すと、OS標準の共有先選択UIが表示される。対応していないブラウザもあるためnavigator.shareの存在確認を行うのが一般的である",
+      "navigator.share()は常に全てのブラウザで利用可能であり、機能検出は不要である",
+      "navigator.share()は同期的に実行が完了し、Promiseを返さない",
+      "Web Share APIを使うには事前にサーバー側でOGPタグを設定する必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Share APIのnavigator.share()はOS標準の共有シート(共有先選択UI)を呼び出すためのAPIで、Promiseを返す非同期処理である。デスクトップブラウザなど対応していない環境もあるため、if (navigator.share)のような機能検出をしてから呼び出すのが基本的な実装である。OGPタグの設定はSNS側の表示形式に関わるもので、Web Share API自体の動作条件ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/share"
+  },
+  {
+    "id": "comprehensive-062",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "同一オリジンの複数タブを開いている状態で、一方のタブでlocalStorageを更新した際、他のタブ側でその変更を検知する基本的な方法として正しいものはどれか。",
+    "code": "window.addEventListener('storage', (e) => {\n  console.log(e.key, e.oldValue, e.newValue);\n});",
+    "choices": [
+      "windowオブジェクトのstorageイベントを監視する。このイベントは変更を行った当のタブ自身では発火せず、同一オリジンの他のタブ・ウィンドウ側で発火する",
+      "storageイベントは変更を行ったタブ自身でのみ発火し、他のタブでは発火しない",
+      "storageイベントを検知するにはWebSocketサーバーを別途用意する必要がある",
+      "localStorageの変更はイベントとして検知できず、定期的なポーリングでしか検知できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "localStorageの内容が変更されると、変更を行ったタブ自身ではなく同一オリジンの他のタブ・ウィンドウでStorageEventを伴うstorageイベントが発火する。event.key・oldValue・newValueなどから何がどう変わったかを取得できるため、WebSocketなど別の通信手段を用意しなくてもタブ間の簡易的な同期に利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/storage_event"
+  },
+  {
+    "id": "comprehensive-063",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ページを再読み込みせずにURLを切り替え、対応するコンテンツをfetchで取得して表示するSPA的な画面遷移の基本的な実装として正しいものはどれか。",
+    "code": "link.addEventListener('click', async (e) => {\n  e.preventDefault();\n  const url = link.href;\n  const html = await fetch(url).then(res => res.text());\n  document.querySelector('#content').innerHTML = html;\n  history.pushState({}, '', url);\n});",
+    "choices": [
+      "リンクの既定のページ遷移を抑止し、fetch()でコンテンツを取得してDOMを書き換えた後、history.pushState()でアドレスバーのURLと履歴エントリだけを更新する",
+      "history.pushState()を呼び出すと、ブラウザは自動的に指定したURLへのページ全体の再読み込みを行う",
+      "fetch()の代わりに必ずXMLHttpRequestを使わなければ、この処理は実現できない",
+      "history.pushState()の第一引数(state)は常に無視され、popstateイベントには渡らない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "clickイベントで既定のページ遷移を止めfetch()で必要なHTMLを取得しDOMを書き換え、history.pushState()でページ全体を再読み込みせずにアドレスバーのURLと履歴だけを更新する、というのが典型的なSPAのクライアントサイドルーティングの基本形である。pushState()はページの再読み込みを発生させず、第一引数のstateオブジェクトは後でpopstateイベントのevent.stateとして参照できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/History/pushState"
+  },
+  {
+    "id": "comprehensive-064",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "他のタブに切り替えている間、再生中の動画を自動的に一時停止したい。基本的な実装として正しいものはどれか。",
+    "code": "document.addEventListener('visibilitychange', () => {\n  if (document.hidden) {\n    video.pause();\n  }\n});",
+    "choices": [
+      "Page Visibility APIのvisibilitychangeイベントとdocument.hiddenプロパティを使い、タブが非表示になったタイミングでHTMLMediaElementのpause()を呼び出す",
+      "document.hiddenはタブが非表示になっても常にfalseを返す",
+      "動画の再生・一時停止はvisibilitychangeイベントからは検知できず、blurイベントでしか実現できない",
+      "video.pause()を呼び出すと、そのvideo要素はDOMツリーから削除される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Page Visibility APIはdocument.hiddenプロパティとvisibilitychangeイベントによってタブが表示中か非表示かを判定できる。タブが非表示(document.hiddenがtrue)になったタイミングでHTMLMediaElementのpause()メソッドを呼び出すことで動画を一時停止できる。pause()は再生を止めるだけでDOM要素の削除は行わない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Page_Visibility_API"
+  },
+  {
+    "id": "comprehensive-065",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Canvasゲームを全画面表示にした際、あわせて画面の向きを横向きに固定したい。基本的な実装として正しいものはどれか。",
+    "code": "canvas.requestFullscreen().then(() => {\n  return screen.orientation.lock('landscape');\n}).catch((err) => {\n  console.warn('向きの固定に失敗しました', err);\n});",
+    "choices": [
+      "requestFullscreen()で全画面化した後にscreen.orientation.lock()を呼び出す。lock()は対応していない環境やコンテキストではPromiseがrejectされる可能性があるため、catch()でエラーを処理するのが望ましい",
+      "screen.orientation.lock()は全画面化の有無に関わらず、常に確実に向きを固定できる",
+      "requestFullscreen()とscreen.orientation.lock()は同一のAPIであり、片方だけを呼び出せば両方の効果が得られる",
+      "画面の向きを固定するとCanvasの描画内容は自動的に回転して再描画される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestFullscreen()による全画面化とscreen.orientation.lock()による向きの固定は別々のAPIであり、環境によっては向きの固定がサポートされていなかったり全画面状態でなければ失敗したりするため、Promiseのrejectを想定してcatch()でエラー処理を行うのが安全である。向きを固定してもCanvasの描画内容が自動で回転するわけではなく、再描画は開発者側の実装に依存する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ScreenOrientation/lock"
+  },
+  {
+    "id": "comprehensive-066",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のカスタム要素の実装で、template要素を利用する利点として正しいものはどれか。",
+    "code": "const tpl = document.createElement('template');\ntpl.innerHTML = `<style>span{color:red;}</style><span>Hello</span>`;\n\nclass HelloTag extends HTMLElement {\n  connectedCallback() {\n    const shadow = this.attachShadow({ mode: 'open' });\n    shadow.appendChild(tpl.content.cloneNode(true));\n  }\n}\ncustomElements.define('hello-tag', HelloTag);",
+    "choices": [
+      "template要素の内容(content)はDOMには描画されず不活性な状態で保持され、cloneNode()で必要なだけ複製してShadow DOMなどに挿入できるため、同じ構造を繰り返し効率的に生成できる",
+      "template要素の中身は自動的にページに表示されるため、別途DOMへの追加処理は不要である",
+      "customElements.define()はShadow DOMを使わないカスタム要素の定義には利用できない",
+      "template要素内のscriptタグは、複製前であってもページ読み込み時に即座に実行される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "template要素の内容はDocumentFragmentとして保持され、通常のDOMとしてはレンダリングされない不活性なマークアップであり、tpl.content.cloneNode(true)で複製してから任意の場所(この例ではShadow DOM)に追加することで初めて表示される。この特性により同じ構造を効率的に繰り返し生成できる。customElements.define()自体はShadow DOMの使用を必須としない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/template"
+  },
+  {
+    "id": "comprehensive-067",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のコードのように、details要素の開閉状態をページ再読み込み後も保持したい。実装の説明として正しいものはどれか。",
+    "code": "const details = document.querySelector('details');\ndetails.open = localStorage.getItem('faqOpen') === 'true';\ndetails.addEventListener('toggle', () => {\n  localStorage.setItem('faqOpen', details.open);\n});",
+    "choices": [
+      "details要素のtoggleイベントで開閉状態(open属性の真偽値)をlocalStorageに保存し、次回読み込み時にその値をdetails.openへ復元することで開閉状態を維持している",
+      "details要素はopen属性を持たず、開閉状態はJavaScriptで独自に管理しなければならない",
+      "toggleイベントはdetails要素ではなく、summary要素のクリック時にのみ発火する専用イベントである",
+      "localStorage.setItem()は真偽値(boolean)をそのまま型を保ったまま保存できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "details要素はopen属性(プロパティとしてはdetails.openの真偽値)で開閉状態を持ち、開閉が切り替わるとtoggleイベントが発火する。このイベントで現在の開閉状態をlocalStorageに保存し、次回のページ読み込み時に保存値を読み出してdetails.openに設定することで状態を復元できる。なおlocalStorageの値は文字列として保存されるため、真偽値はそのままの型では保持されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/details"
+  },
+  {
+    "id": "comprehensive-068",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "スライダーの値に応じてCanvas上の円の半径を変化させる基本的な実装として正しいものはどれか。",
+    "code": "rangeInput.addEventListener('input', () => {\n  const radius = Number(rangeInput.value);\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  ctx.beginPath();\n  ctx.arc(100, 100, radius, 0, Math.PI * 2);\n  ctx.fill();\n});",
+    "choices": [
+      "input要素のinputイベントでスライダーの値をリアルタイムに取得し、clearRect()で前回の描画を消去してからarc()で新しい半径の円を描き直している",
+      "input[type=range]の値はデフォルトで文字列型ではなく数値型として渡されるため、Number()による変換は常に不要である",
+      "clearRect()を呼ばなくても、arc()を呼ぶたびにCanvas全体が自動的にクリアされる",
+      "inputイベントはスライダーをマウスでドラッグし終えて指を離した瞬間にのみ一度だけ発火する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "input要素のinputイベントはスライダーの値がドラッグ中も含めリアルタイムに変化するたびに発火する。value属性は文字列として取得されるためNumber()等での変換が必要になる。Canvasは前回描いた内容がそのまま残り続けるため、再描画の前にclearRect()で消去する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/input/range"
+  },
+  {
+    "id": "comprehensive-069",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "取得した現在地をCanvas上に1つの点として表示する基本的な実装として正しいものはどれか。",
+    "code": "navigator.geolocation.getCurrentPosition((position) => {\n  const { latitude, longitude } = position.coords;\n  const x = mapLngToX(longitude);\n  const y = mapLatToY(latitude);\n  ctx.beginPath();\n  ctx.arc(x, y, 5, 0, Math.PI * 2);\n  ctx.fill();\n});",
+    "choices": [
+      "getCurrentPosition()のコールバックで得たposition.coordsの緯度・経度を、あらかじめ用意した変換関数でCanvasのピクセル座標に変換してから描画している",
+      "position.coords.latitudeやlongitudeの値は、そのままCanvasのピクセル座標(x, y)として使用できる",
+      "getCurrentPosition()は位置情報を同期的な戻り値として返すメソッドである",
+      "Canvas上に点を描画するにはGeolocation APIではなくGamepad APIを使用する必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Geolocation APIのgetCurrentPosition()は非同期にコールバックで結果を返し、position.coords.latitude/longitudeで緯度経度を取得できるが、これらは地理座標系の値であり、Canvasの描画座標系(ピクセル)とは単位・原点が異なるため、地図の表示範囲に応じた変換処理を挟んで座標を求める必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/getCurrentPosition"
+  },
+  {
+    "id": "comprehensive-070",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "input[type=file]で選択した画像ファイルを即座にプレビュー表示したい。URL.createObjectURL()を使う場合の特徴として正しいものはどれか。",
+    "code": "input.addEventListener('change', () => {\n  const file = input.files[0];\n  const url = URL.createObjectURL(file);\n  previewImg.src = url;\n  previewImg.onload = () => URL.revokeObjectURL(url);\n});",
+    "choices": [
+      "URL.createObjectURL()はFileオブジェクトを指すBlob URL(一時的な参照URL)を同期的に生成でき、FileReaderのようにファイル内容全体を読み込んで文字列化する処理を待つ必要がない。不要になったらrevokeObjectURL()で解放するのが望ましい",
+      "URL.createObjectURL()はファイルの内容をBase64文字列に変換して返すメソッドである",
+      "URL.createObjectURL()で生成したURLはメモリ解放の必要がなく、revokeObjectURL()は常に不要である",
+      "URL.createObjectURL()はFileReader.readAsDataURL()と完全に同じ処理を行う別名のメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "URL.createObjectURL()はFileやBlobを指す一時的なオブジェクトURLを同期的に生成する軽量な方法で、FileReader.readAsDataURL()のように非同期でファイル全体を読み込んでBase64文字列化する必要がない。生成したオブジェクトURLはブラウザがメモリ上に参照を保持し続けるため、不要になった時点でURL.revokeObjectURL()を呼び解放することが推奨される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/URL/createObjectURL_static"
+  },
+  {
+    "id": "comprehensive-071",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ボタンをクリックすると短い電子音(ビープ音)を鳴らす基本的な実装として正しいものはどれか。",
+    "code": "button.addEventListener('click', () => {\n  const ctx = new AudioContext();\n  const osc = ctx.createOscillator();\n  osc.frequency.value = 440;\n  osc.connect(ctx.destination);\n  osc.start();\n  osc.stop(ctx.currentTime + 0.2);\n});",
+    "choices": [
+      "createOscillator()で生成した発振器ノードの周波数を設定し、destinationへ接続してstart()で発音を開始、stop()で指定時刻に停止させている",
+      "AudioContextはHTMLAudioElementのラッパーであり、内部的に音声ファイルを再生している",
+      "osc.stop()を呼び出さない限り、発振器ノードは一切音を鳴らさない",
+      "createOscillator()はマイクからの入力音声を録音するためのノードである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Audio APIのAudioContext.createOscillator()は正弦波などの音を生成する発振器ノード(OscillatorNode)を作成する。frequencyプロパティで音の高さを設定し、connect()でオーディオグラフに接続後、start()で発音を開始、stop()で指定した時刻に停止する。これは音声ファイルの再生ではなく音そのものをプログラム的に合成する仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/OscillatorNode"
+  },
+  {
+    "id": "comprehensive-072",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "オフライン用にブラウザが現在どれくらいのストレージ容量を使用しているかを確認したい。基本的な実装として正しいものはどれか。",
+    "code": "navigator.storage.estimate().then((estimate) => {\n  console.log(`使用量: ${estimate.usage} / 上限: ${estimate.quota}`);\n});",
+    "choices": [
+      "navigator.storage.estimate()はusage(現在の使用量)とquota(利用可能な上限のおおよその推定値)を含むオブジェクトで解決されるPromiseを返す",
+      "navigator.storage.estimate()は同期的に呼び出し、即座に厳密な使用量を返す",
+      "quotaプロパティは常に固定値(5MB)を返す",
+      "navigator.storage.estimate()はIndexedDBの内容を削除するためのメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "StorageManagerのnavigator.storage.estimate()は、Cache APIやIndexedDBなどオリジンが使用しているストレージの使用量(usage)と、環境によって変動するおおよその利用可能上限(quota)を含むオブジェクトで解決される非同期Promiseを返す。厳密な保証値ではなく推定値である点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/estimate"
+  },
+  {
+    "id": "comprehensive-073",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "オフライン中はフォームの送信ボタンを無効化し、オンライン復帰時に再度有効化したい。基本的な実装として正しいものはどれか。",
+    "code": "submitButton.disabled = !navigator.onLine;\nwindow.addEventListener('online', () => submitButton.disabled = false);\nwindow.addEventListener('offline', () => submitButton.disabled = true);",
+    "choices": [
+      "初期状態はnavigator.onLineの値でボタンの有効・無効を設定し、以降はonline/offlineイベントで状態が変化するたびにdisabledプロパティを切り替える",
+      "navigator.onLineはページ読み込み時の一度だけ判定される値で、その後の接続状態の変化を検知することはできない",
+      "online/offlineイベントはfetch()の呼び出しに成功・失敗した場合にのみ発火する",
+      "submitButton.disabled = trueと設定すると、そのボタン要素はDOMから削除される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.onLineでページ読み込み時点の接続状態(ネットワークインターフェースの有無に基づく目安)を確認し、その後の状態変化はwindowのonline/offlineイベントで検知してdisabledプロパティを切り替えることで、オフライン中の送信操作を防ぐUIを実装できる。disabled=trueはボタンを操作不可にするだけで要素自体を削除するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/onLine"
+  },
+  {
+    "id": "comprehensive-074",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "マウスやタッチでCanvas上に自由に線を描く、簡易お絵かき機能の基本的な実装として正しいものはどれか。",
+    "code": "let drawing = false;\ncanvas.addEventListener('pointerdown', (e) => {\n  drawing = true;\n  ctx.beginPath();\n  ctx.moveTo(e.offsetX, e.offsetY);\n});\ncanvas.addEventListener('pointermove', (e) => {\n  if (drawing) {\n    ctx.lineTo(e.offsetX, e.offsetY);\n    ctx.stroke();\n  }\n});\ncanvas.addEventListener('pointerup', () => drawing = false);",
+    "choices": [
+      "pointerdownで描画開始位置を記録し、pointermove中はdrawingフラグがtrueの間だけlineTo()とstroke()で線を延長し、pointerupで描画を終了する。Pointer Eventsを使うことでマウス・タッチ・ペンを同じイベントで扱える",
+      "pointermoveイベントはdrawingフラグの値に関わらず、常にCanvas全体を再描画し続ける",
+      "Pointer Eventsはタッチ操作には対応しておらず、マウス操作専用のイベントである",
+      "beginPath()を呼び出さなくても、moveTo()とlineTo()だけで線を描画できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "pointerdown/pointermove/pointerupを使うことで、マウス・タッチ・ペンなど入力デバイスの種類を問わず統一的にドラッグ描画を実装できる。drawingフラグで描画中かどうかを管理し、moveTo()で開始点を、lineTo()とstroke()で経路を線として描画する。パスを新しく描き始める際はbeginPath()を呼ぶ必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "comprehensive-075",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CSSでcanvas要素の表示サイズをレスポンシブに(親要素の幅に追従して)変化させたい。表示がぼやけないよう描画解像度も追従させる実装として最も適切なものはどれか。",
+    "code": "const ro = new ResizeObserver((entries) => {\n  const { width, height } = entries[0].contentRect;\n  const dpr = window.devicePixelRatio || 1;\n  canvas.width = width * dpr;\n  canvas.height = height * dpr;\n  ctx.scale(dpr, dpr);\n  redraw();\n});\nro.observe(canvas.parentElement);",
+    "choices": [
+      "ResizeObserverで親要素のサイズ変化を検知し、contentRectの幅・高さにdevicePixelRatioを乗算してcanvas.width/heightを設定してから再描画する。これにより高DPI環境でも描画がぼやけにくくなる",
+      "CSSでcanvas要素にwidth: 100%を指定するだけで、内部の描画解像度(canvas.width/height属性)も自動的に追従して変化する",
+      "window.addEventListener('resize', ...)を使えば、canvas要素単体のサイズ変化(親要素のレイアウト変更等によるもの)も含めて全て検知できる",
+      "ResizeObserverのコールバックはブラウザウィンドウ全体のリサイズ時にしか発火しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "canvas要素のCSS表示サイズ(width/height)と内部描画解像度(width/height属性)は別物であり、CSSだけでサイズを変えても解像度は追従せず描画が引き伸ばされてぼやける。ResizeObserverで監視対象要素個々のサイズ変化を検知し、devicePixelRatioも考慮して描画解像度を設定し直すことで高DPI環境でも鮮明な描画を維持できる。windowのresizeイベントはビューポート全体の変化しか検知できない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ResizeObserver"
+  },
+  {
+    "id": "comprehensive-076",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Canvasで生成した画像をSNS等に共有するボタンを実装したい。以下のコードの説明として正しいものはどれか。",
+    "code": "shareButton.addEventListener('click', () => {\n  canvas.toBlob(async (blob) => {\n    const file = new File([blob], 'art.png', { type: 'image/png' });\n    if (navigator.canShare && navigator.canShare({ files: [file] })) {\n      await navigator.share({ files: [file], title: '作品' });\n    }\n  }, 'image/png');\n});",
+    "choices": [
+      "canvas.toBlob()で非同期にBlobを取得しFileオブジェクトへ変換した後、navigator.canShare()でファイル共有が可能かを確認し、対応していればnavigator.share()でファイルを共有する",
+      "canvas.toBlob()は同期的にBlobを返すため、コールバック関数を渡す必要はない",
+      "navigator.share()はテキストやURLの共有専用であり、ファイル(画像)を共有先に渡すことはできない",
+      "navigator.canShare()は常にtrueを返すため、事前のチェックは省略しても安全である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "canvas.toBlob()は非同期にコールバックでBlobを渡すメソッドで、これをFileに変換しWeb Share APIのnavigator.share({files:[...]})でファイル共有を行える。ただしファイル共有に対応していない環境もあるため、事前にnavigator.canShare()で共有可否を確認するのが安全な実装である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/share"
+  },
+  {
+    "id": "comprehensive-077",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "同一オリジンの複数タブで同じIndexedDBデータベースを扱うアプリにおいて、各タブが個別にコネクションを開くとバージョンアップグレード時に競合が発生しやすい。この問題を緩和する設計として最も適切なものはどれか。",
+    "code": "// shared-worker.js\nlet dbPromise;\nonconnect = (e) => {\n  const port = e.ports[0];\n  port.onmessage = async (msg) => {\n    dbPromise ??= openDatabase();\n    const db = await dbPromise;\n    const result = await queryData(db, msg.data);\n    port.postMessage(result);\n  };\n};",
+    "choices": [
+      "SharedWorker内でIndexedDBへの接続を一箇所に集約し、各タブはMessagePort経由でSharedWorkerにクエリを依頼して結果を受け取ることで、複数タブから同時に個別のコネクションを開く事態を避ける",
+      "各タブがそれぞれ個別にIndexedDBへ接続しても、onupgradeneededイベントは同時に複数タブで発火することはなく競合は発生しない",
+      "SharedWorkerはDOMにアクセスできないため、IndexedDBへの接続も行うことができない",
+      "IndexedDBのバージョンアップグレードは、他のタブが同じデータベースへの接続を開いていても常に即座に成功する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "複数タブが個別にIndexedDBへ接続していると、いずれかのタブがバージョンアップグレードを試みた際に他のタブの古い接続がブロックしてしまう(blockedイベント)といった競合が起きやすい。SharedWorker内にIndexedDBへの接続を1つだけ持たせ、各タブはMessagePortを介してデータの読み書きを依頼する構成にすることで、この競合を避けやすくなる。SharedWorkerはDOMにはアクセスできないが、IndexedDBなどWorker内で利用可能なAPIには問題なくアクセスできる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/SharedWorker"
+  },
+  {
+    "id": "comprehensive-078",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "動画をフルスクリーン再生している間、画面が自動的にスリープしないようにしたい。適切な実装はどれか。",
+    "code": "video.addEventListener('fullscreenchange', async () => {\n  if (document.fullscreenElement) {\n    wakeLock = await navigator.wakeLock.request('screen');\n  } else {\n    await wakeLock?.release();\n  }\n});",
+    "choices": [
+      "fullscreenchangeイベントで全画面状態になったタイミングでnavigator.wakeLock.request('screen')を呼び画面スリープを抑止し、全画面を解除したタイミングでWakeLockSentinelのrelease()を呼んで解放する",
+      "Screen Wake Lock APIは全画面表示とは無関係に、常にページ全体でスリープを防止し続けるAPIである",
+      "navigator.wakeLock.request('screen')は同期的に実行され、即座にWakeLockSentinelオブジェクトを返す",
+      "取得したWake Lockは、タブが非表示(バックグラウンド)になっても自動的には解放されない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Screen Wake Lock APIのnavigator.wakeLock.request('screen')はPromiseで解決されるWakeLockSentinelを返す非同期APIで、これを使い画面の自動スリープを抑止できる。全画面表示の開始・終了に合わせてリクエスト・解放するのが典型的な使い方である。なおタブが非表示になるとブラウザによってWake Lockは自動的に解放されるため、再表示時には再取得が必要になる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API"
+  },
+  {
+    "id": "comprehensive-079",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "複数の画像ファイルをドラッグ&ドロップでまとめてドロップし、それぞれサムネイルを生成してギャラリーとしてIndexedDBに保存したい。適切な処理の流れはどれか。",
+    "code": "dropZone.addEventListener('drop', async (e) => {\n  e.preventDefault();\n  const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));\n  for (const file of files) {\n    const bitmap = await createImageBitmap(file);\n    const offscreen = new OffscreenCanvas(120, 120);\n    offscreen.getContext('2d').drawImage(bitmap, 0, 0, 120, 120);\n    const blob = await offscreen.convertToBlob({ type: 'image/jpeg' });\n    await saveToIndexedDB(blob);\n  }\n});",
+    "choices": [
+      "dropイベントで受け取ったFileListから画像ファイルのみを抽出し、createImageBitmap()で読み込み、OffscreenCanvasへ縮小描画してBlobを取得したうえでIndexedDBのオブジェクトストアへ保存する",
+      "e.dataTransfer.filesは画像ファイルのみを自動的に絞り込んで返すため、type属性によるフィルタリングは不要である",
+      "IndexedDBはBlobオブジェクトを保存できないため、この処理は必ず失敗する",
+      "createImageBitmap()はFileオブジェクトを直接引数として渡すことはできず、あらかじめFileReaderで文字列化する必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "dataTransfer.filesにはドロップされた全ファイルが含まれるため、file.typeで画像かどうかを絞り込む必要がある。createImageBitmap()はFileやBlobを直接引数として渡し高速に画像データへ変換できるAPIで、これをOffscreenCanvasに描画してサムネイルのBlobを生成し、IndexedDBのオブジェクトストアにそのまま保存できる(IndexedDBはBlobを構造化複製で保存可能)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTML_Drag_and_Drop_API"
+  },
+  {
+    "id": "comprehensive-080",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "ユーザーがアップロードした音声ファイルの波形をCanvasに描画したい。適切な処理の流れはどれか。",
+    "code": "input.addEventListener('change', async () => {\n  const file = input.files[0];\n  const arrayBuffer = await file.arrayBuffer();\n  const audioCtx = new AudioContext();\n  const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);\n  const data = audioBuffer.getChannelData(0);\n  drawWaveform(data);\n});",
+    "choices": [
+      "File.arrayBuffer()でファイルの内容をArrayBufferとして取得し、AudioContext.decodeAudioData()でデコードして得たAudioBufferからgetChannelData()でチャンネルごとのサンプル値(Float32Array)を取り出し、それを基にCanvasへ波形を描画する",
+      "file.arrayBuffer()はFileオブジェクトの内容をBase64文字列として返すメソッドである",
+      "decodeAudioData()はMP3やWAVなど圧縮・非圧縮を問わず常に同期的にAudioBufferを返す",
+      "getChannelData()はチャンネル別の音量(デシベル)の平均値を1つの数値として返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "File.arrayBuffer()でバイナリデータを取得し、AudioContext.decodeAudioData()で非同期にデコードするとAudioBufferが得られる。AudioBuffer.getChannelData(channel)は指定したチャンネルの音声サンプル値を格納したFloat32Arrayを返し、これをCanvasの描画座標に変換してlineTo()等で結ぶことで波形を可視化できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BaseAudioContext/decodeAudioData"
+  },
+  {
+    "id": "comprehensive-081",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Server-Sent Eventsで受信したイベントをもとに、ページを開いている間だけブラウザ通知を表示したい。以下のコードに関する説明として正しいものはどれか。",
+    "code": "const es = new EventSource('/alerts');\nes.onmessage = (event) => {\n  if (Notification.permission === 'granted') {\n    new Notification('アラート', { body: event.data });\n  }\n};",
+    "choices": [
+      "EventSourceはページ(ブラウジングコンテキスト)が開いている間だけ有効な接続であり、タブを閉じると受信できなくなる。そのため、タブを閉じた状態でも通知を届けたい場合はService WorkerとPush APIを使う設計が必要になる",
+      "EventSourceはService Workerを介さずに、タブを閉じた状態でもサーバーからのイベントを受信し続けることができる",
+      "Notification.permissionを確認せずにnew Notification()を呼び出しても、常に通知は表示される",
+      "EventSourceはWebSocketと同様にサーバーへ任意のデータを送信できる双方向通信APIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "EventSourceはページが開いている間のみ有効なサーバーからクライアントへの一方向通信であり、WebSocketのようにクライアントから任意データを送ることはできず、タブを閉じるとその接続も終了する。タブが閉じられた状態でも通知を配信したい場合は、Service WorkerとPush APIを組み合わせた仕組みが必要になる。通知表示にはNotification.permissionがgrantedであることの確認が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventSource"
+  },
+  {
+    "id": "comprehensive-082",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "スマートフォン向けのCanvasゲームで、全画面かつ横向き固定でプレイさせ、向きが変わった際にはCanvasの描画サイズも追従させたい。適切な実装はどれか。",
+    "code": "await gameContainer.requestFullscreen();\nawait screen.orientation.lock('landscape');\nscreen.orientation.addEventListener('change', () => {\n  resizeCanvasToWindow();\n  redraw();\n});",
+    "choices": [
+      "requestFullscreen()で全画面化してからscreen.orientation.lock('landscape')で向きを固定し、changeイベントで向きの変化(固定していてもデバイスの回転操作などにより発生し得る)を検知してCanvasのサイズを再計算・再描画する",
+      "screen.orientation.lock()は全画面状態でなくても、デスクトップブラウザを含め常に確実に成功する",
+      "画面の向きを固定した場合、changeイベントは以後絶対に発火しなくなる",
+      "requestFullscreen()を呼び出さなくても、screen.orientation.lock()だけで同等の全画面表示効果が得られる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "画面の向きの固定(screen.orientation.lock())は多くの実装で全画面表示状態であることが前提となり、モバイル環境を中心にサポートされる。向きを固定していてもchangeイベントが発火する可能性があるため、changeイベントをフックしてCanvasのリサイズと再描画を行う設計が望ましい。requestFullscreen()と向きの固定は別々のAPIであり、片方だけでは両方の効果は得られない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ScreenOrientation/lock"
+  },
+  {
+    "id": "comprehensive-083",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "getUserMedia()で取得したカメラ映像にリアルタイムでモノクロフィルタをかけて表示したい。メインスレッドの負荷を抑えるための設計として最も適切なものはどれか。",
+    "code": "const canvas = document.querySelector('#view');\nconst offscreen = canvas.transferControlToOffscreen();\nconst worker = new Worker('filter-worker.js');\nworker.postMessage({ canvas: offscreen }, [offscreen]);\n\nfunction sendFrame() {\n  createImageBitmap(video).then((bitmap) => {\n    worker.postMessage({ bitmap }, [bitmap]);\n    requestAnimationFrame(sendFrame);\n  });\n}\nsendFrame();",
+    "choices": [
+      "canvas.transferControlToOffscreen()でCanvasの描画制御を一度だけWorkerへ転送し、以降は毎フレームvideo要素からcreateImageBitmap()で切り出したImageBitmapを転送可能オブジェクトとしてWorkerへpostMessageし、Worker側でフィルタ処理を行って直接OffscreenCanvasへ描画する",
+      "getUserMedia()のMediaStream自体をWeb WorkerへpostMessageで直接転送し、Worker内のvideo要素で再生することができる",
+      "Web WorkerはOffscreenCanvasを扱うことができないため、フィルタ処理は必ずメインスレッドのCanvas 2Dコンテキストで行う必要がある",
+      "createImageBitmap()の戻り値は転送可能(Transferable)ではないため、postMessageの第2引数に指定することはできない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "HTMLVideoElementやMediaStreamは構造化複製やTransferableの対象ではなくWorkerへ直接渡すことはできないため、メインスレッドでvideo要素からフレームごとにcreateImageBitmap()を呼び出し、生成したImageBitmap(Transferableオブジェクト)をWorkerへpostMessageで転送する。canvas.transferControlToOffscreen()で得たOffscreenCanvasも同様にWorkerへ転送しておけば、Worker内でフィルタ処理をした結果を直接描画でき、メインスレッドの描画負荷を大きく下げられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/OffscreenCanvas"
+  },
+  {
+    "id": "comprehensive-084",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "マイク入力の音量レベルをリアルタイムにCanvasで可視化(音量メーター)したい。適切な実装はどれか。",
+    "code": "const stream = await navigator.mediaDevices.getUserMedia({ audio: true });\nconst ctx = new AudioContext();\nconst source = ctx.createMediaStreamSource(stream);\nconst analyser = ctx.createAnalyser();\nsource.connect(analyser);\nconst data = new Uint8Array(analyser.frequencyBinCount);\nfunction draw() {\n  analyser.getByteTimeDomainData(data);\n  renderMeter(data);\n  requestAnimationFrame(draw);\n}\ndraw();",
+    "choices": [
+      "getUserMedia()で取得したMediaStreamをAudioContext.createMediaStreamSource()でオーディオグラフのノードに変換し、AnalyserNodeに接続してgetByteTimeDomainData()等で取得した波形データをrequestAnimationFrameのループの中でCanvasに反映する",
+      "AnalyserNodeはgetUserMedia()で取得した映像トラックの明るさを解析するためのノードである",
+      "createMediaStreamSource()はMediaStreamを直接CanvasのdrawImage()に渡せる形式に変換するメソッドである",
+      "analyser.getByteTimeDomainData()は呼び出すたびに新しい配列を生成して返すため、事前にUint8Arrayを用意しておく必要はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "マイクからのMediaStreamをWeb AudioのcreateMediaStreamSource()でノード化しAnalyserNodeに接続することで、getByteTimeDomainData()やgetByteFrequencyData()を通じて波形・周波数データを取得できる。これをrequestAnimationFrameのループ内で繰り返し取得しCanvasへ描画することでリアルタイムな音量・波形の可視化ができる。AnalyserNodeは音声データの解析用であり映像には関与しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AnalyserNode"
+  },
+  {
+    "id": "comprehensive-085",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ゲームパッドの入力でCanvas上のキャラクターを移動させたい。ボタンや軸の状態を取得する適切な設計はどれか。",
+    "code": "function loop() {\n  const gamepads = navigator.getGamepads();\n  const gp = gamepads[0];\n  if (gp) {\n    player.x += gp.axes[0] * speed;\n    if (gp.buttons[0].pressed) jump();\n  }\n  render();\n  requestAnimationFrame(loop);\n}\nwindow.addEventListener('gamepadconnected', () => requestAnimationFrame(loop));",
+    "choices": [
+      "gamepadconnectedイベントは接続検知にのみ使い、実際のボタン・軸の状態はイベント駆動では取得できないため、requestAnimationFrameのループ内でnavigator.getGamepads()を毎フレーム呼び出してポーリングする",
+      "ボタンが押されるたびにgamepadbuttondownのようなイベントが標準で発火するため、ループでのポーリングは不要である",
+      "navigator.getGamepads()は非同期のPromiseを返すメソッドであり、awaitして使用する必要がある",
+      "gp.axes[0]の値は常に0または1のいずれかの整数のみを取る"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Gamepad APIには接続・切断を通知するgamepadconnected/gamepaddisconnectedイベントは存在するが、ボタンの押下や軸の傾きといった状態変化を個別に通知するイベントは標準では用意されていない。そのため、requestAnimationFrameのループの中でnavigator.getGamepads()を毎フレーム呼び出し最新の状態を取得(ポーリング)する必要がある。axesの値は通常-1.0から1.0までの連続的な小数値である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Gamepad_API"
+  },
+  {
+    "id": "comprehensive-086",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "スマートフォンを傾けてCanvas上のボールを動かす、傾き操作のゲームを実装したい。iOS Safari(13以降)を含む主要ブラウザに対応する設計として適切なものはどれか。",
+    "code": "async function enableTilt() {\n  if (typeof DeviceOrientationEvent.requestPermission === 'function') {\n    const result = await DeviceOrientationEvent.requestPermission();\n    if (result !== 'granted') return;\n  }\n  window.addEventListener('deviceorientation', (e) => {\n    latestTilt = { beta: e.beta, gamma: e.gamma };\n  });\n}\nstartButton.addEventListener('click', enableTilt);\n\nfunction loop() {\n  ball.x += latestTilt.gamma * 0.1;\n  render();\n  requestAnimationFrame(loop);\n}",
+    "choices": [
+      "iOS 13以降のSafariではDeviceOrientationEvent.requestPermission()がユーザー操作(クリック等)をきっかけに呼び出され許可を得る必要があるため機能検出のうえ許可を要求し、deviceorientationイベントの値は変数に保存してrequestAnimationFrameのループ側で描画に利用することでイベント発生頻度とアニメーションの描画頻度を分離する",
+      "DeviceOrientationEvent.requestPermission()は全てのブラウザで共通して必須のメソッドであり、常に呼び出す必要がある",
+      "deviceorientationイベントは、ユーザーの操作(クリック等)を伴わないページ読み込み時であっても常に無条件で発火する",
+      "beta・gammaの値は常に0から100までのパーセンテージで表される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "iOS 13以降のSafariではプライバシー保護のためDeviceOrientationEvent.requestPermission()という許可要求APIが追加され、ユーザー操作をきっかけに呼び出す必要があるが、これは全ブラウザ共通の仕様ではないため機能検出が必要になる。deviceorientationイベントは発生頻度が環境によって異なるため、イベントで受け取った最新値を変数に保持し、requestAnimationFrameのループ側で読み取って描画に使うことで滑らかなアニメーションにしやすい。beta・gammaは角度(度)を表す値である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/deviceorientation_event"
+  },
+  {
+    "id": "comprehensive-087",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "バッテリー残量が少ない状態やタブが非表示の状態では、Canvasアニメーションの負荷を下げて省電力にしたい。以下の設計のうち適切なものはどれか。",
+    "code": "let battery;\nnavigator.getBattery?.().then((b) => (battery = b));\n\nfunction loop() {\n  if (document.hidden) {\n    requestAnimationFrame(loop);\n    return;\n  }\n  const lowPower = battery && !battery.charging && battery.level < 0.2;\n  render(lowPower ? 'simple' : 'full');\n  requestAnimationFrame(loop);\n}\nloop();",
+    "choices": [
+      "navigator.getBattery()(非標準でChrome系ブラウザ中心の対応、Firefoxはデフォルト無効)で得たBatteryManagerのlevel・chargingと、Page Visibility APIのdocument.hiddenを組み合わせて描画内容の負荷を調整する。未対応ブラウザでも動作するようoptional chainingなどで安全に扱う",
+      "Battery Status APIは全てのブラウザで等しく実装されている標準必須APIであり、対応確認は不要である",
+      "document.hiddenがtrueの間もrequestAnimationFrameは通常のフレームレートで確実に実行され続けるため、明示的な処理のスキップは不要である",
+      "battery.levelは0から100までの整数でバッテリー残量のパーセンテージを表す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Battery Status APIはフィンガープリンティングの懸念からFirefoxではデフォルトで無効化されておりChrome系ブラウザ中心の対応となっているため、navigator.getBatteryの存在確認をした上で利用するのが安全である。多くのブラウザは非表示タブに対してrequestAnimationFrameを自動的にスロットリングするが、明示的に処理を軽量化することでより確実に省電力化できる。battery.levelは0.0から1.0の小数で残量を表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Battery_Status_API"
+  },
+  {
+    "id": "comprehensive-088",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Canvasで作成した画像を、ダウンロードリンクを介さず直接ユーザーが選択したローカルファイルとして保存したい。File System Access APIを使う場合の適切な実装はどれか。",
+    "code": "saveButton.addEventListener('click', async () => {\n  const handle = await window.showSaveFilePicker({\n    suggestedName: 'art.png',\n    types: [{ description: 'PNG Image', accept: { 'image/png': ['.png'] } }]\n  });\n  const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));\n  const writable = await handle.createWritable();\n  await writable.write(blob);\n  await writable.close();\n});",
+    "choices": [
+      "showSaveFilePicker()でユーザーに保存先を選ばせFileSystemFileHandleを取得し、そのcreateWritable()で得たFileSystemWritableFileStreamにcanvas.toBlob()由来のBlobを書き込んでclose()する。このAPIはユーザー操作をきっかけに呼び出す必要があり、対応ブラウザも限られる",
+      "showSaveFilePicker()は全てのブラウザで利用可能な標準APIであり、Node.jsのfsモジュールと同様に任意のタイミングでファイルパスを直接指定して書き込める",
+      "FileSystemWritableFileStreamへの書き込みは同期的に完了するため、write()やclose()の完了を待つ必要はない",
+      "canvas.toBlob()は文字列(Data URL)を返すため、そのままwrite()に渡すことはできない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "File System Access APIのshowSaveFilePicker()はユーザーの操作を起点にファイル保存ダイアログを表示しFileSystemFileHandleを返す(現時点でChromium系ブラウザなど対応が限られる)。取得したハンドルからcreateWritable()でストリームを開き、Blobなどのデータをwrite()で書き込みclose()で確定させる。canvas.toBlob()はBlobを非同期にコールバックへ渡すメソッドであり、書き込みや取得の各処理は非同期(Promiseベース)である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/showSaveFilePicker"
+  },
+  {
+    "id": "comprehensive-089",
+    "category": "comprehensive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "オフライン閲覧アプリで、ブラウザのストレージ容量不足時に発生しうるデータの自動削除(エビクション)を避け、キャッシュとIndexedDBのデータを保護したい。適切な対策として正しいものはどれか。",
+    "code": "const granted = await navigator.storage.persist();\nconst { usage, quota } = await navigator.storage.estimate();\nif (usage / quota > 0.8) {\n  await pruneOldCachedArticles();\n}",
+    "choices": [
+      "navigator.storage.persist()で永続化ストレージの許可を要求し、許可されればストレージ不足時の自動エビクションの対象になりにくくなる。あわせてnavigator.storage.estimate()で使用率を確認し、必要に応じて古いデータの整理を行う",
+      "navigator.storage.persist()を呼び出すだけで、ユーザーの操作や条件を問わず必ず永続化が許可される",
+      "Service WorkerのCache APIに保存したデータは、ブラウザのストレージ容量に関わらず永久にエビクションされない",
+      "navigator.storage.estimate()のusageとquotaはいずれも常に固定値であり、アプリの状況によって変化しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.storage.persist()は永続化(persistent)ストレージモードを要求するAPIで、許可されるとストレージ不足時にブラウザが自動的にデータを削除する挙動(best-effortモードでのエビクション)の対象になりにくくなる。ただし許可の判定基準はブラウザに依存し無条件に許可されるわけではない。navigator.storage.estimate()で得られるusage・quotaは環境や利用状況により変動する動的な値であり、Cache APIのデータもストレージ圧迫時にはエビクションの対象となり得る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/persist"
+  },
+  {
+    "id": "comprehensive-090",
+    "category": "comprehensive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "要素が画面内に入ったタイミングでフェードイン・スライドインのアニメーションを再生したい。ただしOSの「視差効果を減らす」設定が有効な場合はアニメーションを簡略化したい。適切な実装として正しいものを全て選べ。",
+    "code": "const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\nconst observer = new IntersectionObserver((entries) => {\n  entries.forEach((entry) => {\n    if (entry.isIntersecting) {\n      const keyframes = reduceMotion\n        ? [{ opacity: 0 }, { opacity: 1 }]\n        : [{ opacity: 0, transform: 'translateY(20px)' }, { opacity: 1, transform: 'translateY(0)' }];\n      entry.target.animate(keyframes, { duration: reduceMotion ? 1 : 400, fill: 'forwards' });\n      observer.unobserve(entry.target);\n    }\n  });\n});\ndocument.querySelectorAll('.card').forEach((el) => observer.observe(el));",
+    "choices": [
+      "Element.animate()はWeb Animations APIのメソッドで、キーフレームの配列とオプションを渡すとAnimationオブジェクトを返し、その場でアニメーション再生を開始する",
+      "IntersectionObserverで要素の交差を検知し、isIntersectingがtrueになったタイミングでアニメーションを開始することで、画面内に入った要素だけを対象にできる",
+      "window.matchMedia('(prefers-reduced-motion: reduce)')でユーザーのOS設定を確認し、視差効果を抑えたい場合には移動を伴わない簡易的なアニメーションに切り替えるといった配慮ができる",
+      "prefers-reduced-motionはCSSのメディア特性であり、JavaScriptのmatchMedia()から参照することはできない",
+      "Element.animate()で再生したアニメーションは、fill: 'forwards'を指定しない限りアニメーション終了後に自動的に最初のキーフレームの状態(この例ではopacity: 0)に戻る"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "Element.animate()はWeb Animations APIのメソッドでキーフレームとオプションを指定してその場で再生を開始しAnimationオブジェクトを返す。IntersectionObserverと組み合わせることで要素が画面内に入った時だけアニメーションを再生でき、matchMedia('(prefers-reduced-motion: reduce)')でアクセシビリティ設定を確認しアニメーション内容を調整するのはprefers-reduced-motionへの適切な配慮である(このメディア特性はJavaScriptからも参照可能)。fill: 'forwards'を指定しない場合、アニメーション終了後は最終フレームの見た目を保持せず開始前の状態に戻る点も正しい。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Animations_API"
+  }
+]

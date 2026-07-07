@@ -1,0 +1,1439 @@
+[
+  {
+    "id": "security-001",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ブラウザの同一オリジンポリシー(Same-Origin Policy)において、2つのURLが「同一オリジン」と判定されるための条件として正しいものはどれか。",
+    "choices": [
+      "ホスト名が一致していればよい",
+      "スキーム(プロトコル)、ホスト、ポート番号の3つが全て一致していること",
+      "ポート番号のみが一致していればよい",
+      "パス部分まで含めて完全に一致していること"
+    ],
+    "correctAnswers": [1],
+    "explanation": "同一オリジンは「スキーム」「ホスト」「ポート」の3要素が全て一致する場合のみ判定される。パスやクエリ文字列は判定に影響しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "security-002",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のURLのうち、基準URLと同一オリジンであるものはどれか。",
+    "code": "基準URL: https://example.com:443/app/\n(スキーム: https, ホスト: example.com, ポート: 443)",
+    "choices": [
+      "http://example.com/app/",
+      "https://example.com/other/",
+      "https://www.example.com/app/",
+      "https://example.com:8443/app/"
+    ],
+    "correctAnswers": [1],
+    "explanation": "オリジンの判定にはパスは関係しない。選択肢2はスキームhttps、ホストexample.com、ポート443(HTTPSの規定ポートで省略時と同値)が全て一致するため同一オリジン。1はスキームがhttpで異なり、3はwwwサブドメインが付いてホストが異なり、4はポート番号が8443で異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "security-003",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "https://sub.example.com と https://example.com のオリジンに関する記述として正しいものはどれか。",
+    "choices": [
+      "サブドメインが異なるだけなので同一オリジンとみなされる",
+      "ホスト名が異なるため異なるオリジンとみなされる",
+      "何も設定しなくても自動的に同一オリジン扱いになる",
+      "スキームが同じであれば必ず同一オリジンになる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "オリジンの判定においてホスト名(FQDN)は完全一致が必要であり、サブドメインの有無が異なれば別オリジンとして扱われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "security-004",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "古いブラウザ実装で、document.domainプロパティを利用してオリジン間の制限を緩和する手法に関する記述として正しいものはどれか。",
+    "choices": [
+      "document.domainを設定するとポート番号の違いも無視されるようになる",
+      "同じ親ドメインを持つサブドメイン同士に限り、document.domainを共通の親ドメインに設定することでスクリプト間のアクセス制限を緩和できる",
+      "document.domainはCORSを完全に代替する標準的な仕組みとして現在も推奨されている",
+      "document.domainはスキームが異なるオリジン同士でも同一オリジン化できる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "document.domainは同じ親ドメインを持つサブドメイン間(例: a.example.comとb.example.com)に限り、共通の親ドメイン(example.com)に設定することで相互アクセスを許可するレガシーな仕組みである。ポートやスキームの違いは緩和できず、セキュリティ上の懸念から標準では利用が縮小傾向にある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy"
+  },
+  {
+    "id": "security-005",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CORSにおける「単純リクエスト(simple request)」として扱われるための条件はどれか。全て選べ。",
+    "choices": [
+      "メソッドがGET、HEAD、POSTのいずれかである",
+      "開発者が設定できるヘッダーがCORS-safelisted headerの範囲に収まっている",
+      "Content-Typeがapplication/jsonである",
+      "Content-Typeがapplication/x-www-form-urlencoded、multipart/form-data、text/plainのいずれかである"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "単純リクエストはメソッドがGET/HEAD/POSTのいずれかであり、設定できるヘッダーがCORS-safelisted headerのみで、Content-Typeが選択肢4の3種類に限られる場合に該当する。application/jsonはこの条件を満たさずプリフライトが発生する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  {
+    "id": "security-006",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のうち、ブラウザがCORSのプリフライトリクエスト(OPTIONSメソッド)を送信する条件に該当するものを全て選べ。",
+    "choices": [
+      "リクエストメソッドにPUTを使用する",
+      "Content-Type: application/jsonを指定してPOSTする",
+      "Content-Type: text/plainを指定してGETする",
+      "カスタムヘッダーX-Custom-Headerを付与してPOSTする"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "PUTメソッドの使用、application/jsonなど単純リクエストの範囲外のContent-Type、カスタムヘッダーの付与はいずれもプリフライトリクエストを発生させる条件に該当する。text/plainでのGETは単純リクエストの条件を満たすためプリフライトは発生しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  {
+    "id": "security-007",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CORSのプリフライトリクエストで使用されるHTTPメソッドはどれか。",
+    "choices": ["GET", "POST", "OPTIONS", "HEAD"],
+    "correctAnswers": [2],
+    "explanation": "プリフライトリクエストはOPTIONSメソッドを使い、本来のリクエストを送信してよいかどうかをサーバーに事前確認する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  {
+    "id": "security-008",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CORSにおけるAccess-Control-Allow-Originと認証情報(Cookieなど)の送信に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "Access-Control-Allow-Origin: * を指定した場合、資格情報(credentials)付きリクエストへの応答としては利用できない",
+      "資格情報付きリクエストを許可する場合、Access-Control-Allow-Originには具体的なオリジンを指定する必要がある",
+      "資格情報付きリクエストを許可するには、サーバーはAccess-Control-Allow-Credentials: trueを返す必要がある",
+      "クライアント側でfetchのcredentialsオプションを設定しなくても、サーバー側の設定だけで資格情報は自動的に送信される"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "ワイルドカード指定はcredentials付きリクエストには使用できず、具体的なオリジンを返しAccess-Control-Allow-Credentials: trueを付与する必要がある。クライアント側でもfetchのcredentials指定などが別途必要であり、サーバー設定だけで自動送信されるわけではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Origin"
+  },
+  {
+    "id": "security-009",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "クライアントが独自のリクエストヘッダーを送信できるようにするために、サーバーがプリフライト応答で指定すべきヘッダーはどれか。",
+    "choices": [
+      "Access-Control-Allow-Methods",
+      "Access-Control-Allow-Headers",
+      "Access-Control-Expose-Headers",
+      "Access-Control-Max-Age"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Access-Control-Allow-Headersはプリフライトリクエストへの応答で、実際のリクエストで使用が許可されるHTTPヘッダーを列挙するために使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Headers"
+  },
+  {
+    "id": "security-010",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "XMLHttpRequestやfetchでクロスオリジンリクエストにCookieなどの資格情報を含める設定に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "fetchではcredentials: 'include' を指定することでクロスオリジンでも資格情報を送信できる",
+      "XMLHttpRequestではwithCredentials = trueを設定する",
+      "資格情報を送信するには、サーバー側の設定は不要でクライアント側の設定のみで十分である",
+      "サーバーがAccess-Control-Allow-Credentials: trueを返さない場合、レスポンスはスクリプトから読み取れない"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "fetchのcredentials: 'include'、XHRのwithCredentials=trueがクライアント側設定である。ただしサーバー側がAccess-Control-Allow-Credentials: trueと具体的なオリジンを返さない限り、ブラウザはレスポンス内容をスクリプトに渡さない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials"
+  },
+  {
+    "id": "security-011",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSPで個別のディレクティブ(script-srcやimg-srcなど)が指定されていないリソースタイプに適用される、フォールバック用のディレクティブはどれか。",
+    "choices": ["base-uri", "default-src", "connect-src", "require-trusted-types-for"],
+    "correctAnswers": [1],
+    "explanation": "default-srcは他の多くのfetch系ディレクティブが明示的に指定されていない場合のデフォルト(フォールバック)値として機能する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/default-src"
+  },
+  {
+    "id": "security-012",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSPヘッダー設定の説明として正しいものはどれか。",
+    "code": "Content-Security-Policy: script-src 'self'",
+    "choices": [
+      "自ドメインから配信されるスクリプトのみ実行を許可し、外部ドメインのスクリプトやインラインスクリプトはブロックされる",
+      "自ドメインとインラインスクリプトの両方が許可される",
+      "全てのオリジンからのスクリプト読み込みを許可する",
+      "スクリプトの実行を完全に禁止する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "script-src 'self' は自オリジンから読み込まれるスクリプトファイルのみを許可し、インラインスクリプトやeval、外部オリジンのスクリプトはデフォルトでブロックされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/script-src"
+  },
+  {
+    "id": "security-013",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CSPをmeta要素で指定する場合とHTTPレスポンスヘッダーで指定する場合の違いについて、正しい記述を全て選べ。",
+    "choices": [
+      "meta要素で指定する場合、frame-ancestorsディレクティブは効果を持たない",
+      "meta要素で指定する場合、report-uri/report-toディレクティブはサポートされない",
+      "HTTPヘッダーで指定する場合のみ、複数のCSPを同時に適用できる",
+      "meta要素はhead内に記述する必要がある"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "meta要素によるCSP指定ではframe-ancestors、report-uri/report-to、sandboxなど一部のディレクティブは無効となる制限がある。またmeta要素は文書のhead内に配置する必要がある。複数CSPの同時適用はヘッダー・meta要素どちらでも複数指定により可能であり、ヘッダー限定の機能ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CSP"
+  },
+  {
+    "id": "security-014",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CSPの'unsafe-inline'キーワードに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "script-srcに指定すると、インラインの<script>要素やonclickなどのイベントハンドラ属性による実行が許可される",
+      "'unsafe-inline'を使用すると、CSPによるXSS対策の効果が大幅に弱まる",
+      "nonceやhashを併用する場合、'unsafe-inline'は最新のブラウザでは常に無視される",
+      "'unsafe-inline'はstyle-srcには指定できない"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "'unsafe-inline'はインラインスクリプトやイベントハンドラの実行を許可するため、CSPが本来防ごうとするインラインスクリプト注入によるXSSへの防御効果が弱まる。nonceやhash指定と併用時は後方互換性の観点から挙動が定義されているが「常に無視される」は不正確であり、また'unsafe-inline'はstyle-srcにも指定可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/script-src"
+  },
+  {
+    "id": "security-015",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSPとHTML記述の組み合わせにおいて、インラインスクリプトが実行される条件として正しいものはどれか。",
+    "code": "Content-Security-Policy: script-src 'nonce-abc123'\n\n<script nonce=\"abc123\">console.log('ok');</script>",
+    "choices": [
+      "script要素のnonce属性の値が、CSPヘッダーで指定されたnonce値と一致するため実行される",
+      "nonce属性はCSPと無関係であり、このスクリプトはブロックされる",
+      "nonceを使う場合は'unsafe-inline'も同時に指定しないと実行されない",
+      "nonce値はブラウザが自動生成するため、HTML側に記述する必要はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CSPでnonceを指定した場合、script要素のnonce属性値がヘッダーのnonce値と一致するスクリプトのみ実行が許可される。これによりインラインスクリプトを個別に許可しつつ任意のスクリプト注入は防止できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/script-src"
+  },
+  {
+    "id": "security-016",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "自サイトが他サイトの<iframe>に埋め込まれることをCSPで制御するディレクティブはどれか。",
+    "choices": ["frame-src", "frame-ancestors", "child-src", "sandbox"],
+    "correctAnswers": [1],
+    "explanation": "frame-ancestorsは自ページを埋め込むことができるフレーム(親ページ)のオリジンを制限するディレクティブで、クリックジャッキング対策として利用される。frame-srcは自ページが埋め込む側のリソースを制御するディレクティブである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors"
+  },
+  {
+    "id": "security-017",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "XSS(クロスサイトスクリプティング)の分類のうち、悪意あるスクリプトがサーバーのデータベースなどに保存され、他の利用者がページを閲覧した際に実行されるタイプはどれか。",
+    "choices": ["反射型XSS", "格納型(蓄積型)XSS", "DOMベースXSS", "セッションハイジャック"],
+    "correctAnswers": [1],
+    "explanation": "格納型(Stored)XSSは攻撃者が投稿したスクリプトがサーバー側に保存され、他のユーザーがそのページを閲覧するたびに実行される。反射型はリクエストパラメータ等がそのままレスポンスに反映される即時的な攻撃、DOMベースはクライアント側JavaScriptの処理のみで発生する攻撃である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Cross-site_scripting"
+  },
+  {
+    "id": "security-018",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "掲示板アプリで、利用者が投稿したコメントをエスケープ処理せずにそのままHTMLとして他の閲覧者に表示していた場合に起こりうる脆弱性として最も適切なものはどれか。",
+    "choices": ["CSRF", "格納型XSS", "クリックジャッキング", "Mixed Content"],
+    "correctAnswers": [1],
+    "explanation": "利用者の入力がサーバーに保存され、他の利用者への表示時にエスケープされないままHTMLとして解釈されることで格納型XSSが発生する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Cross-site_scripting"
+  },
+  {
+    "id": "security-019",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードにはDOMベースXSSの脆弱性がある。その原因として正しいものはどれか。",
+    "code": "const params = new URLSearchParams(location.search)\nconst name = params.get('name')\ndocument.getElementById('greeting').innerHTML = 'こんにちは、' + name + 'さん'",
+    "choices": [
+      "URLSearchParamsの使用自体が非推奨のため",
+      "URLパラメータの値を検証・エスケープせずにinnerHTMLへ直接埋め込んでいるため",
+      "location.searchはHTTPSでは取得できないため",
+      "getElementByIdはXSS対策済みのAPIではないため"
+    ],
+    "correctAnswers": [1],
+    "explanation": "URLパラメータ(攻撃者が制御可能な値)を検証やエスケープなしにinnerHTMLに代入すると、scriptタグやイベントハンドラ属性を含むHTMLが注入され実行される可能性がある。クライアント側JavaScriptの処理のみで完結するためDOMベースXSSと呼ばれる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML"
+  },
+  {
+    "id": "security-020",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "XSS対策として有効な手法を全て選べ。",
+    "choices": [
+      "ユーザー入力をHTML内に出力する際に適切にエスケープ(サニタイズ)する",
+      "innerHTMLの代わりにtextContentを使用してテキストを挿入する",
+      "Content-Security-Policyでスクリプトの実行元を制限する",
+      "全てのCookieにSecure属性のみを付与する",
+      "HTTPレスポンスをGZIP圧縮する"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "出力エスケープ、textContentの利用、CSPによるスクリプト実行元の制限はいずれもXSS対策として有効である。Secure属性は通信経路の盗聴対策でありXSS対策としては直接関係がなく、GZIP圧縮はセキュリティ対策ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Cross-site_scripting"
+  },
+  {
+    "id": "security-021",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のうち、ユーザーが入力した文字列をHTML要素にテキストとして安全に挿入する方法として適切なものはどれか。",
+    "code": "element.innerHTML = userInput",
+    "choices": [
+      "上記のようにinnerHTMLへ直接代入する",
+      "element.textContent = userInput のようにtextContentへ代入する",
+      "document.write(userInput) を使用する",
+      "eval(userInput) を使用する"
+    ],
+    "correctAnswers": [1],
+    "explanation": "textContentへの代入は文字列を常にプレーンテキストとして扱いHTMLとして解釈しないため、XSSのリスクを回避できる。innerHTML、document.write、evalはいずれも文字列をHTML/コードとして解釈しうるため危険である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/textContent"
+  },
+  {
+    "id": "security-022",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSRF(クロスサイトリクエストフォージェリ)攻撃の仕組みを説明したものとして正しいものはどれか。",
+    "choices": [
+      "攻撃者が被害者のブラウザに保存された認証情報(Cookie等)を利用し、被害者に意図しないリクエストを別サイトへ送信させる攻撃",
+      "攻撃者がサーバーとクライアント間の通信を盗聴して認証情報を窃取する攻撃",
+      "攻撃者がSQL文を注入してデータベースを不正操作する攻撃",
+      "攻撃者が大量のリクエストを送信してサーバーを停止させる攻撃"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CSRFは、ログイン済みの被害者のブラウザが自動的に送信するCookie等の認証情報を悪用し、罠サイト経由で被害者の意図しないリクエスト(例: 送金や設定変更)を正規サイトへ送らせる攻撃である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/CSRF"
+  },
+  {
+    "id": "security-023",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CSRF対策として広く用いられる「CSRFトークン」方式の説明として正しいものはどれか。",
+    "choices": [
+      "サーバーがフォームごとに推測困難なトークンを発行し、リクエスト送信時にそのトークンを検証することで、第三者サイトからの偽造リクエストを排除する",
+      "トークンはCookieにのみ保存すればよく、フォームに埋め込む必要はない",
+      "トークンはURLの一部として毎回固定値を使い続けることが推奨される",
+      "トークンはXSS対策専用の仕組みであり、CSRF対策には効果がない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CSRFトークンはサーバーが生成しセッションやフォームに紐づけた推測困難な値であり、正規のフォーム送信時にのみ送られる。第三者サイトはこのトークンを知り得ないため偽造リクエストを判別・拒否できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/CSRF"
+  },
+  {
+    "id": "security-024",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CookieのSameSite属性を利用したCSRF対策の説明として正しいものはどれか。",
+    "choices": [
+      "SameSite=StrictまたはLaxを設定すると、クロスサイトのリクエストに伴うCookie送信が制限され、CSRF攻撃のリスクを低減できる",
+      "SameSite属性はCookieの有効期限を制御する属性であり、CSRF対策とは無関係である",
+      "SameSite=Noneを設定するとクロスサイトでのCookie送信が禁止される",
+      "SameSite属性はHTTPSでのみ有効で、HTTPでは常に無視される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SameSite属性はクロスサイトリクエストにおけるCookie送信可否を制御し、StrictやLaxに設定することで他サイト起点のリクエストにCookieが付与されにくくなりCSRF対策として機能する。SameSite=Noneは逆にクロスサイト送信を許可する設定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "security-025",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CSRF対策・脆弱性に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "状態を変更する処理(送金、パスワード変更等)をGETリクエストのみで実装すると、リンクやimgタグ経由で意図せず実行されCSRFのリスクが高まる",
+      "Refererヘッダーの検証はCSRF対策の補助として使われることがあるが、送信されない場合があり万能ではない",
+      "CSRFはHTTPSを使用していれば発生しない",
+      "カスタムリクエストヘッダーの付与を必須にし、CORSで許可されたオリジンのみ受け付ける設計はCSRF対策として有効に働く場合がある"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "状態変更をGETで実装するとimgタグ等から容易に誘発されCSRFのリスクが高い。Refererヘッダー検証は補助的対策だが、プライバシー設定等により送信されないケースもある。カスタムヘッダー必須化は単純なフォーム送信では付与できないためCSRF対策として機能しうる。HTTPS化は通信の暗号化であり、CSRF自体を防ぐものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/CSRF"
+  },
+  {
+    "id": "security-026",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CookieのHttpOnly属性を付与する目的として正しいものはどれか。",
+    "choices": [
+      "JavaScriptのdocument.cookieからのアクセスを禁止し、XSSによるCookie窃取のリスクを低減する",
+      "HTTPS通信でのみCookieを送信するようにする",
+      "クロスサイトリクエストでのCookie送信を制限する",
+      "Cookieの有効期限をブラウザ終了時までに限定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "HttpOnly属性を付与されたCookieはJavaScriptのdocument.cookie APIから読み取ることができなくなり、XSS攻撃が発生した場合でもCookieの窃取を防ぐ効果がある。HTTPS限定送信はSecure属性、クロスサイト送信制御はSameSite属性の役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "security-027",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CookieにSecure属性を付与した場合の挙動として正しいものはどれか。",
+    "choices": [
+      "HTTPS(暗号化された接続)でのみそのCookieがサーバーへ送信される",
+      "JavaScriptからそのCookieへのアクセスができなくなる",
+      "他のオリジンへはそのCookieが一切送信されなくなる",
+      "Cookieのサイズ上限が拡張される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Secure属性が付与されたCookieは、HTTPSなど暗号化されたコネクションでのリクエストに対してのみブラウザから送信される。JavaScriptからのアクセス制限はHttpOnly属性の役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "security-028",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CookieのSameSite属性の値であるStrict、Lax、Noneに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "Strictは、他サイトからのどのような遷移・リクエストであってもそのCookieを送信しない",
+      "Laxは、リンククリックによる通常のトップレベルナビゲーション(GET)では他サイトからでもCookieを送信する",
+      "Noneを指定する場合、Secure属性も併せて指定する必要がある",
+      "LaxはStrictよりも制限が厳しい設定である"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "StrictはクロスサイトでのCookie送信を一切許可しない最も厳格な設定である。Laxはリンククリック等のトップレベルの安全なナビゲーション(GET)に限りクロスサイトでも送信を許可する。SameSite=Noneでクロスサイト送信を許可する場合はSecure属性の指定が必須となっている。LaxはStrictより緩い設定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "security-029",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "現在の主要ブラウザの仕様において、SameSite=Noneを指定したCookieに関する記述として正しいものはどれか。",
+    "choices": [
+      "Secure属性を同時に指定しない場合、ブラウザによってCookieが拒否される",
+      "SameSite=Noneを指定すればSecure属性がなくてもHTTPで送信できる",
+      "SameSite=Noneはデフォルトの挙動であり明示指定は不要である",
+      "SameSite=Noneを指定するとHttpOnly属性は自動的に無効化される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "仕様上、SameSite=Noneを指定する場合はSecure属性を併せて指定することが必須とされており、これを満たさないCookieは主要ブラウザで拒否・無視される。近年のブラウザではSameSite未指定時のデフォルトはLax相当として扱われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "security-030",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のSet-Cookieヘッダーについての記述として正しいものを全て選べ。",
+    "code": "Set-Cookie: sessionId=abc123; Secure; HttpOnly; SameSite=Strict; Path=/",
+    "choices": [
+      "このCookieはJavaScriptのdocument.cookieから読み取ることができない",
+      "このCookieはHTTP(非暗号化)接続では送信されない",
+      "このCookieは他サイトからのクロスサイトリクエストでは送信されない",
+      "Pathが/に設定されているため、このCookieはどのオリジンのサイトにも送信される"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "HttpOnlyによりJavaScriptからの読み取りは不可となり、SecureによりHTTPS限定送信、SameSite=Strictによりクロスサイト送信不可となる。Path属性は同一オリジン内でのパス範囲を指定するものであり、他オリジンへの送信可否とは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "security-031",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "<iframe>要素にsandbox属性を空文字列(sandbox=\"\")で指定した場合に適用される制限として正しいものを全て選べ。",
+    "choices": [
+      "iframe内でのスクリプト実行が禁止される",
+      "iframe内のコンテンツは埋め込み元とは別オリジン(ユニークオリジン)として扱われる",
+      "iframe内のフォーム送信が禁止される",
+      "iframe内で新しいポップアップウィンドウを開くこと(window.openなど)が許可される"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "sandbox属性を値なしで指定すると、スクリプト実行、フォーム送信、ポップアップ、プラグイン実行など多くの機能が制限され、コンテンツはユニークなオリジンとして扱われる。ポップアップを許可するにはallow-popupsトークンを個別に追加する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe"
+  },
+  {
+    "id": "security-032",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のiframeでスクリプトの実行のみを許可し、その他の制限(フォーム送信禁止など)は維持したい場合、sandbox属性にどのトークンを指定すべきか。",
+    "code": "<iframe src=\"https://example.com/widget\" sandbox=\"???\"></iframe>",
+    "choices": ["allow-same-origin", "allow-scripts", "allow-forms", "allow-popups"],
+    "correctAnswers": [1],
+    "explanation": "allow-scriptsトークンを指定することで、sandbox化されたiframe内でのスクリプト実行のみが許可され、他の制限は維持される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe"
+  },
+  {
+    "id": "security-033",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "sandbox化されたiframeにallow-scriptsとallow-same-originの両方を同時に指定することがセキュリティ上問題視される理由として最も適切なものはどれか。",
+    "choices": [
+      "2つのトークンを同時に指定することはHTML仕様上禁止されているため",
+      "iframe内のスクリプトが自身のsandboxを解除し、埋め込み元ページのDOMへアクセスできてしまう可能性があるため",
+      "ページの読み込み速度が著しく低下するため",
+      "allow-scriptsとallow-same-originは常に排他的であり、後者が無視されるため"
+    ],
+    "correctAnswers": [1],
+    "explanation": "allow-scriptsによりスクリプト実行が許可され、allow-same-originにより元のオリジンとして扱われるようになるため、埋め込まれたコンテンツが自身のsandbox属性をJavaScriptから操作するなどして、実質的にsandboxの保護を無効化できてしまう危険性がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe"
+  },
+  {
+    "id": "security-034",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のiframeの記述について正しい説明を全て選べ。",
+    "code": "<iframe src=\"https://ads.example.com\" sandbox=\"allow-scripts allow-forms\"></iframe>",
+    "choices": [
+      "このiframe内ではスクリプトの実行が許可される",
+      "このiframe内ではフォームの送信が許可される",
+      "このiframe内のコンテンツはトップレベルウィンドウへのナビゲーション(location変更等)を自由に行える",
+      "allow-same-originが指定されていないため、iframe内のコンテンツは埋め込み元とは異なるユニークオリジンとして扱われる"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "allow-scriptsとallow-formsによりスクリプト実行とフォーム送信が許可される。allow-same-originが指定されていないため、コンテンツはユニークなオリジンとして扱われる。トップレベルウィンドウへの任意のナビゲーションはallow-top-navigationトークンが無い限り許可されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe"
+  },
+  {
+    "id": "security-035",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "「Mixed Content(混合コンテンツ)」の説明として正しいものはどれか。",
+    "choices": [
+      "HTTPSで読み込まれたページの中に、HTTP(暗号化されていない)経由で読み込まれるリソースが含まれる状態",
+      "異なる文字コードのコンテンツが混在している状態",
+      "HTMLとXMLが混在している状態",
+      "複数のCDNからスクリプトを読み込んでいる状態"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Mixed ContentはHTTPSで配信されるページ内に、画像・スクリプト・スタイルシートなどをHTTP経由で読み込むリソースが混在する状態を指し、中間者攻撃のリスクとなるためブラウザによって警告やブロックの対象となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Mixed_content"
+  },
+  {
+    "id": "security-036",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "ブラウザにおけるMixed Contentのうち、「アクティブ混合コンテンツ(active mixed content)」として扱われ、多くの場合デフォルトでブロックされるリソースの種類を全て選べ。",
+    "choices": [
+      "HTTP経由で読み込むJavaScriptファイル",
+      "HTTP経由で読み込むCSSスタイルシート",
+      "HTTP経由で読み込むiframe",
+      "HTTP経由で読み込む画像(img要素のsrc)"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "スクリプト、スタイルシート、iframeなどページの動作や表示ロジックに影響を与えうるリソースはアクティブ混合コンテンツとして扱われ、デフォルトでブロックされることが多い。画像や動画などは「受動的混合コンテンツ」として警告対象にとどまる場合がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Mixed_content"
+  },
+  {
+    "id": "security-037",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTTPSページ内に存在するHTTPリソースへの参照を、ブラウザが自動的にHTTPSへ書き換えて要求するよう指示するCSPディレクティブはどれか。",
+    "choices": [
+      "block-all-mixed-content",
+      "upgrade-insecure-requests",
+      "require-sri-for",
+      "strict-transport-security"
+    ],
+    "correctAnswers": [1],
+    "explanation": "upgrade-insecure-requestsディレクティブは、ページ内のHTTPで指定されたURLへのリクエストをブラウザが自動的にHTTPSへアップグレードして送信するよう指示する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests"
+  },
+  {
+    "id": "security-038",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のscript要素のintegrity属性の目的として正しいものはどれか。",
+    "code": "<script src=\"https://cdn.example.com/lib.js\" integrity=\"sha384-oqVuAf...\" crossorigin=\"anonymous\"></script>",
+    "choices": [
+      "読み込むファイルのハッシュ値を検証し、内容が改ざんされていないことを確認するため",
+      "スクリプトの読み込み速度を向上させるため",
+      "スクリプトの文字エンコーディングを指定するため",
+      "クロスオリジンのリソースを同一オリジン扱いにするため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "integrity属性はSubresource Integrity(SRI)の仕組みで、指定されたハッシュ値と実際に取得したリソースのハッシュ値を比較し、一致しない場合はリソースの実行・適用を拒否することで、CDN等の改ざんを検出する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Subresource_Integrity"
+  },
+  {
+    "id": "security-039",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "SRI(Subresource Integrity)を利用する際、クロスオリジンで配信されるリソースに対してcrossorigin属性の指定が必要となる理由として正しいものはどれか。",
+    "choices": [
+      "integrity検証を行うためにブラウザがリソースの内容を読み取る必要があり、CORSの許可がない場合レスポンスの内容にアクセスできないため",
+      "crossorigin属性を指定しないとリソースが全くダウンロードされないため",
+      "crossorigin属性はSRIとは無関係で、文字コード判定のために必要なため",
+      "crossorigin属性を指定するとintegrity属性を省略できるようになるため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SRIの検証にはブラウザがリソースの生データを読み取ってハッシュを計算する必要があるが、クロスオリジンのリソースはCORSで許可されていないとその内容の読み取りがブロックされる。そのためcrossorigin属性でCORSモードのリクエストを行い、サーバーが適切なCORSヘッダーを返す必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Subresource_Integrity"
+  },
+  {
+    "id": "security-040",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "SRIのintegrity属性で使用できるハッシュアルゴリズムとして仕様上サポートされているものはどれか。",
+    "choices": ["MD5", "CRC32", "SHA-256/SHA-384/SHA-512", "Base64"],
+    "correctAnswers": [2],
+    "explanation": "SRI仕様ではSHA-256、SHA-384、SHA-512のいずれかのハッシュアルゴリズムを使用することがサポートされている。MD5やCRC32は衝突耐性の問題から使用されず、Base64はハッシュ値のエンコード形式であってアルゴリズムそのものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Subresource_Integrity"
+  },
+  {
+    "id": "security-041",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "「セキュアコンテキスト(Secure Context)」の説明として正しいものはどれか。",
+    "choices": [
+      "HTTPSやlocalhostなど、通信内容の盗聴・改ざんのリスクが低いと判断される条件下で提供される文脈のこと",
+      "Cookieに全てSecure属性が付与されている状態のこと",
+      "サーバー証明書の有効期限が十分に残っている状態のこと",
+      "CSPが有効化されているページのこと"
+    ],
+    "correctAnswers": [0],
+    "explanation": "セキュアコンテキストは、HTTPS経由で配信されたページや、file://、http://localhostなど攻撃者による盗聴・改ざんのリスクが低いとみなされる条件を満たす文脈を指し、多くの強力なAPIがこの条件下でのみ利用可能となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Secure_Contexts"
+  },
+  {
+    "id": "security-042",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "「セキュアコンテキスト」でのみ利用可能、またはHTTPS環境が事実上必須とされる、あるいは強く推奨されるWeb APIを全て選べ。",
+    "choices": [
+      "Service Worker",
+      "Geolocation API(多くの主要ブラウザで現在はHTTPS必須)",
+      "document.getElementById",
+      "Web Bluetooth API"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "Service Worker、Geolocation API(主要ブラウザではHTTPS必須化)、Web Bluetooth APIなど強力な機能へアクセスするAPIはセキュアコンテキストを要求する。document.getElementByIdは通信のセキュリティに関係しない基本的なDOM操作APIであり制限を受けない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Secure_Contexts"
+  },
+  {
+    "id": "security-043",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "TLS(Transport Layer Security)によってWeb通信に提供される主なセキュリティ特性として適切なものはどれか。",
+    "choices": [
+      "通信内容の暗号化、通信相手の認証、データの完全性の保証",
+      "サーバーのディスク容量の暗号化",
+      "クライアント側JavaScriptの実行速度の向上",
+      "HTMLの構文エラーの自動修正"
+    ],
+    "correctAnswers": [0],
+    "explanation": "TLSは通信経路上でのデータの暗号化による盗聴防止、証明書によるサーバー(および必要に応じてクライアント)の認証、改ざん検知によるデータ完全性の保証を提供するプロトコルである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/TLS"
+  },
+  {
+    "id": "security-044",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Referrer-Policyヘッダーを何も指定しなかった場合、多くの主要ブラウザで採用されているデフォルトの挙動に最も近いものはどれか。",
+    "choices": [
+      "no-referrer(常にRefererを送信しない)",
+      "unsafe-url(常に完全なURLを送信する)",
+      "strict-origin-when-cross-origin相当(クロスオリジンかつHTTPSからHTTPへの場合はRefererを送信しないなど、状況に応じて制御する)",
+      "same-origin(同一オリジンへのリクエストにのみ常にRefererを送信し、それ以外は完全なURLを送信する)"
+    ],
+    "correctAnswers": [2],
+    "explanation": "主要ブラウザの多くは、Referrer-Policy未指定時のデフォルトとしてstrict-origin-when-cross-originに相当する挙動を採用しており、クロスオリジンの場合はオリジン情報のみ、HTTPSからHTTPへのダウングレードとなる場合はRefererを送信しないなど状況に応じた制御を行う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Referrer-Policy"
+  },
+  {
+    "id": "security-045",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Referrer-Policyの値strict-origin-when-cross-originが指定された場合の挙動として正しいものはどれか。",
+    "choices": [
+      "同一オリジンへのリクエストには完全なURL(パス・クエリを含む)をRefererとして送信し、クロスオリジンへのリクエストにはオリジンのみを送信する。ただしHTTPSからHTTPへの遷移ではRefererを送信しない",
+      "どのような遷移であっても常にRefererを一切送信しない",
+      "クロスオリジンへの遷移でも常にフルパスのURLを送信する",
+      "同一オリジンかどうかにかかわらず、常にオリジン部分のみを送信する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "strict-origin-when-cross-originは同一オリジンへは完全なURLを、クロスオリジンへはオリジン情報のみを送信し、さらにHTTPSからHTTPへのセキュリティレベル低下を伴う遷移ではRefererを一切送信しないという、安全性に配慮した挙動を取る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Referrer-Policy"
+  },
+  {
+    "id": "security-046",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のmeta要素の記述の説明として正しいものはどれか。",
+    "code": "<meta name=\"referrer\" content=\"no-referrer\">",
+    "choices": [
+      "このページからのリンク遷移時にRefererヘッダーを送信しないよう指定している",
+      "このページへのアクセス時にRefererヘッダーの送信を要求している",
+      "このmeta要素はCSPを設定するためのものである",
+      "Refererヘッダーとは無関係で、canonical URLを指定するものである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "meta要素のname=\"referrer\"は、HTTPヘッダーのReferrer-Policyと同様の効果をHTML内から指定するもので、content=\"no-referrer\"はそのページからの遷移時にRefererを送信しないことを指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Referrer-Policy"
+  },
+  {
+    "id": "security-047",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Permissions Policy(旧Feature Policy)の目的として最も適切なものはどれか。",
+    "choices": [
+      "カメラ、マイク、位置情報などブラウザの強力な機能やAPIについて、自ページやiframeで使用可能かどうかを明示的に許可・制限すること",
+      "ページの表示速度を計測すること",
+      "HTTPレスポンスの圧縮方式を指定すること",
+      "Cookieの有効期限を一括管理すること"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Permissions Policyは、カメラやマイク、位置情報、フルスクリーンなどのブラウザ機能について、そのページやiframe内での利用可否をHTTPヘッダーやiframe属性で制御し、意図しない機能利用や悪用を防ぐための仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Permissions-Policy"
+  },
+  {
+    "id": "security-048",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のPermissions-Policyヘッダーの指定の説明として正しいものはどれか。",
+    "code": "Permissions-Policy: camera=(), geolocation=(self)",
+    "choices": [
+      "カメラはどのオリジンでも使用不可とし、位置情報は自オリジンのみで使用可能にする",
+      "カメラと位置情報の両方をすべてのオリジンで使用可能にする",
+      "カメラのみ全てのオリジンで許可し、位置情報は無効化する",
+      "このヘッダーはPermissions Policyではなく、CSPの構文である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "括弧内にオリジンリストを指定する形式で、空の括弧()はどのオリジン(自身を含む)でもその機能を許可しないことを意味し、(self)は自オリジンのみでの利用を許可することを意味する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Permissions-Policy"
+  },
+  {
+    "id": "security-049",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "X-Frame-Optionsヘッダーに指定できる値のうち、「自オリジンのページからのみフレーム埋め込みを許可する」ものはどれか。",
+    "choices": ["DENY", "SAMEORIGIN", "ALLOW-FROM", "self"],
+    "correctAnswers": [1],
+    "explanation": "X-Frame-Options: SAMEORIGINは自身と同一オリジンのページからのフレーム埋め込みのみを許可する。DENYは全てのフレーム埋め込みを禁止し、ALLOW-FROMは非推奨であり多くの主要ブラウザで既にサポートされていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/X-Frame-Options"
+  },
+  {
+    "id": "security-050",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "クリックジャッキング対策としてのX-Frame-OptionsとCSPのframe-ancestorsディレクティブの関係について正しい記述を全て選べ。",
+    "choices": [
+      "frame-ancestorsはX-Frame-Optionsより柔軟に複数のオリジンを許可でき、後発の仕組みとして位置づけられる",
+      "両方が指定されている場合、CSPをサポートする多くの主要ブラウザではframe-ancestorsが優先される",
+      "X-Frame-OptionsはHTML仕様であり、HTTPヘッダーとしては使用できない",
+      "古いブラウザとの互換性を保つため、X-Frame-OptionsとCSPのframe-ancestorsを併用することが推奨される場合がある"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "frame-ancestorsはCSPの一部としてX-Frame-Optionsより柔軟にオリジンを列挙でき、両方が指定された場合、CSPをサポートするブラウザではframe-ancestorsが優先して適用される。X-Frame-OptionsはHTTPレスポンスヘッダーとして送信するものであり、frame-ancestors未対応の古いブラウザ向けに併用が推奨されることがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors"
+  },
+  {
+    "id": "security-051",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "反射型XSS(Reflected XSS)の特徴として最も適切なものはどれか。",
+    "code": "https://example.com/search?q=<script>alert(1)</script>\n(検索結果ページがqパラメータの値をエスケープせずそのままHTMLに出力する場合)",
+    "choices": [
+      "攻撃用のスクリプトがサーバーのデータベースに永続的に保存され、他の利用者が閲覧するたびに実行される",
+      "攻撃者が作成したリンク等を通じてリクエストパラメータに埋め込まれたスクリプトが、サーバーの応答にそのまま反映されて実行される",
+      "クライアント側のJavaScriptのみでURLの値を処理し、サーバーへは一切送信されずに発生する",
+      "ブラウザのキャッシュに保存されたスクリプトが後日再実行される"
+    ],
+    "correctAnswers": [1],
+    "explanation": "反射型XSSは、攻撃者が用意した悪意あるパラメータ入りのリンクを被害者が開くことでリクエストがサーバーに送られ、その値がエスケープされずレスポンスのHTMLにそのまま反映(反射)されて実行される。データベースへの保存を伴う場合は格納型XSS、サーバーを経由せずクライアント側処理のみで発生する場合はDOMベースXSSと呼ばれ区別される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Cross-site_scripting"
+  },
+  {
+    "id": "security-052",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSPのimg-srcディレクティブが制御する対象として正しいものはどれか。",
+    "choices": [
+      "<img>要素やCSSのbackground-image等で読み込む画像の取得元オリジン",
+      "ページ内で使用できるアイコンフォントの種類",
+      "画像ファイルの最大サイズ",
+      "<canvas>要素でのスクリプトによる描画処理"
+    ],
+    "correctAnswers": [0],
+    "explanation": "img-srcは<img>要素やCSSのbackground-image等で読み込まれる画像リソースの取得元オリジンを制限するCSPディレクティブである。ファイルサイズの制御やcanvas描画処理の制限はCSPの役割ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/img-src"
+  },
+  {
+    "id": "security-053",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSPヘッダー設定の説明として正しいものはどれか。",
+    "code": "Content-Security-Policy: style-src 'self'",
+    "choices": [
+      "自ドメインから配信されるCSSファイルの適用のみを許可し、インラインのstyle属性や<style>要素は原則ブロックされる",
+      "全てのCSSの適用を禁止する",
+      "インラインのstyle属性のみを許可し、外部CSSファイルは禁止する",
+      "画像の読み込み元を制限する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "style-src 'self' は自オリジンから配信されるCSSファイルの適用のみを許可し、インラインのstyle属性や<style>要素によるスタイル指定はscript-srcと同様デフォルトでブロックされる。許可するには'unsafe-inline'やnonce/hashの指定が必要になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/style-src"
+  },
+  {
+    "id": "security-054",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSPのmedia-srcディレクティブが制御対象とするHTML要素の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "<script>と<link>",
+      "<audio>と<video>",
+      "<img>と<picture>",
+      "<iframe>と<embed>"
+    ],
+    "correctAnswers": [1],
+    "explanation": "media-srcディレクティブは<audio>要素や<video>要素が読み込む音声・動画メディアリソースの取得元を制限する。スクリプトはscript-src、画像はimg-src、フレームやプラグインはframe-src/object-srcなど別のディレクティブがそれぞれ対応する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/media-src"
+  },
+  {
+    "id": "security-055",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSPのobject-srcディレクティブに 'none' を指定する目的として最も適切なものはどれか。",
+    "code": "Content-Security-Policy: object-src 'none'",
+    "choices": [
+      "<object>や<embed>要素によるレガシーなプラグインコンテンツの読み込みを禁止し、これらを介した攻撃を防ぐため",
+      "画像の読み込みを全て禁止するため",
+      "オブジェクト指向のJavaScriptコードの実行を禁止するため",
+      "外部フォントの読み込みを禁止するため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "object-srcは<object>や<embed>要素が読み込むコンテンツの取得元を制限するディレクティブである。これらの要素はiframeのsandbox属性のような現代的な保護機構を持たないレガシーな要素であるため、多くのCSP導入ガイドでobject-src 'none'を指定することが推奨されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/object-src"
+  },
+  {
+    "id": "security-056",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードのように外部から取得した文字列をeval()に渡すことがセキュリティ上避けるべきとされる理由として最も適切なものはどれか。",
+    "code": "const result = eval(userInput)",
+    "choices": [
+      "eval()は渡された文字列を任意のJavaScriptコードとして実行するため、外部入力を渡すとコードインジェクションのリスクがある",
+      "eval()は実行速度が遅いだけであり、セキュリティ上の懸念はない",
+      "eval()はHTTPS環境でのみ利用できない関数であるため",
+      "eval()は非推奨属性であり、多くのブラウザでは動作しないため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "eval()は与えられた文字列を任意のJavaScriptコードとして実行するため、外部からの入力(URLパラメータやAPIレスポンス等)を直接渡すと攻撃者が仕込んだコードが実行される危険がある。CSPでも'unsafe-eval'を明示的に許可しない限りeval()の実行はブロックされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/eval"
+  },
+  {
+    "id": "security-057",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードがeval()と同様にセキュリティ上のリスクを持つとされる理由として正しいものはどれか。",
+    "code": "const run = new Function(userInput)\nrun()",
+    "choices": [
+      "Functionコンストラクタは文字列から新しい関数の本体を生成して実行するため、eval()と同様に外部入力を渡すと任意コード実行のリスクがある",
+      "Functionコンストラクタは非同期処理専用のAPIであり、同期的な実行に伴うリスクはない",
+      "FunctionコンストラクタはCSPの制御対象外であり、常に安全に実行される",
+      "Functionコンストラクタは渡された文字列を厳密にサニタイズしてから実行するため安全である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "new Function()は文字列をもとに新しい関数を動的に生成する仕組みであり、eval()と同様に文字列を実行可能なコードとして解釈する。外部から制御可能な文字列を渡すと任意コード実行につながる恐れがあり、CSPのscript-srcでも'unsafe-eval'が許可されていない限りブロック対象となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function"
+  },
+  {
+    "id": "security-058",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "サーバーから取得したJSON形式の文字列をオブジェクトへ変換する際、eval()ではなくJSON.parse()を使用すべき理由として正しいものはどれか。",
+    "choices": [
+      "JSON.parse()はJSONの構文としてのみ文字列を解析し、関数呼び出しなどのJavaScriptコードとしては実行しないため、eval()に比べて安全である",
+      "JSON.parse()の方が常に処理速度が遅いため安全である",
+      "eval()はJSON形式の文字列を解析できないため、代替手段として使われる",
+      "JSON.parse()を使えばCSPの設定が一切不要になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "JSON.parse()はJSON文法に従ってのみ文字列をパースし、代入式や関数呼び出しなどのJavaScriptコードとしては実行しない。同じ文字列をeval()で評価すると、JSON以外の不正なコードが混入していた場合にそれも実行されてしまう危険があるため、JSONデータの読み込みにはJSON.parse()を用いるべきである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"
+  },
+  {
+    "id": "security-059",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "localStorageやsessionStorageに認証トークン等の機密情報を保存する場合のセキュリティ上の懸念として正しいものはどれか。",
+    "choices": [
+      "CookieのHttpOnly属性のような保護機構が存在しないため、XSS脆弱性が存在するとJavaScriptから自由に読み取られてしまう",
+      "localStorageやsessionStorageの内容はリクエストごとに自動的にサーバーへ送信されるため、CSRFのリスクが高まる",
+      "localStorageは常に暗号化されずに保存されるが、sessionStorageは自動的に暗号化される",
+      "localStorageとsessionStorageは同一オリジンのページからもJavaScriptで参照できないため、実用上の懸念はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "localStorageやsessionStorageにはCookieのHttpOnly属性のような、JavaScriptからのアクセスを禁止する仕組みがない。そのためXSSが発生したページでは、攻撃者のスクリプトが保存されたトークン等を自由に読み取り外部へ送信できる。これらはCookieと異なりリクエストに自動付与されないため、CSRFとは直接関係しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API"
+  },
+  {
+    "id": "security-060",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のようにtarget=\"_blank\"で外部サイトへのリンクを開く場合、rel=\"noopener noreferrer\"を付与することが推奨される理由として正しいものはどれか。",
+    "code": "<a href=\"https://external.example.com\" target=\"_blank\" rel=\"noopener noreferrer\">外部サイト</a>",
+    "choices": [
+      "遷移先のページがwindow.openerを通じて元のページを操作(リダイレクト等)する「タブナビング」攻撃を防止できる",
+      "リンク先ページの読み込み速度が向上する",
+      "リンク先のページでCookieが一切利用できなくなる",
+      "rel属性を指定しない場合、target=\"_blank\"自体が無効になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "rel属性が指定されていない場合、開かれた別ウィンドウがwindow.openerを通じて元のウィンドウを参照し、opener.locationを書き換えて元のタブを偽のログインページ等へ誘導する「タブナビング」攻撃に悪用され得る。rel=\"noopener\"はこの参照を断ち切り、noreferrerはRefererヘッダーの送信も抑止する。現在のHTML仕様では<a>要素のtarget=\"_blank\"は自動的にnoopener相当の挙動となるが、window.open()の呼び出し等では明示的な指定が必要であり、明示的な指定が推奨される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/noopener"
+  },
+  {
+    "id": "security-061",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のHTTPレスポンスヘッダーの目的として正しいものはどれか。",
+    "code": "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+    "choices": [
+      "指定した期間、ブラウザがそのホスト(サブドメインを含む)への接続を常にHTTPSで行うように強制し、プロトコルダウングレード攻撃のリスクを低減する",
+      "セッションの有効期限を1年間に固定する",
+      "サブドメイン間でのCookie共有を禁止する",
+      "HTTP/2への切り替えをサーバーに強制する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Strict-Transport-Security(HSTS)ヘッダーはmax-ageで指定した期間、ブラウザに対して当該ホスト(includeSubDomains指定時はサブドメインも含む)への接続を常にHTTPSで行うよう指示する。これにより初回アクセス以降のHTTPへのダウングレードやSSL Stripping攻撃のリスクを低減できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Strict-Transport-Security"
+  },
+  {
+    "id": "security-062",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Webサービスがユーザーのパスワードをデータベースに保存する際のベストプラクティスとして正しいものはどれか。",
+    "choices": [
+      "パスワードをそのまま平文で保存する",
+      "パスワードをbcryptやArgon2などソルト付きの専用ハッシュ関数で処理した値のみを保存し、平文は保持しない",
+      "パスワードを共通鍵暗号で暗号化して保存し、認証時には復号して平文同士で比較する",
+      "パスワードをBase64エンコードした値を保存する"
+    ],
+    "correctAnswers": [1],
+    "explanation": "パスワードはbcrypt、Argon2、PBKDF2など計算コストが高くソルトを組み込んだ専用のハッシュ関数で処理し、その結果のみを保存するのがベストプラクティスである。平文保存やBase64エンコード(単なる可逆変換)は漏えい時に即座に元の値が判明し危険であり、可逆な暗号化も鍵管理の漏えいリスクを新たに抱えるため推奨されない。",
+    "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+  },
+  {
+    "id": "security-063",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "クリックジャッキング攻撃の仕組みに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "攻撃者は罠となるページ上に、標的サイトを透明化または一部だけ見える状態のiframeとして重ねて配置する",
+      "利用者は自分が罠ページ上の見た目のボタン等を操作しているつもりで、実際には透明化された標的サイトの操作(いいねボタンや購入ボタン等)を意図せずクリックしてしまう",
+      "クリックジャッキングは通信内容を盗聴する攻撃であり、iframeの重ね合わせとは無関係である",
+      "この攻撃はCSSのopacityやz-indexなどを利用してiframeの視覚的な重ね合わせを実現する"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "クリックジャッキングは、標的サイトを透明または一部のみ見える状態のiframeとして罠ページに重ね、利用者に見た目上は無害な操作をさせつつ実際には標的サイト上の意図しない操作を実行させる攻撃である。CSSのopacityやz-indexなどのスタイル操作によって視覚的な重ね合わせが実現される。通信の盗聴とは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Attacks/Clickjacking"
+  },
+  {
+    "id": "security-064",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Window.postMessage()メソッドの用途として正しいものはどれか。",
+    "code": "otherWindow.postMessage('hello', 'https://receiver.example.com')",
+    "choices": [
+      "同一オリジンポリシーによる制約を安全に回避しつつ、異なるウィンドウやiframe間でオリジンをまたいだメッセージ通信を行う",
+      "サーバーへ非同期にHTTPリクエストを送信する",
+      "ページ内のCookieを暗号化する",
+      "CSSのスタイルをクロスオリジンで共有する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "postMessage()は、同一オリジンポリシーによる直接のDOMアクセス制限を安全に回避しながら、異なるウィンドウ・タブ・iframe間でクロスオリジンのメッセージ通信を行うためのAPIである。第2引数のtargetOriginでメッセージの送信先オリジンを指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/postMessage"
+  },
+  {
+    "id": "security-065",
+    "category": "security",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSPのbase-uriディレクティブの役割として正しいものはどれか。",
+    "choices": [
+      "文書内の<base>要素が指定できるURLを制限し、相対URLの基準を攻撃者が不正に書き換えることを防ぐ",
+      "フォームの送信先URLを制限する",
+      "スクリプトの読み込み元URLを制限する",
+      "ページ全体のリダイレクト先URLを制限する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "base-uriディレクティブは文書内の<base>要素で指定できるURLを制限するディレクティブである。<base>要素は相対URLの解釈基準を変更できるため、これを制限しないと注入された<base>タグによって相対パスのリソース参照が攻撃者のサーバーへ差し替えられる恐れがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri"
+  },
+  {
+    "id": "security-066",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のCSPディレクティブが制御対象とするAPIとして正しいものはどれか。",
+    "code": "Content-Security-Policy: connect-src https://api.example.com",
+    "choices": [
+      "fetch()、XMLHttpRequest、WebSocket、EventSourceなどによる接続先URL",
+      "<img>要素による画像の取得元",
+      "<script>要素によるスクリプトの取得元",
+      "<form>要素の送信先URL"
+    ],
+    "correctAnswers": [0],
+    "explanation": "connect-srcは、fetch()、XMLHttpRequest、WebSocket、EventSource、Navigator.sendBeacon()などスクリプトから発生する接続先URLを制限するディレクティブである。設定していない接続先へのアクセスはブロックされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/connect-src"
+  },
+  {
+    "id": "security-067",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のCSP設定が防ぐ攻撃シナリオとして正しいものはどれか。",
+    "code": "Content-Security-Policy: form-action 'self'",
+    "choices": [
+      "攻撃者がXSSなどでページ内の<form>要素のaction属性を書き換え、フォーム送信先を攻撃者のサーバーへ差し替える攻撃",
+      "攻撃者がCookieを盗聴する攻撃",
+      "攻撃者がDNSキャッシュを汚染する攻撃",
+      "攻撃者がTLS証明書を偽造する攻撃"
+    ],
+    "correctAnswers": [0],
+    "explanation": "form-actionディレクティブはフォームの送信先として使用できるURLを制限する。これにより、XSS等によってフォームのaction属性が書き換えられ、入力情報が攻撃者のサーバーへ送信されてしまう攻撃を防ぐことができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/form-action"
+  },
+  {
+    "id": "security-068",
+    "category": "security",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のpostMessageのイベントリスナーの実装について、セキュリティ上の問題点として正しいものはどれか。",
+    "code": "window.addEventListener('message', (event) => {\n  document.getElementById('output').innerHTML = event.data\n})",
+    "choices": [
+      "event.originを検証していないため、悪意ある任意のオリジンから送られたメッセージも無条件に処理してしまう",
+      "addEventListenerではmessageイベントを購読できないため、このコードは動作しない",
+      "postMessageのメッセージは自動的にHTMLエスケープされるため、この実装に問題はない",
+      "messageイベントは同一オリジンからしか発火しないため、origin検証は不要である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "postMessageで受信したメッセージはevent.originで送信元オリジンを確認できるが、このコードでは検証を行っておらず、任意のオリジンから送られたデータをそのままinnerHTMLに代入している。悪意あるスクリプトを含むメッセージが送信されればXSSが発生する。想定するオリジンと一致するかを必ず検証すべきである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/postMessage"
+  },
+  {
+    "id": "security-069",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のStrict-Transport-Securityヘッダーに関する記述として正しいものを全て選べ。",
+    "code": "Strict-Transport-Security: max-age=63072000; includeSubDomains; preload",
+    "choices": [
+      "max-ageはブラウザがHTTPS接続を強制する期間を秒数で指定する",
+      "includeSubDomainsを指定すると、全てのサブドメインにもHSTSポリシーが適用される",
+      "preloadを指定するとブラウザベンダーが管理するHSTSプリロードリストへの登録が可能になり、初回アクセス時からHTTPS接続が強制される",
+      "このヘッダーはHTTP接続で送信された場合でも同様に効力を持つ"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "max-ageはHTTPS強制の有効期間(秒)、includeSubDomainsは全サブドメインへの適用、preloadはブラウザのプリロードリストに登録することで初回アクセス時点からHTTPS接続を強制する仕組みである。なおHSTSヘッダーは中間者攻撃を防ぐため、HTTPS接続の応答で送信された場合のみ有効とされ、HTTP接続での送信は無視される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Strict-Transport-Security"
+  },
+  {
+    "id": "security-070",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CSPの違反レポートに関するreport-uriディレクティブとreport-toディレクティブについて正しい記述を全て選べ。",
+    "choices": [
+      "report-uriは違反レポートの送信先URLを直接指定する、CSP Level 2で導入された仕組みである",
+      "report-toはReporting APIのエンドポイント名を指定する、より新しい仕組みであり、report-uriの後継として位置づけられる",
+      "report-toをサポートするブラウザでは、report-uriとreport-toが併記されている場合report-uriが優先される",
+      "違反レポートを送信するディレクティブを指定しなくても、ブラウザは自動的にCSP違反を管理者へメール通知する"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "report-uriはCSP違反レポートの送信先URLを直接指定するCSP Level 2の仕組みであり、report-toはReporting-Endpointsヘッダー等で定義したエンドポイント名を指定するCSP Level 3の後継仕組みである。report-toに対応するブラウザでは、両方が指定されていてもreport-uriは無視されreport-toが優先される。CSP違反の自動メール通知機能は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/report-to"
+  },
+  {
+    "id": "security-071",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Trusted Types APIが防止しようとする攻撃と、その仕組みの説明として正しいものはどれか。",
+    "code": "const policy = trustedTypes.createPolicy('my-policy', {\n  createHTML: (input) => sanitize(input)\n})\nel.innerHTML = policy.createHTML(userInput)",
+    "choices": [
+      "innerHTMLやdocument.write()などのDOM XSSシンク関数に対して、事前に定義したポリシーを通過した型付きオブジェクト(TrustedHTML等)のみを受け付けるようにし、生の文字列の直接代入によるDOMベースXSSを防止する",
+      "サーバーとの通信を全て暗号化することでCSRFを防止する",
+      "Cookieの送信範囲をサブドメインに限定することでセッション固定攻撃を防止する",
+      "画像リソースの整合性を検証することでMixed Contentを防止する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Trusted Types APIは、innerHTML等のDOM XSSシンクに生の文字列を直接渡すことを禁止し、trustedTypes.createPolicy()で作成したポリシーを経由して生成されたTrustedHTML等の型付きオブジェクトのみを受け付けるようにすることで、DOMベースXSSを構造的に防止する仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Trusted_Types_API"
+  },
+  {
+    "id": "security-072",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSP設定が有効な状態で、el.innerHTML = userInputのように生の文字列を直接代入するコードを実行した場合の挙動として正しいものはどれか。",
+    "code": "Content-Security-Policy: require-trusted-types-for 'script'",
+    "choices": [
+      "TypeErrorが発生し、代入は行われない",
+      "文字列は自動的にサニタイズされた上で通常どおり代入される",
+      "CSPのこのディレクティブはinnerHTMLの挙動に影響を与えない",
+      "文字列はTrustedHTML型に自動変換されて代入される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "require-trusted-types-for 'script' が指定されると、innerHTML等のDOM XSSシンクに文字列を直接渡すことが禁止され、Trusted Typesのポリシーを経由したTrustedHTML等のオブジェクトでない場合はTypeErrorがスローされ代入が拒否される。自動的なサニタイズや型変換は行われない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for"
+  },
+  {
+    "id": "security-073",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Subresource Integrity(SRI)を指定したscript要素において、integrity検証に失敗した場合の挙動と、それを利用したフォールバック実装の説明として正しいものはどれか。",
+    "code": "<script src=\"https://cdn.example.com/lib.js\"\n        integrity=\"sha384-oqVuAf...\"\n        crossorigin=\"anonymous\"\n        onerror=\"loadLocalFallback()\"></script>",
+    "choices": [
+      "整合性検証に失敗するとブラウザはリソースの読み込みをネットワークエラーとして扱い実行しないため、onerrorイベントハンドラを利用してローカルコピー等の代替リソースへ切り替える実装ができる",
+      "整合性検証に失敗した場合でも、ブラウザは警告を表示しつつスクリプトを実行する",
+      "onerror属性はintegrity属性と同時に使用できない",
+      "整合性検証に失敗した場合、crossorigin属性の値がanonymousからuse-credentialsに自動的に切り替わる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SRIの整合性検証に失敗すると、ブラウザは該当リソースの読み込みを拒否しネットワークエラーとして扱う。この挙動はscript要素のonerrorイベントとして観測できるため、CDN配信のライブラリが改ざん検出でブロックされた場合にローカルにホストした代替スクリプトを読み込むフォールバック処理を実装できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Subresource_Integrity"
+  },
+  {
+    "id": "security-074",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "サーバーがリクエストのOriginヘッダーの値に応じて動的にAccess-Control-Allow-Originを生成して返す実装において、Varyヘッダーを適切に設定すべき理由として正しいものを全て選べ。",
+    "choices": [
+      "Varyヘッダーでリクエストのどのヘッダーによってレスポンス内容(この場合Access-Control-Allow-Originの値)が変わるかを示すことで、中間キャッシュやブラウザキャッシュが誤って別オリジン向けのレスポンスを再利用することを防ぐ",
+      "Vary: Originを指定し忘れると、あるオリジン向けに生成されたCORSレスポンスがキャッシュされ、別オリジンからのリクエストに対して誤って再利用され、意図しないオリジンにデータが渡ってしまう可能性がある",
+      "Varyヘッダーを指定するとCORSのプリフライトリクエスト自体が不要になる",
+      "Varyヘッダーの指定はCORSの仕様の一部であり、指定しない場合ブラウザはレスポンスを一切キャッシュしない"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Originヘッダーの値に応じてAccess-Control-Allow-Originを動的に生成する場合、Vary: Originを指定しないと中間キャッシュ等が特定オリジン向けのレスポンスを別オリジンからのリクエストにも再利用してしまい、キャッシュ汚染により本来アクセスを許可していないオリジンにレスポンス内容が渡る危険がある。Varyの指定はプリフライトの要否やキャッシュの完全禁止とは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Vary"
+  },
+  {
+    "id": "security-075",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cross-Origin-Opener-Policy(COOP)ヘッダーの主な目的として正しいものはどれか。",
+    "code": "Cross-Origin-Opener-Policy: same-origin",
+    "choices": [
+      "window.open()やリンク遷移で開かれたウィンドウ間のブラウジングコンテキストグループを分離し、Window.openerを介した参照を断ち切ることでクロスオリジン攻撃(XS-Leaks)のリスクを低減する",
+      "クロスオリジンのCookie送信を許可するかどうかを制御する",
+      "iframeの読み込み元オリジンを制限する",
+      "CORSのプリフライトリクエストの送信を制御する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "COOPは、window.open()等で開かれた別ウィンドウとのブラウジングコンテキストグループの共有を制御するヘッダーである。same-originを指定すると、同一オリジンかつ同じCOOPを持つ文書同士のみがグループを共有し、それ以外とはWindow.openerを介した参照が断ち切られ、プロセス分離やXS-Leaks対策につながる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy"
+  },
+  {
+    "id": "security-076",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCross-Origin-Embedder-Policy(COEP)ヘッダーの指定によって生じる制約として正しいものはどれか。",
+    "code": "Cross-Origin-Embedder-Policy: require-corp",
+    "choices": [
+      "クロスオリジンのリソースを埋め込む際、そのリソースがCross-Origin-Resource-PolicyヘッダーやCORSによって明示的に埋め込みを許可していない限り、読み込みがブロックされる",
+      "自ページがどの他ページにも埋め込まれることを完全に禁止する",
+      "全てのCookieの送信を無効化する",
+      "画像リソースの読み込みを常にHTTPS化する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "COEPのrequire-corpは、no-corsモードで読み込まれるクロスオリジンリソースについて、Cross-Origin-Resource-Policyヘッダーによる許可やCORSレスポンスヘッダーによる許可がない限り読み込みをブロックする。これによりページ内に取り込まれるリソースが全て埋め込みへの同意を得たものとなり、crossOriginIsolated状態の前提条件の一つとなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy"
+  },
+  {
+    "id": "security-077",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Cross-Origin-Resource-Policy(CORP)ヘッダーに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "same-origin、same-site、cross-originの3つの値を指定できる",
+      "same-originを指定すると、そのリソースは自オリジンからのno-corsリクエストでのみ読み込みが許可される",
+      "CORPはリソースを提供する側が、自身のリソースを他オリジン/他サイトから読み込ませてよいかを表明するための仕組みである",
+      "CORPを指定すると、リソース提供側の設定にかかわらずCOEPを有効にしたページからは常に読み込みがブロックされる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "CORPはsame-origin、same-site、cross-originの3値を取り、リソース提供者が自身のリソースをどの範囲のオリジン/サイトからのno-corsリクエストで読み込ませてよいかを表明する仕組みである。same-originは自オリジンからの読み込みのみを許可する。CORPを適切に設定(例: cross-origin)すれば、COEPを有効にしたページからでも読み込みを許可できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Resource-Policy"
+  },
+  {
+    "id": "security-078",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "JavaScriptのグローバルプロパティcrossOriginIsolatedがtrueになる(=SharedArrayBufferの利用などが可能になる)ために必要な条件として正しいものはどれか。",
+    "code": "Cross-Origin-Opener-Policy: same-origin\nCross-Origin-Embedder-Policy: require-corp",
+    "choices": [
+      "COOPをsame-originに設定するだけで十分であり、COEPの設定は不要である",
+      "COOPをsame-originに設定し、かつCOEPをrequire-corp(またはcredentialless)に設定することで、文書がクロスオリジン分離された状態となる",
+      "HTTPSで配信されていれば、COOPやCOEPの設定なしに常にtrueとなる",
+      "CSPでscript-src 'self'を指定すれば自動的にtrueとなる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "crossOriginIsolatedがtrueとなる「クロスオリジン分離」状態を得るには、COOPをsame-originに設定してブラウジングコンテキストグループを分離し、さらにCOEPをrequire-corpまたはcredentiallessに設定して未許可のクロスオリジンリソースの読み込みをブロックする必要がある。どちらか一方のみでは条件を満たさない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy"
+  },
+  {
+    "id": "security-079",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのようにpostMessage()の第2引数(targetOrigin)にワイルドカード\"*\"を指定することの危険性として正しいものはどれか。",
+    "code": "otherWindow.postMessage(JSON.stringify({ token: sessionToken }), '*')",
+    "choices": [
+      "送信先ウィンドウが攻撃者によって別オリジンへナビゲートされていた場合でも無条件にメッセージが送信されてしまい、機密情報が意図しないオリジンへ漏えいする可能性がある",
+      "ワイルドカードを指定するとpostMessage自体がエラーとなり送信されない",
+      "ワイルドカードを指定すると自動的にメッセージが暗号化されるため、むしろ安全性が高まる",
+      "ワイルドカードの指定はCSPのconnect-srcディレクティブにより自動的に無効化される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "targetOriginに\"*\"を指定すると、送信先ウィンドウの現在のオリジンを検証せずにメッセージを送信する。送信先ウィンドウが攻撃者の制御するページへナビゲートされていた場合でもメッセージはそのまま届いてしまうため、機密情報を送る場合は必ず想定する具体的なオリジンをtargetOriginに指定すべきである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/postMessage"
+  },
+  {
+    "id": "security-080",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のようにwindow.open()でnoopenerを指定せずに別ウィンドウを開いた場合に成立する「タブナビング」攻撃の仕組みについて、正しい記述を全て選べ。",
+    "code": "window.open('https://external.example.com', '_blank')\n// windowFeaturesにnoopenerを指定していない",
+    "choices": [
+      "開かれた別オリジンのページはwindow.openerを通じて元のウィンドウを参照でき、opener.locationを書き換えることで元のタブを任意のURL(偽のログインページ等)へリダイレクトできる",
+      "利用者は新しいウィンドウでの操作に集中している間に、元のタブが偽装されたページに変わっていることに気づきにくい",
+      "この攻撃は同一オリジンポリシーによって完全に防止されているため、実際には発生しない",
+      "window.open()の第3引数(windowFeatures)に'noopener'を指定すると、開いたウィンドウのwindow.openerがnullとなりこの攻撃を防止できる"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "window.open()でnoopenerを指定しない場合、開かれた別オリジンのウィンドウはwindow.openerを通じて元のウィンドウを参照でき、opener.locationを書き換えることで元のタブを攻撃者の用意した偽ページへ誘導する「タブナビング」攻撃が可能になる。利用者が新ウィンドウに注意を向けている間は気づきにくい。windowFeaturesに'noopener'を指定すればwindow.openerがnullとなりこの攻撃を防げる。なお<a>要素のtarget=\"_blank\"は現在の仕様で自動的にnoopener相当となるが、window.open()呼び出しでは明示的な指定が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/open"
+  },
+  {
+    "id": "security-081",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "「DOM Clobbering」と呼ばれる攻撃手法の説明として正しいものはどれか。",
+    "code": "<img name=\"config\">\n<script>\n  // 本来はJavaScriptのグローバル変数configを参照するつもりが、\n  // 上記のimg要素がwindow.configとして名前解決され上書きされてしまう\n</script>",
+    "choices": [
+      "スクリプトの実行を伴わずにid属性やname属性を持つHTML要素を注入し、ブラウザの名前付きプロパティアクセスの仕組みを利用して、JavaScriptが参照するグローバル変数やDOM API相当の値を意図しないHTML要素に置き換えてしまう攻撃",
+      "DOM要素を大量に生成してブラウザをクラッシュさせるDoS攻撃",
+      "CSSセレクタを利用してDOM要素のスタイルを強制的に上書きする攻撃",
+      "SQLインジェクションによってデータベースのレコードを破壊(clobber)する攻撃"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DOM Clobberingは、script要素の実行を伴わずにid/name属性を持つHTML要素を注入し、ブラウザの名前付きプロパティアクセス(named property access)の仕組みによってJavaScriptコードが参照するはずのグローバル変数や設定値がHTML要素に置き換わってしまう攻撃である。スクリプトインジェクションがCSP等でブロックされている場合でも、後続処理を乗っ取る手段として悪用され得る。",
+    "reference": "https://cheatsheetseries.owasp.org/cheatsheets/DOM_Clobbering_Prevention_Cheat_Sheet.html"
+  },
+  {
+    "id": "security-082",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CSPでbase-uriディレクティブを設定していないページに、XSS等を通じて次のような<base>要素が注入された場合に起こりうる問題として正しいものはどれか。",
+    "code": "<base href=\"https://attacker.example.com/\">\n<script src=\"/js/app.js\"></script>",
+    "choices": [
+      "文書内の相対URL解釈の基準が攻撃者のオリジンに変更され、本来自サイトの/js/app.jsを読み込むはずのscript要素が、攻撃者のサーバーが用意した悪意あるスクリプトを読み込んでしまう可能性がある",
+      "<base>要素は<head>内でのみ有効であり、<script>要素より前に存在しない限り効果を持たないため問題は発生しない",
+      "<base>要素の注入は常にブラウザによって自動的に無視される",
+      "base-uriを設定していなくても、default-srcの設定があれば同様の防御効果が得られる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "<base>要素は文書内の相対URLの解釈基準を変更できるため、これを制限するbase-uriディレクティブを設定していないと、XSSなどで注入された<base href=\"...\">により相対URLで参照される全てのリソース(スクリプトを含む)が攻撃者のオリジンへ差し替えられる恐れがある。base-uriはdefault-srcのフォールバック対象ではなく、個別に設定する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri"
+  },
+  {
+    "id": "security-083",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "パスワードのハッシュ化にSHA-256のような汎用的な高速ハッシュ関数を単純に1回適用するだけの実装が、bcryptやArgon2に比べて弱いとされる理由として最も適切なものはどれか。",
+    "choices": [
+      "汎用的な高速ハッシュ関数は計算コストが低いため、攻撃者が漏えいしたハッシュ値に対して総当たり攻撃(ブルートフォース)や辞書攻撃を高速に大量実行できてしまう",
+      "SHA-256はハッシュ値の長さが可変であり、衝突が頻発するため",
+      "SHA-256は暗号学的ハッシュ関数ではないため",
+      "bcryptやArgon2はソルトを使用しないため、SHA-256より安全性が低い"
+    ],
+    "correctAnswers": [0],
+    "explanation": "bcryptやArgon2は意図的に計算コスト(work factor)を高く設定できる設計になっており、ハッシュ値が漏えいした場合でも総当たり攻撃や辞書攻撃に必要な計算量を大幅に増加させる。一方SHA-256のような汎用的な高速ハッシュ関数は大量データの高速処理を目的として設計されており、攻撃者が同じ計算能力でより多くの候補を試行できてしまうため、パスワード保存には不適切とされる。",
+    "reference": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+  },
+  {
+    "id": "security-084",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSP設定における'strict-dynamic'キーワードの効果として正しいものはどれか。",
+    "code": "Content-Security-Policy: script-src 'strict-dynamic' 'nonce-abc123'",
+    "choices": [
+      "nonceによって信頼されたスクリプトが動的に生成・読み込みする子スクリプトにも信頼が伝播し、'self'などの通常のソースリスト指定は無視される",
+      "'strict-dynamic'を指定すると、nonceの検証が不要になる",
+      "'strict-dynamic'はscript-srcではなくstyle-srcにのみ指定できるキーワードである",
+      "'strict-dynamic'を指定すると、インラインスクリプトが常に許可されるようになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "'strict-dynamic'は、nonceまたはhashによって信頼されたルートスクリプトが動的に読み込む子スクリプトに対して、その信頼を伝播させるキーワードである。これが指定されると'self'や'unsafe-inline'などの通常のホスト/ソース指定は無視され、暗号学的な検証(nonce/hash)に基づく信頼のみが評価される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy/script-src"
+  },
+  {
+    "id": "security-085",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Content-Security-Policy-Report-Onlyヘッダーの用途として正しいものはどれか。",
+    "code": "Content-Security-Policy-Report-Only: default-src 'self'; report-to csp-endpoint",
+    "choices": [
+      "指定したポリシーに違反するリソースの読み込みを実際にはブロックせず、違反のみをレポートとして送信することで、本番導入前にポリシーの影響を検証できるようにする",
+      "Content-Security-Policyヘッダーと全く同じ挙動を持ち、名称のみが異なる",
+      "違反したリソースの読み込みを即座にブロックし、かつレポートも送信する",
+      "sandbox属性を除く全てのディレクティブが常に無視される特殊なヘッダーである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Content-Security-Policy-Report-Onlyは、指定したポリシーに違反する挙動があってもリソースの読み込みや実行を実際にはブロックせず、違反内容をレポートとして送信するのみのヘッダーである。本番環境にポリシーを適用する前に、想定外のブロックが発生しないかを検証する目的で利用される。なおレポート送信にはreport-toまたはreport-uriの指定が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only"
+  },
+  {
+    "id": "security-086",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cross-Origin-Embedder-Policyの値であるrequire-corpとcredentiallessの違いとして正しいものはどれか。",
+    "choices": [
+      "credentiallessは、対象リソースにCORPヘッダーが付与されていなくても、Cookie等の資格情報を含めずにリクエストすることでクロスオリジンリソースの埋め込みを許可する",
+      "credentiallessはrequire-corpと完全に同一の挙動であり、名称のみが異なる",
+      "require-corpを指定すると資格情報を含めないリクエストのみが許可される",
+      "credentiallessを指定すると、あらゆるクロスオリジンリソースがCORPの有無にかかわらず埋め込み可能になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "require-corpは埋め込むクロスオリジンリソースにCross-Origin-Resource-PolicyヘッダーやCORS許可が明示されていることを要求するのに対し、credentiallessはCookie等の資格情報を含めないリクエストに限り、CORPヘッダーが付与されていないリソースであっても埋め込みを許可する、より緩やかな代替モードである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy"
+  },
+  {
+    "id": "security-087",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTPS接続時にブラウザが表示する「この接続はプライベートではありません」等の証明書エラー警告を利用者が無視して接続を続行することの危険性として最も適切なものはどれか。",
+    "choices": [
+      "証明書の検証が正しく行えていない可能性があり、中間者攻撃(MITM)によって通信が盗聴・改ざんされていても利用者が気づけなくなる",
+      "証明書エラーはページの表示速度低下のみを示す警告であり、セキュリティ上の実害はない",
+      "証明書エラーを無視しても、TLSによる暗号化そのものは常に保証されているため安全性に変化はない",
+      "証明書エラーは利用しているブラウザのバージョンが古いことのみを示す警告である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "証明書エラーは、証明書の発行者が信頼されていない、ホスト名が証明書と一致しない、有効期限が切れている等、通信相手の正当性を検証できない状態を示す。これを無視して接続を続けると、攻撃者が偽の証明書を用いて通信を中継する中間者攻撃を受けていても利用者が気づけず、暗号化されていても通信内容が実質的に盗聴・改ざんされる危険がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/TLS"
+  },
+  {
+    "id": "security-088",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "file://から開いたHTMLや、sandbox化されたiframeなどから発生するリクエストでOriginヘッダーの値が\"null\"となる場合がある。サーバーがこれに対してAccess-Control-Allow-Origin: nullを返す設定について正しい記述はどれか。",
+    "choices": [
+      "\"null\"オリジンは任意のsandboxされたiframeや別のfile://ページなど、送信元を特定できない複数の文脈から送信され得るため、Access-Control-Allow-Origin: nullを設定すると意図しない送信元にもレスポンスへのアクセスを許可してしまう危険がある",
+      "\"null\"オリジンは常に安全であり、特別な配慮なくAccess-Control-Allow-Origin: nullを設定してよい",
+      "Access-Control-Allow-Origin: nullはワイルドカード\"*\"と同義であり、資格情報付きリクエストにも問題なく使用できる",
+      "\"null\"オリジンからのリクエストはブラウザによって常に自動的にブロックされるため、サーバー側の対応は不要である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Originヘッダーが\"null\"となるのは送信元固有の情報ではなく、sandbox化されたiframeやfile://スキームのページなど複数の異なる文脈から生じ得る値である。そのためサーバーがAccess-Control-Allow-Origin: nullを固定的に返す設定にすると、攻撃者が用意したsandbox化ページなど本来意図しない送信元にもレスポンスへのアクセスを許可してしまう危険がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  {
+    "id": "security-089",
+    "category": "security",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CSPでrequire-trusted-types-for 'script'を有効にした環境で、DOMPurifyなどのサニタイズライブラリを使ってinnerHTMLに値を設定する場合の実装について、正しい記述を全て選べ。",
+    "choices": [
+      "サニタイズ済みの文字列をそのままinnerHTMLへ代入しようとすると、文字列型であるためTypeErrorとなり拒否される",
+      "trustedTypes.createPolicy()で作成したポリシーのcreateHTML関数内でサニタイズ処理を行い、その戻り値(TrustedHTML)をinnerHTMLへ代入する必要がある",
+      "ポリシー名はtrusted-typesディレクティブで許可されたものだけがcreatePolicyを呼び出して作成できる",
+      "require-trusted-types-forを指定すると、DOMPurify自体の呼び出しも含めてスクリプトの実行が全て禁止される"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "require-trusted-types-for 'script'が有効な環境では、サニタイズ後であっても生の文字列をinnerHTMLへ直接代入するとTypeErrorとなる。安全に代入するには、trustedTypes.createPolicy()で作成したポリシーのcreateHTMLメソッド内でサニタイズ処理を実装し、その戻り値であるTrustedHTMLオブジェクトを代入する必要がある。ポリシー名はCSPのtrusted-typesディレクティブで許可されたものに限定できる。このディレクティブはDOM XSSシンクへの生文字列代入のみを制限し、スクリプトの実行自体を禁止するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Trusted_Types_API"
+  },
+  {
+    "id": "security-090",
+    "category": "security",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "1つのHTTPレスポンスで次のようにContent-Security-Policyヘッダーが2つ送信された場合の適用結果として正しいものはどれか。",
+    "code": "Content-Security-Policy: default-src 'self'; connect-src 'none'\nContent-Security-Policy: connect-src https://api.example.com",
+    "choices": [
+      "2つのポリシーの積集合(より制限の強い方)が適用され、connect-src 'none'が有効となるため、https://api.example.comへの接続も許可されない",
+      "後に記述されたポリシーが優先され、https://api.example.comへの接続が許可される",
+      "2つのCSPヘッダーが同時に送信された場合、ブラウザはCSPの適用自体を無効化する",
+      "2つのポリシーの和集合が適用され、いずれかで許可されていれば接続が許可される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "複数のContent-Security-Policyヘッダーが送信された場合、各ポリシーは論理積(AND)的に適用され、追加のポリシーは制限を緩めることはできず、より厳しい制限のみが有効になる。この例では一方がconnect-src 'none'を指定しているため、他方でhttps://api.example.comを許可していても接続は許可されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Security-Policy"
+  }
+]

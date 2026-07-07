@@ -1,0 +1,1515 @@
+[
+  {
+    "id": "web-api-001",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "querySelectorAll()メソッドの戻り値についての説明として、正しいものはどれか。",
+    "choices": [
+      "HTMLCollectionを返し、DOMの変更がリアルタイムに反映される(ライブ)",
+      "NodeListを返すが、これはライブではなく静的なスナップショットである",
+      "配列(Array)を返し、forEachだけでなくmapやfilterも直接使用できる",
+      "該当要素が1つも見つからない場合はnullを返す"
+    ],
+    "correctAnswers": [1],
+    "explanation": "querySelectorAll()は静的(非ライブ)なNodeListを返す。NodeListにはforEachは実装されているが、mapやfilterは配列のメソッドであり直接は使えない(Array.from()等での変換が必要)。該当要素がない場合は空のNodeListが返り、nullにはならない。ライブなHTMLCollectionを返すのはgetElementsByClassNameやgetElementsByTagNameなどである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/querySelectorAll"
+  },
+  {
+    "id": "web-api-002",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "getElementsByClassName()とquerySelectorAll()の違いに関する記述のうち、正しいものはどれか。",
+    "choices": [
+      "getElementsByClassNameはライブなHTMLCollectionを返すため、後からDOMに追加された該当要素も自動的に反映される",
+      "querySelectorAllはライブなNodeListを返すため、後からDOMに追加された該当要素も自動的に反映される",
+      "getElementsByClassNameはCSSの複雑なセレクタ(子孫結合子や擬似クラス等)を引数に取ることができる",
+      "両者は常に配列(Array)を返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getElementsByClassNameが返すHTMLCollectionはライブであり、DOMの変更が自動的に反映される。querySelectorAllが返すNodeListは静的なスナップショットであり、後からの変更は反映されない。getElementsByClassNameの引数はクラス名のみでCSSセレクタ全般は使えない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/getElementsByClassName"
+  },
+  {
+    "id": "web-api-003",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードを実行した結果として正しいものはどれか。",
+    "code": "const ul = document.getElementById('list');\nconst li = document.createElement('li');\nli.textContent = '新しい項目';\nul.appendChild(li);",
+    "choices": [
+      "id=\"list\"の要素の子要素の末尾に、テキスト「新しい項目」を持つ<li>要素が追加される",
+      "id=\"list\"の要素の子要素の先頭に<li>要素が追加される",
+      "createElement('li')は文字列'li'をそのままテキストとしてDOMに挿入する",
+      "appendChildには複数の要素をまとめて配列で渡す必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "createElement('li')で新しい<li>要素を生成し、textContentでテキストを設定した上でappendChild()を呼び出すと、対象要素の子要素リストの末尾に追加される。appendChildは1つのノードを引数に取る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild"
+  },
+  {
+    "id": "web-api-004",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Element.classListプロパティで利用できるメソッドとして正しいものを全て選べ。",
+    "choices": [
+      "add()",
+      "remove()",
+      "toggle()",
+      "contains()",
+      "append()",
+      "setAttribute()"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "classList(DOMTokenListインターフェース)にはadd, remove, toggle, contains, replace, itemなどのメソッドがある。append()はElement/ParentNodeにノードを追加するための別のメソッドであり、setAttributeはElement全般の属性操作メソッドで、いずれもclassListのメソッドではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/classList"
+  },
+  {
+    "id": "web-api-005",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードにおいて、btnが指す要素からdisabled属性を完全に取り除きたい。正しい記述はどれか。",
+    "code": "const btn = document.querySelector('#submit');",
+    "choices": [
+      "btn.removeAttribute('disabled');",
+      "btn.disabled = 'false';",
+      "delete btn.disabled;",
+      "btn.setAttribute('disabled', false);"
+    ],
+    "correctAnswers": [0],
+    "explanation": "removeAttribute()で属性そのものを削除するのが正しい方法である。disabled = 'false'は文字列'false'が真値として扱われ無効状態のままになる。setAttribute('disabled', false)も属性自体は存在し続けるため無効状態が解除されない(disabled属性は存在自体が真を意味するブール属性)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/removeAttribute"
+  },
+  {
+    "id": "web-api-006",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "ChildNode/ParentNodeミックスインとして比較的新しく追加された、複数のノードや文字列を直接渡せるDOM操作メソッドを全て選べ。",
+    "choices": [
+      "append()",
+      "prepend()",
+      "before()",
+      "after()",
+      "appendChild()",
+      "insertBefore()"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "append()、prepend()、before()、after()はNode/Element/DocumentFragmentに文字列や複数のノードをまとめて渡せる比較的新しいメソッドである。appendChild()やinsertBefore()は古くからあるNodeインターフェースのメソッドで、Nodeオブジェクトを1つずつしか渡せず文字列も直接渡せない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/append"
+  },
+  {
+    "id": "web-api-007",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "要素をDOMツリーから削除する方法として、親要素の参照を取得せずに実行できる最も簡潔な記述はどれか。",
+    "choices": [
+      "element.remove();",
+      "element.parentNode.removeChild(element);",
+      "element.delete();",
+      "document.remove(element);"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Element.remove()(ChildNodeミックスイン)は自分自身をDOMツリーから削除するメソッドで、親要素の参照を明示的に取得する必要がない。removeChild()は親ノードを介して呼び出す必要がある。delete()やdocument.remove()というメソッドは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/remove"
+  },
+  {
+    "id": "web-api-008",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの実行結果について正しい説明はどれか。",
+    "code": "const original = document.querySelector('#card');\nconst copy = original.cloneNode(true);\ndocument.body.appendChild(copy);",
+    "choices": [
+      "#card要素とその子孫要素すべてが複製され、addEventListener()で登録したイベントリスナーも複製後の要素に引き継がれる",
+      "#card要素とその子孫要素すべてが複製されるが、addEventListener()で登録したイベントリスナーは複製後の要素には引き継がれない",
+      "cloneNode(true)は子孫要素を複製せず、要素自身のみを複製する",
+      "cloneNode()は引数なしでしか呼び出せない"
+    ],
+    "correctAnswers": [1],
+    "explanation": "cloneNode(true)は引数にtrueを渡すことでディープコピー(子孫ノードも含めた複製)を行う。ただしJavaScriptでaddEventListener()により動的に登録したイベントリスナーは複製されない点に注意が必要。cloneNode(false)またはcloneNode()の場合は要素自身のみが複製される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/cloneNode"
+  },
+  {
+    "id": "web-api-009",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "addEventListener()の第3引数に指定できるオプションオブジェクトのプロパティとして正しいものを全て選べ。",
+    "choices": [
+      "once",
+      "capture",
+      "passive",
+      "bubbles",
+      "immediate"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "onceはリスナーを1回実行後に自動削除、captureはキャプチャリングフェーズでの実行を指定、passiveはリスナー内でpreventDefault()を呼ばないことを宣言しスクロール性能等を改善するオプションである。bubblesはイベント自体の性質(new Event()等で設定)であり、addEventListenerのオプションではない。immediateという名前のオプションは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener"
+  },
+  {
+    "id": "web-api-010",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "stopPropagation()とstopImmediatePropagation()の違いとして正しいものはどれか。",
+    "choices": [
+      "stopImmediatePropagation()は伝播を止めるだけでなく、同じ要素に登録された他のイベントリスナーの実行も止める",
+      "stopPropagation()はリンク遷移やフォーム送信などのデフォルトの動作をキャンセルする",
+      "両者は全く同じ効果を持ち、名前が違うだけである",
+      "stopImmediatePropagation()はバブリングフェーズのみを止め、キャプチャリングフェーズの伝播は止められない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "デフォルト動作のキャンセルはpreventDefault()の役割でありstopPropagation()にはその効果はない。stopImmediatePropagation()はイベントの伝播を止めることに加え、同一要素に登録された他のリスナーの実行も止める点でstopPropagation()と異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Event/stopImmediatePropagation"
+  },
+  {
+    "id": "web-api-011",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードでid=\"child\"要素(childはparentの子要素)をクリックした場合、コンソールに出力される順番として正しいものはどれか。",
+    "code": "parent.addEventListener('click', () => console.log('parent-capture'), true);\nchild.addEventListener('click', () => console.log('child-target'));\nparent.addEventListener('click', () => console.log('parent-bubble'), false);",
+    "choices": [
+      "parent-capture → child-target → parent-bubble",
+      "child-target → parent-capture → parent-bubble",
+      "parent-bubble → child-target → parent-capture",
+      "parent-capture → parent-bubble → child-target"
+    ],
+    "correctAnswers": [0],
+    "explanation": "イベントはキャプチャリングフェーズ(祖先から対象へ)、ターゲットフェーズ、バブリングフェーズ(対象から祖先へ)の順に伝播する。第3引数にtrueを指定したリスナーはキャプチャリングフェーズで発火するため最初に実行され、続いてターゲット要素上のリスナー、最後にバブリングフェーズのリスナーが実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener"
+  },
+  {
+    "id": "web-api-012",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "イベント委譲(イベントデリゲーション)の説明として最も適切なものはどれか。",
+    "choices": [
+      "子要素それぞれに個別のイベントリスナーを登録する手法",
+      "親要素にイベントリスナーを1つ登録し、event.targetを利用して実際に操作された子要素を判定する手法",
+      "イベントを別のウィンドウやiframeへ転送する仕組み",
+      "ブラウザが自動的にイベントリスナーの数を最適化する機能"
+    ],
+    "correctAnswers": [1],
+    "explanation": "イベント委譲は、イベントがバブリングして親要素まで伝わる性質を利用し、親要素1つにリスナーを登録してevent.targetから実際にイベントが発生した子要素を判定する手法である。動的に追加される子要素にも個別登録なしで対応でき、メモリ効率も良い。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener"
+  },
+  {
+    "id": "web-api-013",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードについて正しい説明を全て選べ。",
+    "code": "const event = new CustomEvent('itemAdded', {\n  detail: { id: 123 },\n  bubbles: true,\n  cancelable: true\n});\nelement.dispatchEvent(event);",
+    "choices": [
+      "detailプロパティを通じて任意のオブジェクトをイベントハンドラに渡すことができる",
+      "bubbles: trueにより、このイベントは親要素へバブリングする",
+      "CustomEventのdetailに渡す値はあらかじめ文字列にシリアライズしておく必要がある",
+      "new CustomEvent()でインスタンスを生成した時点で、登録済みのリスナーに通知される",
+      "cancelable: trueにより、リスナー側でpreventDefault()を呼び出すとイベントがキャンセルされたと判定できる"
+    ],
+    "correctAnswers": [0, 1, 4],
+    "explanation": "CustomEventはdetailプロパティにオブジェクトを含む任意の型のデータをそのまま渡せる。イベントはdispatchEvent()を呼び出すまで発火せず、new CustomEvent()の生成だけでは通知されない。cancelable: trueを指定した場合、preventDefault()の呼び出し結果はevent.defaultPreventedやdispatchEvent()の戻り値で判定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CustomEvent"
+  },
+  {
+    "id": "web-api-014",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードでremoveEventListener()を呼び出しても登録したリスナーが解除されない理由として正しいものはどれか。",
+    "code": "element.addEventListener('click', () => {\n  console.log('clicked');\n});\nelement.removeEventListener('click', () => {\n  console.log('clicked');\n});",
+    "choices": [
+      "addEventListenerとremoveEventListenerに渡された関数が、内容は同じでも異なる関数オブジェクト(参照)であるため",
+      "removeEventListenerは第3引数を省略すると常に失敗する仕様であるため",
+      "clickイベントはremoveEventListenerで解除できない特別なイベントであるため",
+      "アロー関数はremoveEventListenerの対象として扱えない仕様であるため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "removeEventListener()は登録時に渡したものと同一の関数参照でなければリスナーを解除できない。その場で新たに生成した無名関数(アロー関数を含む)は、内容が同一に見えても別の関数オブジェクトであるため解除できない。解除するには、あらかじめ変数に代入した同じ関数参照をaddEventListenerとremoveEventListenerの両方に渡す必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventTarget/removeEventListener"
+  },
+  {
+    "id": "web-api-015",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "イベントバブリング中における event.target と event.currentTarget の違いとして正しいものはどれか。",
+    "choices": [
+      "event.targetは実際にイベントが発生した要素、event.currentTargetは現在イベントリスナーが実行されている要素を指す",
+      "event.targetとevent.currentTargetは常に同じ要素を指す",
+      "event.currentTargetは常にdocumentオブジェクトを指す",
+      "event.targetはイベントリスナーを登録した要素、event.currentTargetは実際に操作された要素を指す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "event.targetはイベントの発生源となった要素を常に指し、バブリング中でも変化しない。event.currentTargetはイベントハンドラが現在実行されている要素を指し、イベント委譲などでリスナーを登録した祖先要素とevent.targetが異なる場合に区別できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Event/currentTarget"
+  },
+  {
+    "id": "web-api-016",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "フォームの入力要素に対してcheckValidity()を呼び出した場合の動作として正しいものはどれか。",
+    "choices": [
+      "制約に違反している場合はfalseを返し、その要素に対してinvalidイベントを発火する",
+      "制約に違反している場合は例外(Error)をスローし、処理を中断する",
+      "常にtrueを返し、実際の検証内容はフォーム送信時にのみ判定される",
+      "呼び出すと必ずブラウザ標準のエラーメッセージ吹き出しが画面に表示される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "checkValidity()は要素の制約検証を実行し、妥当であればtrue、違反していればfalseを返すとともにinvalidイベントを発火する。例外はスローしない。ブラウザ標準のエラーメッセージ吹き出しを表示するのはreportValidity()の役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLInputElement/checkValidity"
+  },
+  {
+    "id": "web-api-017",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの目的として最も適切なものはどれか。",
+    "code": "const input = document.querySelector('#email');\ninput.addEventListener('input', () => {\n  if (input.value.endsWith('@example.com')) {\n    input.setCustomValidity('');\n  } else {\n    input.setCustomValidity('example.comドメインのみ使用できます');\n  }\n});",
+    "choices": [
+      "ブラウザ標準の制約検証に加えて、独自の検証ロジックとエラーメッセージを設定している",
+      "入力値を強制的に@example.comへ書き換えている",
+      "setCustomValidity('')を一度呼び出すと、その後は何を入力しても常に無効(invalid)状態になる",
+      "setCustomValidityで設定した状態はCSSの:invalid擬似クラスには一切影響しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "setCustomValidity()に空文字以外の文字列を渡すと、その要素はカスタムエラーとして無効(invalid)状態になり、渡した文字列がエラーメッセージとして扱われる。空文字を渡すとカスタムエラーはクリアされ、他の制約が満たされていれば有効(valid)になる。この状態は:invalid/:valid擬似クラスにも反映される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLInputElement/setCustomValidity"
+  },
+  {
+    "id": "web-api-018",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "ValidityStateオブジェクトが持つプロパティとして正しいものを全て選べ。",
+    "choices": [
+      "valueMissing",
+      "patternMismatch",
+      "tooLong",
+      "rangeOverflow",
+      "notAllowed",
+      "outOfMemory"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "ValidityStateにはvalueMissing, typeMismatch, patternMismatch, tooLong, tooShort, rangeUnderflow, rangeOverflow, stepMismatch, badInput, customError, validといったプロパティが定義されている。notAllowedやoutOfMemoryという名前のプロパティは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ValidityState"
+  },
+  {
+    "id": "web-api-019",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "<form novalidate>属性と<button formnovalidate>属性に関する説明として正しいものはどれか。",
+    "choices": [
+      "form要素にnovalidateを指定すると、そのフォームの通常の送信操作でブラウザの制約検証がスキップされる",
+      "novalidateを指定すると、JavaScriptからcheckValidity()を呼び出した場合の検証結果も常にtrueになる",
+      "formnovalidateはフォーム全体に対して常に検証を無効化する属性であり、ボタン単位で個別に指定することはできない",
+      "novalidateとformnovalidateは全く同じ効果を持ち、どちらか一方を書けば他方は不要である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "novalidateはフォーム送信時のブラウザによる制約検証を無効にするが、checkValidity()やreportValidity()をJavaScriptから明示的に呼び出した場合の検証結果には影響しない。formnovalidateは特定のsubmitボタンに指定する属性で、そのボタンで送信した場合にのみ検証をスキップする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/form#novalidate"
+  },
+  {
+    "id": "web-api-020",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "reportValidity()とcheckValidity()の違いとして正しいものはどれか。",
+    "choices": [
+      "reportValidity()は検証結果に応じて、ブラウザ標準のエラーメッセージUIをユーザーに表示する点がcheckValidity()と異なる",
+      "reportValidity()は真偽値を返さず、常にundefinedを返す",
+      "checkValidity()はフォーム全体ではなく個々の入力要素に対してしか呼び出せない",
+      "reportValidity()は検証結果をサーバーへ自動的に送信する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "reportValidity()はcheckValidity()と同様に制約検証を行い真偽値を返すが、無効な場合にユーザーへ視覚的なエラーメッセージ(吹き出し等)を表示する点が異なる。checkValidity()、reportValidity()ともにHTMLFormElementとHTMLInputElement等の両方で利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLFormElement/reportValidity"
+  },
+  {
+    "id": "web-api-021",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードを実行した際の挙動として正しいものはどれか。",
+    "code": "history.pushState({ page: 2 }, '', '/page2');",
+    "choices": [
+      "URLが/page2に変わり履歴エントリが追加されるが、ページの再読み込みは発生せず、popstateイベントも発火しない",
+      "URLが/page2に変わり、ブラウザによってページが再読み込みされる",
+      "pushStateを呼び出すのと同時にpopstateイベントが発火し、登録済みのハンドラが実行される",
+      "pushStateの第一引数に渡したstateオブジェクトは、呼び出し時にサーバーへ送信される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "history.pushState()はブラウザの履歴スタックに新しいエントリを追加し、アドレスバーのURLを変更するが、ページの再読み込みは発生しない。popstateイベントはユーザーが「戻る/進む」操作を行った場合やhistory.back()/forward()/go()を呼び出した場合に発火するものであり、pushState/replaceStateの呼び出し自体では発火しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/History/pushState"
+  },
+  {
+    "id": "web-api-022",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "history.replaceState()の説明として正しいものはどれか。",
+    "choices": [
+      "現在の履歴エントリをURLと状態オブジェクトで置き換え、新しい履歴エントリは追加されない",
+      "pushState()と同様に常に新しい履歴エントリを追加する",
+      "ブラウザの「戻る」ボタンで戻れる履歴の総数を増やす",
+      "replaceStateを呼び出すと必ずpopstateイベントが発火する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "replaceState()は現在の履歴エントリの内容(状態オブジェクト、タイトル、URL)を置き換えるだけで、新規の履歴エントリは追加されない。そのためブラウザの「戻る」で辿れる履歴数は増えない。呼び出し自体でpopstateは発火しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/History/replaceState"
+  },
+  {
+    "id": "web-api-023",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "popstateイベントが発火する条件として正しいものを全て選べ。",
+    "choices": [
+      "ユーザーがブラウザの「戻る」ボタンをクリックしたとき",
+      "ユーザーがブラウザの「進む」ボタンをクリックしたとき",
+      "JavaScriptからhistory.back()やhistory.go(-1)を呼び出したとき",
+      "history.pushState()を呼び出したとき",
+      "history.replaceState()を呼び出したとき"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "popstateはセッション履歴の移動(ブラウザの戻る/進む操作、またはhistory.back()/forward()/go()の呼び出し)によって発火する。history.pushState()やhistory.replaceState()の呼び出しそのものはpopstateイベントを発火させない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/popstate_event"
+  },
+  {
+    "id": "web-api-024",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "history.stateプロパティについて正しい説明はどれか。",
+    "choices": [
+      "現在の履歴エントリに関連付けられた状態オブジェクトを取得でき、pushState/replaceStateの第一引数で設定した値に対応する",
+      "常にnullを返し、状態の保存には利用できない",
+      "history.stateはサーバー側のセッション情報を表すオブジェクトである",
+      "history.stateはブラウザの履歴に含まれるURLの文字列一覧を返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "history.stateは現在の履歴エントリに紐付けられた状態オブジェクトを返す読み取り専用プロパティで、pushState()やreplaceState()の第一引数に渡した値を後から取得するために使われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/History/state"
+  },
+  {
+    "id": "web-api-025",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードについて正しい説明を全て選べ。",
+    "code": "const observer = new MutationObserver((mutations) => {\n  mutations.forEach(m => console.log(m.type));\n});\nobserver.observe(targetNode, { childList: true, attributes: true, subtree: true });",
+    "choices": [
+      "targetNode自身に対する子ノードの追加・削除を監視する",
+      "subtree: trueが指定されているため、targetNodeの子孫ノードすべてに対する変更も監視対象になる",
+      "targetNodeおよびその子孫の属性値の変更を監視する",
+      "observe()の第2引数のオプションを全て省略またはfalseにしても、エラーにならず正常に監視が開始される"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "MutationObserver.observe()の第2引数(オプション)は、childList・attributes・characterDataのうち少なくとも1つをtrueにする必要があり、いずれも指定しない(または全てfalseの)場合はTypeErrorがスローされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MutationObserver/observe"
+  },
+  {
+    "id": "web-api-026",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "MutationObserverのコールバック関数に渡される引数として正しいものはどれか。",
+    "choices": [
+      "MutationRecordの配列と、そのMutationObserverインスタンス自身",
+      "変更されたDOM要素そのものを1つだけ",
+      "通常のイベントオブジェクト(Event)",
+      "変更前と変更後のHTML文字列のペア"
+    ],
+    "correctAnswers": [0],
+    "explanation": "MutationObserverのコールバックには、発生した変更を表すMutationRecordオブジェクトの配列と、そのMutationObserverインスタンス自身の2つの引数が渡される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MutationCallback"
+  },
+  {
+    "id": "web-api-027",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "MutationObserverのdisconnect()とtakeRecords()に関する説明として正しいものはどれか。",
+    "choices": [
+      "disconnect()は監視を停止するだけであり、その時点でまだコールバックに渡されていない保留中の変更記録はtakeRecords()で取得できる",
+      "disconnect()を呼ぶと、保留中の変更記録は自動的にコールバックへ渡されてから監視が停止する",
+      "takeRecords()は新たに監視を開始するためのメソッドである",
+      "disconnect()を呼び出した後は、同じインスタンスでobserve()を再度呼び出すことはできない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "disconnect()は監視を停止するのみで、保留中(コールバックにまだ渡されていない)の変更記録を自動的に処理することはない。取りこぼしを防ぎたい場合はdisconnect()の前にtakeRecords()を呼び出して保留中の記録を取得する必要がある。disconnect()後も同じインスタンスでobserve()を再度呼び出して監視を再開できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MutationObserver/takeRecords"
+  },
+  {
+    "id": "web-api-028",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const observer = new IntersectionObserver((entries) => {\n  entries.forEach(entry => {\n    if (entry.isIntersecting) {\n      entry.target.classList.add('visible');\n    }\n  });\n}, { threshold: 0.5 });\nobserver.observe(document.querySelector('.box'));",
+    "choices": [
+      ".box要素が監視対象領域(ビューポートまたは指定したroot)と50%以上重なった時点でコールバックが実行され、isIntersectingがtrueになる",
+      "threshold: 0.5は監視対象要素の透明度(opacity)を指定するオプションである",
+      "IntersectionObserverは交差率が0%または100%になったときにしかコールバックを発火できない",
+      "observe()を呼び出した直後には、コールバックは一度も実行されない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "thresholdは交差率(intersectionRatio)がその値を跨いだタイミングでコールバックを発火させるしきい値であり、0.5は50%重なった時点を表す。observe()呼び出し直後にも初期状態を通知するためコールバックが1回実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Intersection_Observer_API"
+  },
+  {
+    "id": "web-api-029",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "IntersectionObserverの代表的な活用例として適切なものを全て選べ。",
+    "choices": [
+      "画像や動画の遅延読み込み(Lazy Loading)",
+      "無限スクロールの実装(要素が画面下端に近づいたら追加データを読み込む)",
+      "広告要素が実際に画面内に表示されたかどうかの計測",
+      "フォーム入力値のリアルタイムバリデーション",
+      "CSSアニメーションのフレームレート(FPS)計測"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "フォームのリアルタイムバリデーションはConstraint Validation APIの領域であり、フレームレート計測はrequestAnimationFrame等を用いるものでIntersectionObserverの用途ではない。IntersectionObserverは要素の可視性(交差状態)の監視に特化したAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Intersection_Observer_API"
+  },
+  {
+    "id": "web-api-030",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "IntersectionObserverEntryのintersectionRatioプロパティが表すものはどれか。",
+    "choices": [
+      "対象要素の面積のうち、交差領域(rootまたはビューポートと重なっている部分)が占める割合を0〜1の値で表したもの",
+      "対象要素とルート要素の距離をピクセル単位で表した値",
+      "対象要素の透明度(opacity)の値",
+      "対象要素がビューポートに入ってから経過した時間(ミリ秒)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "intersectionRatioは対象要素の境界矩形に対して交差領域が占める割合を0から1の範囲の数値で表す。完全に重なっていれば1、全く重なっていなければ0になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IntersectionObserverEntry/intersectionRatio"
+  },
+  {
+    "id": "web-api-031",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの目的として最も適切なものはどれか。",
+    "code": "const ro = new ResizeObserver(entries => {\n  for (const entry of entries) {\n    console.log(entry.contentRect.width, entry.contentRect.height);\n  }\n});\nro.observe(document.querySelector('#panel'));",
+    "choices": [
+      "#panel要素のサイズ(コンテンツボックス)が変化するたびに、その幅と高さを取得する",
+      "ウィンドウ全体のリサイズを監視する",
+      "#panel要素の画面上の位置(座標)が変化したことを検知する",
+      "#panel要素内のテキスト内容が変更されたことを検知する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ResizeObserverは登録した要素個別のサイズ変更を監視するためのAPIであり、コールバックに渡されるResizeObserverEntryのcontentRectから変更後の幅・高さを取得できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ResizeObserver"
+  },
+  {
+    "id": "web-api-032",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "window.addEventListener('resize', ...) とResizeObserverの違いとして正しいものはどれか。",
+    "choices": [
+      "windowのresizeイベントはウィンドウ(ビューポート)全体のサイズ変更のみを検知するが、ResizeObserverは個々の要素のサイズ変更を監視できる",
+      "ResizeObserverはウィンドウ自体のサイズ変更を検知することができない",
+      "windowのresizeイベントは要素単位のサイズ変更を検知できる",
+      "両者は完全に同じ用途を持ち、常に置き換え可能である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "windowのresizeイベントはビューポート(ウィンドウ)全体のサイズが変化したときにのみ発火し、個々の要素のサイズ変化(親要素のレイアウト変更やコンテンツ量の変化によるもの等)は検知できない。ResizeObserverは監視対象に指定した要素単位でサイズ変化を検知できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ResizeObserver"
+  },
+  {
+    "id": "web-api-033",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ResizeObserverEntry.contentRectが表す領域として正しいものはどれか。",
+    "choices": [
+      "パディングとボーダーを含まない、コンテンツボックスのサイズと位置",
+      "マージンを含めた要素全体の外接矩形",
+      "ボーダーを含むが、マージンは含まないボーダーボックスのサイズ",
+      "要素のスクロール可能な全コンテンツ領域(scrollWidth/scrollHeight相当)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "contentRectはパディングとボーダーを除いたコンテンツボックス相当の矩形を返す。ボーダーボックスのサイズを扱いたい場合は、より新しいborderBoxSizeプロパティを利用する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ResizeObserverEntry/contentRect"
+  },
+  {
+    "id": "web-api-034",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "requestAnimationFrame()の主な用途として正しいものはどれか。",
+    "choices": [
+      "次の画面の再描画(リペイント)の直前に処理を実行するようブラウザにスケジュールし、滑らかなアニメーションを実現する",
+      "指定したミリ秒後に必ず処理を実行し、setTimeoutより高い時間精度を保証する",
+      "Webワーカー上でバックグラウンド処理を実行する",
+      "一定間隔でサーバーへリクエストを送信する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestAnimationFrame()はブラウザの次の再描画のタイミングに合わせてコールバックを実行するようスケジュールするAPIであり、ディスプレイのリフレッシュレートに同期した滑らかなアニメーションの実装に用いられる。setTimeoutのような固定間隔の実行や時間精度の保証を目的としたものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestAnimationFrame"
+  },
+  {
+    "id": "web-api-035",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードでアニメーションを途中で停止するために呼び出すべき処理はどれか。",
+    "code": "let id;\nfunction step(timestamp) {\n  // アニメーション処理\n  id = requestAnimationFrame(step);\n}\nid = requestAnimationFrame(step);",
+    "choices": [
+      "cancelAnimationFrame(id);",
+      "clearTimeout(id);",
+      "id.stop();",
+      "requestAnimationFrame(null);"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestAnimationFrame()が返す識別子(id)をcancelAnimationFrame()に渡すことで、予定されていたコールバックの実行をキャンセルできる。clearTimeout()はsetTimeout用のAPIであり対応しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/cancelAnimationFrame"
+  },
+  {
+    "id": "web-api-036",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "requestIdleCallback()に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "ブラウザのメインスレッドがアイドル状態(他に実行すべき処理がない空き時間)になったタイミングでコールバックを実行する仕組みである",
+      "コールバックにはIdleDeadlineオブジェクトが渡され、timeRemaining()メソッドで残りの利用可能時間を取得できる",
+      "オプションでtimeoutを指定すると、指定時間内にアイドル時間が発生しなくても強制的にコールバックが実行される",
+      "DOM操作やレイアウトを伴う視覚的な更新処理を実行するために仕様上推奨されている唯一の方法である"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "requestIdleCallback()はログ送信や解析処理のような、ユーザー体験を妨げない低優先度の処理をアイドル時間に実行するためのAPIである。視覚的な更新やレイアウトに影響する処理には向いておらず、そのような用途にはrequestAnimationFrame()等が用いられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback"
+  },
+  {
+    "id": "web-api-037",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "次のコードを実行した場合について、正しい記述を全て選べ。",
+    "code": "const url = new URL('https://example.com:8080/path/page?id=5#section');",
+    "choices": [
+      "url.hostnameは\"example.com\"である",
+      "url.portは\"8080\"である",
+      "url.pathnameは\"/path/page\"である",
+      "url.hashは\"section\"であり、先頭に#は含まれない",
+      "url.searchは\"?id=5\"であり、先頭に?が含まれる"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "URLオブジェクトのhashプロパティは\"#section\"のように#記号を含んだ文字列を返すため、#を含まないとする記述は誤り。searchプロパティは\"?id=5\"のように?記号を含む文字列を返す。hostnameはポート番号を含まないホスト名、portはポート番号の文字列を表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/URL"
+  },
+  {
+    "id": "web-api-038",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードを実行した際、console.logで出力される文字列として正しいものはどれか。",
+    "code": "const params = new URLSearchParams('a=1&b=2');\nparams.append('a', '3');\nparams.set('b', '9');\nconsole.log(params.toString());",
+    "choices": [
+      "\"a=1&b=9&a=3\"",
+      "\"a=1&b=2&a=3\"",
+      "\"a=3&b=9\"",
+      "\"a=1&a=3&b=9\""
+    ],
+    "correctAnswers": [0],
+    "explanation": "append('a','3')は既存の'a=1'を残したまま新たなキーと値のペア'a=3'を末尾に追加する。set('b','9')は既存の'b'の値を'9'に置き換える(同名キーが複数あれば最初以外は削除される)。この結果、キーの並び順は元のまま'a=1'、'b=9'が残り、追加された'a=3'が末尾に付与され\"a=1&b=9&a=3\"となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/URLSearchParams/append"
+  },
+  {
+    "id": "web-api-039",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const params = new URLSearchParams(location.search);\nfor (const [key, value] of params) {\n  console.log(key, value);\n}",
+    "choices": [
+      "URLSearchParamsはイテラブルなオブジェクトであり、entries()を明示的に呼ばなくてもfor...ofで各キーと値のペアを直接列挙できる",
+      "URLSearchParamsは配列ではないため、for...ofでの反復処理は実行時エラーになる",
+      "entries()メソッドを明示的に呼び出さない限り、URLSearchParamsをfor...ofで反復することはできない",
+      "このコードはURLのハッシュ部分(#以降の文字列)を解析するものである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "URLSearchParamsはSymbol.iteratorを実装しており、entries()を呼ばなくても直接for...ofで[key, value]のペアを反復できる。location.searchはURLのクエリ文字列(?以降)を表すプロパティであり、ハッシュ部分はlocation.hashで取得する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/URLSearchParams"
+  },
+  {
+    "id": "web-api-040",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "customElements.define()でカスタム要素を登録する際の制約として正しいものを全て選べ。",
+    "choices": [
+      "要素名にはハイフン(-)を1つ以上含める必要がある(例: my-element)",
+      "同じ名前のカスタム要素を2回定義しようとするとエラーになる",
+      "登録するクラスはHTMLElement(またはそのサブクラス)を継承している必要がある",
+      "カスタム要素名には大文字のアルファベットを含めてもよい",
+      "article、sectionなど既存の予約済みHTML要素名と同名でも登録できる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "カスタム要素名はASCII小文字で始まり、ハイフンを1つ以上含む必要があり、大文字は使用できない。また、article等の既存の予約済み要素名と同名で登録することはできない。同一名を再度define()しようとするとエラーになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CustomElementRegistry/define"
+  },
+  {
+    "id": "web-api-041",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "class MyCard extends HTMLElement {\n  constructor() {\n    super();\n    const shadow = this.attachShadow({ mode: 'open' });\n    shadow.innerHTML = '<p>Hello</p>';\n  }\n}\ncustomElements.define('my-card', MyCard);",
+    "choices": [
+      "mode: 'open'により、外部のJavaScriptからelement.shadowRootプロパティ経由でShadow DOMの内部にアクセスできる",
+      "mode: 'open'は、Shadow DOM内部のCSSがページ全体(Shadow DOM外)にも適用されるようにする設定である",
+      "attachShadow()を呼び出さなくても、カスタム要素は自動的にShadow DOMを持つ",
+      "mode: 'closed'を指定した場合でも、shadowRootプロパティの挙動に違いはない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "attachShadow()のmodeオプションが'open'の場合、要素のshadowRootプロパティを通じて外部のJavaScriptからShadow DOM内部を参照できる。'closed'を指定した場合、shadowRootプロパティはnullを返し、外部から直接アクセスできなくなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/attachShadow"
+  },
+  {
+    "id": "web-api-042",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "<template>要素の特徴として正しい説明はどれか。",
+    "choices": [
+      "<template>内のコンテンツはページ読み込み時にはレンダリングされず、JavaScriptでcontentプロパティ(DocumentFragment)を取得して複製・挿入するまで非活性(inert)な状態である",
+      "<template>内の<img>タグは画面に表示されないだけで、記述した時点で画像は通常どおりダウンロードされる",
+      "<template>要素はShadow DOMと併用することができない",
+      "<template>内に記述した<script>タグは、テンプレートがパースされた時点で即座に実行される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "template要素の内容はDocumentFragmentとしてcontentプロパティに保持され、複製してドキュメントに挿入されるまで画像などのリソースは読み込まれず、scriptも実行されない(非活性)。Web Componentsのテンプレートとしてよく利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/template"
+  },
+  {
+    "id": "web-api-043",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のようなShadow DOMを持つカスタム要素がある場合の説明として正しいものはどれか。",
+    "code": "<!-- Shadow DOM内部 -->\n<div>\n  <slot name='title'></slot>\n  <slot></slot>\n</div>\n\n<!-- 使用側(Light DOM) -->\n<my-card>\n  <h2 slot='title'>見出し</h2>\n  <p>本文テキスト</p>\n</my-card>",
+    "choices": [
+      "slot属性を持つ<h2>は名前付きスロット(name='title')に、slot属性を持たない<p>はデフォルトの無名スロットに割り当てられる",
+      "<h2>と<p>はどちらも無名スロットにまとめて割り当てられる",
+      "slot属性はCSSクラスのように、1つの要素を複数のスロットへ同時に割り当てるために使う",
+      "Light DOM側の要素はスロットに割り当てられた時点で、実体がShadow DOM内部のツリーへ移動し、元のLight DOMからは削除される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "name属性を持つ<slot>には対応するslot属性を持つLight DOM要素が割り当てられ、name属性のない<slot>にはslot属性を持たない要素がデフォルトスロットとして割り当てられる。スロットへの割り当ては表示位置の論理的な差し替えであり、要素の実体はLight DOM上のDOMツリーの位置に留まったままである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/slot"
+  },
+  {
+    "id": "web-api-044",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "カスタム要素(Custom Elements)のライフサイクルコールバックとして正しいものを全て選べ。",
+    "choices": [
+      "connectedCallback",
+      "disconnectedCallback",
+      "attributeChangedCallback",
+      "adoptedCallback",
+      "renderedCallback",
+      "createdCallback"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "現行のCustom Elements仕様(v1)ではconnectedCallback、disconnectedCallback、attributeChangedCallback、adoptedCallbackの4つのライフサイクルコールバックが定義されている。attributeChangedCallbackを利用するには、静的な観測対象を返すobservedAttributesを定義する必要がある。renderedCallbackという名前のコールバックは存在せず、createdCallbackは旧世代(v0)の仕様に存在したもので現行のv1仕様には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_components/Using_custom_elements"
+  },
+  {
+    "id": "web-api-045",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Shadow DOMによるスタイルのカプセル化に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "Shadow DOM内部で定義したCSSは、原則としてShadow DOM外部(ページ本体)の要素には影響しない",
+      "ページ本体で定義されたタグ名やクラス名によるCSSセレクタは、原則としてShadow DOM内部の要素には影響しない",
+      ":host疑似クラスを使うと、Shadow DOMのホスト要素自身にスタイルを適用できる",
+      "Shadow DOM内では、ページ全体で定義したCSSカスタムプロパティ(CSS変数)の継承が常に完全に遮断され、一切利用できない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "CSSカスタムプロパティ(変数)は継承されるプロパティであり、Shadow DOMの境界を越えて内部に継承されるため、変数が一切利用できないとする記述は誤りである。タグ名・クラス名セレクタによるスタイルは通常Shadow DOMの境界でカプセル化され、双方向に影響しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_components/Using_shadow_DOM"
+  },
+  {
+    "id": "web-api-046",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTML5のDrag and Drop APIにおいて、ドラッグ操作に関連して発生するイベントとして正しいものを全て選べ。",
+    "choices": [
+      "dragstart",
+      "dragover",
+      "drop",
+      "dragend",
+      "dragload",
+      "dragfinish"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "Drag and Drop APIにはdragstart, drag, dragenter, dragleave, dragover, drop, dragendといったイベントが定義されている。dragloadやdragfinishという名前のイベントは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTML_Drag_and_Drop_API"
+  },
+  {
+    "id": "web-api-047",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードにおいて、コメント(1)の箇所に必要な処理として正しいものはどれか。",
+    "code": "dropzone.addEventListener('dragover', (e) => {\n  // (1)\n});\ndropzone.addEventListener('drop', (e) => {\n  e.preventDefault();\n  const data = e.dataTransfer.getData('text/plain');\n  dropzone.textContent = data;\n});",
+    "choices": [
+      "e.preventDefault();を呼び出す。dragoverのデフォルト動作(ドロップを許可しない)をキャンセルしない限り、dropイベントは発生しない",
+      "dragoverイベントハンドラでは何もする必要がなく、drop側のpreventDefault()だけで十分である",
+      "dropzone.setAttribute('droppable', true);を追加で呼び出す必要がある",
+      "dragenterイベントでのみpreventDefault()すればよく、dragoverでは不要である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "多くの要素はデフォルトでドロップを受け付けない。継続的に発火するdragoverイベントでpreventDefault()を呼び出すことで、その要素がドロップ先として有効になりdropイベントが発火するようになる。droppableという属性は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations"
+  },
+  {
+    "id": "web-api-048",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "window.getSelection()が返すSelectionオブジェクトに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "ユーザーが選択している範囲のテキストを文字列として取得するには、toString()を使う",
+      "rangeCountプロパティで、現在選択されている範囲(Range)の数を取得できる",
+      "removeAllRanges()を呼び出すと、現在の選択状態を解除できる",
+      "Selectionオブジェクトは常にクリップボードの内容と同期しており、選択と同時に自動的にコピーされる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "テキストの選択とクリップボードへのコピーは別の仕組みであり、選択しただけでは自動的にクリップボードにコピーされることはない(コピーには別途コピー操作やClipboard APIの利用が必要)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Selection"
+  },
+  {
+    "id": "web-api-049",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "navigator.clipboard.writeText('コピーするテキスト')\n  .then(() => console.log('成功'))\n  .catch(err => console.error('失敗', err));",
+    "choices": [
+      "Clipboard APIは非同期(Promiseベース)のAPIであり、セキュアコンテキスト(HTTPS等)や権限の状況によっては失敗することがある",
+      "writeText()は同期的に実行され、呼び出した時点で常に即座に成功する",
+      "このコードはdocument.execCommand('copy')と全く同じ仕組みで動作する、単なる新しい書き方に過ぎない",
+      "Clipboard APIはHTTP(非セキュア)なページでも、常に無条件で利用できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.clipboard.writeText()はPromiseを返す非同期APIであり、HTTPSなどのセキュアコンテキストであることや、ユーザーの許可(Permissions)が必要な場合があり、状況によっては失敗する可能性がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Clipboard/writeText"
+  },
+  {
+    "id": "web-api-050",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のHTMLとJavaScriptがある場合、console.logで出力される内容として正しいものはどれか。",
+    "code": "<div id='user' data-user-id='42' data-first-name='Taro'></div>\n\nconst el = document.getElementById('user');\nconsole.log(el.dataset.userId, el.dataset.firstName);",
+    "choices": [
+      "\"42\" \"Taro\"(いずれも文字列型)",
+      "\"user-id\" \"first-name\"",
+      "undefined undefined",
+      "42 Taro(いずれも数値型に自動変換される)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "data-*属性はdatasetプロパティを通じてアクセスでき、ハイフン区切りの属性名(data-user-id)はキャメルケース(dataset.userId)に変換される。取得できる値は常に文字列型であり、数値には自動変換されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/dataset"
+  },
+  {
+    "id": "web-api-051",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードを実行した場合、rectオブジェクトから取得できる情報として正しいものはどれか。",
+    "code": "const rect = document.querySelector('#box').getBoundingClientRect();\nconsole.log(rect.top, rect.left, rect.width, rect.height);",
+    "choices": [
+      "要素のビューポート(表示領域)基準での位置とサイズ(パディング・ボーダーを含む)",
+      "要素のドキュメント全体における絶対座標(スクロール量を含まない基準)",
+      "要素のCSSで指定されたwidth/height値そのもの(パディングやボーダーを含まない)",
+      "要素が属するページ全体のスクロール可能領域の幅と高さ"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getBoundingClientRect()はビューポート基準の位置(top/left/right/bottom)とパディング・ボーダーを含むサイズ(width/height、ボーダーボックス相当)を返す。スクロールすると値が変化するため、ドキュメント全体の絶対座標ではない。CSSのwidth/height指定値そのものではなくレンダリング結果のサイズを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect"
+  },
+  {
+    "id": "web-api-052",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Element.matches()メソッドの説明として正しいものはどれか。",
+    "code": "const li = document.querySelector('li');\nif (li.matches('.active, .selected')) {\n  console.log('該当');\n}",
+    "choices": [
+      "その要素が指定したCSSセレクタに一致するかどうかを真偽値で判定する",
+      "指定したセレクタに一致する子要素を全て検索して配列で返す",
+      "指定したセレクタに一致する最も近い祖先要素を返す",
+      "CSSセレクタではなく、正規表現のみを引数として受け取る"
+    ],
+    "correctAnswers": [0],
+    "explanation": "matches()は要素自身が与えられたCSSセレクタに一致するかどうかをtrue/falseで返すメソッドである。子要素の検索はquerySelectorAll()、祖先方向の検索はclosest()の役割であり、matches()の引数はCSSセレクタ文字列である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/matches"
+  },
+  {
+    "id": "web-api-053",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const container = document.querySelector('#container');\nconst target = document.querySelector('#target');\nif (container.contains(target)) {\n  console.log('containerの内部にtargetが存在する');\n}",
+    "choices": [
+      "targetがcontainer自身、またはcontainerの子孫ノードである場合にtrueを返す",
+      "targetのCSSセレクタがcontainerに一致する場合にtrueを返す",
+      "targetがcontainerの兄弟要素である場合にのみtrueを返す",
+      "containerがtargetの子孫である場合にtrueを返す(判定の方向が逆)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Node.contains()は、引数に渡したノードが呼び出し元のノード自身であるか、その子孫ノードである場合にtrueを返す。判定の起点(呼び出し元)が祖先側であり、CSSセレクタの一致判定を行うものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/contains"
+  },
+  {
+    "id": "web-api-054",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "DocumentFragmentに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "DOMツリーの一部を軽量に保持するための、親を持たない特殊なノードである",
+      "複数の要素をDocumentFragmentにまとめてから一括でDOMに挿入すると、実際のDOMへの挿入回数を減らしリフローの発生を抑えられる",
+      "DocumentFragmentがappendChild()などでDOMに挿入されると、Fragment自身ではなく、その子ノードが挿入先に移される",
+      "DocumentFragmentは画面上に直接表示されるノードであり、ブラウザによって自動的にレンダリングされる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "DocumentFragmentはメモリ上に保持される軽量なノードコンテナで、それ自体はレンダリングツリーに現れず画面には表示されない。複数のノードを一旦Fragmentにまとめてから一括でDOMに追加することでDOM操作回数やリフローを削減できる。Fragmentを挿入すると、その子ノード群のみが挿入先に移動する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DocumentFragment"
+  },
+  {
+    "id": "web-api-055",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "input.addEventListener('keydown', (e) => {\n  if (e.repeat) {\n    console.log('キーが押し続けられている(自動リピート)');\n  }\n});",
+    "choices": [
+      "ユーザーがキーを押し続けて自動的にkeydownイベントが繰り返し発生している場合、e.repeatはtrueになる",
+      "e.repeatは同じキーが過去に一度でも押されたことがあればtrueになり続ける",
+      "e.repeatはkeyupイベントでのみ利用できるプロパティである",
+      "e.repeatはマウスのダブルクリックを検出するためのプロパティである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "KeyboardEvent.repeatは、キーが押し続けられることでOSやブラウザが自動的に繰り返し発生させているkeydownイベントかどうかを示す真偽値である。最初の押下時はfalseで、リピートされた2回目以降のイベントでtrueになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/repeat"
+  },
+  {
+    "id": "web-api-056",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "マウスホイールの操作を検知するために使用するイベントについて正しい説明はどれか。",
+    "code": "element.addEventListener('wheel', (e) => {\n  console.log(e.deltaY);\n});",
+    "choices": [
+      "wheelイベントを使用し、deltaYプロパティで縦方向のスクロール量(変化量)を取得できる",
+      "scrollイベントを使用し、deltaYプロパティでホイールの回転量を取得できる",
+      "mousewheelイベントが現在の標準規格であり、wheelイベントは非推奨である",
+      "wheelイベントのdeltaYは常にピクセル単位に固定されており、deltaModeで単位を確認する必要はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "マウスホイール操作の検知にはwheelイベントを用い、deltaX/deltaY/deltaZで各方向の変化量を取得できる。旧仕様のmousewheelイベントは非標準で非推奨である。変化量の単位はdeltaModeプロパティ(ピクセル・行・ページ)によって異なるため確認が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/wheel_event"
+  },
+  {
+    "id": "web-api-057",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "structuredClone()関数の説明として正しいものはどれか。",
+    "code": "const original = { date: new Date(), map: new Map([['a', 1]]), nested: { count: 1 } };\nconst copy = structuredClone(original);\ncopy.nested.count = 2;",
+    "choices": [
+      "Date、Map、配列などを含むオブジェクトをディープコピーでき、copyへの変更はoriginalに影響しない",
+      "structuredClone()は関数(Function)やDOMノードも含め、あらゆる値を例外なく複製できる",
+      "JSON.parse(JSON.stringify(obj))と全く同じ範囲の値しか複製できない",
+      "structuredClone()はオブジェクトの参照をコピーするだけで、originalとcopyは同じオブジェクトを共有する(シャローコピー)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "structuredClone()は構造化クローンアルゴリズムを用いたディープコピーを行う組み込み関数で、Date・Map・Set・配列・循環参照を含むオブジェクトなどを複製できる。JSON.stringify()ではMapやDate、循環参照を正しく扱えない点で異なる。関数やDOMノードなど複製不可能な値を含む場合は例外がスローされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/structuredClone"
+  },
+  {
+    "id": "web-api-058",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "document.elementFromPoint(x, y)メソッドの説明として正しいものはどれか。",
+    "code": "const el = document.elementFromPoint(100, 200);\nconsole.log(el.tagName);",
+    "choices": [
+      "ビューポート上の指定した座標(x, y)に表示されている、最前面の要素を取得する",
+      "指定したCSSセレクタに一致する要素のうち、最も座標に近いものを取得する",
+      "ドキュメント全体(スクロールを含む絶対座標)における指定座標の要素を取得する",
+      "座標に該当する要素が複数重なっている場合は、それらすべてを配列で返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "elementFromPoint()はビューポート基準の座標を指定し、その位置で最前面に表示されている単一の要素を返す。ドキュメント全体の絶対座標ではなくビューポート座標である点、複数要素を取得したい場合はelementsFromPoint()を使う必要がある点に注意する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/elementFromPoint"
+  },
+  {
+    "id": "web-api-059",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "window.matchMedia()の基本的な使い方として正しいものはどれか。",
+    "code": "const mql = window.matchMedia('(max-width: 600px)');\nconsole.log(mql.matches);",
+    "choices": [
+      "指定したメディアクエリが現在の画面(ビューポート)の状態と一致しているかどうかをmatchesプロパティ(真偽値)で取得できる",
+      "matchMedia()はCSSファイル内のメディアクエリを書き換えるためのAPIである",
+      "matchMedia()の戻り値のmatchesプロパティは常に文字列型で一致したメディア名を返す",
+      "matchMedia()はサーバーサイドでのみ使用可能なAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "window.matchMedia()に渡したメディアクエリ文字列が現在のビューポート状態に一致するかどうかを、戻り値のMediaQueryListオブジェクトのmatchesプロパティ(真偽値)で判定できる。CSSを書き換えるものではなく、クライアントサイドのブラウザ環境で動作するAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/matchMedia"
+  },
+  {
+    "id": "web-api-060",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const form = document.querySelector('#myForm');\nconst formData = new FormData(form);\nformData.append('extra', '追加値');\nfor (const [key, value] of formData) {\n  console.log(key, value);\n}",
+    "choices": [
+      "form要素内のname属性を持つ入力要素の値を自動的に収集し、append()で追加の値をさらに加えることができる",
+      "FormDataはform要素のHTML文字列そのものを表すオブジェクトである",
+      "FormDataに追加した値は、対応するinput要素のDOM上の値にも自動的に反映される",
+      "FormDataはイテラブルではないため、for...ofで反復することはできない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "new FormData(form)は指定したフォーム内のname属性を持つ入力要素の値を自動的に収集する。append()で任意のキーと値のペアを追加でき、これはDOM上のinput要素そのものには影響しない。FormDataはイテラブルであり、for...ofでキーと値のペアを列挙できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FormData"
+  },
+  {
+    "id": "web-api-061",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Page Visibility APIに関する記述として正しいものはどれか。",
+    "code": "document.addEventListener('visibilitychange', () => {\n  console.log(document.visibilityState);\n});",
+    "choices": [
+      "タブが非表示(バックグラウンド)になったか表示状態になったかを、visibilitychangeイベントとdocument.visibilityStateで検知できる",
+      "document.visibilityStateはウィンドウのサイズが変化した際にのみ変化する",
+      "visibilitychangeイベントはユーザーがマウスカーソルをページ外に移動しただけでも発火する",
+      "Page Visibility APIはウィンドウがフォーカスされているかどうかのみを判定し、タブの切り替えは検知できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Page Visibility APIはタブの切り替えや最小化などによってページが表示状態か非表示(バックグラウンド)状態かが変化した際にvisibilitychangeイベントを発火させ、document.visibilityState('visible'や'hidden'等)で現在の状態を取得できる。動画の自動停止や不要な処理の一時停止などに活用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Page_Visibility_API"
+  },
+  {
+    "id": "web-api-062",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ネットワーク接続状態の変化を検知する仕組みとして正しいものはどれか。",
+    "code": "window.addEventListener('online', () => console.log('接続復帰'));\nwindow.addEventListener('offline', () => console.log('接続切断'));",
+    "choices": [
+      "windowオブジェクトのonline/offlineイベントと、navigator.onLineプロパティで接続状態を扱える",
+      "online/offlineイベントは実際のインターネット到達性を常に正確に保証する(サーバーに到達可能であることを完全に検証する)",
+      "navigator.onLineは常にtrueを返す仕様であり実用上意味がない",
+      "online/offlineイベントはdocumentオブジェクトにのみ登録でき、windowには登録できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "windowオブジェクトはネットワーク接続状態が変化した際にonline/offlineイベントを発火し、navigator.onLineで現在の状態(真偽値)を取得できる。これらはブラウザ・OSレベルの接続状態の判定であり、実際に特定のサーバーへ到達できるかどうかを保証するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/online_event"
+  },
+  {
+    "id": "web-api-063",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Element.scrollIntoView()メソッドの説明として正しいものはどれか。",
+    "code": "document.querySelector('#section3').scrollIntoView({ behavior: 'smooth', block: 'start' });",
+    "choices": [
+      "呼び出した要素が表示されるよう、その要素を含む最も近いスクロール可能なコンテナ(またはビューポート)をスクロールする",
+      "behavior: 'smooth'を指定すると、スクロール完了を待つPromiseが返される",
+      "scrollIntoView()は要素の表示・非表示を切り替えるメソッドである",
+      "block: 'start'を指定すると、要素は常にビューポートの一番下に配置される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "scrollIntoView()は呼び出し元の要素が可視領域に入るように、スクロール可能な祖先要素やビューポートをスクロールさせる。behavior: 'smooth'は滑らかなスクロールを指定するオプションだがPromiseは返さない。block: 'start'は要素の先端をスクロールコンテナの先端(通常は上端)に合わせる指定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/scrollIntoView"
+  },
+  {
+    "id": "web-api-064",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Element.insertAdjacentHTML()の第一引数に指定できる位置指定文字列として正しいものを全て選べ。",
+    "choices": [
+      "beforebegin",
+      "afterbegin",
+      "beforeend",
+      "afterend",
+      "insidestart"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "insertAdjacentHTML()の第一引数には、要素自身の前('beforebegin')、最初の子の前('afterbegin')、最後の子の後('beforeend')、要素自身の後('afterend')の4種類の位置指定文字列を指定する。'insidestart'という文字列は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/insertAdjacentHTML"
+  },
+  {
+    "id": "web-api-065",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Node.isConnectedプロパティの説明として正しいものはどれか。",
+    "code": "const div = document.createElement('div');\nconsole.log(div.isConnected);\ndocument.body.appendChild(div);\nconsole.log(div.isConnected);",
+    "choices": [
+      "そのノードが現在のドキュメント(DOMツリー)に接続されているかどうかを示す真偽値で、生成直後はfalse、appendChild()後はtrueになる",
+      "isConnectedはノードにイベントリスナーが1つ以上登録されているかどうかを示す",
+      "isConnectedは常にtrueを返し、切断状態を判定する手段はない",
+      "isConnectedはネットワーク接続状態(オンライン・オフライン)を示すプロパティである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "isConnectedは、そのノードがShadow DOMを含む現在の文書に接続されているかどうかを表す読み取り専用の真偽値プロパティである。createElement()で生成しただけの段階ではfalseで、DOMツリーに追加するとtrueになる。カスタム要素のconnectedCallback/disconnectedCallbackとも関連する概念である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/isConnected"
+  },
+  {
+    "id": "web-api-066",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "document.body.addEventListener('click', (e) => {\n  const card = e.target.closest('.card');\n  if (card) {\n    console.log('カード内がクリックされた:', card);\n  }\n});",
+    "choices": [
+      "closest()はe.target自身も含めて、指定したセレクタに一致する最も近い祖先要素(自分自身を含む)を検索する",
+      "closest()はe.targetの子孫要素の中から一致する要素を検索する",
+      "closest()は一致する要素が見つからない場合、常に例外をスローする",
+      "closest()はdocument全体から一致する要素を検索し、階層構造は考慮しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "closest()は呼び出した要素自身を起点に、指定したCSSセレクタに一致する要素が見つかるまで祖先方向(自分自身を含む)へ遡って検索するメソッドである。一致する要素がない場合はnullを返す(例外はスローしない)。イベント委譲において、クリックされた子要素から特定の親カードを特定する際などに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/closest"
+  },
+  {
+    "id": "web-api-067",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "KeyboardEventのkeyプロパティとcodeプロパティの違いとして正しいものはどれか。",
+    "code": "input.addEventListener('keydown', (e) => {\n  console.log(e.key, e.code);\n});\n// ユーザーがShiftキーを押しながら物理的な「A」キーを押した場合",
+    "choices": [
+      "keyは入力される実際の文字や機能名(Shift+Aなら\"A\")を表し、codeはキーボード上の物理的な位置を表す文字列(\"KeyA\"など)であり、Shiftの有無や配列に依存しない",
+      "keyとcodeは常に同じ値を返す",
+      "codeはキーボードの配列(レイアウト)によって値が変化するが、keyは配列に関わらず常に一定である",
+      "keyはキーコード番号(数値)を返し、codeは文字列を返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "KeyboardEvent.keyは修飾キーの状態や入力方式を反映した「入力される値」(Shift+Aなら\"A\"、Shiftなしなら\"a\")を表す。一方、codeはキーボード配列に関わらず変化しない物理的なキーの位置を表す文字列(\"KeyA\"など)であり、Shiftの状態には影響されない。両者は目的が異なり、単純に同一値になるとは限らない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/code"
+  },
+  {
+    "id": "web-api-068",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Web Share API(navigator.share())の説明として正しいものはどれか。",
+    "code": "if (navigator.share) {\n  navigator.share({ title: '記事タイトル', url: 'https://example.com/article' })\n    .then(() => console.log('共有成功'))\n    .catch(err => console.error('共有失敗', err));\n}",
+    "choices": [
+      "OSやブラウザが提供する共有UI(共有シート)を呼び出し、他アプリへタイトルやURLなどを渡すための非同期APIであり、対応していない環境もあるため事前に存在チェックが推奨される",
+      "navigator.share()は常にすべてのブラウザ・OSで利用可能であり、対応チェックは不要である",
+      "navigator.share()はクリップボードへのコピーのみを行うAPIであり、他アプリへの共有はできない",
+      "navigator.share()は同期的に実行され、共有が完了するまでスクリプトの実行をブロックする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.share()はOS標準の共有UIを呼び出し、他のアプリケーションへタイトル・テキスト・URL・ファイルなどを共有するためのPromiseベースの非同期APIである。すべての環境で利用可能とは限らないため、navigator.shareの存在確認をしてから呼び出すのが一般的である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/share"
+  },
+  {
+    "id": "web-api-069",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "window.addEventListener('beforeunload', (e) => {\n  e.preventDefault();\n  e.returnValue = '';\n});",
+    "choices": [
+      "ページを離れようとした際にブラウザ標準の確認ダイアログを表示させるための典型的な実装であり、実際のダイアログの文言はブラウザ側の固定文言になる",
+      "このコードはページを離れる操作自体を完全に禁止し、ユーザーは絶対にページを離れられなくなる",
+      "e.returnValueに設定した空文字列がそのままダイアログのメッセージ文言として表示される",
+      "beforeunloadイベントはページ内のリンククリックには反応せず、タブを閉じる操作にのみ反応する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "beforeunloadイベントでpreventDefault()やreturnValueへの値設定を行うことで、ブラウザ標準の確認ダイアログを表示させることができる。ただし近年の主要ブラウザはセキュリティ・UX上の理由からカスタムメッセージの表示を許可せず、固定の文言を表示する仕様になっている。ダイアログでユーザーが離脱を選べばページを離れることは可能であり、完全に禁止することはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/beforeunload_event"
+  },
+  {
+    "id": "web-api-070",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const mql = window.matchMedia('(prefers-color-scheme: dark)');\nmql.addEventListener('change', (e) => {\n  console.log(e.matches ? 'ダーク' : 'ライト');\n});",
+    "choices": [
+      "ユーザーのOS設定やブラウザ設定によりカラースキームの状態が変化した際に、changeイベントでリアルタイムに検知できる",
+      "matchMedia()が返すMediaQueryListオブジェクトはaddEventListener()を持たず、addListener()という旧メソッドしか使用できない",
+      "changeイベントはページの再読み込みを行わないと発火しない",
+      "prefers-color-schemeは要素のインラインstyleを直接書き換えるためのCSSプロパティである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "MediaQueryListオブジェクトはEventTargetを実装しており、addEventListener('change', ...)でメディアクエリの一致状態の変化(OSのダークモード切替など)をページの再読み込みなしにリアルタイムで検知できる。旧来はaddListener()/removeListener()が使われていたが、現在はaddEventListener()が標準的である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaQueryList/change_event"
+  },
+  {
+    "id": "web-api-071",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Pointer Events APIに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "マウス、タッチ、ペンなど異なる入力デバイスを、pointerdown/pointermove/pointerupなど統一されたイベントで扱える",
+      "PointerEventのpointerTypeプロパティで、入力が'mouse'、'touch'、'pen'のいずれであるかを判別できる",
+      "setPointerCapture()を使うと、以降のポインタイベントを特定の要素に固定して受け取ることができる",
+      "Pointer Eventsが導入された結果、mousedown/mouseupなど従来のマウスイベントは仕様から削除され使用できなくなった"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Pointer Eventsはマウス・タッチ・ペンなどの入力デバイスの違いを吸収し、共通のイベントモデルで扱えるAPIである。pointerTypeで入力種別を判別でき、setPointerCapture()で特定要素へのイベント固定(キャプチャ)が可能である。従来のmouse系イベントは廃止されておらず、現在も並行して利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "web-api-072",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "window.visualViewportプロパティの用途として正しいものはどれか。",
+    "code": "window.visualViewport.addEventListener('resize', () => {\n  console.log(window.visualViewport.height);\n});",
+    "choices": [
+      "モバイル端末でソフトウェアキーボード表示時などに変化する、実際に視認できるビューポート(視覚的ビューポート)のサイズや位置の変化を検知できる",
+      "visualViewportはCSSのレイアウトビューポート(document.documentElement.clientWidth相当)と完全に同一の値を常に返す",
+      "visualViewportはデスクトップブラウザでは常にundefinedであり利用できない",
+      "visualViewportはページの印刷時のレイアウトを制御するためのAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Visual Viewport APIは、モバイル端末でソフトウェアキーボードが表示された際やピンチズーム時など、ユーザーが実際に視認しているビューポート(視覚的ビューポート)のサイズ・オフセットの変化をresizeやscrollイベントで検知するためのAPIである。CSSのレイアウトビューポートとは値が異なる場合がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Visual_Viewport_API"
+  },
+  {
+    "id": "web-api-073",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "BroadcastChannel APIに関する説明として正しいものを全て選べ。",
+    "code": "// タブA\nconst channel = new BroadcastChannel('news');\nchannel.postMessage('更新あり');\n\n// タブB(同一オリジン)\nconst channel2 = new BroadcastChannel('news');\nchannel2.onmessage = (e) => console.log(e.data);",
+    "choices": [
+      "同一オリジンの異なるブラウジングコンテキスト(タブ・ウィンドウ・iframeなど)間でメッセージをブロードキャスト(一斉送信)できる",
+      "同じ名前(チャンネル名)で生成されたBroadcastChannel同士でメッセージが送受信される",
+      "postMessage()を呼び出したチャンネル自身のonmessageハンドラには、送信したメッセージは通知されない",
+      "異なるオリジン間でも自由にメッセージを送受信できる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "BroadcastChannelは同一オリジンの複数のブラウジングコンテキスト間で、同じチャンネル名を指定したインスタンス同士がメッセージを送受信できるAPIである。異なるオリジン間では利用できない。また、送信元のチャンネル自身のonmessageには通知されず、他のチャンネルインスタンスにのみ配信される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Broadcast_Channel_API"
+  },
+  {
+    "id": "web-api-074",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "async function copyImage(blob) {\n  const item = new ClipboardItem({ [blob.type]: blob });\n  await navigator.clipboard.write([item]);\n}",
+    "choices": [
+      "navigator.clipboard.write()はClipboardItemの配列を受け取り、テキストだけでなく画像などのバイナリデータもMIMEタイプ付きでクリップボードへ書き込める",
+      "navigator.clipboard.write()はテキスト(文字列)のみを引数に取ることができ、画像データは扱えない",
+      "ClipboardItemはクリップボードから読み取ったデータを表示するためのUIコンポーネントである",
+      "navigator.clipboard.write()は常に同期的に完了し、awaitを使う必要はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.clipboard.write()はClipboardItemオブジェクトの配列を受け取り、テキストに加えて画像(Blob)などのバイナリデータをMIMEタイプをキーとした形で書き込むことができる。writeText()がテキスト専用であるのに対し、write()はより汎用的なAPIであり、Promiseを返す非同期処理である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Clipboard/write"
+  },
+  {
+    "id": "web-api-075",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "フォーム関連のカスタム要素(Form-associated custom elements)に関する説明として正しいものを全て選べ。",
+    "code": "class MyInput extends HTMLElement {\n  static formAssociated = true;\n  #internals;\n  constructor() {\n    super();\n    this.#internals = this.attachInternals();\n  }\n  set value(v) {\n    this.#internals.setFormValue(v);\n  }\n}",
+    "choices": [
+      "staticプロパティformAssociatedをtrueにすることで、そのカスタム要素が<form>の一員として扱われるようになる",
+      "attachInternals()で取得したElementInternalsのsetFormValue()を使うと、そのカスタム要素の値をフォーム送信時のデータに含めることができる",
+      "ElementInternalsのsetValidity()を使うことで、カスタム要素にも標準の制約検証(ValidityState)の仕組みを組み込める",
+      "formAssociatedをtrueにすると、attachShadow()を呼び出さなくても自動的にShadow DOMが有効になる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "static formAssociated = trueを設定するとカスタム要素がフォームに関連付けられ、attachInternals()で得られるElementInternalsのsetFormValue()でフォーム送信時の値を、setValidity()で制約検証の状態を制御できる。これによりネイティブのフォーム部品に近い振る舞いを独自要素で実現できる。formAssociatedとShadow DOMの有効化は無関係であり、Shadow DOMを使うには別途attachShadow()の呼び出しが必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ElementInternals"
+  },
+  {
+    "id": "web-api-076",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Declarative Shadow DOM(宣言的Shadow DOM)に関する説明として正しいものはどれか。",
+    "code": "<my-card>\n  <template shadowrootmode=\"open\">\n    <p>Shadow DOM内のコンテンツ</p>\n  </template>\n</my-card>",
+    "choices": [
+      "<template>要素にshadowrootmode属性を指定することで、JavaScriptの実行を待たずにHTMLのパース時点でShadow DOMを構築できる",
+      "Declarative Shadow DOMは<script>タグの実行を必須とする仕組みであり、JavaScriptなしでは機能しない",
+      "shadowrootmode属性の値には'open'のみが許可され、'closed'は指定できない",
+      "Declarative Shadow DOMを使うと、attachShadow()をJavaScriptから呼び出すことは一切禁止される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Declarative Shadow DOMは、<template shadowrootmode=\"open\">のようにHTML内で直接Shadow DOMを宣言できる仕組みで、サーバーサイドレンダリング等でJavaScriptの実行前にShadow DOMを構築できる利点がある。shadowrootmodeには'open'と'closed'の両方を指定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_components/Using_shadow_DOM"
+  },
+  {
+    "id": "web-api-077",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CustomElementRegistry.upgrade()メソッドの説明として正しいものはどれか。",
+    "code": "const div = document.createElement('div');\ndiv.innerHTML = '<my-widget></my-widget>';\n// この時点ではmy-widgetはまだ未定義\ncustomElements.define('my-widget', MyWidget);\ncustomElements.upgrade(div);",
+    "choices": [
+      "対象のサブツリー内にある、まだアップグレード(カスタム要素化)されていない要素を、既にdefine()済みの定義に基づいて強制的にアップグレードする",
+      "upgrade()は新しいカスタム要素をdefine()する際に必ず呼び出す必要がある必須メソッドである",
+      "upgrade()は指定した要素をDOMツリーから削除してから再生成する",
+      "upgrade()はまだdefine()されていない要素名であっても強制的にカスタム要素として動作させる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "customElements.upgrade()は、define()される前にDOMに存在していた未アップグレード状態の要素を、後からdefine()された定義に基づいて明示的にアップグレードするためのメソッドである。まだdefine()されていない要素名を動作させることはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CustomElementRegistry/upgrade"
+  },
+  {
+    "id": "web-api-078",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Node.getRootNode()メソッドの説明として正しいものはどれか。",
+    "code": "class MyElement extends HTMLElement {\n  connectedCallback() {\n    const root = this.getRootNode();\n    console.log(root instanceof ShadowRoot);\n  }\n}",
+    "choices": [
+      "そのノードが属するツリーのルート(Shadow DOM内であればShadowRoot、それ以外であれば通常はdocument)を取得する",
+      "getRootNode()は常にdocumentオブジェクトを返す",
+      "getRootNode()はそのノードの直接の親要素を返す",
+      "getRootNode()はShadow DOM内のノードに対しては常にnullを返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getRootNode()は呼び出したノードが属するツリーのルートノードを返す。通常のDOMツリーに属していればdocumentが返るが、Shadow DOM内のノードから呼び出した場合はそのShadowRootが返る(オプションでcomposed: trueを指定すればShadow DOMの境界を越えてルートを取得することもできる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/getRootNode"
+  },
+  {
+    "id": "web-api-079",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "pagehideイベントとunloadイベントの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "pagehideイベントはページがバックフォワードキャッシュ(bfcache)に保存される可能性がある場合にも発火し、モバイル環境などではunloadより信頼性の高い代替として推奨される",
+      "unloadイベントはbfcacheを無効化しないため、モダンブラウザでも安心して多用できる",
+      "pagehideとunloadは全く同じタイミングで発火し、互換性のために両方存在するだけである",
+      "pagehideイベントはページの表示が完了した直後に発火する、load相当のイベントである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "unloadイベントはブラウザがページをbfcache(バックフォワードキャッシュ)に保存することを妨げる場合があり、モバイル等では確実に発火しないケースもあるため、近年はpagehideイベント(およびvisibilitychange)を使うことが推奨されている。pagehideはページが破棄される場合だけでなくbfcacheに退避される場合にも発火する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/pagehide_event"
+  },
+  {
+    "id": "web-api-080",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "TouchEventに関する説明として正しいものはどれか。",
+    "code": "element.addEventListener('touchmove', (e) => {\n  const touch = e.touches[0];\n  console.log(touch.clientX, touch.clientY);\n});",
+    "choices": [
+      "e.touchesは現在画面に接触している全てのタッチポイントを表すTouchListであり、複数指の同時操作(マルチタッチ)にも対応できる",
+      "TouchEventはマウスイベントの別名であり、内部的な実装は完全に同一である",
+      "e.touchesには直前に画面から離れたタッチポイントのみが格納される",
+      "TouchEventはワンタッチ操作のみをサポートし、複数指の同時検知はできない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "TouchEventのtouchesプロパティは、現在画面に接触している全てのタッチポイントを表すTouchListであり、マルチタッチ操作(ピンチ操作等)にも対応できる。マウスイベントとは異なるイベントモデルであり、直前に離れたタッチはtouchendイベントのchangedTouchesなどで扱われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Touch_events"
+  },
+  {
+    "id": "web-api-081",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Node.normalize()メソッドの説明として正しいものはどれか。",
+    "code": "const div = document.createElement('div');\ndiv.appendChild(document.createTextNode('Hello, '));\ndiv.appendChild(document.createTextNode('World!'));\ndiv.normalize();\nconsole.log(div.childNodes.length);",
+    "choices": [
+      "隣接する複数のテキストノードを1つのテキストノードに結合し、空のテキストノードを削除する(このコードではchildNodes.lengthは1になる)",
+      "normalize()は要素の属性値を正規化(トリム)するメソッドである",
+      "normalize()はDOMツリー内の要素の並び順をアルファベット順に並び替える",
+      "normalize()を呼び出すとテキストノードの内容が全て大文字に変換される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Node.normalize()は、そのノード以下のサブツリーにある隣接するテキストノードを1つに結合し、内容が空のテキストノードを削除して正規化する。設問のコードでは2つのテキストノードをappendChild()した状態でnormalize()を呼ぶと1つのテキストノードに結合され、childNodes.lengthは1になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/normalize"
+  },
+  {
+    "id": "web-api-082",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Node.compareDocumentPosition()メソッドの用途として正しいものはどれか。",
+    "code": "const result = nodeA.compareDocumentPosition(nodeB);\nif (result & Node.DOCUMENT_POSITION_FOLLOWING) {\n  console.log('nodeBはnodeAより後に位置する');\n}",
+    "choices": [
+      "2つのノード間のドキュメント内での相対的な位置関係(前後・包含関係など)をビットマスクとして返す",
+      "2つのノードのテキスト内容が等しいかどうかを比較する",
+      "2つのノードのCSSの計算済みスタイルを比較する",
+      "2つのノードの座標(getBoundingClientRect相当)の距離を数値で返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "compareDocumentPosition()は引数に渡したノードが、呼び出し元のノードに対してドキュメント内でどのような位置関係(前方・後方・包含・別文書など)にあるかを示すビットマスク値を返すメソッドである。DOCUMENT_POSITION_FOLLOWINGなどの定数とビット演算で判定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Node/compareDocumentPosition"
+  },
+  {
+    "id": "web-api-083",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "document.querySelector('#target').focus({ preventScroll: true });",
+    "choices": [
+      "通常focus()はフォーカスされた要素が見えるように自動的にスクロールするが、preventScroll: trueを指定するとそのスクロール動作を抑制できる",
+      "preventScroll: trueを指定すると、要素へのフォーカス自体が完全にキャンセルされる",
+      "preventScrollはfocus()ではなくscrollIntoView()専用のオプションである",
+      "preventScroll: trueにすると、ページ全体のスクロール操作自体がユーザーに対して禁止される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "HTMLElement.focus()は通常、フォーカスした要素が画面内に表示されるよう自動的にスクロールするが、オプションにpreventScroll: trueを指定すると、その自動スクロール動作のみを抑制し、フォーカス自体は通常どおり行われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/focus"
+  },
+  {
+    "id": "web-api-084",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const anim = element.animate(\n  [\n    { transform: 'translateX(0)' },\n    { transform: 'translateX(200px)' }\n  ],\n  { duration: 1000, iterations: 2, easing: 'ease-in-out' }\n);\nanim.pause();",
+    "choices": [
+      "Web Animations APIを用いてCSSアニメーションと同等の効果をJavaScriptから直接生成・制御でき、戻り値のAnimationオブジェクトのpause()やplay()で再生を制御できる",
+      "element.animate()はCSSのtransitionプロパティを自動的に書き換えるだけで、実際のアニメーションはCSS側の設定に依存する",
+      "iterations: 2を指定すると、アニメーションは無限に繰り返される",
+      "element.animate()の戻り値には再生を制御するメソッドは存在せず、一度開始すると停止できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Element.animate()はキーフレームとオプション(duration、iterations、easing等)を指定してアニメーションを生成し、戻り値のAnimationオブジェクトのpause()/play()/cancel()/finish()などでJavaScriptから再生を制御できる。iterationsに数値を指定すればその回数だけ繰り返され、Infinityを指定した場合のみ無限に繰り返される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/animate"
+  },
+  {
+    "id": "web-api-085",
+    "category": "web-api",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "AbortControllerに関する説明として正しいものを全て選べ。",
+    "code": "const controller = new AbortController();\nfetch('/data', { signal: controller.signal });\nelement.addEventListener('click', handler, { signal: controller.signal });\ncontroller.abort();",
+    "choices": [
+      "controller.signalをfetch()のオプションに渡すことで、abort()呼び出し時に進行中の通信を中断できる",
+      "addEventListener()の第3引数にsignalを渡すと、abort()を呼び出した時点で該当のイベントリスナーがまとめて解除される",
+      "1つのAbortControllerのsignalを複数のfetch呼び出しやリスナーに共有し、abort()一回で全てをまとめて中断・解除できる",
+      "abort()を呼び出した後、同じcontrollerのsignalを新しいfetch()に渡すと再び中断されていない状態(未中断)として利用できる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "AbortControllerが持つsignalをfetch()やaddEventListener()の第3引数に渡しておくことで、controller.abort()を1回呼び出すだけで関連する通信の中断やイベントリスナーの解除をまとめて行える。同一のsignalを複数の処理に共有することも可能である。ただしabort()を呼び出したsignalは中断済み状態のままであり、再利用して未中断の状態に戻すことはできず、再度使うには新しいAbortControllerを生成する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AbortController"
+  },
+  {
+    "id": "web-api-086",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const range = document.createRange();\nrange.setStart(paragraph.firstChild, 2);\nrange.setEnd(paragraph.firstChild, 5);\nconst extracted = range.extractContents();",
+    "choices": [
+      "指定した開始位置(2文字目)から終了位置(5文字目)までのテキスト範囲を表すRangeを作成し、extractContents()でその範囲の内容を文書から切り出す(元の文書からは削除される)",
+      "setStart/setEndの第2引数はピクセル単位の座標を表す",
+      "extractContents()は範囲内のコンテンツをコピーするだけで、元の文書からは削除しない(cloneContents()と同じ挙動である)",
+      "Rangeオブジェクトはテキストのみを対象とし、要素ノードを範囲に含めることはできない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Range.setStart()/setEnd()はノードとそのノード内のオフセット(文字位置または子ノードのインデックス)を指定して範囲の開始・終了位置を定める。extractContents()はその範囲の内容をDocumentFragmentとして切り出し、元の文書からは削除する。内容を複製するだけで元の文書を変更しない場合はcloneContents()を使う。Rangeは要素ノードも範囲に含めることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Range"
+  },
+  {
+    "id": "web-api-087",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const selection = window.getSelection();\nif (selection.rangeCount > 0) {\n  const range = selection.getRangeAt(0);\n  console.log(range.toString());\n}",
+    "choices": [
+      "getRangeAt(0)で現在の選択範囲を表す最初のRangeオブジェクトを取得し、range.toString()で選択されたテキストを取得できる",
+      "getRangeAt()はSelectionオブジェクトではなく、documentオブジェクトに対して呼び出すメソッドである",
+      "rangeCountは常に1に固定されており、複数範囲の選択はどのブラウザでも発生しない",
+      "getRangeAt(0)は選択範囲そのものではなく、選択範囲の複製(コピー)を返すため、取得したRangeを変更しても実際の選択には反映されない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Selection.getRangeAt(index)は現在選択されている範囲のうちindex番目のRangeオブジェクトを返し、取得したRangeを操作すると実際の選択にも影響する。rangeCountは通常1だが、Firefoxなど一部のブラウザではCtrl+クリックによる複数範囲選択がサポートされ2以上になる場合がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Selection/getRangeAt"
+  },
+  {
+    "id": "web-api-088",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "shadowRoot.querySelector('slot').addEventListener('slotchange', (e) => {\n  console.log('スロットに割り当てられるノードが変化した');\n});",
+    "choices": [
+      "スロットに割り当てられるLight DOM側のノードが追加・削除されるなど変化した際に、そのslot要素からslotchangeイベントが発火する",
+      "slotchangeイベントはShadow DOM内部のCSSが変更された際に発火する",
+      "slotchangeイベントはページ全体のスクロール位置が変化した際に発火する",
+      "slotchangeイベントはカスタム要素のattributeChangedCallbackの別名である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "slotchangeイベントは<slot>要素に割り当てられるノード(割り当てられたLight DOM要素)の集合が変化したときに発火するイベントであり、Shadow DOM内で配布先コンテンツの変化を検知するために利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLSlotElement/slotchange_event"
+  },
+  {
+    "id": "web-api-089",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "DOMContentLoadedイベントとloadイベントの違いとして正しいものはどれか。",
+    "code": "document.addEventListener('DOMContentLoaded', () => console.log('DOM構築完了'));\nwindow.addEventListener('load', () => console.log('全リソース読み込み完了'));",
+    "choices": [
+      "DOMContentLoadedはHTMLの解析とDOM構築が完了した時点で発火し、画像やスタイルシートなど外部リソースの読み込み完了を待たない(通常loadより先に発火する)",
+      "loadイベントはHTMLのパースが完了した直後、画像などの読み込みを待たずに発火する",
+      "DOMContentLoadedとloadは常に同時に発火し、実質的に同じタイミングを表す",
+      "DOMContentLoadedはwindowオブジェクトにのみ登録でき、documentオブジェクトには登録できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DOMContentLoadedはHTMLドキュメントの解析とDOM構築が完了した時点(スタイルシートや画像などの読み込み完了を待たない)で発火する。loadイベントは画像・スタイルシート・iframe等を含む全リソースの読み込みが完了した時点で発火するため、通常DOMContentLoadedの方が先に発火する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/DOMContentLoaded_event"
+  },
+  {
+    "id": "web-api-090",
+    "category": "web-api",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ResizeObserverの監視ボックスの指定に関する次の記述として正しいものはどれか。",
+    "code": "const ro = new ResizeObserver((entries) => {\n  for (const entry of entries) {\n    const size = entry.borderBoxSize[0];\n    console.log(size.blockSize, size.inlineSize);\n  }\n});\nro.observe(target, { box: 'border-box' });",
+    "choices": [
+      "observe()の第2引数でbox: 'border-box'を指定すると、entry.borderBoxSizeからボーダーを含むサイズ(blockSize/inlineSize)を取得できる",
+      "borderBoxSizeは常に単一のオブジェクトであり、配列としてアクセスすることはできない",
+      "box: 'border-box'を指定しても、常にcontentRect(コンテンツボックス)しか取得できない",
+      "blockSizeとinlineSizeは常にwidthとheightと同じ意味であり、書字方向によって変化することはない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ResizeObserver.observe()の第2引数のboxオプションに'border-box'(または'content-box'、'device-pixel-content-box')を指定すると、対応するサイズ情報を配列であるentry.borderBoxSizeなどから取得できる。blockSize/inlineSizeは論理方向のサイズであり、縦書きなどの書字方向(writing-mode)によってwidth/heightとの対応関係が変化する点がwidth/heightとの違いである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ResizeObserverEntry/borderBoxSize"
+  }
+]

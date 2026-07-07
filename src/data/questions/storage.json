@@ -1,0 +1,1498 @@
+[
+  {
+    "id": "storage-001",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "document.cookieプロパティの説明として正しいものはどれか。",
+    "choices": [
+      "document.cookieに文字列を代入すると、既存の全てのCookieが削除されて新しい値だけが設定される",
+      "document.cookieに文字列を代入すると、指定した名前のCookieが追加または更新され、他のCookieはそのまま維持される",
+      "document.cookieは読み取り専用のプロパティであり、値を代入することはできない",
+      "document.cookieはCookieをJavaScriptのオブジェクト形式で返す"
+    ],
+    "correctAnswers": [1],
+    "explanation": "document.cookieへの代入は1つのCookie(name=value)を追加または更新する操作であり、既存の他のCookieには影響しない。document.cookieは読み書き可能なプロパティで、取得時は「name1=value1; name2=value2」形式の文字列を返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/cookie"
+  },
+  {
+    "id": "storage-002",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードでCookieを設定した場合の説明として正しいものはどれか。",
+    "code": "document.cookie = \"username=taro; path=/\";",
+    "choices": [
+      "expires属性もmax-age属性も指定していないため、このCookieはブラウザを閉じると削除されるセッションCookieになる",
+      "path属性を指定しない場合、Cookieはドメイン内の全パスで有効になる",
+      "このCookieは自動的に1年間の有効期限が設定される",
+      "path=/を指定すると、現在のページと同じディレクトリでのみCookieが有効になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "expiresやmax-ageを指定しない場合、そのCookieはセッションCookie(揮発性Cookie)となり、ブラウザを閉じると破棄される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "storage-003",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Cookieのmax-age属性とexpires属性を同時に指定した場合の挙動として正しいものはどれか。",
+    "choices": [
+      "expires属性が優先される",
+      "max-age属性が優先される",
+      "両方の値が加算されて有効期限が決まる",
+      "エラーとなりCookieは設定されない"
+    ],
+    "correctAnswers": [1],
+    "explanation": "max-age属性が指定されている場合、expires属性より優先される。max-ageは現在時刻からの経過秒数で有効期限を指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "storage-004",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "既存のCookieを削除する方法として正しいものを全て選べ。",
+    "code": "document.cookie = \"username=taro; path=/\";",
+    "choices": [
+      "同じ名前・pathを指定し、expiresに過去の日時を設定して上書きする",
+      "同じ名前・pathを指定し、max-age=0(またはそれ以下の値)を設定して上書きする",
+      "document.cookie = \"\"; を実行して初期化する",
+      "delete document.cookie.username; を実行する"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Cookieを削除するには、同じ名前・path・domainを指定した上で、expiresに過去の日時を設定するか、max-age=0(以下)を設定して上書きする。document.cookieに空文字を代入しても既存のCookieは削除されず、document.cookieにdeleteを使うこともできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "storage-005",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Cookieのpath属性の役割として正しいものはどれか。",
+    "choices": [
+      "Cookieを送信できるホスト名を制限する",
+      "Cookieが有効なURLパスの範囲を指定し、指定パス以下のリクエストにのみCookieが送信される",
+      "Cookieの保存先ディレクトリを指定する",
+      "Cookieの暗号化方式を指定する"
+    ],
+    "correctAnswers": [1],
+    "explanation": "path属性は、そのCookieが送信されるURLのパスの範囲を指定する。指定したパスまたはそのサブパスへのリクエストに対してのみCookieが送信される。ホスト名の制限はdomain属性の役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "storage-006",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cookieのdomain属性に関する説明として正しいものはどれか。",
+    "choices": [
+      "domain属性を省略した場合、サブドメインを含む全てのホストにCookieが送信される",
+      "domain属性を明示的に指定すると、指定したドメインとそのサブドメインにCookieが送信されるようになる",
+      "domain属性は複数指定でき、カンマ区切りで複数のドメインを設定できる",
+      "domain属性を指定すると、そのCookieはHTTPSでしか送信されなくなる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "domain属性を指定すると、指定したドメイン自身に加えてそのサブドメインにもCookieが送信される。省略した場合は、現在のホスト(サブドメインを含まない)にのみ送信される、いわゆるホストオンリーCookieとなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "storage-007",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "一般的なブラウザにおけるCookie1個あたりのデータサイズの上限の目安として最も適切なものはどれか。",
+    "choices": [
+      "約4KB",
+      "約64KB",
+      "約1MB",
+      "約5MB"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cookieの仕様(RFC6265)では最低でも4096バイトを保存できることが求められており、多くのブラウザは1つのCookieあたり約4KBを上限としている。約5MBはlocalStorageの容量目安である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "storage-008",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "CookieにHttpOnly属性を付与することで得られる効果として正しいものを全て選べ。",
+    "choices": [
+      "JavaScriptのdocument.cookieからそのCookieを読み書きできなくなる",
+      "XSS(クロスサイトスクリプティング)攻撃によるCookie値の窃取のリスクを軽減できる",
+      "そのCookieがHTTPS通信でのみ送信されるようになる",
+      "クロスサイトのリクエストでそのCookieが送信されなくなる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "HttpOnly属性を付与すると、そのCookieはJavaScriptのDocument.cookie経由でアクセスできなくなり、XSSによるCookie値の窃取リスクを軽減できる。HTTPS限定の送信はSecure属性、クロスサイト送信の制御はSameSite属性の役割であり、HttpOnlyには含まれない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "storage-009",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CookieにSecure属性を付与した場合の挙動として正しいものはどれか。",
+    "choices": [
+      "HTTPSなど暗号化された通信でのみそのCookieが送信される",
+      "JavaScriptからのアクセスができなくなる",
+      "Cookieの値が自動的に暗号化されて保存される",
+      "第三者のドメインとの通信でもCookieが送信されるようになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Secure属性を付与すると、そのCookieはHTTPSなど暗号化された接続でのみサーバーに送信される。値そのものが暗号化されるわけではない点に注意する。JavaScriptからのアクセス制限はHttpOnly属性の役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "storage-010",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CookieのSameSite属性に指定できる値として正しいものを全て選べ。",
+    "choices": [
+      "Strict",
+      "Lax",
+      "None",
+      "Cross",
+      "Same"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "SameSite属性にはStrict(クロスサイトリクエストでは一切送信しない)、Lax(トップレベルのGETナビゲーションなど一部のクロスサイトリクエストでは送信する)、None(クロスサイトでも送信する。Secure属性の付与が必須)の3つの値が指定できる。「Cross」「Same」という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie/SameSite"
+  },
+  {
+    "id": "storage-011",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "SameSite=Noneを指定してCookieを発行する際に、最新のブラウザで正しく受け入れられるための条件はどれか。",
+    "choices": [
+      "同時にSecure属性を付与する必要がある",
+      "同時にHttpOnly属性を付与する必要がある",
+      "path属性を指定してはならない",
+      "特に追加の条件はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "多くの最新ブラウザでは、SameSite=Noneを指定する場合はSecure属性も同時に付与することが必須となっており、付与されていないCookieは拒否される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie/SameSite"
+  },
+  {
+    "id": "storage-012",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CookieとWeb Storage(localStorage/sessionStorage)の違いとして正しいものを全て選べ。",
+    "choices": [
+      "Cookieは条件を満たす限り、HTTPリクエストのたびに自動的にサーバーへ送信されるが、Web StorageのデータはJavaScriptで明示的に送信しない限りサーバーには送られない",
+      "Cookieに保存できるデータ量は一般的にWeb Storageより小さい",
+      "sessionStorageもCookieと同様に、サーバー側のSet-Cookieヘッダーで直接設定できる",
+      "Web StorageはCookieと異なり、有効期限を秒単位や日付で細かく設定するオプションが標準で用意されている"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Cookieはドメイン・パス条件が一致すればHTTPリクエストごとに自動的にサーバーへ送信されるが、Web StorageはJavaScriptからしかアクセスできずサーバーへ自動送信されることはない。またCookieは1つあたり約4KBという制限があり、localStorage(数MB程度)より小さい。sessionStorageをSet-Cookieヘッダーで設定することはできず、Web StorageのAPIには有効期限を指定する仕組みは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API"
+  },
+  {
+    "id": "storage-013",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "localStorageに保存したデータの有効期限として正しいものはどれか。",
+    "choices": [
+      "ブラウザを閉じると自動的に削除される",
+      "24時間で自動的に削除される",
+      "明示的にremoveItemやclearで削除するか、ユーザーがブラウザのデータを消去しない限り保持され続ける",
+      "タブを閉じると削除される"
+    ],
+    "correctAnswers": [2],
+    "explanation": "localStorageに有効期限の概念はなく、明示的な削除操作やブラウザのデータ消去が行われない限り、ブラウザを再起動しても永続的にデータが保持される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage"
+  },
+  {
+    "id": "storage-014",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "多くのブラウザにおけるlocalStorageの保存容量の目安として最も近いものはどれか。",
+    "choices": [
+      "約4KB(オリジンごと)",
+      "約5MB(オリジンごと)",
+      "約1GB(オリジンごと)",
+      "無制限"
+    ],
+    "correctAnswers": [1],
+    "explanation": "厳密な仕様上の規定値はないが、多くのブラウザではオリジンごとにおよそ5MB程度がlocalStorageの実装上の容量目安とされている(ブラウザにより多少異なる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API"
+  },
+  {
+    "id": "storage-015",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "localStorageのデータ共有範囲に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "同一オリジン(スキーム・ホスト・ポートが全て一致)であれば、異なるタブや異なるページ間でもデータを共有できる",
+      "ポート番号が異なる場合、ホスト名が同じでも別オリジンとして扱われ、データは共有されない",
+      "サブドメインが異なっていても、同一ドメインであれば同一オリジンとして扱われ共有される",
+      "http://とhttps://のようにスキームが異なっていても、ホスト名が同じであれば同一オリジンとして扱われる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "オリジンはスキーム・ホスト・ポートの3要素が全て一致することで同一と判定される。ポート番号が異なれば別オリジンとなりデータは共有されない。サブドメインが異なる場合や、スキームが異なる場合も、それぞれ別オリジンとして扱われ、localStorageは共有されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage"
+  },
+  {
+    "id": "storage-016",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "localStorageおよびsessionStorageに保存できる値のデータ型として正しいものはどれか。",
+    "choices": [
+      "文字列型のみ",
+      "文字列、数値、真偽値などのプリミティブ型全て",
+      "オブジェクトや配列も含め、JavaScriptの任意の値をそのまま保存できる",
+      "Blobオブジェクトなどのバイナリデータも直接保存できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Storage APIのsetItemで保存できる値は文字列型のみである。数値やオブジェクトを渡した場合は自動的に文字列に変換されて保存される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Storage/setItem"
+  },
+  {
+    "id": "storage-017",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードを実行した際の動作として正しいものはどれか。",
+    "code": "const user = { name: \"太郎\", age: 20 };\nlocalStorage.setItem(\"user\", JSON.stringify(user));\n\nconst restored = JSON.parse(localStorage.getItem(\"user\"));\nconsole.log(restored.name);",
+    "choices": [
+      "localStorageはオブジェクトを直接保存できるため、JSON.stringifyは不要でエラーになる",
+      "オブジェクトをJSON文字列に変換して保存し、取得時にJSON.parseで元のオブジェクトに復元しているため、「太郎」が出力される",
+      "localStorageに保存されたJSON文字列は自動的にオブジェクトとして返されるため、JSON.parseは常にエラーになる",
+      "setItemに文字列以外を渡すとその場で例外がスローされ、処理が中断する"
+    ],
+    "correctAnswers": [1],
+    "explanation": "localStorageは文字列しか扱えないため、オブジェクトを保存する際はJSON.stringifyで文字列化し、取得時にJSON.parseでオブジェクトに復元するのが一般的な方法である。このコードは正しく「太郎」を出力する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage"
+  },
+  {
+    "id": "storage-018",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "sessionStorageのデータが保持される範囲に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "そのデータを作成したタブ(ブラウジングコンテキスト)に限定して保持される",
+      "タブを閉じるとデータは破棄される",
+      "同一オリジンであればブラウザ内の全てのタブで共有される",
+      "同じタブ内でページをリロードすると、そのタブのsessionStorageのデータは失われる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "sessionStorageはタブ(ブラウジングコンテキスト)単位でスコープが分離されており、同じオリジンでも別タブとは共有されない。タブを閉じるとデータは破棄されるが、同じタブ内でのページのリロードではデータは保持される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage"
+  },
+  {
+    "id": "storage-019",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "同じURLを2つの別々のタブで開いた場合のsessionStorageの挙動として正しいものはどれか。",
+    "choices": [
+      "URLが同じであるため、2つのタブで同じsessionStorageを共有する",
+      "URLが同じであっても、タブごとに独立したsessionStorageが作成され、互いのデータは共有されない",
+      "後から開いたタブのsessionStorageは自動的に空になり、先に開いたタブのデータのみ有効になる",
+      "2つ目のタブを開いた時点で1つ目のタブのsessionStorageが削除される"
+    ],
+    "correctAnswers": [1],
+    "explanation": "sessionStorageはURLではなくタブ(ブラウジングコンテキスト)ごとに独立してスコープされるため、同じURLを別タブで開いても、それぞれ独立したsessionStorageが生成される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage"
+  },
+  {
+    "id": "storage-020",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ブラウザのタブを「複製」する操作を行った場合のsessionStorageの挙動として、仕様上定義されている動作はどれか。",
+    "choices": [
+      "複製元のタブのsessionStorageの内容が、複製先の新しいタブにコピーされる",
+      "複製先のタブのsessionStorageは常に空の状態で開始される",
+      "複製元・複製先のタブでsessionStorageが1つの領域として共有され続ける",
+      "複製操作自体がsessionStorageの内容に影響を与えることはない仕様になっている"
+    ],
+    "correctAnswers": [0],
+    "explanation": "HTML仕様では、タブを複製した場合、複製元のsessionStorageの内容が複製先の新しいブラウジングコンテキストにコピーされると定義されている。ただしその後は互いに独立したストレージとなり、一方の変更が他方に反映されることはない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/sessionStorage"
+  },
+  {
+    "id": "storage-021",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のようにstorageイベントを監視するコードがある。あるタブでlocalStorage.setItem(\"key\", \"value\")を実行した場合の挙動として正しいものはどれか。",
+    "code": "window.addEventListener(\"storage\", (event) => {\n  console.log(event.key, event.newValue);\n});",
+    "choices": [
+      "setItemを実行した同じタブのwindowでこのイベントが発火する",
+      "同一オリジンの他のタブ・ウィンドウのwindowでこのイベントが発火し、setItemを実行した当のタブでは発火しない",
+      "全てのオリジンの全てのタブでこのイベントが発火する",
+      "sessionStorageに対する変更としてこのイベントが扱われる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "storageイベントは、変更を行ったタブ自身では発火せず、同一オリジンを開いている他のタブ・ウィンドウに対して発火する。他タブ間でのデータ変更を検知する目的で利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/storage_event"
+  },
+  {
+    "id": "storage-022",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "StorageEventオブジェクトが持つプロパティとして正しいものを全て選べ。",
+    "code": "window.addEventListener(\"storage\", (event) => {\n  // event.??? を利用する\n});",
+    "choices": [
+      "key(変更されたキー名。clear()の場合はnull)",
+      "oldValue(変更前の値)",
+      "newValue(変更後の値)",
+      "storageArea(変更が行われたStorageオブジェクト)",
+      "timestamp(変更が発生した時刻)"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "StorageEventはkey、oldValue、newValue、url、storageAreaといったプロパティを持つ。timestampというプロパティは存在しない。clear()が呼ばれた場合、key・oldValue・newValueは全てnullになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageEvent"
+  },
+  {
+    "id": "storage-023",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "storageイベントに関する説明として正しいものはどれか。",
+    "choices": [
+      "storageイベントはlocalStorageの変更時のみ発火し、sessionStorageの変更では発火しない",
+      "storageイベントの仕様上、sessionStorageの変更でも発火し得るが、sessionStorage自体がタブ単位で分離されているため、実質的に他のタブへ通知が届く場面は限定的である",
+      "sessionStorageの変更は常に全タブのwindowに通知される",
+      "storageイベントはCookieの変更を検知するためのイベントである"
+    ],
+    "correctAnswers": [1],
+    "explanation": "仕様上、storageイベントはlocalStorageだけでなくsessionStorageの変更に対しても定義されているが、sessionStorage自体がタブ(ブラウジングコンテキスト)ごとに分離されているため、同じセッションを共有するフレーム間など限られた範囲でしか他の受信者が存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/storage_event"
+  },
+  {
+    "id": "storage-024",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードを実行した結果として正しいものはどれか。",
+    "code": "localStorage.setItem(\"token\", \"abc123\");\nconsole.log(localStorage.getItem(\"token\"));\nlocalStorage.removeItem(\"token\");\nconsole.log(localStorage.getItem(\"token\"));",
+    "choices": [
+      "「abc123」と null が順に出力される",
+      "「abc123」と「abc123」が順に出力される",
+      "null と「abc123」が順に出力される",
+      "エラーが発生してどちらも出力されない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "setItemで値を保存後、getItemで「abc123」が取得できる。removeItemでそのキーを削除した後にgetItemを呼ぶと、該当キーが存在しないためnullが返る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Storage/removeItem"
+  },
+  {
+    "id": "storage-025",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Storageインターフェースのkey(index)メソッドの用途として正しいものはどれか。",
+    "choices": [
+      "指定したインデックス番目に格納されているキー名を返す",
+      "指定したキーに対応する値を返す",
+      "指定したキーが存在するかどうかを真偽値で返す",
+      "ストレージ内の全キーを配列として返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "key(index)メソッドは、ストレージ内のn番目のキーの名前を返す。全キーを列挙する際にlengthプロパティと組み合わせてループ処理に使われることがある。インデックスが範囲外の場合はnullを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Storage/key"
+  },
+  {
+    "id": "storage-026",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "localStorage.lengthプロパティが表すものはどれか。",
+    "choices": [
+      "保存されている全アイテムの値の文字数の合計",
+      "保存されているキーと値のペアの個数",
+      "localStorageの最大保存可能件数",
+      "現在使用しているストレージ容量のバイト数"
+    ],
+    "correctAnswers": [1],
+    "explanation": "lengthプロパティは、そのストレージオブジェクトに現在保存されているキーと値のペアの総数を返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Storage/length"
+  },
+  {
+    "id": "storage-027",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "存在しないキーに対してgetItemを呼び出した場合の戻り値として正しいものはどれか。",
+    "code": "console.log(localStorage.getItem(\"notExistKey\"));",
+    "choices": [
+      "undefined",
+      "null",
+      "空文字列 \"\"",
+      "例外がスローされる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "指定したキーが存在しない場合、getItemはnullを返す。undefinedや例外にはならない点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Storage/getItem"
+  },
+  {
+    "id": "storage-028",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードを実行した場合、コンソールに出力される内容として正しいものはどれか。",
+    "code": "const data = { id: 1, name: \"sample\" };\nlocalStorage.setItem(\"data\", data);\nconsole.log(localStorage.getItem(\"data\"));",
+    "choices": [
+      "{id: 1, name: \"sample\"} というオブジェクトがそのまま出力される",
+      "setItemの引数が文字列でないため例外がスローされる",
+      "オブジェクトのtoString()が暗黙的に呼び出され、「[object Object]」という文字列が出力される",
+      "null が出力される"
+    ],
+    "correctAnswers": [2],
+    "explanation": "setItemに文字列以外の値を渡すと、内部で暗黙的に文字列へ変換(toString())されてから保存される。オブジェクトのデフォルトのtoString()は「[object Object]」を返すため、そのままオブジェクトを保存すると意図した情報が失われる。オブジェクトを保存する場合はJSON.stringifyを使うべきである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Storage/setItem"
+  },
+  {
+    "id": "storage-029",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "IndexedDBを構成する基本的な概念として正しいものを全て選べ。",
+    "choices": [
+      "データベース(database)",
+      "オブジェクトストア(object store)",
+      "トランザクション(transaction)",
+      "テーブル結合(JOIN)を行うクエリエンジン",
+      "インデックス(index)"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "IndexedDBは、データベースの中に複数のオブジェクトストア(キーと値の集合)を持ち、操作はトランザクション単位で行われ、検索効率を上げるためのインデックスを作成できる。IndexedDBはNoSQL的なキーバリュー型のデータベースであり、SQLのようなJOINを行うクエリエンジンは持たない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "storage-030",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "IndexedDBのデータベースのアクセス範囲に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "オリジンごとに独立したデータベース群を持つ",
+      "異なるオリジンのページのスクリプトからは、そのデータベースを参照できない",
+      "サーバー側のプログラムからHTTP経由で直接データを読み書きできる",
+      "CookieのようにHTTPリクエストのヘッダーに自動的に含めて送信される"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "IndexedDBは同一オリジンポリシーの対象であり、オリジン(スキーム・ホスト・ポート)ごとに独立したデータベース群を持つ。異なるオリジンのスクリプトからは参照できず、あくまでクライアント側のJavaScriptから操作するAPIであるため、サーバーから直接アクセスしたり、HTTPリクエストに自動的に含まれたりすることはない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "storage-031",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const request = indexedDB.open(\"MyDatabase\", 2);\nrequest.onupgradeneeded = (event) => { /* ... */ };\nrequest.onsuccess = (event) => { const db = event.target.result; };\nrequest.onerror = (event) => { console.error(event.target.error); };",
+    "choices": [
+      "第2引数の2は、開くデータベースの中に含まれるオブジェクトストアの数を表す",
+      "第2引数の2はデータベースのバージョン番号であり、既存のバージョンより大きい値を指定するとonupgradeneededイベントが発生する",
+      "indexedDB.openは同期的に処理され、戻り値としてdbオブジェクトが直接得られる",
+      "onupgradeneededは、データベースを削除するときにのみ発生するイベントである"
+    ],
+    "correctAnswers": [1],
+    "explanation": "indexedDB.open(name, version)の第2引数はデータベースのバージョン番号である。指定したバージョンが既存の保存済みバージョンより大きい場合(または初回作成時)にonupgradeneededイベントが発生し、スキーマ変更を行う。openは非同期APIであり、IDBOpenDBRequestを返しonsuccess等のコールバックで結果を受け取る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBFactory/open"
+  },
+  {
+    "id": "storage-032",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "IndexedDBのonupgradeneededイベントが発生するタイミングとして正しいものはどれか。",
+    "code": "const request = indexedDB.open(\"MyDatabase\", 3);\nrequest.onupgradeneeded = (event) => {\n  const db = event.target.result;\n  if (!db.objectStoreNames.contains(\"items\")) {\n    db.createObjectStore(\"items\", { keyPath: \"id\" });\n  }\n};",
+    "choices": [
+      "データベースへの読み取り操作を行うたびに毎回発生する",
+      "指定したデータベースが初めて作成されるとき、または指定したバージョン番号が既存の保存済みバージョンより大きいときに発生する",
+      "ブラウザを再起動するたびに必ず発生する",
+      "トランザクションがエラーになったときに発生する"
+    ],
+    "correctAnswers": [1],
+    "explanation": "onupgradeneededは、データベースが未作成(初回)の場合や、open()に指定したバージョン番号が現在保存されているバージョンより大きい場合に発生する。オブジェクトストアやインデックスの作成・削除はこのイベントハンドラ内(versionchangeトランザクション中)でのみ行うことができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBOpenDBRequest/upgradeneeded_event"
+  },
+  {
+    "id": "storage-033",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "IndexedDBのcreateObjectStoreメソッドを呼び出せるタイミングとして正しいものはどれか。",
+    "choices": [
+      "readwriteモードのトランザクション内であればいつでも呼び出せる",
+      "onupgradeneededイベントハンドラ内(versionchangeトランザクション中)でのみ呼び出せる",
+      "onsuccessイベントハンドラ内でデータベース接続後に自由に呼び出せる",
+      "アプリケーションの初期化処理であればどこからでも呼び出せる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "オブジェクトストアやインデックスの作成・削除といったスキーマの変更操作は、versionchangeトランザクションの中でのみ許可されており、通常はonupgradeneededイベントハンドラ内で行う。それ以外のタイミングで呼び出すと例外が発生する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBDatabase/createObjectStore"
+  },
+  {
+    "id": "storage-034",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "IndexedDBのオブジェクトストア作成時に指定するkeyPathとautoIncrementオプションの組み合わせに関する説明として正しいものはどれか。",
+    "code": "db.createObjectStore(\"items\", { keyPath: \"id\", autoIncrement: true });",
+    "choices": [
+      "keyPathを指定した場合、autoIncrementを併用することはできず必ずエラーになる",
+      "autoIncrementを有効にすると、追加するオブジェクトにkeyPathで指定したプロパティ(この例ではid)が存在しなくても自動採番された値がそのプロパティに設定されて保存される",
+      "autoIncrementはオブジェクトストアではなくインデックスに対してのみ設定できるオプションである",
+      "keyPathを省略した場合、autoIncrementは常に無効になる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "keyPathとautoIncrementは併用可能であり、追加するデータにkeyPathで指定したプロパティが含まれていない場合、自動的に採番された値がそのプロパティ名で設定されて保存される。autoIncrementはオブジェクトストアに設定するオプションである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBDatabase/createObjectStore"
+  },
+  {
+    "id": "storage-035",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "IndexedDBのオブジェクトストアが持つadd()メソッドとput()メソッドの違いとして正しいものはどれか。",
+    "choices": [
+      "add()は同じキーのレコードが既に存在する場合は上書きするが、put()は既存レコードがあるとエラーになる",
+      "add()は同じキーのレコードが既に存在する場合エラーになるが、put()は既存レコードがあれば上書き(更新)し、なければ新規追加する",
+      "add()とput()は全く同じ動作をする2つの別名メソッドである",
+      "add()は同期的に、put()は非同期的に処理される"
+    ],
+    "correctAnswers": [1],
+    "explanation": "add()は指定したキーが既に存在する場合に制約エラーとなり追加に失敗するのに対し、put()は既存キーがあれば値を上書き更新し、存在しなければ新規に追加する(いわゆるupsert)。両方とも非同期APIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/put"
+  },
+  {
+    "id": "storage-036",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const tx = db.transaction(\"items\", \"readonly\");\nconst store = tx.objectStore(\"items\");\nconst request = store.get(1);\nrequest.onsuccess = () => {\n  console.log(request.result);\n};",
+    "choices": [
+      "store.get(1)は同期的に値を返すため、console.log(request.result)を直接get()の戻り値に置き換えても同じ結果になる",
+      "store.get(1)は非同期のIDBRequestを返し、取得結果はonsuccessイベント発生後にrequest.resultとして参照できる",
+      "get()メソッドはreadonlyモードのトランザクションでは使用できない",
+      "get(1)は常に配列を返す"
+    ],
+    "correctAnswers": [1],
+    "explanation": "IndexedDBの操作は全て非同期であり、get()は即座に結果を返すのではなくIDBRequestオブジェクトを返す。実際の取得結果は、onsuccessイベントが発生した後にrequest.resultプロパティとして参照する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/get"
+  },
+  {
+    "id": "storage-037",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの目的として最も適切なものはどれか。",
+    "code": "const tx = db.transaction(\"items\", \"readonly\");\nconst store = tx.objectStore(\"items\");\nconst request = store.openCursor();\nrequest.onsuccess = (event) => {\n  const cursor = event.target.result;\n  if (cursor) {\n    console.log(cursor.key, cursor.value);\n    cursor.continue();\n  }\n};",
+    "choices": [
+      "オブジェクトストア内の全レコードを1件ずつ順番に取得して処理する",
+      "オブジェクトストア内の特定の1件のレコードのみを取得する",
+      "オブジェクトストアを丸ごと削除する",
+      "オブジェクトストアにインデックスを新規作成する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "openCursor()はカーソルを使ってオブジェクトストア内のレコードを1件ずつ走査するためのメソッドである。onsuccess内でcursorが存在する限りcontinue()を呼び出すことで、全レコードを順に処理できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/openCursor"
+  },
+  {
+    "id": "storage-038",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "IndexedDBのインデックス(createIndexで作成)の役割として正しいものはどれか。",
+    "choices": [
+      "主キー以外のプロパティを使った検索を高速化するために利用する",
+      "オブジェクトストア自体の暗号化を行うために利用する",
+      "トランザクションのモードをreadwriteに固定するために利用する",
+      "データベースのバージョン番号を管理するために利用する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "インデックスは、主キー以外のプロパティをキーとしてレコードを検索できるようにする仕組みで、createIndexで作成する。例えば「email」プロパティにインデックスを作成すれば、主キーを使わずにemailの値でレコードを検索できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/createIndex"
+  },
+  {
+    "id": "storage-039",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "IndexedDBのトランザクションについて正しいものを全て選べ。",
+    "code": "const tx = db.transaction(\"items\", \"readwrite\");",
+    "choices": [
+      "db.transaction()の第2引数には「readonly」または「readwrite」を指定でき、省略時は「readonly」になる",
+      "readwriteモードのトランザクションでは、レコードの追加・更新・削除に加え読み取りも行える",
+      "オブジェクトストアの作成・削除など、スキーマを変更するversionchangeモードのトランザクションは、通常のtransaction()呼び出しではなくonupgradeneeded時にブラウザによって自動的に生成される",
+      "1つのトランザクション内で行った複数の操作は、明示的にcommit()を呼ばない限り一切確定(コミット)されない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "transaction()の第2引数省略時のデフォルトは「readonly」であり、readwriteモードでは読み書き両方が可能である。スキーマ変更用のversionchangeトランザクションはonupgradeneeded時に自動生成され、通常のtransaction()では明示的に指定しない。また、トランザクションはそのイベントループ内で発行された全リクエストが完了し、新たなリクエストが発行されなければ自動的にコミットされる仕組みになっており、明示的なcommit()呼び出しは必須ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBTransaction"
+  },
+  {
+    "id": "storage-040",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "IndexedDBのAPIの性質に関する説明として正しいものはどれか。",
+    "choices": [
+      "全ての操作はPromiseベースで設計されており、async/awaitでそのまま扱える",
+      "全ての操作は同期的に実行され、結果はメソッドの戻り値として直接取得できる",
+      "基本のAPIはイベントベースの非同期処理として設計されており、結果はonsuccess/onerrorなどのイベントハンドラで受け取る",
+      "読み取り操作のみ非同期で、書き込み操作は同期的に行われる"
+    ],
+    "correctAnswers": [2],
+    "explanation": "IndexedDBのネイティブAPIはコールバック(イベントハンドラ)を用いた非同期処理として設計されている。近年はこれをPromiseでラップした「idb」のようなライブラリも利用されるが、標準API自体はイベントベースである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "storage-041",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "IndexedDBの操作中にエラーが発生した場合の一般的な処理方法として正しいものはどれか。",
+    "choices": [
+      "try/catchで同期的にエラーを捕捉する",
+      "該当するIDBRequestのonerrorイベントハンドラでevent.target.errorを参照してエラー内容を確認する",
+      "エラーは自動的に無視され、処理が継続する",
+      "エラー発生時は必ずページ全体がリロードされる"
+    ],
+    "correctAnswers": [1],
+    "explanation": "IndexedDBは非同期APIであるため、リクエストの失敗はonerrorイベントとして通知される。event.target.errorでDOMExceptionなどのエラー情報を取得できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBRequest/error"
+  },
+  {
+    "id": "storage-042",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Cache APIにおけるCacheStorageとCacheの関係について正しいものはどれか。",
+    "choices": [
+      "CacheStorageは単一のCacheオブジェクトであり、caches.open()を呼ぶたびに同じキャッシュが返される",
+      "caches.open(name)を呼び出すと、名前付きのCacheオブジェクトを取得(なければ新規作成)でき、1つのオリジン内に複数のCacheオブジェクトを名前で管理できる",
+      "Cacheオブジェクトはブラウザ全体で1つしか作成できない",
+      "CacheStorageはlocalStorageの別名であり、実体は同じストレージ領域を指す"
+    ],
+    "correctAnswers": [1],
+    "explanation": "caches(CacheStorage)は名前をキーとして複数のCacheオブジェクトを管理する仕組みであり、caches.open(\"cache-name\")を呼ぶことで、指定した名前のCacheオブジェクトを取得または新規作成できる。CacheStorageとlocalStorageは全く別の独立したストレージ機構である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CacheStorage"
+  },
+  {
+    "id": "storage-043",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードで使われているCacheオブジェクトのメソッドの説明として正しいものを全て選べ。",
+    "code": "caches.open(\"v1\").then((cache) => {\n  cache.put(\"/data.json\", new Response(\"{}\"));\n  cache.match(\"/data.json\").then((response) => { /* ... */ });\n  cache.delete(\"/data.json\");\n});",
+    "choices": [
+      "put(request, response)は指定したリクエストに対応するレスポンスをキャッシュに保存する",
+      "match(request)は指定したリクエストに一致するキャッシュ済みレスポンスを検索して返す",
+      "delete(request)は指定したリクエストに対応するキャッシュエントリを削除する",
+      "put/match/deleteはいずれも同期的に処理され、Promiseは返さない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Cache.put()はリクエストとレスポンスのペアをキャッシュに保存し、Cache.match()は一致するレスポンスを検索して返し、Cache.delete()は該当エントリを削除する。これらはいずれも非同期処理でありPromiseを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache"
+  },
+  {
+    "id": "storage-044",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Cache APIに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "Service Workerのfetchイベントと組み合わせてオフライン対応のリソースキャッシュを実現するのによく利用される",
+      "API自体は、Service Workerだけでなくwindowコンテキストからも利用できる",
+      "Cache APIはCookieを保存するための専用のAPIである",
+      "Cache APIで保存できるのはテキストデータのみで、画像などのバイナリレスポンスは保存できない"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Cache APIはRequest/Responseのペアを保存・取得できる仕組みで、Service Workerと組み合わせたオフライン対応でよく使われるが、cachesグローバルはwindowコンテキストからも利用可能である。Cookie専用の仕組みではなく、画像などのバイナリレスポンスも問題なく保存できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache"
+  },
+  {
+    "id": "storage-045",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "File APIのFileオブジェクトが持つプロパティとして正しいものを全て選べ。",
+    "choices": [
+      "name(ファイル名)",
+      "size(バイト単位のファイルサイズ)",
+      "type(MIMEタイプ)",
+      "lastModified(最終更新日時)",
+      "encoding(文字エンコーディング)"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "FileオブジェクトはBlobを継承し、size・typeに加え、name(ファイル名)やlastModified(最終更新日時のタイムスタンプ)といった独自のプロパティを持つ。encodingというプロパティは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/File"
+  },
+  {
+    "id": "storage-046",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のHTMLとJavaScriptの説明として正しいものはどれか。",
+    "code": "<input type=\"file\" id=\"fileInput\" multiple>\n<script>\ndocument.getElementById(\"fileInput\").addEventListener(\"change\", (e) => {\n  const files = e.target.files;\n  console.log(files.length);\n});\n</script>",
+    "choices": [
+      "e.target.filesはFileオブジェクトを1つだけ返すプロパティである",
+      "e.target.filesはFileListオブジェクトであり、選択された複数のFileオブジェクトに配列のようにインデックスでアクセスできる",
+      "multiple属性を指定しても、input要素からは常に1つのファイルしか取得できない",
+      "filesプロパティはString型の配列としてファイル名のみを保持する"
+    ],
+    "correctAnswers": [1],
+    "explanation": "input要素のfilesプロパティはFileListオブジェクトであり、multiple属性によって複数選択されたFileオブジェクトの集合を、配列のようにインデックスやlengthでアクセスできる形で保持する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FileList"
+  },
+  {
+    "id": "storage-047",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Blobオブジェクトに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "サイズ(size)とMIMEタイプ(type)の情報を持つ",
+      "不変(immutable)な生のバイナリデータを表す",
+      "slice()メソッドを使ってデータの一部を切り出すことができる",
+      "常にファイルシステム上の実ファイルと1対1で対応する",
+      "テキストデータしか保持できない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Blobは、サイズとMIMEタイプの情報を持つ不変な生データを表すオブジェクトで、slice()により一部を切り出した新しいBlobを作成できる。テキストに限らず任意のバイナリデータを保持でき、必ずしも実ファイルと対応するとは限らない(メモリ上で生成したデータなども表現できる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Blob"
+  },
+  {
+    "id": "storage-048",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "FileReaderオブジェクトが持つ読み込みメソッドとその説明の組み合わせとして正しいものを全て選べ。",
+    "choices": [
+      "readAsText(blob) : 指定したBlob/Fileの内容をテキスト文字列として読み込む",
+      "readAsDataURL(blob) : 指定したBlob/Fileの内容をBase64エンコードされたデータURL形式で読み込む",
+      "readAsArrayBuffer(blob) : 指定したBlob/Fileの内容をArrayBuffer(バイナリデータ)として読み込む",
+      "readAsJSON(blob) : 指定したBlob/Fileの内容を自動的にJSONオブジェクトとしてパースして読み込む"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "FileReaderにはreadAsText、readAsDataURL、readAsArrayBufferといった読み込みメソッドが用意されている(readAsBinaryStringは非推奨)。readAsJSONというメソッドは存在せず、JSONとして扱いたい場合はreadAsTextで読み込んだ文字列をJSON.parseする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FileReader"
+  },
+  {
+    "id": "storage-049",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const reader = new FileReader();\nreader.onload = () => {\n  console.log(reader.result);\n};\nreader.onerror = () => {\n  console.error(reader.error);\n};\nreader.readAsText(file);",
+    "choices": [
+      "readAsTextの呼び出しは同期的であり、readAsTextの直後にreader.resultへ読み込んだ内容が入っている",
+      "読み込みが成功するとonloadイベントが発生し、reader.resultに読み込んだテキスト内容が格納される。失敗時はonerrorイベントが発生する",
+      "onloadイベントはファイルの読み込みが失敗した場合にのみ発生する",
+      "FileReaderはFileオブジェクトを引数に取ることができず、Blobオブジェクトのみ読み込み可能である"
+    ],
+    "correctAnswers": [1],
+    "explanation": "FileReaderの読み込みは非同期処理であり、読み込みが成功するとloadイベント(onload)が発生し、その時点でreader.resultに結果が格納される。読み込みに失敗した場合はerrorイベント(onerror)が発生し、reader.errorでエラー情報を確認できる。FileはBlobを継承しているため、readAsTextなどにFileオブジェクトを渡すことができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FileReader/load_event"
+  },
+  {
+    "id": "storage-050",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "navigator.storage.estimate().then((estimate) => {\n  console.log(`使用量: ${estimate.usage} バイト`);\n  console.log(`割り当て量: ${estimate.quota} バイト`);\n});",
+    "choices": [
+      "Storage Manager APIのestimate()メソッドを使い、そのオリジンが現在使用しているストレージ量(usage)と、利用可能なおおよその上限(quota)の推定値を非同期に取得している",
+      "estimate()はCookieのサイズのみを計測するためのメソッドである",
+      "estimate()は同期的にストレージ使用量を返すメソッドであり、Promiseは返さない",
+      "quotaプロパティは常に固定値5MBを返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.storage.estimate()はStorage Manager APIの一部で、そのオリジンが使用しているストレージ容量の推定値(usage)と、利用可能な推定上限(quota)をPromiseで非同期に返す。localStorageやIndexedDB、Cache APIなど複数のストレージ機構を横断した概算値であり、Cookie専用の仕組みではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/estimate"
+  },
+  {
+    "id": "storage-051",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードにおけるURL.createObjectURL()の説明として正しいものはどれか。",
+    "code": "const file = fileInput.files[0];\nconst url = URL.createObjectURL(file);\nimg.src = url;",
+    "choices": [
+      "指定したBlobまたはFileオブジェクトを参照する一時的なURL(blob:スキームのURL)を生成する",
+      "指定したファイルの内容をサーバーにアップロードし、そのアップロード先のURLを返す",
+      "指定したBlobをBase64文字列に変換したdata:URLを返す",
+      "既存のURLを正規化するためのユーティリティメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "URL.createObjectURL()は、Blob(Fileを含む)オブジェクトを参照する一時的なオブジェクトURL(blob:から始まるURL)をメモリ上に生成する。サーバーへの通信は発生せず、data:URLへの変換とも異なる。生成したURLは不要になったらrevokeObjectURL()で解放すべきである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/URL/createObjectURL_static"
+  },
+  {
+    "id": "storage-052",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "URL.revokeObjectURL()の役割として正しいものはどれか。",
+    "code": "const url = URL.createObjectURL(blob);\n// ... 画像として表示するなど利用 ...\nURL.revokeObjectURL(url);",
+    "choices": [
+      "createObjectURL()で発行したオブジェクトURLと、それが参照していたリソースとの結びつきを解除し、ブラウザがそのメモリを解放できるようにする",
+      "指定したURLに対応するCookieを削除する",
+      "指定したURLへのネットワークアクセスを禁止する",
+      "オブジェクトURLの有効期限を延長する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "createObjectURL()で生成したオブジェクトURLは、明示的にrevokeObjectURL()を呼び出すかドキュメントが破棄されるまでメモリ上に保持され続ける。不要になった時点でrevokeObjectURL()を呼び出すことで、参照していたリソースを解放しメモリリークを防ぐことができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/URL/revokeObjectURL_static"
+  },
+  {
+    "id": "storage-053",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "多数の画像プレビューを生成するコードで、URL.createObjectURL()を繰り返し呼び出しrevokeObjectURL()を呼ばない場合に起こり得る問題として最も適切なものはどれか。",
+    "code": "files.forEach((file) => {\n  const img = document.createElement(\"img\");\n  img.src = URL.createObjectURL(file);\n  document.body.appendChild(img);\n});",
+    "choices": [
+      "生成したオブジェクトURLが解放されず参照が残り続けるため、ドキュメントが存在する間メモリ使用量が増加し続ける",
+      "revokeObjectURL()を呼ばないとimg要素に画像が表示されない",
+      "createObjectURL()は1ページにつき1回しか呼び出せないため、2回目以降は例外がスローされる",
+      "revokeObjectURL()を呼ばなくても、ブラウザは自動的に数秒でURLを無効化するため問題は起きない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "createObjectURL()で発行されたオブジェクトURLは、明示的にrevokeObjectURL()を呼び出すか、ドキュメントがアンロードされるまで解放されない。多数生成して破棄しないままにすると、参照しているBlobデータがメモリ上に残り続け、メモリ使用量の増加につながる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/URL/revokeObjectURL_static"
+  },
+  {
+    "id": "storage-054",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "FormDataオブジェクトに関する説明として正しいものを全て選べ。",
+    "code": "const formData = new FormData();\nformData.append(\"avatar\", fileInput.files[0]);\nfetch(\"/upload\", { method: \"POST\", body: formData });",
+    "choices": [
+      "FormDataオブジェクトには、文字列だけでなくFileやBlobオブジェクトも値として追加できる",
+      "fetch()のbodyにFormDataを渡すと、ブラウザが自動的にmultipart/form-data形式のContent-Typeを設定して送信する",
+      "FormDataに追加した値は、追加した順序に関わらずキー名のアルファベット順で送信される",
+      "1つのFormDataオブジェクトには同じキー名を複数回appendすることはできず、後から追加した値で常に上書きされる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "FormDataは文字列だけでなくFileやBlobを値として保持でき、fetch()のbodyに渡すとブラウザが自動的にmultipart/form-data形式のContent-Type(boundaryを含む)を設定して送信する。追加順は保持されアルファベット順に並び替えられることはなく、append()は同じキー名でも上書きせず複数の値を追加できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FormData"
+  },
+  {
+    "id": "storage-055",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "dropZone.addEventListener(\"drop\", (event) => {\n  event.preventDefault();\n  const files = event.dataTransfer.files;\n  console.log(files.length);\n});",
+    "choices": [
+      "ドラッグ&ドロップされたファイルは、dropイベントのevent.dataTransfer.filesからFileListとして取得できる",
+      "ドラッグ&ドロップされたファイルの情報は、input要素を介さない限り取得できない",
+      "event.dataTransfer.filesは常に空のFileListを返し、実際のファイル取得にはFileReaderの初期化が必須である",
+      "dropイベントではファイル名のみ取得でき、Fileオブジェクト自体は取得できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ファイルをドラッグ&ドロップした際、dropイベントのevent.dataTransfer.filesプロパティから、input[type=file]と同様にFileListとしてドロップされたファイルを取得できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DataTransfer/files"
+  },
+  {
+    "id": "storage-056",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "<input type=\"file\" id=\"dirInput\" webkitdirectory>\n<script>\ndocument.getElementById(\"dirInput\").addEventListener(\"change\", (e) => {\n  for (const file of e.target.files) {\n    console.log(file.webkitRelativePath);\n  }\n});\n</script>",
+    "choices": [
+      "webkitdirectory属性を指定すると、ユーザーはフォルダ単位で選択でき、選択されたfilesにはフォルダ内の全ファイルがFileオブジェクトとして含まれる",
+      "webkitdirectory属性はHTML標準仕様として全ブラウザで未実装であり、常に無視される",
+      "file.webkitRelativePathは常に空文字列であり、実質的に利用できないプロパティである",
+      "webkitdirectory属性を指定すると、フォルダそのものが1つのBlobとして取得できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "input要素にwebkitdirectory属性(非標準だが主要ブラウザで広くサポートされている)を指定すると、フォルダ単位での選択が可能になり、選択結果のfilesにはフォルダ内の各ファイルがFileオブジェクトとして格納される。各Fileのwebkitrelativepathプロパティで選択ルートからの相対パスを取得できる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
+  },
+  {
+    "id": "storage-057",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Blobオブジェクトのstream()メソッドの説明として正しいものはどれか。",
+    "choices": [
+      "Blobの内容を読み取るためのReadableStreamを返す",
+      "Blobの内容をコンソールに直接出力する",
+      "Blobをネットワーク経由でストリーミング配信するサーバー機能を提供する",
+      "Blobを別のBlobに変換して連結するためのメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Blob.stream()は、そのBlobの内容を読み取るためのReadableStreamを返すメソッドである。逐次的にチャンク単位でデータを処理したい場合などに、arrayBuffer()やtext()と並んで利用できる読み取り方法の一つである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Blob/stream"
+  },
+  {
+    "id": "storage-058",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Storage.clear()メソッドの説明として正しいものはどれか。",
+    "code": "localStorage.setItem(\"a\", \"1\");\nlocalStorage.setItem(\"b\", \"2\");\nlocalStorage.clear();\nconsole.log(localStorage.length);",
+    "choices": [
+      "そのストレージ内の全てのキーと値のペアを削除する。上記コードの実行後、localStorage.lengthは0になる",
+      "最後に追加した1件のキーのみを削除する",
+      "clear()は読み取り専用ストレージにのみ使用でき、書き込み済みデータには効果がない",
+      "clear()を呼び出すと、他オリジンのlocalStorageも含めて全て削除される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Storage.clear()は、そのStorageオブジェクト(localStorageまたはsessionStorage)に保存されている全てのキーと値のペアを削除する。実行後はlengthが0になる。他オリジンのストレージには一切影響しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Storage/clear"
+  },
+  {
+    "id": "storage-059",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "IDBObjectStore.count()メソッドに関する説明として正しいものを全て選べ。",
+    "code": "const request = store.count();\nrequest.onsuccess = () => {\n  console.log(request.result);\n};",
+    "choices": [
+      "オブジェクトストア(または指定したキー範囲)に含まれるレコードの件数を非同期に取得する",
+      "引数にIDBKeyRangeを渡すことで、その範囲に該当するレコードのみの件数をカウントできる",
+      "count()は同期的に数値を返すメソッドである",
+      "count()を呼び出すたびに、オブジェクトストア内部のカウンタの値が1つ増加する"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "count()は、オブジェクトストア(または指定したキー範囲)に含まれるレコード件数を非同期に取得するメソッドで、IDBRequestを返す。引数にIDBKeyRangeを渡すと、その範囲に絞った件数のみを取得できる。同期的に値を返すことはなく、呼び出すこと自体がレコード数を変化させることもない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/count"
+  },
+  {
+    "id": "storage-060",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "IDBObjectStore.getAll()メソッドの説明として正しいものはどれか。",
+    "code": "const request = store.getAll();\nrequest.onsuccess = () => {\n  console.log(request.result);\n};",
+    "choices": [
+      "カーソルを使わずに、オブジェクトストア内の(条件に合致する)全レコードの値を配列として一括取得できる",
+      "オブジェクトストア内の最初の1件のみを取得する",
+      "getAll()は同期的に配列を返すメソッドである",
+      "getAll()は主キーの一覧のみを返し、値そのものは取得できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getAll()は、openCursor()でループ処理しなくても、オブジェクトストア(または指定したキー範囲)内の該当する全レコードの値をまとめて配列として取得できる非同期メソッドである。主キーの一覧が欲しい場合はgetAllKeys()を使う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/getAll"
+  },
+  {
+    "id": "storage-061",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "getAll()とgetAllKeys()の違いとして正しいものはどれか。",
+    "choices": [
+      "getAll()はレコードの値の配列を返し、getAllKeys()はレコードの主キー(または対象インデックスのキー)の配列を返す",
+      "getAll()は非同期、getAllKeys()は同期的に処理される",
+      "getAllKeys()はレコード件数のみを返し、キーの内容は取得できない",
+      "getAll()とgetAllKeys()は全く同じ結果を返す、単なるエイリアスである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getAll()は該当するレコードの値そのものを配列として返すのに対し、getAllKeys()は値ではなく主キー(インデックスに対して呼んだ場合はインデックスキー)の配列を返す。両方とも非同期のIDBRequestを返すメソッドである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/getAllKeys"
+  },
+  {
+    "id": "storage-062",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "IDBKeyRangeオブジェクトを生成する静的メソッドとして正しいものを全て選べ。",
+    "choices": [
+      "IDBKeyRange.only(value)",
+      "IDBKeyRange.bound(lower, upper)",
+      "IDBKeyRange.lowerBound(lower)",
+      "IDBKeyRange.upperBound(upper)",
+      "IDBKeyRange.random(count)"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "IDBKeyRangeには、単一の値に一致するonly()、範囲を指定するbound()、下限のみ指定するlowerBound()、上限のみ指定するupperBound()という静的メソッドが用意されている。randomというメソッドは存在しない。これらはget()やopenCursor()、count()などに渡してキーの範囲検索を行うために使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBKeyRange"
+  },
+  {
+    "id": "storage-063",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const range = IDBKeyRange.bound(10, 20);\nconst request = store.openCursor(range);\nrequest.onsuccess = (event) => {\n  const cursor = event.target.result;\n  if (cursor) {\n    console.log(cursor.value);\n    cursor.continue();\n  }\n};",
+    "choices": [
+      "主キー(またはインデックスキー)が10以上20以下の範囲にあるレコードのみをカーソルで走査する",
+      "主キーがちょうど10個、20バイト以下のレコードのみを取得する",
+      "IDBKeyRange.bound(10, 20)は、10番目から20番目のレコードを取得するという意味である",
+      "boundメソッドは範囲ではなく、ソート順を指定するためのものである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "IDBKeyRange.bound(lower, upper)は、指定した下限値と上限値の範囲(両端を含む)にあるキーを表すIDBKeyRangeを生成する。これをopenCursor()などに渡すことで、範囲検索を行うことができる。境界を含めたくない場合は第3・第4引数でlowerOpen/upperOpenを指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBKeyRange/bound"
+  },
+  {
+    "id": "storage-064",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのように配列を指定してcreateObjectStoreを呼び出した場合の説明として正しいものはどれか。",
+    "code": "db.createObjectStore(\"items\", { keyPath: [\"category\", \"id\"] });",
+    "choices": [
+      "keyPathに配列を指定することで複合キー(compound key)を構成でき、追加するオブジェクトのcategoryとidの2つのプロパティの値を組み合わせた配列が主キーとして扱われる",
+      "keyPathには配列を指定できず、このコードは実行時に必ず例外になる",
+      "配列のkeyPathを指定すると、2つの独立したオブジェクトストアが作成される",
+      "配列で指定したプロパティのうち、常に最初の要素(この例ではcategory)のみが主キーとして使われる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "IndexedDBのkeyPathには単一のプロパティ名だけでなく、プロパティ名の配列を指定することで複合キー(compound key)を構成できる。この場合、指定した各プロパティの値を組み合わせた配列が1つの主キーとして扱われ、複数プロパティの組み合わせで一意性を持たせたい場合に利用される。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Basic_Terminology"
+  },
+  {
+    "id": "storage-065",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードでインデックスを作成した場合の説明として正しいものはどれか。",
+    "code": "db.createObjectStore(\"users\", { keyPath: \"id\" });\n// ...\nstore.createIndex(\"emailIndex\", \"email\", { unique: true });",
+    "choices": [
+      "unique: trueを指定すると、既に同じemail値を持つレコードが存在する状態で新たなレコードを追加しようとした場合、ConstraintErrorとなり追加に失敗する",
+      "unique: trueは単にソート順を昇順に固定するだけのオプションであり、重複チェックは行わない",
+      "unique: trueを指定すると、emailプロパティを持たないレコードは自動的に除外され、エラーにはならない",
+      "インデックスのunique制約は主キー(keyPath: id)にのみ適用され、インデックスには効果がない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "createIndexのオプションでunique: trueを指定すると、そのインデックスの対象プロパティの値がオブジェクトストア内で重複することを許可しなくなる。重複する値を持つレコードをadd()やput()しようとすると、ConstraintErrorが発生する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/createIndex"
+  },
+  {
+    "id": "storage-066",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのmultiEntryオプションの説明として正しいものはどれか。",
+    "code": "store.createIndex(\"tagsIndex\", \"tags\", { multiEntry: true });\n// レコード例: { id: 1, tags: [\"red\", \"blue\"] }",
+    "choices": [
+      "multiEntry: trueを指定すると、対象プロパティが配列の場合、配列の各要素ごとに個別のインデックスエントリが作成され、いずれの要素からもそのレコードを検索できるようになる",
+      "multiEntry: trueは、複数のプロパティを1つのインデックスにまとめて複合キーを作るためのオプションである",
+      "multiEntry: trueを指定すると、配列プロパティの最初の要素のみがインデックス対象になる",
+      "multiEntry: trueはunique: trueと同時に指定することが必須である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "multiEntry: trueを指定すると、対象プロパティが配列であるとき、その配列の各要素に対して個別のインデックスエントリが作成される。例えばtags: [\"red\", \"blue\"]というレコードは、\"red\"でも\"blue\"でも検索できるようになる。複合キーを作るのはkeyPathへの配列指定であり、multiEntryとは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/createIndex"
+  },
+  {
+    "id": "storage-067",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "IDBCursor.advance(n)メソッドの説明として正しいものはどれか。",
+    "code": "request.onsuccess = (event) => {\n  const cursor = event.target.result;\n  if (cursor) {\n    console.log(cursor.value);\n    cursor.advance(2);\n  }\n};",
+    "choices": [
+      "カーソルを現在位置からn件分先へ進め、その位置のレコードでonsuccessが再度発生する。continue()が1件ずつ進むのに対し、advance(n)はn件まとめてスキップできる",
+      "advance(n)はカーソルの走査方向をn度回転させるメソッドである",
+      "advance(n)を呼ぶと、現在のレコードを含めn件のレコードをまとめて削除する",
+      "advance(n)はトランザクションの有効期限をn秒延長するメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "advance(n)は、カーソルを現在位置からn件先へ進めるメソッドである。continue()が常に1件ずつ進むのに対し、advance()はまとめて指定件数分スキップして次のレコードに到達でき、ページネーションのような用途で利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBCursor/advance"
+  },
+  {
+    "id": "storage-068",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードにおけるcontinuePrimaryKey()メソッドの説明として正しいものはどれか。",
+    "code": "index.openCursor().onsuccess = (event) => {\n  const cursor = event.target.result;\n  if (cursor) {\n    cursor.continuePrimaryKey(\"tokyo\", 100);\n  }\n};",
+    "choices": [
+      "インデックス上のカーソルに対し、指定したインデックスキーと主キーの組み合わせまで一気にジャンプして走査を続ける",
+      "continuePrimaryKey()はオブジェクトストアの主キー自体の値を変更するメソッドである",
+      "continuePrimaryKey()はインデックスを持たないオブジェクトストアのカーソルでのみ使用できる",
+      "continuePrimaryKey()はcontinue()と完全に同じ動作をする別名メソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "continuePrimaryKey(key, primaryKey)は、インデックス上のカーソルにおいて、指定したインデックスキーと主キーの組み合わせの位置まで走査をスキップするためのメソッドである。同じインデックスキーを持つ複数レコードの中から特定の主キー以降だけを効率的に走査したい場合などに利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBCursor/continuePrimaryKey"
+  },
+  {
+    "id": "storage-069",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "openCursor()の第2引数に指定できるカーソルの方向(direction)として正しいものを全て選べ。",
+    "choices": [
+      "next(キーの昇順に、重複するキーも含めて走査する)",
+      "nextunique(キーの昇順に、重複するキーはスキップして走査する)",
+      "prev(キーの降順に、重複するキーも含めて走査する)",
+      "prevunique(キーの降順に、重複するキーはスキップして走査する)",
+      "random(キーをランダムな順序で走査する)"
+    ],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "IDBCursorのdirectionにはnext、nextunique、prev、prevuniqueの4種類が指定できる。nextunique/prevuniqueは、同じキー値を持つ複数レコードがある場合に、各キー値につき最初の1件のみを返す。randomという方向は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBCursor/direction"
+  },
+  {
+    "id": "storage-070",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードを実行した場合に起こりやすい問題として正しいものはどれか。",
+    "code": "const tx = db.transaction(\"items\", \"readwrite\");\nconst store = tx.objectStore(\"items\");\nstore.get(1).onsuccess = () => {\n  setTimeout(() => {\n    store.put({ id: 1, value: \"updated\" });\n  }, 0);\n};",
+    "choices": [
+      "トランザクションは、発行されたリクエストが全て完了し、かつそのタスク内で新たなリクエストが発行されなければ自動的にコミットされて非アクティブになるため、setTimeoutで遅延させた後のput()呼び出しはトランザクションが既に終了しておりエラーになる可能性が高い",
+      "IndexedDBのトランザクションは明示的にcommit()を呼ぶまで無期限に有効であるため、このコードは問題なく動作する",
+      "setTimeoutを使うことで、トランザクションの有効期間を延長できる",
+      "put()は常に新しいトランザクションを暗黙的に生成するため、tx変数がどうなっていても問題は生じない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "IndexedDBのトランザクションは、そのタスク内で発行された全リクエストの完了後、新たなリクエストが発行されなければ自動的にコミットされ非アクティブになる。setTimeoutなどでマクロタスクの実行を遅らせてから同じトランザクションに対して操作を行おうとすると、既にトランザクションが終了しておりTransactionInactiveErrorとなることが多い。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBTransaction"
+  },
+  {
+    "id": "storage-071",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "IndexedDBを扱う際、次のようなライブラリを使う目的として最も適切なものはどれか。",
+    "code": "import { openDB } from \"idb\";\n\nconst db = await openDB(\"MyDatabase\", 1, {\n  upgrade(db) {\n    db.createObjectStore(\"items\", { keyPath: \"id\" });\n  },\n});\nconst value = await db.get(\"items\", 1);",
+    "choices": [
+      "IndexedDBのネイティブAPIはイベントベースのコールバック形式であるため、idbのようなライブラリはこれをPromiseでラップし、async/awaitを使ったより簡潔な記述を可能にする",
+      "idbライブラリを使わない限り、ブラウザはIndexedDBを一切サポートしない",
+      "idbライブラリはIndexedDBの代わりにサーバーサイドのデータベースへ接続するためのものである",
+      "idbライブラリを使うと、Web StorageのAPIをIndexedDBのように拡張できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "IndexedDBのネイティブAPIはonsuccess/onerrorといったイベントハンドラを用いた非同期処理として設計されており、記述がやや煩雑になりやすい。idbのようなライブラリはこれをPromiseベースのAPIでラップし、async/awaitを用いた簡潔なコードでIndexedDBを操作できるようにする。",
+    "reference": "https://github.com/jakearchibald/idb"
+  },
+  {
+    "id": "storage-072",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードで使われているCacheStorageのメソッドに関する説明として正しいものを全て選べ。",
+    "code": "caches.keys().then((cacheNames) => {\n  cacheNames.forEach((name) => {\n    if (name !== \"v2\") {\n      caches.delete(name);\n    }\n  });\n});",
+    "choices": [
+      "caches.keys()は、そのオリジンに存在する全てのCacheオブジェクトの名前を配列で取得する",
+      "caches.delete(name)は、指定した名前のCacheオブジェクトを丸ごと削除する",
+      "caches.keys()は個々のCache内に保存されたリクエストのURL一覧を返すメソッドである",
+      "caches.delete(name)は指定したキャッシュ内の特定の1レコードのみを削除する"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "CacheStorage.keys()は、そのオリジンで作成されている全Cacheオブジェクトの名前一覧をPromiseで返し、CacheStorage.delete(name)は指定した名前のCacheオブジェクトを丸ごと削除する。個々のリクエストURLの一覧を取得するのは個別のCacheオブジェクトのkeys()メソッドであり、CacheStorageのkeys()とは対象が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CacheStorage/keys"
+  },
+  {
+    "id": "storage-073",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのignoreSearchオプションの説明として正しいものはどれか。",
+    "code": "cache.match(\"/data.json?ver=2\", { ignoreSearch: true }).then((response) => {\n  // ...\n});",
+    "choices": [
+      "リクエストURLのクエリ文字列(検索パラメータ)の違いを無視して照合するため、\"/data.json\"のようにクエリ文字列が異なる、または存在しないキャッシュエントリともマッチする",
+      "レスポンスの本文の内容の違いを無視して、常に最初に見つかったキャッシュを返す",
+      "HTTPメソッド(GET/POST等)の違いを無視して照合するオプションである",
+      "ignoreSearchはCache.put()にのみ指定できるオプションであり、match()には存在しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cache.match()のオプションignoreSearch: trueを指定すると、リクエストURLのクエリ文字列部分の違いを無視してマッチングを行う。これによりクエリパラメータだけが異なるリクエストでも同じキャッシュエントリを再利用できる。HTTPメソッドの違いを無視するのはignoreMethodオプションの役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/match"
+  },
+  {
+    "id": "storage-074",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cache.match()のignoreMethodオプションに関する説明として正しいものはどれか。",
+    "code": "cache.match(postRequest, { ignoreMethod: true });",
+    "choices": [
+      "通常、Cache.match()はGETリクエストのエントリしか照合しないが、ignoreMethod: trueを指定すると、リクエストのHTTPメソッドの違いを無視してURLの一致だけで照合できるようになる",
+      "ignoreMethodを指定すると、キャッシュへの保存時にHTTPメソッドの情報自体が破棄される",
+      "ignoreMethod: trueにすると、POSTリクエストの結果は自動的にサーバーへ再送信される",
+      "ignoreMethodはService Worker内でしか指定できないオプションである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cache APIは基本的にGETリクエストを前提としており、Cache.matchはデフォルトではリクエストのメソッドがGET以外だと一致しない。ignoreMethod: trueを指定すると、HTTPメソッドの違いを無視してURLなどの一致のみで照合できるようになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/match"
+  },
+  {
+    "id": "storage-075",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "caches.match(request)(CacheStorage.match)とcache.match(request)(Cache.match)の違いとして正しいものはどれか。",
+    "choices": [
+      "caches.match()はオリジン内の全てのCacheオブジェクトを対象に横断的に検索するのに対し、cache.match()は特定の1つのCacheオブジェクト内のみを検索する",
+      "caches.match()は常に例外をスローするため実際には使用できないメソッドである",
+      "cache.match()の方がオリジン内の全キャッシュを横断検索し、caches.match()は単一キャッシュのみを検索する",
+      "両者は完全に同じ実装であり、どちらを使っても挙動に違いはない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CacheStorageインターフェースのmatch()メソッド(caches.match())は、そのオリジンに存在する全てのCacheオブジェクトを順に検索して最初に一致したレスポンスを返す。一方、個々のCacheオブジェクトのmatch()(cache.match())は、そのCacheオブジェクト内のみを検索対象とする点が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CacheStorage/match"
+  },
+  {
+    "id": "storage-076",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "navigator.storage.persist()メソッドの目的として正しいものはどれか。",
+    "code": "navigator.storage.persist().then((granted) => {\n  console.log(granted);\n});",
+    "choices": [
+      "そのオリジンのストレージを永続化ストレージにするようブラウザに要求し、許可されたかどうかを真偽値で受け取る",
+      "そのオリジンの全データを即座にディスクへ書き込み(フラッシュ)して同期させる",
+      "Cookieの有効期限を無期限に延長するためのメソッドである",
+      "ストレージの内容を暗号化して保存するためのメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.storage.persist()は、そのオリジンのストレージを「永続化ストレージ」として扱うようブラウザに要求するStorage Manager APIのメソッドである。要求が許可されたかどうかを示す真偽値がPromiseで返される。許可されると、ストレージ容量逼迫時に自動的にデータが削除されにくくなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/persist"
+  },
+  {
+    "id": "storage-077",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "navigator.storage.persist()およびpersisted()に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "persisted()は、そのオリジンのストレージが既に永続化されているかどうかを真偽値で返す",
+      "persist()を呼び出しても、ブラウザやユーザーの判断によって必ずしも許可されるとは限らない",
+      "ホーム画面に追加された(インストールされた)PWAなど、ユーザーの関与度が高いと判定されたオリジンでは、ブラウザが自動的に永続化を許可する実装も存在する",
+      "persist()を一度呼び出せば、その後は同じオリジンの全てのブラウザ・全端末で永続化が保証される"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "persisted()は現在の永続化状態を確認するメソッドであり、persist()は永続化を要求するメソッドである。許可するかどうかは各ブラウザの実装やヒューリスティック(ブックマーク数、通知の許可、PWAとしてのインストール状況など)に委ねられており、必ず許可されるとは限らない。許可は特定のブラウザ・プロファイル単位の話であり、他端末や他ブラウザには影響しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/persisted"
+  },
+  {
+    "id": "storage-078",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ブラウザのストレージ容量が逼迫した場合のデータ削除(eviction)に関する一般的な説明として正しいものはどれか。",
+    "choices": [
+      "永続化(persist)されていない「ベストエフォート」なオリジンのデータは、ストレージ容量が逼迫すると、最も使われていないオリジンから順に自動的に削除されることがある",
+      "ブラウザはストレージ容量が逼迫しても、ユーザーの許可なくどのオリジンのデータも自動削除することはない",
+      "一度永続化(persist)を許可されたオリジンのデータも、容量逼迫時には他のオリジンと同様に自動削除の対象になる",
+      "evictionの対象になるのはCookieのみであり、localStorageやIndexedDBのデータは対象外である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "多くのブラウザは、明示的に永続化が許可されていない「ベストエフォート」モードのオリジンについて、デバイス全体のストレージ容量が逼迫した際に、最終アクセスが古いオリジンなどから優先的にデータを削除する仕組み(eviction)を持つ。永続化ストレージとして許可されたオリジンは、原則としてこの自動削除の対象から外れる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+  },
+  {
+    "id": "storage-079",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのusageDetailsに関する説明として正しいものはどれか。",
+    "code": "navigator.storage.estimate().then((estimate) => {\n  console.log(estimate.usage, estimate.quota);\n  console.log(estimate.usageDetails);\n});",
+    "choices": [
+      "一部のブラウザ実装では、estimate()の戻り値にusageDetailsという拡張プロパティが含まれ、indexedDBやcaches、serviceWorkerRegistrationsなど、ストレージ機構ごとの内訳(使用量)を確認できる",
+      "usageDetailsは仕様上必ず全てのブラウザに存在し、値が存在しない場合は必ずバグである",
+      "usageDetailsはCookieの一覧を返すプロパティである",
+      "estimate()の結果は常に正確な値であり、概算(推定値)ではなく厳密な実測値である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.storage.estimate()が返すオブジェクトには標準のusageとquotaに加え、一部のブラウザでは非標準のusageDetailsという拡張プロパティが含まれ、indexedDB・caches・serviceWorkerRegistrationsなどストレージ機構ごとの使用量内訳を確認できる。ただし標準化されたプロパティではなく、全てのブラウザで利用できるとは限らない。またestimate()の値はあくまで推定値である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/estimate"
+  },
+  {
+    "id": "storage-080",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const [fileHandle] = await window.showOpenFilePicker();\nconst file = await fileHandle.getFile();\nconst text = await file.text();",
+    "choices": [
+      "File System Access APIのshowOpenFilePicker()は、ユーザーにファイル選択ダイアログを表示しFileSystemFileHandleの配列を返す。実際のFileオブジェクトはハンドルのgetFile()を呼び出して取得する必要がある",
+      "showOpenFilePicker()はinput[type=file]の完全な代替として全てのブラウザで利用可能な標準化済みのAPIであり、互換性の懸念はない",
+      "showOpenFilePicker()は同期的に実行され、Promiseは返さない",
+      "fileHandle.getFile()は常にnullを返すため、file.text()を直接呼び出す必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "File System Access APIのshowOpenFilePicker()はユーザーにファイル選択UIを表示し、選択されたファイルへのFileSystemFileHandleを配列として返す非同期メソッドである。実際のFileオブジェクトを得るにはハンドルのgetFile()を呼ぶ必要がある。このAPIは対応ブラウザが限定的であり、セキュアコンテキストやユーザー操作(ジェスチャー)が要求される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/showOpenFilePicker"
+  },
+  {
+    "id": "storage-081",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const [fileHandle] = await window.showSaveFilePicker();\nconst writable = await fileHandle.createWritable();\nawait writable.write(\"Hello, world!\");\nawait writable.close();",
+    "choices": [
+      "FileSystemFileHandleのcreateWritable()はFileSystemWritableFileStreamを生成し、write()で内容を書き込んだ後close()を呼ぶことで、実際にディスク上のファイルへ変更が反映される",
+      "createWritable()は読み取り専用のストリームを生成するため、write()を呼ぶと例外がスローされる",
+      "close()を呼ばなくても、write()の呼び出し時点でファイルへの書き込みは確定する",
+      "showSaveFilePicker()はブラウザの実装によらず常にユーザーへの確認なしにファイルを上書きする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "File System Access APIでは、FileSystemFileHandle.createWritable()によって書き込み用のFileSystemWritableFileStreamを取得できる。write()で内容を書き込んだ後、close()を呼び出すことで実際の変更がファイルシステム上のファイルに反映される。close()を呼ぶまでは変更が確定しない点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FileSystemFileHandle/createWritable"
+  },
+  {
+    "id": "storage-082",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Origin Private File System(OPFS)に関する説明として正しいものはどれか。",
+    "code": "const root = await navigator.storage.getDirectory();\nconst fileHandle = await root.getFileHandle(\"data.bin\", { create: true });",
+    "choices": [
+      "navigator.storage.getDirectory()により取得できる、オリジンごとにサンドボックス化された非公開のファイルシステム領域であり、ユーザーには直接見えず、ファイル選択ダイアログを介さずにアプリが自由にファイルを読み書きできる",
+      "OPFSはlocalStorageの別名であり、実体は同じキーバリューストアである",
+      "OPFSはユーザーのデスクトップやドキュメントフォルダに直接アクセスするための仕組みである",
+      "OPFSにアクセスするには、必ずshowOpenFilePicker()でユーザーにファイルを選択してもらう必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Origin Private File System(OPFS)は、navigator.storage.getDirectory()から取得できる、オリジンごとに隔離された非公開のファイルシステム領域である。ユーザーの実ファイルシステムとは独立しており、ユーザーの選択操作を介さずにアプリケーションが自由にファイルの読み書きを行える点がFile System Access APIの通常のファイルアクセスと異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/getDirectory"
+  },
+  {
+    "id": "storage-083",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "OPFSのFileSystemFileHandle.createSyncAccessHandle()に関する説明として正しいものはどれか。",
+    "choices": [
+      "同期的な読み書きが可能なFileSystemSyncAccessHandleを取得できるが、このメソッドは専用スレッド(Webワーカー)内でのみ使用できる",
+      "createSyncAccessHandle()はメインスレッドを含むあらゆるコンテキストで、非同期のFileReaderと全く同じ結果を返す",
+      "createSyncAccessHandle()はネットワーク経由でリモートファイルへ同期アクセスするためのメソッドである",
+      "createSyncAccessHandle()はCookieを同期的に読み書きするための拡張APIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "OPFS上のFileSystemFileHandle.createSyncAccessHandle()は、read()やwrite()を同期的に呼び出せるFileSystemSyncAccessHandleを提供する。メインスレッドをブロックしてしまうため、このメソッドはDedicated Worker内でのみ使用が許可されており、高速なファイルI/Oを実現する用途で利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/FileSystemFileHandle/createSyncAccessHandle"
+  },
+  {
+    "id": "storage-084",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CookieのPartitioned属性(CHIPS)に関する説明として正しいものはどれか。",
+    "code": "Set-Cookie: __Host-example=value; Secure; Path=/; SameSite=None; Partitioned;",
+    "choices": [
+      "Partitioned属性を付与すると、サードパーティCookieがトップレベルサイト(埋め込み元のページ)ごとに分離されたストレージパーティションに保存され、異なるトップレベルサイトを横断してそのCookieが共有されなくなる",
+      "Partitioned属性は、Cookieを複数のサーバーに分散して保存するための属性である",
+      "Partitioned属性を付与すると、そのCookieはファーストパーティの文脈でのみ送信されるようになる",
+      "Partitioned属性はHttpOnly属性の別名であり、同じ効果を持つ"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Partitioned属性(CHIPS: Cookies Having Independent Partitioned State)を付与すると、サードパーティCookieであってもトップレベルサイトごとに独立したパーティションに保存されるようになり、サイトをまたいだトラッキングに利用されにくくなる。サードパーティCookieの制限が進む中で、埋め込みコンテンツが状態を保持するための代替手段として導入された仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "storage-085",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cookie名に__Host-という接頭辞を付与した場合に課される制約として正しいものはどれか。",
+    "code": "Set-Cookie: __Host-session=abc123; Secure; Path=/;",
+    "choices": [
+      "Secure属性が必須、Domain属性を指定不可、Path属性は\"/\"が必須という制約が課される",
+      "__Host-接頭辞を付けると、HttpOnly属性が自動的に付与される",
+      "__Host-接頭辞を付けると、そのCookieはサーバーに送信されずクライアント内のみで完結する",
+      "__Host-接頭辞は単なる命名の慣習であり、ブラウザによる特別な検証は行われない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "__Host-接頭辞が付いたCookieをブラウザが受け入れるには、Secure属性の付与、Domain属性の非指定(ホストオンリー)、Path=\"/\"の指定という条件を満たす必要がある。条件を満たさない場合、そのSet-Cookieは拒否される。これはCookieの改ざんや誤設定によるセキュリティリスクを軽減するための仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "storage-086",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cookie名に__Secure-という接頭辞を付与した場合の制約として正しいものはどれか。",
+    "code": "Set-Cookie: __Secure-token=xyz; Secure; Path=/;",
+    "choices": [
+      "Secure属性の付与が必須となるが、__Host-とは異なりDomain属性の指定やPath属性を\"/\"以外にすることは許容される",
+      "__Secure-接頭辞を付けると、Domain属性を指定することは一切できなくなる(__Host-と全く同じ制約になる)",
+      "__Secure-接頭辞はHTTPSでのみCookieを読み取れるようにするだけで、Secure属性の付与は不要である",
+      "__Secure-接頭辞は非推奨であり、現在のブラウザでは無視される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "__Secure-接頭辞が付いたCookieは、Secure属性が付与されていなければブラウザに拒否される点は__Host-と共通するが、__Host-のようにDomain属性の指定禁止やPath=\"/\"必須という制約はなく、より緩やかな条件になっている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "storage-087",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "近年の主要ブラウザにおけるサードパーティCookieおよびSameSite属性の扱いの傾向として正しいものはどれか。",
+    "choices": [
+      "SameSite属性を省略した場合のデフォルト値をLaxとして扱う実装が広まっており、クロスサイトでの送信を抑制する方向にある。加えてサードパーティCookieそのものの利用を制限・廃止していく動きがブラウザベンダーによって進められている",
+      "全ての主要ブラウザは、SameSite属性を省略した場合のデフォルトを恒久的にNoneとして扱うと仕様で定められている",
+      "サードパーティCookieの制限は特定の1ブラウザのみの実験的機能であり、業界的な広がりは見られない",
+      "SameSite属性が導入されたことで、Cookieのセキュリティ属性(Secure・HttpOnly)は不要になった"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SameSite未指定時のデフォルトをLax相当として扱う実装が広がり、意図しないクロスサイト送信を抑制する方向にある。また、プライバシー保護強化のため、サードパーティCookieの利用を制限・段階的廃止する取り組みが複数のブラウザベンダーで進められている。SameSiteの導入はSecureやHttpOnlyといった他のセキュリティ属性の必要性を代替するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie/SameSite"
+  },
+  {
+    "id": "storage-088",
+    "category": "storage",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "次のコードのBlobオブジェクトの生成方法や特性に関する説明として正しいものを全て選べ。",
+    "code": "const blob = new Blob([\"Hello, \", \"World!\"], { type: \"text/plain\" });\nconsole.log(blob.size, blob.type);",
+    "choices": [
+      "Blobコンストラクタの第1引数には、文字列・ArrayBuffer・Blobなどを要素とする配列を渡し、それらを連結した内容を持つBlobを生成できる",
+      "第2引数のoptionsでtypeプロパティを指定することで、BlobのMIMEタイプを設定できる",
+      "生成されたBlobオブジェクトの内容は、生成後にプロパティを直接書き換えることで変更できる",
+      "typeオプションを省略した場合、Blobの生成自体が失敗し例外がスローされる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Blobコンストラクタの第1引数には文字列やArrayBuffer、Blobなどを要素とする配列を渡し、それらを結合した内容のBlobを生成できる。第2引数のoptionsでtypeを指定するとMIMEタイプを設定できるが、省略しても空文字のtypeとして生成される。生成後のBlobの内容は不変(immutable)であり、直接書き換えることはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Blob/Blob"
+  },
+  {
+    "id": "storage-089",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードにおいて、dragoverイベントでevent.preventDefault()を呼び出していない場合の挙動として正しいものはどれか。",
+    "code": "dropZone.addEventListener(\"dragover\", (event) => {\n  // event.preventDefault() を呼んでいない\n});\ndropZone.addEventListener(\"drop\", (event) => {\n  event.preventDefault();\n  console.log(event.dataTransfer.files);\n});",
+    "choices": [
+      "dragoverイベントの既定の動作(ドロップを禁止する)がキャンセルされないため、その要素はドロップ先として許可されず、dropイベント自体が発生しない",
+      "dragoverでpreventDefault()を呼ばなくても、dropイベントは問題なく発生し、ファイルも正しく取得できる",
+      "preventDefault()はdropイベント側でのみ意味を持ち、dragover側の呼び出しの有無は結果に影響しない",
+      "dragoverイベントは存在しないため、このコード自体が無効である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "多くの要素は既定でドロップ操作を許可しないため、dragoverイベントハンドラ内でevent.preventDefault()を呼び出して既定の動作をキャンセルしないと、その要素はドロップ先として有効にならず、dropイベント自体が発火しない。ファイルのドラッグ&ドロップを実装する際は、dragoverとdropの両方でpreventDefault()を適切に扱う必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop"
+  },
+  {
+    "id": "storage-090",
+    "category": "storage",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "navigator.storage.persisted()メソッドの説明として正しいものはどれか。",
+    "code": "navigator.storage.persisted().then((isPersisted) => {\n  console.log(isPersisted);\n});",
+    "choices": [
+      "そのオリジンのストレージが既に永続化ストレージとして扱われているかどうかを真偽値で返す、確認専用のメソッドである",
+      "persisted()を呼び出すと、その時点で強制的にストレージが永続化される",
+      "persisted()はCookieが有効かどうかを確認するためのメソッドである",
+      "persisted()は同期的に真偽値を返し、Promiseではない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.storage.persisted()は、そのオリジンのストレージが現在永続化ストレージとして扱われているかどうかを確認するだけのメソッドで、Promiseで真偽値を返す。永続化を要求するのはpersist()の役割であり、persisted()はあくまで状態確認用である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StorageManager/persisted"
+  }
+]

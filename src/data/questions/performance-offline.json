@@ -1,0 +1,1429 @@
+[
+  {
+    "id": "performance-offline-001",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "以下のコードのように、ページの読み込み時にService Workerを登録する処理を実装したい。空欄に入る正しいメソッドはどれか。",
+    "code": "if ('serviceWorker' in navigator) {\n  navigator.serviceWorker.____('/sw.js')\n    .then(function(registration) {\n      console.log('登録成功:', registration.scope);\n    });\n}",
+    "choices": ["register", "install", "activate", "controller"],
+    "correctAnswers": [0],
+    "explanation": "navigator.serviceWorker.register()はService Workerスクリプトを登録し、登録が完了するとPromiseがServiceWorkerRegistrationオブジェクトで解決される。install/activateはService Worker内部で発生するイベント名であり、登録メソッドではない。controllerはページを制御中のService Workerを参照するプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerContainer/register"
+  },
+  {
+    "id": "performance-offline-002",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Service Workerのライフサイクルにおいて、installイベントの主な用途として最も適切なものはどれか。",
+    "choices": [
+      "アプリケーションの静的アセット(HTML、CSS、JavaScript、画像など)をキャッシュに事前登録する",
+      "ページ内のDOM要素を直接書き換える",
+      "現在開いているすべてのタブをリロードする",
+      "クッキーの値を読み書きする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "installイベントはService Workerが初めてインストールされたとき(または新しいバージョンに更新されたとき)に発生し、event.waitUntil()内でCache APIを使って必要なリソースを事前にキャッシュしておく処理を行うのが一般的な用途である。Service WorkerはDOMに直接アクセスできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerGlobalScope/install_event"
+  },
+  {
+    "id": "performance-offline-003",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Service Workerのactivateイベントで一般的に行われる処理として適切なものを2つ選べ。",
+    "choices": [
+      "caches.keys()などを使って不要になった古いバージョンのキャッシュを削除する",
+      "新しいHTMLファイルをネットワークから強制的に再ダウンロードする",
+      "self.clients.claim()を呼び出し、現在開いているページの制御を即座に開始する",
+      "すべてのWeb Workerを終了させる"
+    ],
+    "correctAnswers": [0, 2],
+    "explanation": "activateイベントは新しいService Workerが有効化されるタイミングで発生し、古いキャッシュのクリーンアップやclients.claim()による即時制御の開始が典型的な処理である。HTMLの強制再ダウンロードやWeb Workerの終了はactivateイベントの一般的な用途ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerGlobalScope/activate_event"
+  },
+  {
+    "id": "performance-offline-004",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードはfetchイベントをハンドリングしている。event.respondWith()の役割として正しい説明はどれか。",
+    "code": "self.addEventListener('fetch', function(event) {\n  event.respondWith(\n    caches.match(event.request).then(function(response) {\n      return response || fetch(event.request);\n    })\n  );\n});",
+    "choices": [
+      "ブラウザに返すレスポンスをPromiseとして指定し、通常のネットワークリクエストの結果を差し替える",
+      "Service Worker自身をブラウザから登録解除する",
+      "リクエストヘッダーを書き換えてからネットワークに送信する",
+      "キャッシュストレージの内容をすべて削除する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "event.respondWith()はfetchイベントに対するレスポンスとしてPromiseを渡すためのメソッドで、指定したレスポンスがブラウザの通常のネットワーク処理の代わりに使用される。これによりキャッシュされたレスポンスを返すなどのオフライン対応が可能になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerGlobalScope/fetch_event"
+  },
+  {
+    "id": "performance-offline-005",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Service Workerの更新に関して、self.skipWaiting()とself.clients.claim()の組み合わせについて正しい説明を2つ選べ。",
+    "choices": [
+      "skipWaiting()はwaiting状態のService Workerを即座にactivate状態へ遷移させる",
+      "clients.claim()は既に開いているページも含めて、新しいService Workerの制御下に置く",
+      "skipWaiting()を呼ぶとブラウザのキャッシュストレージの内容が自動的に削除される",
+      "clients.claim()を呼び出すと、ページ内のIndexedDBのデータが自動的に新しいスキーマへ移行される"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "通常、新しいService Workerはすべてのタブが閉じられるまでwaiting状態で待機する。skipWaiting()はこの待機をスキップして即座にactivateへ進める。clients.claim()はactivate後、既に開いているクライアント(ページ)もすぐに新しいService Workerの制御下に置く。どちらもキャッシュやIndexedDBの内容を自動的に操作することはない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting"
+  },
+  {
+    "id": "performance-offline-006",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Service Workerのスコープ(制御対象のURL範囲)に関する説明として正しいものはどれか。",
+    "choices": [
+      "特に指定しない場合、Service Workerスクリプトが配置されているディレクトリとその配下がデフォルトのスコープになる",
+      "スコープは常にオリジン全体(ドメイン全体)になり、変更できない",
+      "スコープはregister()の第2引数では指定できず、HTTPヘッダーでのみ設定可能である",
+      "スコープはService Workerスクリプト自身が配置されているディレクトリより上位の階層まで拡張できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Service Workerのデフォルトスコープは、そのスクリプトファイルが置かれているディレクトリ以下である。register()の第2引数にscopeオプションを指定することでスコープを変更できるが、スクリプトファイルが置かれている階層より上位のスコープを指定することはできない(セキュリティ上の制約)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerContainer/register"
+  },
+  {
+    "id": "performance-offline-007",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "既にページを制御しているService Workerが存在する状態で新しいバージョンのService Workerスクリプトが検出された場合の標準的な挙動として正しいものはどれか。",
+    "choices": [
+      "新しいService Workerはinstallされた後waiting状態になり、既存のタブがすべて閉じられる(または制御を解放する)まで待機する",
+      "新しいService Workerは即座に古いService Workerを強制終了し、開いているページをすべて自動的にリロードする",
+      "新しいService Workerのインストールは失敗し、手動でキャッシュを削除するまで更新できない",
+      "ブラウザは新旧2つのService Workerを同時にactivateし、リクエストごとにランダムに処理を振り分ける"
+    ],
+    "correctAnswers": [0],
+    "explanation": "新しいService Workerはデフォルトでは即座にページを制御せず、既存のクライアント(タブ)が制御を解放する(通常は全て閉じられる)までwaiting状態にとどまる。これによりバージョン間の不整合を防ぐ。skipWaiting()を使えばこの動作を変更できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API/Using_Service_Workers"
+  },
+  {
+    "id": "performance-offline-008",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "オフライン対応でよく使われる「Cache First(キャッシュ優先)」戦略の説明として正しいものはどれか。",
+    "choices": [
+      "まずキャッシュを確認し、キャッシュにレスポンスが存在すればそれを返し、存在しない場合のみネットワークへリクエストする",
+      "常にネットワークへリクエストを送り、失敗した場合のみキャッシュを利用する",
+      "キャッシュとネットワークに同時にリクエストし、常に早く到着した方を採用する",
+      "キャッシュの内容を毎回削除してからネットワークにリクエストする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cache Firstはキャッシュにヒットすればネットワーク通信を行わずにキャッシュから即座に応答を返し、キャッシュにない場合のみネットワークから取得する戦略で、静的アセットの高速表示やオフライン動作に適している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API/Using_Service_Workers"
+  },
+  {
+    "id": "performance-offline-009",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "「Network First(ネットワーク優先)」戦略に関する説明として正しいものはどれか。",
+    "choices": [
+      "まずネットワークへリクエストし、成功すればそのレスポンスを使用してキャッシュを更新し、失敗した場合はキャッシュのレスポンスを代替として返す",
+      "ネットワークには一切アクセスせず、常にキャッシュのみを利用する",
+      "キャッシュが存在する場合は必ずキャッシュを優先し、ネットワークには問い合わせない",
+      "リクエストのたびにService Workerを再インストールしてから応答する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Network Firstは常に最新の情報を優先的に取得したい場合に有効な戦略で、ネットワークが利用できる場合は最新のレスポンスを使い、オフライン時などネットワークが失敗した場合にキャッシュへフォールバックする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API/Using_Service_Workers"
+  },
+  {
+    "id": "performance-offline-010",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "「Stale-While-Revalidate」というキャッシュ戦略の動作として最も適切な説明はどれか。",
+    "choices": [
+      "キャッシュに存在すればまずキャッシュのレスポンスを即座に返しつつ、裏側で同時にネットワークへリクエストを送って最新のレスポンスでキャッシュを更新する",
+      "キャッシュの有効期限が切れるまで一切ネットワークへアクセスしない",
+      "キャッシュとネットワークの両方のレスポンスをユーザーに同時に表示し、ユーザーに選択させる",
+      "リクエストのたびにキャッシュを全件削除してから再構築する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Stale-While-Revalidateは、まず(多少古い可能性がある)キャッシュを即座に返して体感速度を優先しつつ、バックグラウンドでネットワークから最新版を取得してキャッシュを更新する戦略で、次回以降のリクエストに新しい内容が反映される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API/Using_Service_Workers"
+  },
+  {
+    "id": "performance-offline-011",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のfetchイベントハンドラの実装について、正しい説明を2つ選べ。",
+    "code": "self.addEventListener('fetch', function(event) {\n  event.respondWith(\n    fetch(event.request)\n      .then(function(response) {\n        return caches.open('v1').then(function(cache) {\n          cache.put(event.request, response.clone());\n          return response;\n        });\n      })\n      .catch(function() {\n        return caches.match(event.request);\n      })\n  );\n});",
+    "choices": [
+      "この実装はNetwork First戦略に相当し、ネットワークが失敗した場合にキャッシュへフォールバックする",
+      "response.clone()を呼んでいるのは、レスポンスのボディを一度しか読み取れないため、キャッシュ保存用とブラウザへの返却用に複製している",
+      "この実装ではキャッシュへの書き込みは一切行われない",
+      "catch内のcaches.match()は、ネットワークが成功した場合にのみ実行される"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "このコードはまずネットワークにリクエストし、成功すればレスポンスをキャッシュに保存しつつ返す(Network First)。ResponseやRequestのボディはストリームであり一度しか消費できないため、キャッシュ保存用に.clone()で複製している。catchはネットワーク失敗時にのみ実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerGlobalScope/fetch_event"
+  },
+  {
+    "id": "performance-offline-012",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードが実現しているキャッシュ戦略として最も適切なものはどれか。",
+    "code": "self.addEventListener('fetch', function(event) {\n  event.respondWith(\n    caches.match(event.request).then(function(cachedResponse) {\n      return cachedResponse || fetch(event.request);\n    })\n  );\n});",
+    "choices": ["Cache First", "Network First", "Stale-While-Revalidate", "Network Only"],
+    "correctAnswers": [0],
+    "explanation": "caches.match()でキャッシュを先に確認し、ヒットすればそれを返し、ヒットしない場合のみfetch()でネットワークから取得している。これはCache First(キャッシュ優先)戦略の典型的な実装である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/match"
+  },
+  {
+    "id": "performance-offline-013",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CacheStorageインターフェースのopen()メソッドについて正しい説明はどれか。",
+    "choices": [
+      "指定した名前のCacheオブジェクトを取得し、存在しない場合は新規作成してPromiseで返す",
+      "ブラウザのすべてのキャッシュストレージを即座に削除する",
+      "同期的にCacheオブジェクトを返す(Promiseは使用しない)",
+      "Service Workerの登録を解除する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "caches.open(cacheName)は指定した名前のキャッシュ(Cacheオブジェクト)を開き、存在しなければ新規に作成してPromiseで解決する。CacheStorage/Cache関連のAPIはすべて非同期(Promiseベース)である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CacheStorage/open"
+  },
+  {
+    "id": "performance-offline-014",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Cache.addAll()メソッドの動作として正しいものはどれか。",
+    "choices": [
+      "渡されたURLリストのいずれか1つでもフェッチに失敗すると、全体が失敗しキャッシュには何も保存されない",
+      "渡されたURLのうち成功したものだけを部分的にキャッシュに保存する",
+      "URLを1つずつ順番に処理し、失敗したURLだけ後で再試行する",
+      "HTTPのステータスコードに関わらず必ず成功として扱われる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "addAll()はatomic(全か無か)な操作で、指定したリソースのうち1つでも取得に失敗する(またはレスポンスがokでない)と、全体が失敗しどのリソースもキャッシュに保存されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/addAll"
+  },
+  {
+    "id": "performance-offline-015",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Cache.add()/addAll()とCache.put()の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "add()/addAll()は内部でfetch()を実行してレスポンスを取得しキャッシュに保存するのに対し、put()は既に取得済みのRequestとResponseのペアを直接キャッシュに保存する",
+      "put()は複数のURLをまとめて処理できるが、add()は1つのURLしか処理できない",
+      "add()はネットワークにアクセスせず、キャッシュ内のコピーのみで動作する",
+      "put()はService Worker内でのみ使用可能だが、add()はどこからでも使用できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "add()/addAll()は指定したURLに対して内部でfetch()を行い、そのレスポンスをキャッシュに格納する。一方put(request, response)は既に取得済みのResponseオブジェクトを任意のRequestに紐づけて保存するため、fetch()以外の方法で得たレスポンスも保存できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/put"
+  },
+  {
+    "id": "performance-offline-016",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Cacheインターフェースに定義されているメソッドとして正しいものを3つ選べ。",
+    "choices": ["match()", "matchAll()", "put()", "subscribe()", "getRegistration()", "postMessage()"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Cacheインターフェースにはmatch()、matchAll()、add()、addAll()、put()、delete()、keys()などのメソッドが定義されている。subscribe()はPushManager、getRegistration()はServiceWorkerContainer、postMessage()はWorker/ServiceWorkerのメソッドであり、Cacheインターフェースには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache"
+  },
+  {
+    "id": "performance-offline-017",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Service Workerでキャッシュのバージョン管理と古いキャッシュのクリーンアップを行う際の一般的な実装手順として正しいものを2つ選べ。",
+    "code": "self.addEventListener('activate', function(event) {\n  event.waitUntil(\n    caches.keys().then(function(cacheNames) {\n      return Promise.all(\n        cacheNames\n          .filter(function(name) { return name !== CURRENT_CACHE; })\n          .map(function(name) { return caches.delete(name); })\n      );\n    })\n  );\n});",
+    "choices": [
+      "キャッシュ名にバージョン番号(例: 'v1', 'v2')を含め、更新のたびに新しい名前のキャッシュを使う",
+      "activateイベント内でcaches.keys()を使って既存のキャッシュ名一覧を取得し、現在のバージョン以外を削除する",
+      "バージョン管理を行う場合、キャッシュ名は常に固定の1つだけを使い、内容を毎回上書きする",
+      "古いキャッシュの削除はinstallイベント内で必ず行う必要があり、activateイベントでは行えない"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "キャッシュ名にバージョンを含めて新旧を区別し、activateイベントでcaches.keys()により既存キャッシュ一覧を取得して不要な古いバージョンをcaches.delete()で削除するのが典型的なパターンである。固定の1つのキャッシュ名だけを使い回す方法ではバージョン管理ができず、削除処理はactivateイベントで行うのが一般的である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CacheStorage/keys"
+  },
+  {
+    "id": "performance-offline-018",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メインスレッドから新しいWeb Workerを生成する正しいコードはどれか。",
+    "choices": [
+      "var worker = new Worker('worker.js');",
+      "var worker = new WebWorker('worker.js');",
+      "var worker = Worker.create('worker.js');",
+      "var worker = navigator.createWorker('worker.js');"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Workerはnew Worker(scriptURL)というコンストラクタで生成する。WebWorkerというグローバルコンストラクタは存在せず、Worker.create()やnavigator.createWorker()も実在しないAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Worker"
+  },
+  {
+    "id": "performance-offline-019",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メインスレッドとWeb Workerの間でデータをやり取りする方法として正しいものはどれか。",
+    "code": "// main.js\nvar worker = new Worker('worker.js');\nworker.postMessage({ command: 'start', value: 42 });\nworker.onmessage = function(event) {\n  console.log('Workerから受信:', event.data);\n};",
+    "choices": [
+      "postMessage()でメッセージを送信し、onmessageイベントハンドラ(またはmessageイベントのリスナー)で受信する",
+      "共有のグローバル変数を直接書き換えることでデータをやり取りする",
+      "WorkerオブジェクトのDOM要素をmutation observerで監視する",
+      "Workerとメインスレッドは同じメモリ空間を共有しているため、通常の関数呼び出しで直接データを渡す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Workerとメインスレッドは別スレッド・別グローバルスコープで動作し、直接メモリを共有しない。データのやり取りはpostMessage()によるメッセージング(構造化複製アルゴリズムによるコピー、またはTransferable Objectsによる転送)で行う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Worker/postMessage"
+  },
+  {
+    "id": "performance-offline-020",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Web Worker内(専用ワーカーのグローバルスコープ)からアクセス可能なAPI・オブジェクトとして正しいものを4つ選べ。",
+    "choices": ["navigator", "location(WorkerLocationとして)", "document", "XMLHttpRequestやfetch()によるネットワーク通信", "window", "IndexedDB"],
+    "correctAnswers": [0, 1, 3, 5],
+    "explanation": "Web Worker内ではDOM(document)やwindowオブジェクトには直接アクセスできない。一方、navigator、location(WorkerLocation)、XMLHttpRequestやfetch()によるネットワーク通信、IndexedDB、WebSocketなどは利用可能である。windowの代わりにグローバルスコープはselfとして参照する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers"
+  },
+  {
+    "id": "performance-offline-021",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Web Worker内で外部のJavaScriptファイルを同期的に読み込むために使用するメソッドはどれか。",
+    "code": "// worker.js\nimportScripts('utils.js', 'helpers.js');",
+    "choices": ["importScripts()", "require()", "import文", "loadScript()"],
+    "correctAnswers": [0],
+    "explanation": "WorkerGlobalScopeにはimportScripts()メソッドが用意されており、指定した1つ以上のスクリプトを同期的に取得・実行できる。ES Modulesのimport文もモジュールワーカーでは使用できるが、従来からある同期読み込みの標準的な方法はimportScripts()である。requireやloadScriptはWeb Workerの標準APIではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WorkerGlobalScope/importScripts"
+  },
+  {
+    "id": "performance-offline-022",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Workerの制約に関する説明として正しいものはどれか。",
+    "choices": [
+      "Web Worker内のスクリプトから、メインスレッドのDOM要素(document)を直接操作することはできない",
+      "Web Workerはメインスレッドと同じスタックトレース・例外処理を共有する",
+      "Web Worker内では変数のスコープがグローバルに1つしか存在しない制約がある",
+      "Web Workerは同一オリジンであっても外部スクリプトを読み込めない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Workerは別スレッドかつ別のグローバルコンテキストで実行されるため、メインスレッドのDOM(documentオブジェクトなど)へ直接アクセス・操作することはできない。これはWeb Workerを利用する上での代表的な制約である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API"
+  },
+  {
+    "id": "performance-offline-023",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "メインスレッドから生成したWeb Workerを強制的に終了させたい場合に呼び出すメソッドとして正しいものはどれか。",
+    "code": "var worker = new Worker('worker.js');\n// ... 処理 ...\nworker.____();",
+    "choices": ["terminate", "close", "stop", "destroy"],
+    "correctAnswers": [0],
+    "explanation": "メインスレッド側からWorkerオブジェクトのterminate()を呼び出すと、Workerの実行を即座に強制終了できる。なお、Worker自身の内部からself.close()を呼んで自ら終了することも可能だが、メインスレッドから呼ぶメソッドはterminate()である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Worker/terminate"
+  },
+  {
+    "id": "performance-offline-024",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのように、第2引数に配列を指定してpostMessage()を呼び出す目的として正しいものはどれか。",
+    "code": "var buffer = new ArrayBuffer(1024 * 1024);\nworker.postMessage({ data: buffer }, [buffer]);",
+    "choices": [
+      "ArrayBufferの所有権をコピーではなく転送(Transferable Objects)することで、データをコピーせずに高速かつメモリ効率よく渡す",
+      "配列内に指定したオブジェクトだけをキャッシュに保存する",
+      "postMessage()の呼び出しを非同期ではなく同期的に実行させる",
+      "配列に指定したオブジェクトをWorker終了後も永続化する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "postMessage()の第2引数にTransferable Objects(ArrayBuffer、MessagePort、ImageBitmapなど)を配列で指定すると、それらのオブジェクトはコピーされるのではなく所有権が転送される。転送後、送信元のスレッドではそのオブジェクトは利用不可になるが、大きなデータを効率的にやり取りできる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Transferable_objects"
+  },
+  {
+    "id": "performance-offline-025",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Web Workerに関する説明として誤っているものはどれか。",
+    "choices": [
+      "Web Workerはメインスレッドと変数やDOMオブジェクトを直接共有できる",
+      "Web Worker内で発生した例外はerrorイベントとしてメインスレッドに通知できる",
+      "Web Workerはネストして、Worker内からさらに別のWorker(サブワーカー)を生成できる",
+      "Web Workerで生成したオブジェクトは、postMessage()を介さない限りメインスレッドから直接参照できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Web Workerとメインスレッドは別々のグローバルスコープを持ち、変数やDOMオブジェクトを直接共有することはできない。データはpostMessage()によるメッセージング(構造化複製またはTransferable Objects)でやり取りする。他の選択肢(エラー通知、サブワーカー生成、直接参照不可)はいずれも正しい説明である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers"
+  },
+  {
+    "id": "performance-offline-026",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "SharedWorkerの特徴として最も適切な説明はどれか。",
+    "choices": [
+      "同一オリジンの複数のブラウジングコンテキスト(タブやウィンドウ、iframeなど)から接続して共有できるWorkerである",
+      "1つのタブ内でのみ利用でき、そのタブを閉じると同時にWorkerも即座に終了する専用Workerである",
+      "Service Workerの別名であり、機能的にはService Workerと同一である",
+      "複数の異なるオリジン間でメッセージをやり取りするためのWorkerである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SharedWorkerは同一オリジンであれば複数のタブ・ウィンドウ・iframeなどから接続し、1つのWorkerインスタンスを共有できる。専用Worker(Dedicated Worker)は生成元のコンテキストからのみ利用可能な点が異なる。異なるオリジン間の通信にはpostMessageによるクロスオリジン通信など別の仕組みが必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/SharedWorker"
+  },
+  {
+    "id": "performance-offline-027",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "SharedWorker内で新しい接続を受け付ける際に使用するイベントとして正しいものはどれか。",
+    "code": "// shared-worker.js\nself.addEventListener('connect', function(e) {\n  var port = e.ports[0];\n  port.onmessage = function(event) {\n    port.postMessage('受信しました: ' + event.data);\n  };\n});",
+    "choices": ["connect", "open", "install", "message"],
+    "correctAnswers": [0],
+    "explanation": "SharedWorkerGlobalScopeでは、新しいクライアントが接続するたびにconnectイベントが発生し、イベントオブジェクトのportsプロパティから接続に使用するMessagePortを取得できる。install・openはSharedWorkerのイベントとしては存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/SharedWorkerGlobalScope/connect_event"
+  },
+  {
+    "id": "performance-offline-028",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "SharedWorkerに接続するメインスレッド側のコードで、MessagePort.start()の呼び出しが必要になる場合の説明として正しいものはどれか。",
+    "code": "var worker = new SharedWorker('shared-worker.js');\nworker.port.addEventListener('message', function(e) {\n  console.log(e.data);\n});\nworker.port.start();\nworker.port.postMessage('hello');",
+    "choices": [
+      "onmessageプロパティへの代入ではなくaddEventListener()でmessageイベントを購読する場合、ポートを明示的に開始するためにstart()を呼び出す必要がある",
+      "start()を呼ばないとpostMessage()自体が例外を投げて送信に失敗する",
+      "start()はSharedWorkerを生成した直後に自動的に呼び出されるため、明示的に呼ぶ必要は一切ない",
+      "start()はメッセージポートを閉じるためのメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "MessagePortはonmessageプロパティへの代入で購読を開始した場合は暗黙的にポートが開始されるが、addEventListener()を使ってmessageイベントを購読する場合はポートが自動的には開始されないため、明示的にport.start()を呼び出してメッセージのキューイングを開始する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MessagePort/start"
+  },
+  {
+    "id": "performance-offline-029",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "performance.now()が返す値の説明として正しいものはどれか。",
+    "code": "var start = performance.now();\ndoSomeWork();\nvar end = performance.now();\nconsole.log('処理時間: ' + (end - start) + 'ms');",
+    "choices": [
+      "ページのタイムオリジンからの経過時間をミリ秒(サブミリ秒精度を含む)で表す、単調増加するDOMHighResTimeStampを返す",
+      "Unixエポック(1970年1月1日)からの経過ミリ秒数を返す",
+      "呼び出しごとに0から再カウントされるタイマー値を返す",
+      "CPU使用率をパーセンテージで返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "performance.now()はDate.now()と異なり、システム時刻の変更の影響を受けない単調増加する高精度なタイムスタンプ(DOMHighResTimeStamp)を、ページのタイムオリジンからの経過時間として返す。処理時間の計測に適している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Performance/now"
+  },
+  {
+    "id": "performance-offline-030",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Navigation Timing APIに関する説明として正しいものを2つ選べ。",
+    "choices": [
+      "ページのナビゲーション開始からDOM構築、リソース読み込み完了までの詳細なタイミング情報を提供する",
+      "現在はperformance.getEntriesByType('navigation')でPerformanceNavigationTimingオブジェクトを取得するのが標準的な方法である",
+      "複数のタブ間でのページ遷移履歴を同期するためのAPIである",
+      "CSSアニメーションのフレームレートを計測するためのAPIである"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Navigation Timing APIは、ページのナビゲーション(読み込み)に関する詳細なタイミング情報(DNS解決、TCP接続、レスポンス受信、DOM構築完了など)を提供する。従来のperformance.timing(非推奨)に代わり、performance.getEntriesByType('navigation')でPerformanceNavigationTimingオブジェクトを取得するのが現在の標準的な方法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigation_timing_API"
+  },
+  {
+    "id": "performance-offline-031",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Resource Timing APIのperformance.getEntriesByType('resource')で取得できるエントリの対象として正しいものを2つ選べ。",
+    "choices": [
+      "<img>タグで読み込まれた画像リソース",
+      "fetch()やXMLHttpRequestによって取得されたリソース",
+      "ページ自体のナビゲーション(HTMLドキュメント本体の読み込み)",
+      "JavaScriptで定義しただけで実行していない関数呼び出し"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Resource Timing APIは画像・スクリプト・CSS・fetch/XHRによるリクエストなど、ページが読み込む個々のリソースの取得に関するタイミング情報を提供する。ドキュメント本体のナビゲーションに関するタイミングはNavigation Timing API(タイプ'navigation')で別途扱われ、resourceタイプには含まれない。実行されていない関数呼び出しはネットワークリソースではないため対象外である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Resource_Timing_API"
+  },
+  {
+    "id": "performance-offline-032",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "PerformanceResourceTimingオブジェクトが提供するプロパティとして正しいものをすべて選べ。",
+    "choices": ["domainLookupStart", "responseEnd", "transferSize", "cookieValue", "visibilityState", "connectStart"],
+    "correctAnswers": [0, 1, 2, 5],
+    "explanation": "PerformanceResourceTimingはdomainLookupStart/domainLookupEnd、connectStart/connectEnd、responseStart/responseEnd、transferSize、encodedBodySizeなど、リソース取得の各段階に関する詳細なタイミングとサイズ情報を提供する。cookieValueのようなプロパティは存在せず、セキュリティ上の理由からCookie情報は公開されない。visibilityStateはDocumentのプロパティであり、PerformanceResourceTimingには含まれない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PerformanceResourceTiming"
+  },
+  {
+    "id": "performance-offline-033",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードで使われているperformance.mark()とperformance.measure()の説明として正しいものはどれか。",
+    "code": "performance.mark('start-process');\ndoHeavyWork();\nperformance.mark('end-process');\nperformance.measure('process-duration', 'start-process', 'end-process');",
+    "choices": [
+      "mark()はタイムラインに名前付きのタイムスタンプを記録し、measure()は2つのマーク間の経過時間を計測してエントリとして記録する(User Timing API)",
+      "mark()はDOM要素にスタイルを適用し、measure()は要素のサイズを取得する",
+      "mark()とmeasure()はService Worker専用のAPIであり、通常のページでは使用できない",
+      "mark()は非同期処理を同期処理に変換するためのAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "User Timing APIのperformance.mark()は任意の名前でタイムスタンプを記録し、performance.measure()は2つのマーク(またはナビゲーション開始などの基準点)間の時間を計測してPerformanceMeasureエントリとして記録する。開発者が独自の処理区間の計測を行うために使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/User_Timing_API"
+  },
+  {
+    "id": "performance-offline-034",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "requestIdleCallback()の目的として最も適切な説明はどれか。",
+    "choices": [
+      "ブラウザがメインスレッドで他に緊急の処理を持たないアイドル時間を利用して、優先度の低い処理を実行する",
+      "指定した時間が経過した後、必ず即座に処理を実行することを保証する",
+      "CSSアニメーションのフレーム描画タイミングに同期してコールバックを実行する",
+      "Web Workerにタスクをスケジューリングして実行させる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestIdleCallback()は、ブラウザがフレーム内でレイアウトや描画などの処理を終えて手が空いた(アイドルな)時間帯にコールバックを実行するようスケジューリングするAPIで、ユーザー体験に影響を与えにくい優先度の低いタスク(ログ送信や事前計算など)の実行に向いている。フレーム同期処理にはrequestAnimationFrame()を使う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback"
+  },
+  {
+    "id": "performance-offline-035",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "requestIdleCallback()に渡されるコールバック関数が受け取るIdleDeadlineオブジェクトについて正しい説明を2つ選べ。",
+    "code": "requestIdleCallback(function(deadline) {\n  while (deadline.timeRemaining() > 0 && tasks.length > 0) {\n    processTask(tasks.pop());\n  }\n}, { timeout: 2000 });",
+    "choices": [
+      "timeRemaining()メソッドで、現在のアイドル期間内に残っている推定処理可能時間(ミリ秒)を取得できる",
+      "didTimeoutプロパティで、timeoutオプションで指定した時間を超えても実行されずに強制的に呼び出されたかどうかを確認できる",
+      "IdleDeadlineは常にtimeRemaining()が0を返し、実処理には使用できない",
+      "IdleDeadlineオブジェクトはWeb Workerの中でのみ利用可能である"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "IdleDeadline.timeRemaining()は現在のアイドル期間中にあとどれくらいの時間(ミリ秒)処理に使えるかを返す。didTimeoutは、options.timeoutで指定した時間が経過してもアイドル時間が得られなかった場合にtrueとなり、コールバックが強制的に呼び出されたことを示す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IdleDeadline"
+  },
+  {
+    "id": "performance-offline-036",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードにおけるtimeoutオプションの役割として正しい説明はどれか。",
+    "code": "requestIdleCallback(processQueue, { timeout: 1000 });",
+    "choices": [
+      "ブラウザがアイドル状態にならなくても、指定したミリ秒(この場合1000ms)が経過すると、強制的にコールバックを実行する",
+      "コールバックの実行時間の上限を1000msに制限し、超過すると処理を中断する",
+      "1000ms待ってから最初にrequestIdleCallback()の登録を開始する",
+      "1000ms以内にアイドル時間が得られなければコールバックの登録自体をキャンセルする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "timeoutオプションを指定すると、その時間が経過してもブラウザがアイドル状態にならなかった場合に、通常のアイドル待機を待たずに強制的にコールバックが実行される。これにより、重要度の高い処理が無期限に遅延することを防げる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback"
+  },
+  {
+    "id": "performance-offline-037",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Page Visibility APIのdocument.visibilityStateプロパティが取り得る値として正しい組み合わせはどれか。",
+    "choices": [
+      "'visible'と'hidden'",
+      "'active'と'inactive'",
+      "'online'と'offline'",
+      "'focused'と'blurred'"
+    ],
+    "correctAnswers": [0],
+    "explanation": "document.visibilityStateは、ページが現在表示されているかどうかを示す文字列で、代表的な値は'visible'(表示中)と'hidden'(非表示、他タブに切り替わっている等)である。'active'/'inactive'や'online'/'offline'、'focused'/'blurred'はvisibilityStateの値ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/visibilityState"
+  },
+  {
+    "id": "performance-offline-038",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの目的として最も適切な説明はどれか。",
+    "code": "document.addEventListener('visibilitychange', function() {\n  if (document.visibilityState === 'hidden') {\n    video.pause();\n  } else {\n    video.play();\n  }\n});",
+    "choices": [
+      "タブが非表示(他のタブに切り替わった、最小化されたなど)になったときに動画を自動的に一時停止し、再度表示されたときに再生を再開する",
+      "ブラウザがオフラインになったときに動画のキャッシュを削除する",
+      "ページの読み込みが完了したときに一度だけ動画を再生する",
+      "ウィンドウのサイズが変更されたときに動画のサイズを調整する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "visibilitychangeイベントはdocument.visibilityStateが変化するたびに発生する。このコードは非表示になったときに動画を一時停止し、再表示時に再生を再開することで、不要なリソース消費やバックグラウンド再生を防いでいる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/visibilitychange_event"
+  },
+  {
+    "id": "performance-offline-039",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Page Visibility APIの活用例として適切なものを2つ選べ。",
+    "choices": [
+      "タブがバックグラウンドになったときにポーリング処理(定期的なサーバー問い合わせ)の頻度を下げる、または停止する",
+      "タブが非表示の間、不要なアニメーションの実行を停止して省電力・省リソース化する",
+      "タブが非表示になったことを検知して、強制的にそのタブを閉じる",
+      "タブが非表示の間、ネットワーク接続の種類(Wi-Fiやモバイル回線)を自動的に切り替える"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Page Visibility APIは、ユーザーが見ていないタブでの不要な処理(ポーリング、アニメーション、動画再生など)を抑制してCPUやバッテリー、通信量を節約する目的でよく利用される。タブを強制的に閉じたり、ネットワーク接続の種類を切り替えたりする機能は提供していない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Page_Visibility_API"
+  },
+  {
+    "id": "performance-offline-040",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Application Cache(AppCache、HTML5初期のオフライン機能)が非推奨となり、現在では主要ブラウザから削除された経緯に関する説明として最も適切なものはどれか。",
+    "choices": [
+      "キャッシュ更新の仕組みが分かりにくく開発者が意図しない挙動(古いページがキャッシュされ続ける等)を招きやすい、きめ細かい制御ができないなどの問題が多く指摘され、より柔軟に制御できるService Worker + Cache APIに置き換えられた",
+      "Application Cacheはセキュリティ上の脆弱性が全く存在しなかったが、単に人気がなかったため削除された",
+      "Application CacheはHTTPS環境でしか動作しないという制約があったため、HTTP環境向けにService Workerが作られた",
+      "Application CacheはモバイルブラウザにのみサポートされておりPCブラウザでは一度もサポートされたことがなかった"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Application Cacheはmanifestファイルの記述次第で意図しないキャッシュや更新の失敗が起きやすく、きめ細かなキャッシュ制御ができないという欠点があった。これを解決するため、JavaScriptで詳細に制御できるService WorkerとCache APIが後継として導入され、Application Cacheは非推奨・廃止となった。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API"
+  },
+  {
+    "id": "performance-offline-041",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Application Cache(AppCache)を利用する際に、HTML文書側で記述していた属性として正しいものはどれか。",
+    "code": "<html manifest=\"app.manifest\">\n...\n</html>",
+    "choices": ["manifest属性", "cache属性", "offline属性", "appcache属性"],
+    "correctAnswers": [0],
+    "explanation": "Application Cacheを有効にするには、<html>要素にmanifest属性を指定し、キャッシュ対象のリソースを記載したマニフェストファイルを参照させていた。現在はこの仕組み自体が廃止されており、Service Workerによるオフライン対応が推奨される。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/HTML/Application_cache"
+  },
+  {
+    "id": "performance-offline-042",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Webアプリマニフェスト(manifest.json)をHTMLページに関連付けるための正しい記述はどれか。",
+    "choices": [
+      "<link rel=\"manifest\" href=\"/manifest.json\">",
+      "<meta name=\"manifest\" content=\"/manifest.json\">",
+      "<script src=\"/manifest.json\" type=\"manifest\"></script>",
+      "<manifest href=\"/manifest.json\">"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Webアプリマニフェストは<link rel=\"manifest\" href=\"...\">要素でHTMLページに関連付ける。これによりブラウザはPWAとしてインストールする際のアイコンや名前、表示モードなどの情報をmanifest.jsonから取得する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Manifest"
+  },
+  {
+    "id": "performance-offline-043",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Webアプリマニフェスト(manifest.json)に記述するメンバー(プロパティ)として正しいものをすべて選べ。",
+    "choices": ["name", "short_name", "start_url", "cache-control", "display", "content-type"],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "manifest.jsonにはname、short_name、start_url、display、icons、theme_color、background_colorなどのメンバーを記述する。cache-controlやcontent-typeはHTTPレスポンスヘッダーの名称であり、Webアプリマニフェストのメンバーではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Manifest"
+  },
+  {
+    "id": "performance-offline-044",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Webアプリマニフェストのdisplayメンバーに指定できる正しい値を2つ選べ。",
+    "choices": ["standalone", "fullscreen", "windowed", "tab"],
+    "correctAnswers": [0, 1],
+    "explanation": "displayメンバーに指定できる主な値はfullscreen、standalone、minimal-ui、browserである。windowedやtabはこの仕様で定義された値ではない。standaloneはブラウザUIを隠しネイティブアプリのように表示し、fullscreenは画面全体を使用して表示する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Manifest/display"
+  },
+  {
+    "id": "performance-offline-045",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ユーザーに通知(Notification)の表示許可を求めるための正しいコードはどれか。",
+    "code": "Notification.requestPermission().then(function(permission) {\n  if (permission === 'granted') {\n    new Notification('許可されました');\n  }\n});",
+    "choices": [
+      "Notification.requestPermission()はユーザーに許可ダイアログを表示し、'granted'、'denied'、'default'のいずれかの結果をPromiseで返す",
+      "Notification.requestPermission()は常に'granted'を返し、ユーザーへの確認は行われない",
+      "Notification.requestPermission()はService Worker内でのみ呼び出すことができる",
+      "Notification.requestPermission()を呼ぶと即座に通知が1件表示される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Notification.requestPermission()はブラウザの通知許可を求めるダイアログを表示し、ユーザーの選択結果として'granted'(許可)、'denied'(拒否)、'default'(未選択)のいずれかを解決値とするPromiseを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Notification/requestPermission"
+  },
+  {
+    "id": "performance-offline-046",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Push APIを利用してプッシュ通知を実現するために必要な要素として正しいものを2つ選べ。",
+    "choices": [
+      "HTTPS(セキュアなコンテキスト)での配信であること",
+      "有効なService Workerが登録されており、PushManager.subscribe()によるプッシュ購読が行われていること",
+      "ページを常にブラウザのアクティブタブとして開いたままにしておくこと",
+      "CookieにユーザーのIDを保存しておくこと"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Push APIはセキュアなコンテキスト(HTTPS)でのみ利用可能であり、Service Workerを介してPushManager.subscribe()でプッシュ購読(サブスクリプション)を作成する必要がある。Service Workerベースであるため、ページ自体を開いていなくてもプッシュメッセージを受信し通知を表示できる点が特徴である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Push_API"
+  },
+  {
+    "id": "performance-offline-047",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ServiceWorkerRegistration.showNotification()と、ページ内でnew Notification()を直接呼び出す方法の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "ServiceWorkerRegistration.showNotification()はService Worker経由で通知を表示するため、ページ(タブ)が閉じられていても、Push APIで受信したイベント等をきっかけに通知を表示できる",
+      "両者は完全に同じ機能であり、実装上の違いは一切ない",
+      "new Notification()はService Worker内でのみ呼び出すことができ、通常のページからは呼び出せない",
+      "ServiceWorkerRegistration.showNotification()はユーザーの許可なしに通知を表示できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "new Notification()はページのコンテキストに紐づいて動作するため、ページが閉じられると影響を受けやすいのに対し、ServiceWorkerRegistration.showNotification()はService Worker経由で通知を出すため、プッシュ通知受信時などページが開いていない状況でも通知を表示できる。いずれの方法でもユーザーによる通知許可(Notification.requestPermission())は必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerRegistration/showNotification"
+  },
+  {
+    "id": "performance-offline-048",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Webページのレンダリングパフォーマンスにおける「リフロー(reflow / レイアウト)」の説明として正しいものはどれか。",
+    "choices": [
+      "要素のサイズや位置などジオメトリ情報が変化した際に、ブラウザがレイアウトを再計算する処理",
+      "要素の色や背景色など、レイアウトに影響しない見た目だけを再描画する処理",
+      "HTMLファイルをネットワークから再ダウンロードする処理",
+      "JavaScriptファイルを再パースしてASTを再構築する処理"
+    ],
+    "correctAnswers": [0],
+    "explanation": "リフロー(レイアウト)は、要素の幅・高さ・位置など、ページ上の要素の配置(ジオメトリ)に影響する変更が行われた際に、ブラウザが要素の位置やサイズを再計算する処理である。見た目の色だけが変わる場合はリペイント(repaint)のみが発生し、リフローは発生しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Reflow"
+  },
+  {
+    "id": "performance-offline-049",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CSSプロパティの変更とレンダリングパフォーマンスの関係について、レイアウト(リフロー)の再計算を発生させずに、コンポジタ(合成)処理のみで済ませられる可能性が高いプロパティを2つ選べ。",
+    "choices": ["transform", "opacity", "width", "top(position指定時のオフセット)"],
+    "correctAnswers": [0, 1],
+    "explanation": "transformやopacityの変更は、多くの場合GPUによる合成(コンポジット)処理だけで実現でき、レイアウトの再計算(リフロー)やペイントの再実行を伴わずに済むため、アニメーションに適している。一方、widthやtop(position指定時のオフセット)の変更は要素のジオメトリに影響するため、リフローを引き起こす。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Reflow"
+  },
+  {
+    "id": "performance-offline-050",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "JavaScriptでスムーズなアニメーションを実装する際、setTimeout()やsetInterval()ではなくrequestAnimationFrame()を使うことが推奨される理由として最も適切なものはどれか。",
+    "code": "function animate() {\n  updatePosition();\n  requestAnimationFrame(animate);\n}\nrequestAnimationFrame(animate);",
+    "choices": [
+      "ブラウザの再描画のタイミングに同期してコールバックが呼ばれるため、無駄な描画や取りこぼしが減り、より滑らかで効率的なアニメーションになる",
+      "requestAnimationFrame()はメインスレッドではなく別スレッドで実行されるため、UIをブロックしない",
+      "requestAnimationFrame()は必ず1000分の1秒間隔でコールバックを実行することを保証する",
+      "requestAnimationFrame()を使うとブラウザのタブが非表示でも同じ頻度で処理が継続される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestAnimationFrame()はブラウザの描画タイミング(通常は次のリフレッシュレート、例えば60Hzディスプレイなら約16.6ms間隔)に同期してコールバックを呼び出すため、setTimeout/setIntervalに比べて無駄な再描画や視覚的なカクつきを抑えたスムーズなアニメーションが可能になる。またタブが非表示の場合は自動的に呼び出し頻度が抑制され、リソースを節約する。メインスレッドで実行される点はsetTimeoutと同様である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestAnimationFrame"
+  },
+  {
+    "id": "performance-offline-051",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Background Sync APIの基本的な用途に関する説明として最も適切なものはどれか。",
+    "code": "navigator.serviceWorker.ready.then(function(registration) {\n  return registration.sync.register('send-data');\n});",
+    "choices": [
+      "オフライン時などにネットワークが利用できない状況でリクエストの送信に失敗した場合、SyncManagerにタグ付きの同期リクエストを登録しておき、ネットワークが復旧したタイミングでService Worker側のsyncイベントとして再試行する",
+      "Service Workerとメインスレッドの間で常に双方向にリアルタイム通信を行う",
+      "複数のタブ間でIndexedDBのデータを常に同期させる",
+      "ページの表示状態(visible/hidden)が変化するたびにデータを送信する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Background Sync APIは、オフライン時などに失敗した処理をSyncManager.register()でタグ登録しておくことで、ネットワーク復旧時にService Worker側のsyncイベントとして再実行を促す仕組みである。2026年時点でもSafariやFirefoxでは対応しておらず、汎用的に依存できない実験的な位置づけのAPIである点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API"
+  },
+  {
+    "id": "performance-offline-052",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "PerformanceObserverインターフェースの役割に関する説明として正しいものはどれか。",
+    "choices": [
+      "指定したentryTypeのパフォーマンスエントリが新たに記録されるたびに、登録したコールバック関数を非同期に呼び出して通知を受け取れる",
+      "DOM要素の属性や子要素の変化を監視するためのAPIである",
+      "ページの可視状態(visible/hidden)の変化のみを監視する専用APIである",
+      "CSSのメディアクエリの一致状態が変化したときに通知するAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "PerformanceObserverはobserve()でentryTypesを指定して登録すると、該当する種類のパフォーマンスエントリ(navigation、resource、paint、longtaskなど)が発生するたびにコールバックが呼び出され、performance.getEntries()を都度ポーリングすることなく効率的に計測データを取得できる。DOM変化の監視はMutationObserver、メディアクエリの監視はmatchMediaの役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PerformanceObserver"
+  },
+  {
+    "id": "performance-offline-053",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Core Web Vitalsの指標の1つであるLargest Contentful Paint(LCP)が計測する内容として正しいものはどれか。",
+    "choices": [
+      "ビューポート内で最も大きい面積を占める画像やテキストブロックなどのコンテンツが描画されるまでの時間",
+      "ユーザーが最初にページを操作してからブラウザが応答するまでの時間",
+      "ページのレイアウトが予期せずずれ動いた量の累積値",
+      "ページのHTMLファイルのダウンロードが完了するまでの時間"
+    ],
+    "correctAnswers": [0],
+    "explanation": "LCPは、ビューポート内で最も大きな面積を占める画像やテキストブロックが描画されるまでの時間を計測する指標で、ユーザーが「主要なコンテンツが表示された」と感じる速さを表すCore Web Vitalsの1つである。入力応答性を表す指標(現INP)やレイアウトのずれを表す指標(CLS)とは異なる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/LargestContentfulPaint"
+  },
+  {
+    "id": "performance-offline-054",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "First Contentful Paint(FCP)が計測する内容として正しいものはどれか。",
+    "choices": [
+      "ナビゲーション開始からブラウザが最初に何らかのテキストや画像などのコンテンツを1つでも画面に描画するまでの時間",
+      "ページ内のすべての画像の読み込みが完了するまでの時間",
+      "ユーザーの最初のクリックやタップにブラウザが応答するまでの時間",
+      "Service Workerのインストールが完了するまでの時間"
+    ],
+    "correctAnswers": [0],
+    "explanation": "FCPは、ナビゲーションが開始されてからDOMコンテンツの一部(テキストや画像など)が最初に画面に描画されるまでの時間を計測する指標である。ページ全体の読み込み完了や画像の完全読み込み、入力応答性とは異なる概念である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/PerformancePaintTiming"
+  },
+  {
+    "id": "performance-offline-055",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のlink要素のrel=\"preload\"の役割として正しい説明はどれか。",
+    "code": "<link rel=\"preload\" as=\"script\" href=\"/app.js\">",
+    "choices": [
+      "現在のページで確実に必要になるリソースを、ブラウザに高い優先度で早期に取得させておく(取得したリソースを実際に適用・実行するには別途通常の参照が必要)",
+      "将来訪問する可能性のある別ページのリソースを、アイドル時間に低優先度で先読みしておく",
+      "指定したホスト名のDNS解決のみを事前に行っておく",
+      "リソースをブラウザのキャッシュから完全に削除する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "rel=\"preload\"は、現在のページで後から必要になることが分かっているリソースを高い優先度で先に取得させておくためのリソースヒントである。取得のみを行い、実際に適用・実行するには通常通りscriptタグやlinkタグなどでの参照が別途必要になる。将来のページ遷移先を対象とするのはprefetchの役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/preload"
+  },
+  {
+    "id": "performance-offline-056",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のlink要素のrel=\"prefetch\"の役割として正しい説明はどれか。",
+    "code": "<link rel=\"prefetch\" href=\"/next-page.html\">",
+    "choices": [
+      "ユーザーが次に訪れる可能性が高いページなどのリソースを、ブラウザのアイドル時間を利用して低優先度で先読みしておく",
+      "現在のページの表示に必須なリソースを最優先で取得する",
+      "指定したオリジンへのTCP接続とTLSハンドシェイクを事前に完了させておく",
+      "CSSファイルをブラウザに解析させず生のテキストとしてキャッシュする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "rel=\"prefetch\"は、次のナビゲーションなどで使われる可能性が高いリソースを、現在のページの表示を妨げないよう低優先度・アイドル時間に取得しておくリソースヒントである。現在のページで確実に使う高優先度のリソースにはpreloadを使う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/prefetch"
+  },
+  {
+    "id": "performance-offline-057",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のlink要素のrel=\"preconnect\"の役割として正しい説明はどれか。",
+    "code": "<link rel=\"preconnect\" href=\"https://fonts.example.com\">",
+    "choices": [
+      "実際にリクエストを送る前に、指定したオリジンへのDNS解決・TCP接続・(HTTPSの場合)TLSネゴシエーションまでを事前に完了させ、実際のリクエスト時のレイテンシを削減する",
+      "指定したオリジンのすべてのリソースを事前にダウンロードしてキャッシュに保存する",
+      "指定したオリジンとの通信を完全にブロックする",
+      "Service Workerの登録先スコープを指定したオリジンに変更する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "preconnectはDNS解決だけでなくTCP接続やTLSハンドシェイクまで事前に済ませておくことで、実際にそのオリジンへリクエストを送る際の接続確立にかかる時間を削減できる。ただし接続を張ったまま使われないとサーバー・クライアント双方のリソースを無駄に消費するため、本当に使う予定のオリジンにのみ限定して使うべきとされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/preconnect"
+  },
+  {
+    "id": "performance-offline-058",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のlink要素のrel=\"dns-prefetch\"の役割として正しい説明はどれか。",
+    "code": "<link rel=\"dns-prefetch\" href=\"//cdn.example.com\">",
+    "choices": [
+      "指定したホスト名のDNS解決のみを事前に行っておくことで、実際に接続する際の名前解決の待ち時間を短縮する",
+      "TCP接続とTLSハンドシェイクまで含めて事前に接続を確立しておく",
+      "該当ホストから取得するすべてのリソースをキャッシュに保存する",
+      "該当ホストへのすべてのリクエストをService Workerで代行する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "dns-prefetchはDNS解決のみを事前に行うリソースヒントで、preconnectに比べて処理は軽量だが、TCP接続やTLSハンドシェイクは含まれない。preconnectに未対応の古いブラウザ向けの代替・併用として使われることが多い。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/dns-prefetch"
+  },
+  {
+    "id": "performance-offline-059",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードのようにイベントハンドラ内でモジュールを読み込む際に使われている構文の説明として正しいものはどれか。",
+    "code": "button.addEventListener('click', function() {\n  import('./chart.js').then(function(module) {\n    module.renderChart();\n  });\n});",
+    "choices": [
+      "import()は関数のように呼び出せる構文で、指定したモジュールを必要になったタイミングで非同期に読み込み、モジュールの名前空間オブジェクトで解決されるPromiseを返す",
+      "import()は静的なimport文と同様、ファイルの先頭でのみ使用でき、条件分岐の中では使用できない",
+      "import()は同期的にモジュールを読み込み、完了するまでスクリプトの実行をブロックする",
+      "import()はWeb Worker内でのみ使用可能な構文である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "動的import()は静的なimport文と異なり、関数のように任意の場所(条件分岐やイベントハンドラ内など)で呼び出すことができ、指定したモジュールを非同期に取得してモジュール名前空間オブジェクトでPromiseを解決する。これによりコード分割や遅延読み込みが実現できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/import"
+  },
+  {
+    "id": "performance-offline-060",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードのworker.onerrorに関する説明として正しいものはどれか。",
+    "code": "var worker = new Worker('worker.js');\nworker.onerror = function(event) {\n  console.log('エラー:', event.message);\n};",
+    "choices": [
+      "Worker内で捕捉されない例外が発生すると、メインスレッド側のworker.onerrorハンドラ(またはerrorイベント)が呼び出され、エラー内容を受け取れる",
+      "onerrorはWorker自身がクラッシュした場合に自動的にWorkerを再起動する処理である",
+      "onerrorはWorker内からメインスレッドのエラーを監視するために使用する",
+      "onerrorはpostMessage()の送信に失敗した場合にのみ発火する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Worker内でtry/catchされなかった例外が発生すると、その内容を持つErrorEventがWorkerオブジェクトのerrorイベントとしてメインスレッドに伝播し、worker.onerrorに設定した関数(またはaddEventListener('error', ...))で受け取ることができる。これによりWorker内のエラーをメインスレッド側で検知・処理できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Worker/error_event"
+  },
+  {
+    "id": "performance-offline-061",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "「デバウンス(debounce)」と呼ばれるイベント制御手法の説明として正しいものはどれか。",
+    "choices": [
+      "短時間に連続して発生するイベントに対して、最後の発生から一定時間イベントが発生しなかった場合に初めて処理を実行する",
+      "連続して発生するイベントに対して、一定間隔ごとに最大1回だけ処理を実行するよう間引く",
+      "発生したイベントをすべて記録し、後でまとめて逆順に再生する",
+      "イベントの発生回数に応じて処理の実行優先度を自動的に引き上げる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "デバウンスは、テキスト入力やウィンドウのresizeイベントのように短時間に連続して発生するイベントに対し、一定時間イベントの発生が途切れてから初めて処理を実行することで、不要な処理の連続実行を防ぐ手法である。一定間隔ごとに間引く手法は「スロットル(throttle)」と呼ばれ、区別される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/resize_event"
+  },
+  {
+    "id": "performance-offline-062",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "「スロットル(throttle)」と呼ばれるイベント制御手法の説明として正しいものはどれか。",
+    "choices": [
+      "連続して発生するイベントに対して、一定の間隔ごとに最大1回だけ処理を実行するよう間引く",
+      "最後にイベントが発生してから一定時間経過するまで処理の実行を待ち続ける",
+      "発生したイベントの回数をカウントし、一定回数を超えたらイベントリスナー自体を削除する",
+      "ブラウザのタブが非表示になっている間だけイベント処理を無効化する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "スロットルはscrollイベントのように高頻度で発生するイベントに対して、一定間隔ごとに最大1回だけ処理を実行するよう間引く手法で、処理負荷を抑えつつも一定の反応性を保てる。イベント発生が途切れてから処理する「デバウンス」とは動作が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/scroll_event"
+  },
+  {
+    "id": "performance-offline-063",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のHTTPレスポンスヘッダーにおけるmax-ageディレクティブの意味として正しいものはどれか。",
+    "code": "HTTP/1.1 200 OK\nCache-Control: max-age=3600",
+    "choices": [
+      "レスポンスをブラウザなどのキャッシュに保存し、指定した秒数(この場合3600秒)の間はサーバーへの再検証を行わずにキャッシュされたレスポンスをそのまま利用してよいことを示す",
+      "レスポンスをキャッシュに保存することを禁止する",
+      "3600ミリ秒ごとにページを自動的にリロードさせる",
+      "サーバー上でのレスポンスの生成にかかった時間を示す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cache-Controlヘッダーのmax-ageディレクティブは、レスポンスが新鮮(fresh)とみなされる秒数を指定し、その期間内であればブラウザは再度サーバーに問い合わせることなくキャッシュされたレスポンスをそのまま使用できる。期限が切れると再検証(条件付きリクエスト)や再取得が行われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cache-Control"
+  },
+  {
+    "id": "performance-offline-064",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のHTTPレスポンスヘッダーにおけるContent-Encoding: gzipの意味として正しいものはどれか。",
+    "code": "HTTP/1.1 200 OK\nContent-Encoding: gzip",
+    "choices": [
+      "レスポンスボディがgzipアルゴリズムで圧縮されて転送されていることを示し、ブラウザは受信後に自動的に伸長してから利用する",
+      "レスポンスの文字コードがgzip形式であることを示す",
+      "レスポンスをキャッシュに保存する際にgzip形式で保存するようブラウザに指示する",
+      "リクエストをgzip形式に変換してサーバーに再送信するようブラウザに指示する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Content-Encodingレスポンスヘッダーは、ボディがどのアルゴリズム(gzip、br(Brotli)、deflateなど)で圧縮されているかを示す。ブラウザは対応する圧縮方式であれば自動的に伸長してからHTML/CSS/JSとして処理するため、転送データ量を削減しつつアプリケーション側で明示的な解凍処理を行う必要はない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Encoding"
+  },
+  {
+    "id": "performance-offline-065",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードで利用しているLong Tasks APIに関する正しい説明を2つ選べ。",
+    "code": "var observer = new PerformanceObserver(function(list) {\n  list.getEntries().forEach(function(entry) {\n    console.log('Long Task:', entry.duration + 'ms');\n  });\n});\nobserver.observe({ entryTypes: ['longtask'] });",
+    "choices": [
+      "メインスレッドを50ミリ秒以上占有し続けたタスクを'longtask'エントリとして報告する",
+      "PerformanceObserverのentryTypesに'longtask'を指定することで監視できる",
+      "Web Worker内で実行された処理時間のみを対象とする",
+      "5秒以上かかったネットワークリクエストのみを対象とする"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Long Tasks APIは、メインスレッド上で50ミリ秒以上継続してブロックしたタスクを'longtask'というentryTypeのPerformanceEntryとして報告し、PerformanceObserverのobserve({ entryTypes: ['longtask'] })で監視できる。対象はメインスレッドの処理であり、Web Worker内の処理やネットワークリクエストの所要時間を対象とするものではない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Long_Tasks_API"
+  },
+  {
+    "id": "performance-offline-066",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のように、Service Worker内のfetchイベントハンドラでAPIレスポンスをCache APIではなくIndexedDBにも保存している場合、IndexedDBを併用するメリットとして適切な説明はどれか。",
+    "code": "self.addEventListener('fetch', function(event) {\n  if (event.request.url.indexOf('/api/items') !== -1) {\n    event.respondWith(\n      fetch(event.request).then(function(response) {\n        return response.clone().json().then(function(data) {\n          return saveItemsToIndexedDB(data).then(function() { return response; });\n        });\n      }).catch(function() {\n        return getItemsFromIndexedDBAsResponse();\n      })\n    );\n  }\n});",
+    "choices": [
+      "Cache APIがRequest/Responseのペア単位でしか保存・検索できないのに対し、IndexedDBはレスポンスの中身をオブジェクトとして構造化して保存できるため、特定のキー条件での検索や部分的な更新・集計などの複雑なデータ操作が可能になる",
+      "IndexedDBはService Worker内からは一切アクセスできないため、必ずメインスレッド側で処理する必要がある",
+      "IndexedDBを使うとCache APIより常に高速にネットワークリクエストが完了する",
+      "IndexedDBに保存したデータはブラウザを再起動すると自動的にすべて削除される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cache APIはHTTPレスポンス全体をRequestに紐づけて保存する単純なキャッシュ機構であるのに対し、IndexedDBはJavaScriptオブジェクトをインデックス付きで構造化して保存できるトランザクション対応のデータベースである。Service Worker内からもIndexedDBにアクセス可能で、APIレスポンスの中身を条件検索したり部分更新したりしたい場合はIndexedDBの併用が有効である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "performance-offline-067",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードで使われているNavigation Preloadの目的として正しいものはどれか。",
+    "code": "self.addEventListener('activate', function(event) {\n  if (self.registration.navigationPreload) {\n    event.waitUntil(self.registration.navigationPreload.enable());\n  }\n});\n\nself.addEventListener('fetch', function(event) {\n  event.respondWith((async function() {\n    var preloadResponse = await event.preloadResponse;\n    if (preloadResponse) {\n      return preloadResponse;\n    }\n    return fetch(event.request);\n  })());\n});",
+    "choices": [
+      "Service Workerの起動処理と並行してナビゲーションリクエストをネットワークに送信しておくことで、Service Workerがネットワークにフォールバックする場合にリクエスト開始の遅延を削減する",
+      "ページ遷移前に次のページのHTMLを完全に先読みし、Service Workerを介さず直接表示する",
+      "Service Worker自体のインストール処理を高速化する",
+      "複数のService Workerを同時にactivateできるようにする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Service Workerの起動には一定の時間がかかるため、fetchイベント内でネットワークにアクセスする場合、その分ナビゲーションが遅延しうる。navigationPreload.enable()を呼んでおくと、Service Workerの起動と並行してブラウザがバックグラウンドでリクエストを開始し、fetchイベント内でevent.preloadResponseからその結果を受け取れるため、遅延を軽減できる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/NavigationPreloadManager"
+  },
+  {
+    "id": "performance-offline-068",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのcreateWidget()を、要素を再生成するたびに繰り返し呼び出した場合に起きやすい問題として正しいものはどれか。",
+    "code": "function createWidget() {\n  var el = document.getElementById('widget');\n  var largeCache = fetchLargeData();\n  el.addEventListener('click', function() {\n    console.log(largeCache);\n  });\n}",
+    "choices": [
+      "createWidget()を呼ぶたびに新しいイベントリスナーが追加され、古いリスナーとそのクロージャが保持するlargeCacheへの参照が解放されないままメモリに残り続け、メモリリークの原因となる",
+      "addEventListener()は同じ要素に対して2回目以降は自動的に無視されるため、問題は発生しない",
+      "el.addEventListener()を呼ぶたびに、以前登録したリスナーは自動的にremoveEventListener()される",
+      "largeCacheはガベージコレクションの対象外であるため、この関数の実行回数に関わらずメモリ使用量は変化しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "removeEventListener()で明示的に解除しない限り、同じ要素に対してaddEventListener()を繰り返し呼ぶたびにリスナーが積み重なって追加される。各リスナーが保持するクロージャの参照(この例ではlargeCache)もリスナーが解除されるまで解放されないため、繰り返し実行するとメモリ使用量が増加し続けるメモリリークにつながる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Memory_management"
+  },
+  {
+    "id": "performance-offline-069",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードのobserve()に渡しているbuffered: trueオプションに関する正しい説明を2つ選べ。",
+    "code": "new PerformanceObserver(function(list) {\n  list.getEntries().forEach(function(entry) {\n    console.log(entry.name, entry.startTime);\n  });\n}).observe({ type: 'paint', buffered: true });",
+    "choices": [
+      "observe()を呼び出す前に既に発生していたパフォーマンスエントリも、ブラウザ内部のバッファに保持されている範囲でさかのぼって取得できるようにする",
+      "FCPやLCPのように早期に発生するエントリを、スクリプトの実行タイミングによって取りこぼさないようにするために使われる",
+      "取得したエントリをファイルとしてディスクに保存する",
+      "エントリの通知をリアルタイムではなく必ず1秒ごとにまとめて配信するようにする"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "buffered: trueを指定すると、PerformanceObserverはobserve()を呼び出す前にすでに記録されていたエントリもまとめて取得できる。スクリプトの実行タイミングによっては、FCPやLCPなど早期に発生するエントリをobserve()呼び出し前に取りこぼす可能性があるため、これを防ぐために使われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PerformanceObserver"
+  },
+  {
+    "id": "performance-offline-070",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のコードで使われているPeriodic Background Sync APIに関する正しい説明を2つ選べ。",
+    "code": "navigator.serviceWorker.ready.then(async function(registration) {\n  var status = await navigator.permissions.query({ name: 'periodic-background-sync' });\n  if (status.state === 'granted') {\n    await registration.periodicSync.register('content-sync', {\n      minInterval: 24 * 60 * 60 * 1000\n    });\n  }\n});",
+    "choices": [
+      "アプリを開いていない間もブラウザが判断したタイミングで定期的にService Workerを起動しコンテンツを更新できる仕組みである",
+      "minIntervalは実行間隔の最小値の目安に過ぎず、実際の実行タイミングはバッテリー状況やネットワーク状況などを踏まえてブラウザに委ねられる",
+      "すべての主要ブラウザで標準的にサポートされている確定仕様のAPIである",
+      "periodicSync.register()を呼ぶだけで、ユーザーへの許可確認なしにバックグラウンド更新が有効になる"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Periodic Background Sync APIはインストール済みPWAなどにおいて、ブラウザが適当と判断したタイミングでバックグラウンドの定期更新処理を行うための実験的なAPIである。minIntervalはあくまで最小間隔の目安であり、実際の発火タイミングはブラウザの裁量に委ねられ、対応ブラウザも限定的(2026年時点でも一部のChromiumベースブラウザのみ)である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/PeriodicSyncManager"
+  },
+  {
+    "id": "performance-offline-071",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のsyncイベントハンドラで、sendQueuedData()が返すPromiseがrejectされた場合の挙動として正しい説明はどれか。",
+    "code": "self.addEventListener('sync', function(event) {\n  if (event.tag === 'send-data') {\n    event.waitUntil(sendQueuedData());\n  }\n});",
+    "choices": [
+      "ブラウザはそのタグに対する同期処理が失敗したと判断し、ネットワーク状況などを踏まえて後日改めて自動的にsyncイベントを再発火し再試行を試みる",
+      "一度失敗すると、そのタグの同期リクエストは完全に破棄され、二度と再試行されない",
+      "失敗した場合、直ちに例外がメインスレッドのグローバルスコープにスローされページがクラッシュする",
+      "失敗してもService Worker全体が強制的に登録解除される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "event.waitUntil()に渡したPromiseがrejectされると、ブラウザはその同期タスクが失敗したとみなし、指数バックオフ等の内部ロジックに基づいて後で自動的に再度syncイベントを発火し、再試行を行う。この自動再試行の仕組みがBackground Sync APIの主な利点だが、対応ブラウザは限られる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API"
+  },
+  {
+    "id": "performance-offline-072",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Core Web Vitalsの1つであるCumulative Layout Shift(CLS)に関する説明として正しいものはどれか。",
+    "choices": [
+      "ページの表示中に発生した予期しないレイアウトのずれについて、影響を受けた領域の割合(impact fraction)と移動距離の割合(distance fraction)を掛け合わせたスコアを、セッション期間中に累積して算出する指標である",
+      "ページの読み込みにかかった合計時間をミリ秒で表す指標である",
+      "ユーザーの入力からブラウザが次の描画を行うまでの遅延時間を表す指標である",
+      "ページ内の画像がすべて正しいサイズで表示されているかどうかを判定する真偽値である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CLSは、ユーザーの操作に起因しない予期しないレイアウトシフトについて、影響を受けた画面領域の割合と要素が移動した距離の割合を掛け合わせた値をセッションウィンドウ単位で累積したスコアで、値が小さいほど視覚的な安定性が高いことを示す。読み込み時間や入力遅延を表す指標ではない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/LayoutShift"
+  },
+  {
+    "id": "performance-offline-073",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Core Web VitalsにおけるInteraction to Next Paint(INP)に関する説明として正しいものはどれか。",
+    "choices": [
+      "ページの表示期間全体を通じて発生したユーザー操作(クリック、タップ、キー入力)の応答性を評価する指標であり、最初の入力のみを評価していた従来のFirst Input Delay(FID)を置き換える指標として採用された",
+      "ページ内で最初にレイアウトシフトが発生するまでの時間を計測する指標である",
+      "ページの読み込みが完全に完了しネットワーク通信がすべて終了するまでの時間を計測する指標である",
+      "ユーザーがページを離脱してから再訪問するまでの平均時間を計測する指標である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "INPはページの全生存期間にわたるユーザー操作の応答性を評価する指標で、最初の入力のみを評価するFID(First Input Delay)に代わり、より包括的な応答性の指標として2024年3月にCore Web Vitalsに採用された。レイアウトシフトを扱うのはCLS、読み込み完了を扱うのは別の指標である。",
+    "reference": "https://web.dev/articles/inp"
+  },
+  {
+    "id": "performance-offline-074",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードでentries配列の最後の要素を採用している理由として正しいものはどれか。",
+    "code": "new PerformanceObserver(function(list) {\n  var entries = list.getEntries();\n  var lastEntry = entries[entries.length - 1];\n  console.log('LCP候補:', lastEntry.startTime);\n}).observe({ type: 'largest-contentful-paint', buffered: true });",
+    "choices": [
+      "ページの読み込み中に最大のコンテンツ要素が入れ替わるたびにlargest-contentful-paintエントリが複数回報告されることがあり、その時点までで最後に報告されたエントリが最終的なLCP候補とみなされるため",
+      "PerformanceObserverは常にエントリを1件しか返さないため、配列の添字を気にする必要はない",
+      "最初のエントリは無効なダミーデータであり、必ず無視する必要があるため",
+      "エントリはランダムな順序で格納されるため、最後の要素を取ることに技術的な意味はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ページ内でより大きなコンテンツ要素が描画されるたびに新しいlargest-contentful-paintエントリが発生しうるため、その時点で報告された最後のエントリが最新かつ最大のコンテンツを表すLCP候補となる。なお、ユーザー操作(スクロールや入力など)が発生すると、それ以降のエントリ報告は停止される仕様になっている。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/LargestContentfulPaint"
+  },
+  {
+    "id": "performance-offline-075",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "実際のユーザー環境でLCPやCLSなどのCore Web Vitalsをフィールド計測する際の実務上の注意点として正しいものはどれか。",
+    "choices": [
+      "バックグラウンドタブでの計測ずれを避けるため、document.visibilityStateが'hidden'になった時点までに観測された値でその時点の計測値を確定し、それ以降のバックグラウンドでの変化は最終値の計算に含めないようにする",
+      "計測はページの読み込みが完了した瞬間にのみ1回行えばよく、その後のユーザー操作やタブの状態変化は一切考慮しなくてよい",
+      "CLSやLCPはService Worker内でのみ計測可能であり、通常のページのJavaScriptからは取得できない",
+      "フィールド計測では常にperformance.timingオブジェクトのみを使用し、PerformanceObserverは使用できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "タブがバックグラウンドに回るとブラウザの描画やタイマー処理が変化し、LCPやCLSの値が実際のユーザー体験を正しく反映しなくなる場合がある。そのためWeb Vitalsのフィールド計測では、visibilitychangeイベントでhiddenになったタイミングまでの観測値で指標を確定させるのが推奨される実務上のパターンである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/visibilitychange_event"
+  },
+  {
+    "id": "performance-offline-076",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のようにpreloadでフォントを指定する際、as属性やcrossorigin属性が実際のリクエストの特性と一致していないと起こりうる問題として正しいものはどれか。",
+    "code": "<link rel=\"preload\" href=\"/font.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>",
+    "choices": [
+      "as属性やtype属性、crossorigin属性がリソースの実際の取得方法(フォントは常にCORSモードでフェッチされる)と一致しない場合、ブラウザは同じリソースを二重にダウンロードしてしまい、preloadの効果が得られない",
+      "as属性を省略すると、ブラウザはpreloadを完全に無視しリソースを一切取得しなくなる",
+      "crossorigin属性はpreloadと組み合わせて使用することができない",
+      "as属性の値を間違えるとページの表示が完全に停止しエラー画面になる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "preloadで先読みしたリソースは、実際にページ内で参照される際のリクエストの特性(リソースの種類・CORSモードなど)と一致している必要がある。フォントは常にCORSモードで取得されるため、preload指定時にもas=\"font\"とcrossorigin属性を正しく指定しないと、ブラウザは別のリクエストとみなして再度取得してしまい、preloadの意味がなくなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/preload"
+  },
+  {
+    "id": "performance-offline-077",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "preconnectとdns-prefetchを併用することが推奨される理由として正しいものはどれか。",
+    "choices": [
+      "preconnectはDNS解決に加えTCP接続・TLSハンドシェイクまで確立するため効果が大きい反面、対応していない古いブラウザも存在するため、より広くサポートされ処理も軽量なdns-prefetchをフォールバックとして併記することで、対応状況にかかわらず一定の効果を得られる",
+      "dns-prefetchはpreconnectよりも強力な最適化を行うため、preconnectの代わりに常に使うべきである",
+      "両者を併用すると相互に機能が打ち消し合い、どちらも無効になる",
+      "preconnectとdns-prefetchは同一のURLに対して同時に指定するとブラウザがエラーを出す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "preconnectはDNS解決・TCP接続・TLSハンドシェイクまで含む重い最適化のため効果が高いが対応ブラウザに差があり、多用するとリソースを無駄に消費する懸念もある。より軽量でサポート範囲の広いdns-prefetchを併記しておくことで、preconnect未対応環境でも最低限のDNS解決の恩恵を得られる、というのが一般的なベストプラクティスである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/preconnect"
+  },
+  {
+    "id": "performance-offline-078",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のようにイベントハンドラ内でimport()を使うことの利点として正しいものはどれか。",
+    "code": "async function handleClick() {\n  var module = await import('./heavy-chart.js');\n  module.renderChart(data);\n}",
+    "choices": [
+      "バンドラ(webpackなど)がこのimport()の呼び出し箇所を境界として自動的に別のチャンク(ファイル)に分割でき、実際にクリックされてグラフ描画が必要になるまで該当コードのダウンロードと実行を遅延できる",
+      "import()を使うと該当モジュールがページ読み込み時に必ず同期的に実行されるようになる",
+      "import()を使うとそのモジュールはService Worker内でのみ実行されるようになる",
+      "import()はブラウザのキャッシュを利用せず、毎回必ずネットワークから再取得する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "動的import()の呼び出し箇所は多くのモジュールバンドラによって自動的にコード分割(code splitting)の境界として扱われ、そのモジュールは別チャンクとして出力される。イベントハンドラ内で呼び出すことで、実際に必要になったタイミングまでダウンロードと実行を遅延させ、初期表示に必要なバンドルサイズを削減できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/import"
+  },
+  {
+    "id": "performance-offline-079",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のコードで使われているStorage APIに関する正しい説明を2つ選べ。",
+    "code": "navigator.storage.estimate().then(function(estimate) {\n  console.log('使用量:', estimate.usage, '割当量:', estimate.quota);\n});\nnavigator.storage.persist().then(function(granted) {\n  console.log('永続化:', granted);\n});",
+    "choices": [
+      "estimate()はCache StorageやIndexedDBなどオリジンが使用しているストレージの概算使用量(usage)と割り当て可能な概算上限(quota)を取得できる",
+      "persist()はブラウザが端末のストレージ逼迫時に自動削除しにくい「永続化ストレージ」への昇格をリクエストするが、必ず許可されるとは限らない",
+      "estimate()は常に正確な使用量をバイト単位で1バイトの誤差もなく返すことが仕様で保証されている",
+      "persist()を呼び出すと、無条件かつ即座にそのオリジンのデータが永続化ストレージに昇格される"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "StorageManager.estimate()はオリジンごとのおおよそのストレージ使用量と割当量を返すが、プライバシー上の理由から値は概算であり厳密なバイト数の保証はない。persist()は永続化ストレージへの昇格をリクエストするAPIで、ブラウザの実装依存の基準により許可されるかどうかが決まり、必ず許可されるわけではない。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/StorageManager"
+  },
+  {
+    "id": "performance-offline-080",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのCache.match()の第2引数に{ ignoreVary: true }を指定する目的として正しいものはどれか。",
+    "code": "caches.open('v1').then(function(cache) {\n  return cache.match(request, { ignoreVary: true });\n});",
+    "choices": [
+      "キャッシュされたレスポンスにVaryヘッダーが含まれる場合、通常はVary対象のリクエストヘッダーの値も一致しないとマッチしないが、ignoreVary: trueを指定するとVaryヘッダーによる絞り込みを無視して照合できる",
+      "レスポンスのVaryヘッダー自体をキャッシュから削除する",
+      "Vary対象のリクエストヘッダーの値を強制的にすべて同じ値に書き換える",
+      "ignoreVaryを指定すると、そのリクエストは一切キャッシュに保存されなくなる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "レスポンスにVaryヘッダーが含まれている場合、Cache.match()はデフォルトではVaryで指定されたリクエストヘッダー(例: Accept-Language)の値も一致するリクエストでなければマッチしないという厳密な照合を行う。options引数にignoreVary: trueを指定すると、この絞り込みを無視してURLベースでの照合のみを行うようになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache/match"
+  },
+  {
+    "id": "performance-offline-081",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "オフライン時に送信できなかったフォームデータを後で確実に送信するための設計として、IndexedDBとBackground Sync APIを組み合わせる典型的なパターンの説明として正しいものはどれか。",
+    "choices": [
+      "送信に失敗したリクエストの内容をIndexedDBに未送信データとして保存しておき、registration.sync.register()でタグを登録する。ネットワーク復旧時に発火するsyncイベント内でIndexedDBから未送信データを取り出してfetch()で送信し、成功したものだけIndexedDBから削除する",
+      "IndexedDBに保存したデータは、ブラウザが自動的にBackground Sync APIを使って送信してくれるため、開発者はsyncイベントを実装する必要はない",
+      "Background Sync APIを使う場合、IndexedDBへのデータ保存はメインスレッドではなくWeb Worker内でしか行えない",
+      "syncイベントはネットワークの状態に関わらず、ページを開いた瞬間に必ず1回だけ発火する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "典型的なオフラインファースト設計では、送信失敗時のデータをIndexedDBにキューとして永続化し、Background Sync APIのタグ登録によってネットワーク復旧時にsyncイベントを発火させる。syncイベントハンドラ内でIndexedDBから未送信データを取り出して再送し、成功した分だけ削除することで、確実な再送信とデータの重複防止を両立できる。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API"
+  },
+  {
+    "id": "performance-offline-082",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のWorkerのerrorイベントハンドラで扱っているErrorEventオブジェクトに関する正しい説明を2つ選べ。",
+    "code": "worker.onerror = function(event) {\n  console.log(event.message, event.filename, event.lineno, event.colno);\n  event.preventDefault();\n};",
+    "choices": [
+      "message/filename/lineno/colnoプロパティからエラーメッセージや発生箇所(ファイル名・行番号・列番号)を取得できる",
+      "event.preventDefault()を呼ぶことで、このエラーがブラウザのコンソールにデフォルトで出力される挙動を抑制できる",
+      "event.preventDefault()を呼ぶと、Worker自体の実行が完全に停止し再開できなくなる",
+      "filenameプロパティは常にメインスレッド側のHTMLファイル名を返す"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Workerのerrorイベントで渡されるErrorEventオブジェクトは、message(エラーメッセージ)、filename(発生したスクリプトファイル)、lineno/colno(発生行・列)といったプロパティを持つ。event.preventDefault()を呼び出すと、そのエラーがブラウザによってコンソールに自動的にログ出力されるデフォルト動作を抑制できる(Worker自体の停止とは無関係)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ErrorEvent"
+  },
+  {
+    "id": "performance-offline-083",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "requestAnimationFrame()とrequestIdleCallback()の使い分けに関する説明として正しいものはどれか。",
+    "choices": [
+      "画面の視覚的な更新やアニメーションのように次の描画タイミングに同期させたい処理にはrequestAnimationFrame()を使い、ログの送信や事前計算のようにユーザー体験に影響を与えない優先度の低い処理はrequestIdleCallback()でアイドル時間に実行するのが適切な使い分けである",
+      "両者は完全に同じ役割を持つため、どちらを使っても実行結果に違いは生じない",
+      "requestIdleCallback()はアニメーション処理専用であり、requestAnimationFrame()はバックグラウンド処理専用である",
+      "requestAnimationFrame()は別スレッドで実行されるため、DOM操作を含む処理はrequestIdleCallback()内で行う必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestAnimationFrame()はブラウザの次の再描画タイミングに合わせてコールバックを呼び出すため、視覚的な更新やアニメーションに適している。一方requestIdleCallback()はメインスレッドが暇なアイドル時間に低優先度の処理を実行するためのAPIで、アニメーションのような時間的制約のある処理には向かない。両者はどちらもメインスレッドで実行される点は共通である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback"
+  },
+  {
+    "id": "performance-offline-084",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のdebounce関数の実装に関する説明として正しいものはどれか。",
+    "code": "function debounce(fn, delay) {\n  var timerId;\n  return function() {\n    var context = this;\n    var args = arguments;\n    clearTimeout(timerId);\n    timerId = setTimeout(function() {\n      fn.apply(context, args);\n    }, delay);\n  };\n}\nwindow.addEventListener('resize', debounce(handleResize, 300));",
+    "choices": [
+      "呼び出しのたびにclearTimeout()で既存のタイマーを取り消してから新たにsetTimeout()を仕込むため、300ms以内に連続してresizeイベントが発生している間はhandleResizeが実行されず、イベントの発生が300ms以上途切れた時点で初めて実行される",
+      "この実装ではresizeイベントが発生するたびに必ずhandleResizeが即座に実行される",
+      "clearTimeout()を呼んでいるのは、メモリリークを防ぐためであり、debounceの遅延動作そのものには関係ない",
+      "この実装はresizeイベントを300ms間隔で間引いて実行するスロットルの実装である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "この実装は呼び出されるたびに既存のタイマーをキャンセルし新しいタイマーを設定し直すため、指定した遅延時間(この例では300ms)以内に再度呼び出しがあると実行がリセットされる。結果として、イベントの発生が指定時間以上途切れて初めて最後の呼び出し内容でfnが実行される、典型的なdebounceの実装になっている。間隔ごとに間引くスロットルとは動作が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/resize_event"
+  },
+  {
+    "id": "performance-offline-085",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のthrottle関数の実装に関する説明として正しいものはどれか。",
+    "code": "function throttle(fn, interval) {\n  var lastTime = 0;\n  return function() {\n    var now = Date.now();\n    if (now - lastTime >= interval) {\n      lastTime = now;\n      fn.apply(this, arguments);\n    }\n  };\n}\nwindow.addEventListener('scroll', throttle(handleScroll, 200));",
+    "choices": [
+      "前回fnを実行した時刻からinterval(この例では200ms)以上経過している場合にのみfnを実行するため、scrollイベントが高頻度で発生しても実行頻度が最大でも200msに1回程度に制限される",
+      "この実装はscrollイベントの発生を200ms間隔で完全に停止させ、以後一切実行しなくなる",
+      "lastTimeを更新するタイミングは、fnの実行が完了した後でなければならず、このコードは不具合を含んでいる",
+      "この実装はdebounceであり、イベントの発生が途切れてから一定時間後に1回だけ実行される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "この実装は現在時刻と前回実行時刻の差がinterval以上であるかどうかを判定し、条件を満たす場合のみfnを実行して同時にlastTimeを更新する。これにより、連続して発生するイベントに対して実行頻度をinterval間隔以下に間引く典型的なthrottleの動作になる。イベントの発生が途切れるのを待つdebounceとは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/scroll_event"
+  },
+  {
+    "id": "performance-offline-086",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードでrowをremoveRow()によりDOMツリーから削除しても、メモリリークが発生しうる理由として正しいものはどれか。",
+    "code": "var cachedElements = [];\nfunction addRow(container) {\n  var row = document.createElement('div');\n  container.appendChild(row);\n  cachedElements.push(row);\n}\nfunction removeRow(container, row) {\n  container.removeChild(row);\n  // cachedElementsからは削除していない\n}",
+    "choices": [
+      "removeChild()でDOMツリーからは削除されても、cachedElements配列がその要素への参照を保持し続けているため、ガベージコレクタは当該DOM要素(いわゆる「デタッチドDOMノード」)を回収できず、メモリに残り続ける",
+      "removeChild()を呼び出すと、その要素に対する他のすべての参照も自動的にnullへ変換されるため、この実装では問題は発生しない",
+      "DOM要素はガベージコレクションの対象外であるため、そもそも配列に保持していなくてもメモリリークが発生する",
+      "container.removeChild(row)はrow自体を完全に破棄しメモリを即座に解放するため、cachedElementsに参照が残っていても問題はない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DOM要素はJavaScriptオブジェクトからの参照が残っている限りガベージコレクションの対象にならない。removeChild()でDOMツリーから見た目上取り除かれても、配列やクロージャなどJavaScript側から参照され続けている(デタッチドDOMノード)場合、そのメモリは解放されずに残り続け、繰り返すとメモリリークにつながる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Memory_management"
+  },
+  {
+    "id": "performance-offline-087",
+    "category": "performance-offline",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のコードで使われているCompressionStreamに関する正しい説明を2つ選べ。",
+    "code": "async function compressBlob(blob) {\n  var cs = new CompressionStream('gzip');\n  var compressedStream = blob.stream().pipeThrough(cs);\n  return new Response(compressedStream).blob();\n}",
+    "choices": [
+      "gzip、deflate、deflate-rawなどのアルゴリズムを指定してストリームデータを圧縮できる",
+      "ReadableStreamのpipeThrough()と組み合わせてストリーム変換の一部として使用する",
+      "HTTPレスポンスのContent-Encodingヘッダーの値を強制的に書き換えてサーバーに送信させるAPIである",
+      "Service Worker専用のAPIであり、通常のページのスクリプトからは利用できない"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Compression Streams APIのCompressionStream/DecompressionStreamは、指定したアルゴリズム(gzip、deflate、deflate-raw)でストリームデータを圧縮・伸長できるJavaScript APIで、pipeThrough()を使ってReadableStreamの変換に利用する。通常のページのスクリプトからも利用できるが、比較的新しく追加されたAPIであり対応が限られる点に留意する必要がある。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/CompressionStream"
+  },
+  {
+    "id": "performance-offline-088",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のようなAccept-EncodingとContent-Encodingのやり取りに関する説明として正しいものはどれか。",
+    "code": "GET /data.json HTTP/1.1\nAccept-Encoding: gzip, deflate, br\n\nHTTP/1.1 200 OK\nContent-Encoding: br",
+    "choices": [
+      "ブラウザはAccept-Encodingヘッダーで自身が対応する圧縮方式の候補をサーバーに提示し、サーバーはその中から選んだ方式で圧縮したレスポンスをContent-Encodingヘッダーとともに返す。ブラウザは受信後にその方式に応じて自動的に伸長してから内容を利用する",
+      "Accept-Encodingはリクエストボディの圧縮方式を指定するものであり、レスポンスの圧縮方式には影響しない",
+      "Content-Encoding: brが指定されている場合、開発者はJavaScriptでCompressionStream等を使って明示的に伸長処理を実装しなければならない",
+      "Accept-EncodingとContent-Encodingは同じ値でなければならず、異なる場合ブラウザはレスポンスを拒否する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Accept-Encodingリクエストヘッダーはクライアントが解釈できる圧縮方式の一覧を示し、サーバーはその中から選んだ方式(gzip、br(Brotli)など)でレスポンスボディを圧縮し、Content-Encodingヘッダーで実際に使用した方式を通知する。ブラウザはHTTPスタックのレベルで自動的に伸長を行うため、アプリケーションコード側で明示的な解凍処理を書く必要は通常ない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Encoding"
+  },
+  {
+    "id": "performance-offline-089",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "no-store、no-cache、max-age=0(must-revalidate付き)というCache-Controlディレクティブの違いに関する説明として正しいものはどれか。",
+    "code": "Cache-Control: no-store\n// または\nCache-Control: no-cache\n// または\nCache-Control: max-age=0, must-revalidate",
+    "choices": [
+      "no-storeはレスポンスをいかなる形でもキャッシュに保存すること自体を禁止し、no-cacheは保存は許可するが使用前に必ずサーバーへ再検証(条件付きリクエスト)を行うことを要求する。max-age=0とmust-revalidateの組み合わせもno-cacheとほぼ同様に、キャッシュを使う前に再検証を必須にする",
+      "no-storeとno-cacheは完全に同じ意味であり、どちらを使っても挙動に違いはない",
+      "max-age=0を指定すると、そのレスポンスはブラウザによって即座に削除され二度と参照できなくなる",
+      "no-cacheを指定すると、ブラウザはそのレスポンスを一切保存できなくなる点でno-storeと同じ効果を持つ"
+    ],
+    "correctAnswers": [0],
+    "explanation": "no-storeはキャッシュへの保存自体を禁止する最も厳格な指定である。一方no-cache(や、max-age=0とmust-revalidateの組み合わせ)はレスポンスの保存自体は許可するが、実際に利用する前に必ずサーバーに問い合わせて有効性を再検証することを要求する点でno-storeとは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cache-Control"
+  },
+  {
+    "id": "performance-offline-090",
+    "category": "performance-offline",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Long Tasks APIの情報をもとに算出される「Total Blocking Time(TBT)」というパフォーマンス指標の説明として正しいものはどれか。",
+    "choices": [
+      "First Contentful Paintから操作可能になるまでの間に発生した各Long Task(50ミリ秒を超えるタスク)について、50ミリ秒を超過した分の時間(ブロッキング時間)を合計した値で、値が大きいほど入力に対する応答性が悪化している可能性が高いことを示す",
+      "ページの読み込み開始から完了までの合計時間をそのまま示す指標である",
+      "ユーザーが実際に体感した合計の待ち時間をアンケートで収集した値である",
+      "ネットワークがオフラインだった合計時間を積算した指標である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Total Blocking Time(TBT)は、FCPからページが安定して操作可能になるまでの間に発生したLong Task(50ミリ秒を超える処理)それぞれについて、50ミリ秒を超えた超過分(ブロッキング時間)を合計したLighthouseなどで用いられるラボ指標である。Long Tasks APIで取得できる'longtask'エントリのdurationを基に算出され、メインスレッドの混雑度・応答性の悪化度合いを示す。",
+    "reference": "https://web.dev/articles/tbt"
+  }
+]

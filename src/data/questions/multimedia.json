@@ -1,0 +1,1379 @@
+[
+  {
+    "id": "multimedia-001",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "video要素のpreload属性に指定する値として、HTML標準に存在しないものはどれか。",
+    "choices": ["none", "metadata", "auto", "full"],
+    "correctAnswers": [3],
+    "explanation": "preload属性に指定できる値はnone(事前読み込みしない)、metadata(メタデータのみ事前取得)、auto(ブラウザに任せる)の3つである。\"full\"という値は標準には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "multimedia-002",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "video要素のposter属性の説明として最も適切なものはどれか。",
+    "choices": [
+      "動画データがまだ再生可能でない間に表示する画像のURLを指定する",
+      "動画の再生が終了した後に表示される画像を指定する",
+      "字幕表示用のスタイルシートを指定する",
+      "動画のサムネイル一覧をシークバーに表示するための画像を指定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "poster属性は、動画の最初のフレームがまだ利用できない間に代わりとして表示する画像のURLを指定する属性である。再生開始やユーザーによる操作の後は表示されなくなる。audio要素には存在しない属性である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "multimedia-003",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "多くのモダンブラウザにおける自動再生ポリシー(Autoplay Policy)に基づき、video要素のautoplay属性による動画の自動再生が許可される条件として正しいものを全て選べ。",
+    "choices": [
+      "muted属性が指定されており音声なしで再生される",
+      "ユーザーがそのサイトで動画をよく再生しており、メディアエンゲージメントが高いと判定されている",
+      "controls属性が指定されている",
+      "preload属性がautoに設定されている"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "多くのブラウザは、ユーザー体験を損なう音声付き自動再生をブロックしている。ミュート状態での自動再生や、ユーザーのメディアエンゲージメントが高いと判定された場合などに自動再生が許可される。controls属性やpreload属性の値は自動再生の可否とは直接関係しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Autoplay_guide"
+  },
+  {
+    "id": "multimedia-004",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "video要素にcontrols属性を指定した場合の動作として正しいものはどれか。",
+    "choices": [
+      "ブラウザ標準の再生・一時停止・音量調整・シークバーなどのUIが表示される",
+      "動画がページ読み込み時に自動的に再生される",
+      "動画の再生が終了すると自動的に最初から再生される",
+      "動画の音声が自動的にミュートされる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "controls属性はブラウザネイティブの再生コントロールUIを表示させる真偽値属性である。自動再生・ループ・ミュートはそれぞれautoplay/loop/muted属性の役割であり、controls属性とは独立している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "multimedia-005",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "audio要素およびvideo要素のmuted属性に関する記述として正しいものはどれか。",
+    "choices": [
+      "HTML属性として指定した場合、メディアの初期状態を音声なしにする",
+      "muted属性を指定するとvolumeプロパティの値が自動的に0になり、その後変更できなくなる",
+      "muted属性はvideo要素にのみ指定可能で、audio要素には指定できない",
+      "muted属性を指定すると再生速度が自動的に等速に固定される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "muted属性はメディア要素の初期音声状態をミュートにする真偽値属性である。volumeプロパティ自体の値は変化せず、JavaScriptからmutedプロパティを変更することで音声のオン/オフを切り替えられる。audio要素にも指定可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/audio"
+  },
+  {
+    "id": "multimedia-006",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "audio要素・video要素の属性のうち、値を持たない真偽値属性(boolean attribute)として扱われるものを全て選べ。",
+    "choices": ["controls", "autoplay", "loop", "muted", "preload", "poster"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "controls、autoplay、loop、mutedは属性が存在するだけで真となる真偽値属性である。preloadは\"none\"/\"metadata\"/\"auto\"、poster(video要素)は画像URLという文字列値を必要とするため真偽値属性ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "multimedia-007",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードのように、HTMLMediaElementのplay()メソッドの戻り値を.then()/.catch()で扱っている理由として最も適切なものはどれか。",
+    "code": "video.play()\n  .then(() => {\n    console.log('再生を開始しました');\n  })\n  .catch((error) => {\n    console.error('再生に失敗しました', error);\n  });",
+    "choices": [
+      "play()メソッドはPromiseを返すため、再生の開始が成功したか失敗したか(自動再生ブロックなど)を非同期に判定できるから",
+      "play()メソッドは同期的にbooleanを返すが、可読性のためにPromise風の記法に変換しているだけだから",
+      "play()メソッドはコールバック関数を第一引数に取る仕様であり、.then()はそのポリフィルだから",
+      "play()メソッドはHTTP通信を伴うため、必ずcatch()でネットワークエラーを処理する必要があるから"
+    ],
+    "correctAnswers": [0],
+    "explanation": "HTMLMediaElement.play()はPromiseを返す仕様になっており、再生開始が成功すればresolveされ、自動再生ポリシーによるブロックなどで失敗すればrejectされる。これにより.then()/.catch()や async/await で再生結果を非同期に扱うことができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/play"
+  },
+  {
+    "id": "multimedia-008",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTMLMediaElementのcurrentTimeプロパティに関する説明として正しいものはどれか。",
+    "choices": [
+      "現在の再生位置を秒単位で表し、値を書き換えることで再生位置をシークできる",
+      "現在の再生位置をミリ秒単位で表す読み取り専用のプロパティである",
+      "動画の総再生時間を表す読み取り専用のプロパティである",
+      "再生開始からの経過フレーム数を表す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "currentTimeは秒単位(浮動小数点数)で現在の再生位置を表す読み書き可能なプロパティである。値を設定するとその位置へシーク(移動)する。総再生時間を表すのはdurationプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/currentTime"
+  },
+  {
+    "id": "multimedia-009",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTMLMediaElementのplaybackRateプロパティに関する記述として正しいものを全て選べ。",
+    "choices": [
+      "値を2.0に設定すると、通常の2倍の速度で再生される",
+      "値を0.5に設定すると、通常の半分の速度で再生される",
+      "値を負数に設定すると、全てのブラウザで逆再生が行われることが仕様上保証されている",
+      "defaultPlaybackRateプロパティと組み合わせて、再生開始時の初期速度を設定できる"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "playbackRateは再生速度の倍率を表し、2.0で2倍速、0.5で半分の速度になる。負の値による逆再生は実装状況がブラウザにより異なり、全てのブラウザでの動作が保証されているわけではない。defaultPlaybackRateは再生開始時などに参照される初期速度を設定するプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/playbackRate"
+  },
+  {
+    "id": "multimedia-010",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTMLMediaElementのload()メソッドを呼び出した場合の動作として正しいものはどれか。",
+    "choices": [
+      "要素の状態をリセットし、src属性や子要素のsource要素を再評価して、メディアリソースの選択・読み込みを最初からやり直す",
+      "現在の再生位置を保持したまま、バッファリングされていない部分のみを再読み込みする",
+      "要素をDOMから削除・再追加し、ブラウザに再描画を要求する",
+      "次のsource要素に自動的にフォールバックして再生を継続する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "load()メソッドはメディア要素を初期状態にリセットし、リソース選択アルゴリズムを再実行してsrc属性または子source要素から改めてメディアを読み込み直す。動的にsrcやsource要素を書き換えた後に呼び出すことで変更を反映させる用途で使われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/load"
+  },
+  {
+    "id": "multimedia-011",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTMLMediaElementのdurationプロパティに関する記述として正しいものはどれか。",
+    "choices": [
+      "メタデータが読み込まれる前に参照すると値はNaNになる",
+      "メタデータが読み込まれる前に参照すると値は常に0になる",
+      "ライブストリーミングなど長さが不定のメディアを参照すると例外がスローされる",
+      "durationプロパティは必ず整数(秒単位)の値を返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "durationはメタデータ読み込み前(readyStateがHAVE_NOTHINGの状態)ではNaNを返す。長さが不定のストリームではInfinityを返す仕様になっており、例外はスローされない。値は浮動小数点数で秒未満の精度を持つ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/duration"
+  },
+  {
+    "id": "multimedia-012",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTMLMediaElementのプロパティのうち、読み取り専用(read-only)であるものを全て選べ。",
+    "choices": ["duration", "currentTime", "paused", "ended", "volume", "muted"],
+    "correctAnswers": [0, 2, 3],
+    "explanation": "duration、paused、endedは読み取り専用プロパティで、それぞれメディアの長さ、一時停止中かどうか、再生が終了したかどうかを表す。currentTime、volume、mutedは値を書き換えることでシークや音量変更、ミュート切り替えができる読み書き可能なプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement"
+  },
+  {
+    "id": "multimedia-013",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "HTMLMediaElementのreadyStateプロパティが取り得る定数値として、HTML標準に実在するものを全て選べ。",
+    "choices": ["HAVE_NOTHING", "HAVE_METADATA", "HAVE_CURRENT_DATA", "HAVE_LOADED_DATA", "HAVE_ENOUGH_DATA", "HAVE_PARTIAL_DATA"],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "readyStateが取り得る値はHAVE_NOTHING(0)、HAVE_METADATA(1)、HAVE_CURRENT_DATA(2)、HAVE_FUTURE_DATA(3)、HAVE_ENOUGH_DATA(4)の5つである。HAVE_LOADED_DATAやHAVE_PARTIAL_DATAという定数は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/readyState"
+  },
+  {
+    "id": "multimedia-014",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "video要素でloadedmetadataイベントが発火した時点で、既に取得可能になっている情報として正しいものを全て選べ。",
+    "choices": [
+      "動画の再生時間(duration)",
+      "動画の幅と高さ(videoWidth/videoHeight)",
+      "track要素で指定された字幕の全てのキューテキストの内容",
+      "動画データ全体のダウンロード完了状態"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "loadedmetadataイベントは、再生時間や映像の寸法といったメタデータの取得が完了した時点で発火する。字幕(WebVTT)の個々のキュー内容の解析完了や、動画データ全体のダウンロード完了とは無関係のタイミングで発火する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/loadedmetadata_event"
+  },
+  {
+    "id": "multimedia-015",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のイベントリスナーを登録した場合の一般的な発火順序と意味の説明として正しいものはどれか。",
+    "code": "video.addEventListener('canplay', () => {\n  console.log('canplay');\n});\nvideo.addEventListener('canplaythrough', () => {\n  console.log('canplaythrough');\n});",
+    "choices": [
+      "canplayは再生を開始できる程度にデータが読み込まれた時点で発火し、canplaythroughはユーザーの再生操作を待たずに最後まで再生できると推定された時点で発火する。通常canplayの方が先に発火する",
+      "canplaythroughはcanplayより先に発火し、その後にデータのバッファリングが行われる",
+      "canplayとcanplaythroughは同じタイミングで必ず同時に発火する",
+      "canplaythroughは動画のダウンロードが100%完了したことを保証するイベントである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "canplayは再生開始に十分な程度までデータが読み込まれた時点、canplaythroughはこのままの速度でダウンロードが続けば途中で再生が止まらずに最後まで再生できるとブラウザが推定した時点で発火する。一般にcanplayが先、canplaythroughが後に発火するが、canplaythroughはダウンロード完了そのものを保証するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/canplaythrough_event"
+  },
+  {
+    "id": "multimedia-016",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "video要素でloop属性を指定していない場合、動画の再生がメディアの終端に到達したときに発火するイベントはどれか。",
+    "choices": ["ended", "finished", "complete", "stop"],
+    "correctAnswers": [0],
+    "explanation": "再生がメディアの終端に達し、それ以上再生するデータがない場合にendedイベントが発火する。loop属性が指定されている場合、終端到達時に自動的に先頭に戻って再生が継続されるためendedイベントは発火しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/ended_event"
+  },
+  {
+    "id": "multimedia-017",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTMLMediaElementのtimeupdateイベントの説明として正しいものはどれか。",
+    "choices": [
+      "再生位置(currentTime)が更新されるたびに発火し、再生中は一定間隔で繰り返し発火する",
+      "シーク操作によって再生位置が変更されたときのみ発火する",
+      "動画の総再生時間(duration)が確定したときに一度だけ発火する",
+      "音量が変更されたときに発火する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "timeupdateは再生位置が変化するたびに発火するイベントで、通常再生中は一定間隔(ブラウザ実装依存)で継続的に発火する。シーク完了時に発火するのはseekedイベントである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/timeupdate_event"
+  },
+  {
+    "id": "multimedia-018",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "動画のシークバーをユーザーがドラッグして再生位置を変更したとき、発火するイベントの順序として正しいものはどれか。",
+    "choices": [
+      "seeking → seeked",
+      "seeked → seeking",
+      "seeking → timeupdate → seeking",
+      "pause → seeking → play"
+    ],
+    "correctAnswers": [0],
+    "explanation": "再生位置の変更が開始されるとseekingイベントが発火し、シーク処理(該当位置のデータ取得など)が完了するとseekedイベントが発火する。この順序は常にseekingが先、seekedが後になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/seeking_event"
+  },
+  {
+    "id": "multimedia-019",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTMLMediaElementのvolumechangeイベントが発火する契機として正しいものはどれか。",
+    "choices": [
+      "volumeプロパティが変更されたとき、またはmutedプロパティが変更されたとき",
+      "再生が一時停止されたとき",
+      "再生速度(playbackRate)が変更されたとき",
+      "再生位置(currentTime)が変更されたとき"
+    ],
+    "correctAnswers": [0],
+    "explanation": "volumechangeイベントは音量(volume)が変更された場合、またはミュート状態(muted)が切り替えられた場合に発火する。再生速度の変更に対応するイベントはratechangeである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/volumechange_event"
+  },
+  {
+    "id": "multimedia-020",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "メディアリソースの読み込み・ネットワーク状態に関連して発生するイベントを全て選べ。",
+    "choices": ["error", "stalled", "suspend", "waiting", "ended", "play"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "errorは読み込み中のエラー発生時、stalledはデータ取得が予期せず停止した場合、suspendは意図的にデータ取得を一時停止した場合、waitingは次のフレーム再生に必要なデータが不足して再生が一時停止した場合に発火する。endedとplayは再生状態の変化に関するイベントであり、ネットワーク状態そのものを表すものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement"
+  },
+  {
+    "id": "multimedia-021",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "上記のコードのようにvideo要素の子要素としてsource要素を複数指定する目的として最も適切なものはどれか。",
+    "code": "<video controls width=\"640\">\n  <source src=\"movie.webm\" type=\"video/webm\">\n  <source src=\"movie.mp4\" type=\"video/mp4\">\n  お使いのブラウザはvideoタグに対応していません。\n</video>",
+    "choices": [
+      "ブラウザが対応しているフォーマットを順に判定し、再生可能な最初の形式のファイルを選択して再生できるようにするため",
+      "複数の動画を同時に読み込み、画面分割して再生するため",
+      "通信速度に応じて自動的に解像度の異なる動画に切り替える(アダプティブストリーミング)ため",
+      "字幕トラックを言語ごとに複数指定するため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ブラウザによって対応する動画コーデック/コンテナ形式が異なるため、複数のsource要素で代替フォーマットを列挙しておくことで、ブラウザが対応可能な最初のソースを選んで再生できるようにする。字幕の指定にはtrack要素を用いる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/source"
+  },
+  {
+    "id": "multimedia-022",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTMLMediaElementのcanPlayType()メソッドの戻り値として、仕様上定義されているものを全て選べ。",
+    "choices": ["\"probably\"", "\"maybe\"", "\"\"(空文字列)", "\"no\"", "\"true\""],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "canPlayType()は指定したMIMEタイプ(コーデック情報を含む場合あり)を再生できる可能性を示す文字列を返す。おそらく再生可能なら\"probably\"、判定できないが可能性があるなら\"maybe\"、再生できないと判断できる場合は空文字列を返す。\"no\"や\"true\"といった値は返さない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/canPlayType"
+  },
+  {
+    "id": "multimedia-023",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のsource要素のtype属性で指定されているcodecsパラメータの役割として正しいものはどれか。",
+    "code": "<video controls>\n  <source src=\"video.mp4\" type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"'>\n</video>",
+    "choices": [
+      "コンテナ形式(MP4)だけでなく、内部で使用されている映像・音声コーデックの詳細まで指定することで、ブラウザがファイルをダウンロードせずに再生可否をより正確に判定できるようにする",
+      "動画ファイルを指定したコーデックに変換してから配信するようサーバーに指示する",
+      "字幕ファイルの文字コードを指定する",
+      "複数の解像度のうち、指定したコーデックに対応する解像度のみを選択する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "type属性にcodecsパラメータを付与すると、コンテナ形式だけでなく実際に使われている映像・音声コーデック(この例ではH.264とAAC)まで指定できる。これによりブラウザはファイル本体を取得する前に、canPlayType()相当の判定でより正確に再生可否を判断できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Video_codecs"
+  },
+  {
+    "id": "multimedia-024",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "上記のコードにおいて、対応するブラウザがsource要素からメディアを選択する際の一般的な挙動として正しいものはどれか。",
+    "code": "<video controls>\n  <source src=\"movie.mp4\" type=\"video/mp4\">\n  <source src=\"movie.webm\" type=\"video/webm\">\n</video>",
+    "choices": [
+      "記述された順序で先頭から評価し、再生可能な最初のsource要素を採用する",
+      "ファイルサイズが最も小さいsource要素を優先して採用する",
+      "アルファベット順にtype属性を評価し、最も早いものを採用する",
+      "全てのsource要素を同時に読み込み、再生開始時にランダムに1つを選択する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ブラウザはsource要素をドキュメント中に記述された順序で評価し、再生可能と判定した最初のものを選択する。そのため、優先させたいフォーマットを先に記述するのが一般的な実装パターンである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/source"
+  },
+  {
+    "id": "multimedia-025",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTML5のvideo要素で利用される代表的な動画フォーマット(コンテナ/コーデックの組み合わせ)として正しいものを全て選べ。",
+    "choices": ["MP4 (H.264/AAC)", "WebM (VP8/VP9)", "Ogg (Theora)", "AVI", "WMV"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "HTML5のvideo要素で利用される代表的なフォーマットはMP4コンテナ(H.264/AAC)、WebM(VP8/VP9/Opus)、Ogg(Theora/Vorbis)の3つである。全てのブラウザが全ての形式に対応しているわけではないが、いずれもHTML5の文脈で標準的に扱われる動画フォーマットである。AVIやWMVはHTML5の標準的な動画フォーマットとしては扱われず、ネイティブ再生はサポートされていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Video_codecs"
+  },
+  {
+    "id": "multimedia-026",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "track要素のkind属性に指定する値として、HTML標準に存在しないものはどれか。",
+    "choices": ["subtitles", "captions", "descriptions", "annotations"],
+    "correctAnswers": [3],
+    "explanation": "kind属性に指定できる値はsubtitles、captions、descriptions、chapters、metadataの5つである。\"annotations\"という値は標準には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "multimedia-027",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "上記のようなWebVTTファイルに関する記述として正しいものはどれか。",
+    "code": "WEBVTT\n\n00:00:01.000 --> 00:00:04.000\nこんにちは、ようこそ。\n\n00:00:05.000 --> 00:00:08.000\nHTML5について学びましょう。",
+    "choices": [
+      "ファイルの先頭行には必ず\"WEBVTT\"という文字列を記載する必要がある",
+      "ファイルの拡張子は.srtでなければならない",
+      "各キューには一意のid属性をHTML属性として指定しなければならない",
+      "タイムスタンプはミリ秒単位の整数のみで記述しなければならない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebVTTファイルは先頭行に\"WEBVTT\"という識別子を記載することが仕様上必須となっている。拡張子は一般的に.vttが使われる。キューへの識別子(cue identifier)の付与は任意であり、タイムスタンプは\"hh:mm:ss.mmm\"形式で記述する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebVTT_API"
+  },
+  {
+    "id": "multimedia-028",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "track要素のkind属性の値であるsubtitlesとcaptionsの違いに関する説明として最も適切なものはどれか。",
+    "choices": [
+      "captionsは音声内容の書き起こしに加え、効果音や話者名など音声を聞き取れないユーザー向けの情報も含む。subtitlesは視聴者が音声を聞き取れることを前提に、言語のみを翻訳・提供する",
+      "captionsは常に翻訳された多言語字幕を指し、subtitlesは字幕のスタイル情報のみを指す",
+      "captionsはchapters用のメタデータ、subtitlesは検索エンジン向けのメタデータを指す",
+      "両者に技術的な違いはなく、どちらを指定してもブラウザの挙動は完全に同一である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "captions(聴覚障害者向け字幕)は音声を聞き取れないユーザーのために、セリフだけでなく効果音や話者に関する情報も含めて提供される。subtitlesは音声は聞き取れるが言語が理解できない視聴者向けに、セリフの翻訳などを提供するものである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "multimedia-029",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "上記のコードにおけるdefault属性の役割として正しいものはどれか。",
+    "code": "<video controls>\n  <source src=\"movie.mp4\" type=\"video/mp4\">\n  <track kind=\"subtitles\" src=\"subs_ja.vtt\" srclang=\"ja\" label=\"日本語\" default>\n  <track kind=\"subtitles\" src=\"subs_en.vtt\" srclang=\"en\" label=\"English\">\n</video>",
+    "choices": [
+      "他のtrack要素が有効化されていない場合に、そのトラックを既定で有効な状態(表示対象)にする",
+      "字幕ファイルが読み込めなかった場合の代替テキストを指定する",
+      "複数のtrack要素のうち、最初に読み込みを開始するトラックを指定する",
+      "字幕の表示位置を動画のデフォルト位置(下部中央)に固定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "default属性を指定したtrack要素は、ユーザーが明示的に別のトラックを選択していない場合に既定で有効(表示)になる。同じkindのグループ内でdefault属性を指定できるのは基本的に1つとされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "multimedia-030",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のWebVTTのキュー(cue)に関する記述として正しいものはどれか。",
+    "code": "WEBVTT\n\n1\n00:00:00.500 --> 00:00:02.000 line:90% align:center\n最初のセリフです。",
+    "choices": [
+      "\"1\"はキューの識別子(cue identifier)であり、任意で付与できる",
+      "\"line:90% align:center\"は次のキューの表示開始タイミングを指定している",
+      "タイムスタンプの区切りである\"-->\"は省略可能である",
+      "1つのキューには複数のタイムスタンプ範囲を指定できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "タイムスタンプ行の前にある\"1\"のような行はキューの識別子で、省略可能な任意の値である。\"line\"や\"align\"はキュー設定(cue settings)で字幕の表示位置や配置を指定するものであり、タイムスタンプの区切りである\"-->\"は必須である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebVTT_API"
+  },
+  {
+    "id": "multimedia-031",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "track要素の属性として、HTML標準に存在するものを全て選べ。",
+    "choices": ["src", "kind", "srclang", "label", "default", "poster"],
+    "correctAnswers": [0, 1, 2, 3, 4],
+    "explanation": "track要素の属性はsrc(字幕ファイルのURL)、kind(種類)、srclang(言語コード)、label(表示名)、default(既定有効化)の5つである。poster属性はvideo要素の属性であり、track要素には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "multimedia-032",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードにおけるvideo.textTracksプロパティが返すオブジェクトの説明として正しいものはどれか。",
+    "code": "const tracks = video.textTracks;\nfor (let i = 0; i < tracks.length; i++) {\n  console.log(tracks[i].kind, tracks[i].label);\n}",
+    "choices": [
+      "そのメディア要素に関連付けられたTextTrackオブジェクトの一覧を表すTextTrackListを返す",
+      "字幕ファイル(WebVTT)の生のテキスト内容を1つの文字列として返す",
+      "現在表示中の字幕テキストのみを配列として返す",
+      "track要素のsrc属性のURLリストを返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "textTracksプロパティは、そのメディア要素に関連付けられている全てのテキストトラック(track要素由来のものに加え、JavaScriptで動的に追加されたものも含む)をTextTrackListとして返す。各TextTrackはkind、label、mode、cuesなどのプロパティを持つ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/textTracks"
+  },
+  {
+    "id": "multimedia-033",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "TextTrackインターフェースのmodeプロパティに設定できる値として、正しいものを全て選べ。",
+    "choices": ["disabled", "hidden", "showing", "active", "enabled"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "TextTrack.modeにはdisabled(無効)、hidden(有効だが非表示、キュー変化イベントは発生する)、showing(有効かつ表示)の3つの値が定義されている。\"active\"や\"enabled\"という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/TextTrack/mode"
+  },
+  {
+    "id": "multimedia-034",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードのcuechangeイベントに関する説明として正しいものはどれか。",
+    "code": "const track = video.textTracks[0];\ntrack.mode = 'hidden';\ntrack.addEventListener('cuechange', () => {\n  const activeCues = track.activeCues;\n  console.log(activeCues);\n});",
+    "choices": [
+      "現在再生位置においてアクティブなキュー(activeCues)の集合が変化したときに発火する",
+      "新しいtrack要素がDOMに追加されたときに発火する",
+      "字幕ファイル(VTTファイル)のダウンロードが完了したときに発火する",
+      "動画の再生位置がキューの開始時刻と一致した瞬間にのみ発火し、終了時刻では発火しない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "cuechangeイベントは、TextTrackのactiveCues(現在の再生位置で有効なキューの集合)が変化したタイミングで発火する。modeをhiddenにしておくと、字幕を画面に表示させずにキュー変化だけをJavaScriptで検知するといった用途に使える。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/TextTrack/cuechange_event"
+  },
+  {
+    "id": "multimedia-035",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Web Audio APIにおいて、AudioContextのdestinationプロパティが表すものはどれか。",
+    "choices": [
+      "オーディオグラフの最終的な出力先(通常はスピーカーなどの音声出力デバイス)を表すAudioDestinationNode",
+      "音声波形データを解析するためのAnalyserNode",
+      "音量を調整するためのGainNode",
+      "音声入力デバイス(マイク)を表すMediaStreamAudioSourceNode"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AudioContext.destinationは、そのオーディオコンテキストにおける音声出力の終点を表すAudioDestinationNodeを返す。オーディオグラフを構築する際、最終的に各ノードをconnect()でこのdestinationにつなげることでスピーカー等から音声が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioContext/destination"
+  },
+  {
+    "id": "multimedia-036",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Web Audio APIのGainNodeが持つgainプロパティの型として正しいものはどれか。",
+    "choices": [
+      "時間経過に沿った値の変化(オートメーション)を設定できるAudioParamオブジェクト",
+      "単純な数値(Number)型",
+      "真偽値(Boolean)型",
+      "文字列(String)型で\"mute\"または\"unmute\"のいずれかを取る"
+    ],
+    "correctAnswers": [0],
+    "explanation": "GainNode.gainはAudioParamオブジェクトであり、gain.valueで即座に値を取得・設定できるほか、setValueAtTime()やlinearRampToValueAtTime()などのメソッドを使って時間経過に伴う滑らかな値の変化(オートメーション)を設定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/GainNode/gain"
+  },
+  {
+    "id": "multimedia-037",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Audio APIのOscillatorNode.typeプロパティに設定できる値として、存在しないものはどれか。",
+    "choices": ["sine", "square", "sawtooth", "noise"],
+    "correctAnswers": [3],
+    "explanation": "OscillatorNode.typeにはsine(正弦波)、square(矩形波)、sawtooth(のこぎり波)、triangle(三角波)、custom(setPeriodicWaveで定義した波形)が指定できる。\"noise\"(ノイズ)という波形タイプは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/OscillatorNode/type"
+  },
+  {
+    "id": "multimedia-038",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードで構築されているオーディオグラフの説明として正しいものはどれか。",
+    "code": "const oscillator = audioContext.createOscillator();\nconst gainNode = audioContext.createGain();\n\noscillator.connect(gainNode);\ngainNode.connect(audioContext.destination);\noscillator.start();",
+    "choices": [
+      "オシレーターが生成した音声信号がGainNodeを経由して音量調整された後、最終的にスピーカー等の出力先に送られる",
+      "GainNodeがオシレーターに接続されているため、GainNodeが音を生成しoscillatorはそれを増幅する",
+      "connect()を2回呼び出しているため、音は2つの独立した出力先に同時に出力され、GainNodeは経由しない",
+      "oscillator.start()を呼び出さなくても、connect()の時点で自動的に音声が再生される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "connect()メソッドは呼び出し元のノードの出力を引数のノードの入力に接続する。このコードではoscillator(音源)→gainNode(音量調整)→destination(出力先)という順にノードが接続されており、start()を呼び出すことで実際に音声の生成・再生が開始される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioNode/connect"
+  },
+  {
+    "id": "multimedia-039",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているAnalyserNodeに関する記述として正しいものはどれか。",
+    "code": "const analyser = audioContext.createAnalyser();\nanalyser.fftSize = 256;\nconst dataArray = new Uint8Array(analyser.frequencyBinCount);\nsourceNode.connect(analyser);\n\nfunction draw() {\n  analyser.getByteFrequencyData(dataArray);\n  // dataArrayを使って描画処理\n  requestAnimationFrame(draw);\n}\ndraw();",
+    "choices": [
+      "音声信号を周波数領域や時間領域のデータとして取得でき、音声ビジュアライザーなどの実装に利用される",
+      "AnalyserNodeは音声データを暗号化してネットワーク越しに安全に送信するためのノードである",
+      "fftSizeプロパティは音量の大きさ(デシベル値)を直接表すプロパティである",
+      "AnalyserNodeを接続すると、接続元の音声信号は自動的にミュートされ、無音で解析だけが行われる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AnalyserNodeはリアルタイムの周波数解析や波形解析を行うためのノードで、getByteFrequencyData()やgetByteTimeDomainData()を使って解析結果を取得できる。fftSizeは高速フーリエ変換のサンプルサイズを指定するプロパティであり、音声信号を変化させることなく解析用のデータを取り出せる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AnalyserNode"
+  },
+  {
+    "id": "multimedia-040",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Web Audio APIにおいて、AudioNodeを継承する具体的なノードの種類として正しいものを全て選べ。",
+    "choices": ["GainNode", "OscillatorNode", "AnalyserNode", "VideoNode", "BiquadFilterNode"],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "GainNode(音量調整)、OscillatorNode(発振器)、AnalyserNode(周波数/波形解析)、BiquadFilterNode(フィルタ処理)はいずれもAudioNodeを継承する実在のインターフェースである。\"VideoNode\"というインターフェースはWeb Audio APIには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioNode"
+  },
+  {
+    "id": "multimedia-041",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードで使用されているgetUserMedia()メソッドに関する説明として正しいものはどれか。",
+    "code": "navigator.mediaDevices.getUserMedia({ video: true, audio: true })\n  .then((stream) => {\n    videoElement.srcObject = stream;\n  })\n  .catch((error) => {\n    console.error('カメラ・マイクにアクセスできません', error);\n  });",
+    "choices": [
+      "navigator.mediaDevicesオブジェクトのメソッドで、カメラやマイクへのアクセス許可をユーザーに求め、成功するとMediaStreamを解決するPromiseを返す",
+      "navigator.mediaDevices.getUserMedia()は同期的に実行され、即座にMediaStreamオブジェクトを返す",
+      "getUserMedia()は画像ファイルを選択するためのファイル選択ダイアログを表示するAPIである",
+      "getUserMedia()はサーバー上に保存された動画ファイルを取得するためのAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getUserMedia()はカメラやマイクなどのメディア入力デバイスへのアクセスを要求する非同期APIで、Promiseを返す。ユーザーが許可すると、映像・音声のトラックを含むMediaStreamでPromiseがresolveされる。以前存在したnavigator.getUserMedia()というコールバック形式のAPIは非推奨である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/getUserMedia"
+  },
+  {
+    "id": "multimedia-042",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のconstraintsオブジェクトの役割として正しいものはどれか。",
+    "code": "const constraints = {\n  audio: true,\n  video: {\n    width: { ideal: 1280 },\n    height: { ideal: 720 }\n  }\n};\nnavigator.mediaDevices.getUserMedia(constraints);",
+    "choices": [
+      "取得したいメディアの種類(音声・映像)と、映像の解像度などの希望条件を指定する",
+      "取得した映像を保存するファイル名と保存先パスを指定する",
+      "サーバーに送信するHTTPリクエストヘッダーを指定する",
+      "字幕トラックの言語設定を指定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getUserMedia()の引数(MediaStreamConstraints)は、audioとvideoそれぞれについて取得の要否や、解像度・フレームレートなどの詳細な条件(制約)を指定するために使用する。この例ではidealキーで理想とする解像度を指定している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/getUserMedia"
+  },
+  {
+    "id": "multimedia-043",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "MediaStreamインターフェースが持つメンバーとして正しいものを全て選べ。",
+    "choices": ["getTracks()", "getAudioTracks()", "getVideoTracks()", "getDisplayTracks()", "id"],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "MediaStreamはgetTracks()(全トラック取得)、getAudioTracks()(音声トラックのみ取得)、getVideoTracks()(映像トラックのみ取得)といったメソッドや、ストリームを一意に識別するidプロパティを持つ。\"getDisplayTracks()\"というメソッドは存在せず、画面共有の取得にはnavigator.mediaDevices.getDisplayMedia()という別のAPIを使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaStream"
+  },
+  {
+    "id": "multimedia-044",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "getUserMedia()を利用する際の制約に関する記述として正しいものはどれか。",
+    "choices": [
+      "HTTPS接続などのセキュアコンテキストでの実行が必須であり、localhostなど一部の例外を除きHTTP環境では利用できない",
+      "getUserMedia()はセキュアコンテキストに関わらずどのような環境でも制限なく利用できる",
+      "getUserMedia()の利用には事前にサーバー証明書とは別に専用のAPIキーを取得して登録する必要がある",
+      "getUserMedia()はChromeブラウザ専用のAPIであり、他のモダンブラウザでは利用できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getUserMedia()を含むMedia Capture and Streams APIは、プライバシーに関わる強力な機能であるためセキュアコンテキスト(HTTPS)での実行が要求される。開発時のlocalhost(http://localhost)は例外として許可される。主要なモダンブラウザ全般でサポートされているAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/getUserMedia"
+  },
+  {
+    "id": "multimedia-045",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Media Source Extensions (MSE) に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "MediaSourceオブジェクトをvideo要素のsrcとして扱うことで、JavaScriptから動的にメディアデータを供給できる仕組みである",
+      "SourceBufferに対してappendBuffer()でメディアセグメントを追加していくことで再生用のバッファを構築する",
+      "アダプティブビットレートストリーミング(DASHやHLSなど)をブラウザ上で実装するための基盤として利用される",
+      "MSEを使用すると、動画ファイル自体をブラウザ上でエンコード・トランスコードして別形式に変換できる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "MSEはMediaSourceオブジェクトを介して、通常のsrc指定による単一ファイル読み込みとは異なり、JavaScriptから細かい単位(セグメント)でメディアデータを動的に供給できる仕組みである。SourceBuffer.appendBuffer()でデータを追加し、通信状況に応じて画質を切り替えるアダプティブストリーミングの実現に広く使われる。ただし動画のエンコード/トランスコード自体を行う機能ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Media_Source_Extensions_API"
+  },
+  {
+    "id": "multimedia-046",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードにおけるsourceBuffer.appendBuffer()の役割として正しいものはどれか。",
+    "code": "const mediaSource = new MediaSource();\nvideoElement.src = URL.createObjectURL(mediaSource);\n\nmediaSource.addEventListener('sourceopen', () => {\n  const sourceBuffer = mediaSource.addSourceBuffer('video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"');\n  fetch('segment1.mp4')\n    .then((res) => res.arrayBuffer())\n    .then((buffer) => sourceBuffer.appendBuffer(buffer));\n});",
+    "choices": [
+      "取得したメディアセグメントのバイナリデータをSourceBufferに追加し、video要素で再生可能なバッファとして蓄積する",
+      "video要素の再生位置を指定したバイト位置までシークする",
+      "SourceBufferの内容を全て消去し、新しいメディアソースに置き換える",
+      "字幕データ(WebVTT)をSourceBufferに追加する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "appendBuffer()はArrayBufferやTypedArrayとして渡されたメディアセグメントのデータをSourceBufferに追加するメソッドである。追加されたデータは非同期に処理され、完了するとupdateendイベントが発火する。これによりストリーミング配信のようにメディアデータを分割して供給できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/SourceBuffer/appendBuffer"
+  },
+  {
+    "id": "multimedia-047",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードで使用されているrequestPictureInPicture()メソッドに関する説明として正しいものはどれか。",
+    "code": "videoElement.requestPictureInPicture()\n  .then((pipWindow) => {\n    console.log('PinP開始', pipWindow.width, pipWindow.height);\n  })\n  .catch((error) => {\n    console.error('PinPの開始に失敗しました', error);\n  });",
+    "choices": [
+      "HTMLVideoElementのメソッドで、動画を他のウィンドウの上に常に表示され続ける小さなフローティングウィンドウ(ピクチャーインピクチャー)として表示するよう要求し、Promiseを返す",
+      "動画を全画面表示(フルスクリーン)に切り替えるための標準メソッドである",
+      "動画の解像度を自動的に縮小し、通信量を削減するためのメソッドである",
+      "複数の動画を1つの画面上に分割表示するためのメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "requestPictureInPicture()はvideo要素に対して呼び出すメソッドで、その動画をブラウザやOSのウィンドウとは独立した、常に最前面に表示される小さなウィンドウ(Picture-in-Picture)で表示するよう要求する。戻り値はPictureInPictureWindowで解決されるPromiseである。全画面表示にはrequestFullscreen()を使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLVideoElement/requestPictureInPicture"
+  },
+  {
+    "id": "multimedia-048",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "上記のコードにおけるdisablePictureInPicture属性の役割として正しいものはどれか。",
+    "code": "<video src=\"movie.mp4\" controls disablePictureInPicture></video>",
+    "choices": [
+      "ブラウザが提供するピクチャーインピクチャー機能(コンテキストメニューからの起動やAPI経由での起動)を無効化する",
+      "動画の音声を常にミュートする",
+      "動画のダウンロードを禁止する",
+      "字幕の自動生成機能を無効化する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "disablePictureInPicture属性は、その動画に対してブラウザが提供するピクチャーインピクチャー機能(右クリックメニューからの起動を含む)を使用しないようにするための真偽値属性である。ただしJavaScriptから明示的にPinPを禁止する完全な保証ではなく、あくまでブラウザへの指示(ヒント)という位置づけである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Picture-in-Picture_API"
+  },
+  {
+    "id": "multimedia-049",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のCSSをvideo要素に適用した場合の効果として正しいものはどれか。",
+    "code": "video {\n  width: 100%;\n  aspect-ratio: 16 / 9;\n}",
+    "choices": [
+      "video要素の幅を親要素いっぱいに広げつつ、高さを幅に対して16:9の比率になるよう自動的に計算し、レスポンシブに縦横比を維持する",
+      "動画の実際の解像度を16:9に強制的に変換してエンコードし直す",
+      "動画の再生速度を16:9の比率で変化させる",
+      "video要素にレターボックス(黒帯)を追加して常に4:3で表示する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "aspect-ratio CSSプロパティは要素の幅と高さの比率を指定するプロパティで、widthに対してheightを自動計算させることができる。widthを100%と組み合わせることで、コンテナの幅に応じて高さが追従する、レイアウトシフトの少ないレスポンシブな動画表示を実現できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/aspect-ratio"
+  },
+  {
+    "id": "multimedia-050",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のCSSをvideo要素に適用した場合のobject-fit: coverの効果として正しいものはどれか。",
+    "code": "video {\n  width: 100%;\n  height: 300px;\n  object-fit: cover;\n}",
+    "choices": [
+      "動画の縦横比を保ったまま、指定されたボックス(幅100%・高さ300px)全体を覆うように拡大縮小し、はみ出した部分は表示範囲外にトリミングされる",
+      "動画の縦横比を保ったまま、ボックス全体に収まるよう縮小し、余白部分には何も表示されない(透過)",
+      "動画の縦横比を無視して、ボックスの幅と高さにぴったり合うように引き伸ばす",
+      "動画を常に元のサイズのまま中央に表示し、ボックスからはみ出た部分だけを非表示にする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "object-fit: coverは、置換要素(video/imgなど)の縦横比を維持したまま指定されたボックスを隙間なく覆うように拡大縮小し、ボックスに収まらない部分は表示範囲外としてクリッピングする。縦横比を無視して引き伸ばすのはobject-fit: fillの挙動である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/object-fit"
+  },
+  {
+    "id": "multimedia-051",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Audio APIのBiquadFilterNodeに関する説明として正しいものはどれか。",
+    "choices": [
+      "特定の周波数帯域を減衰・強調するフィルタ処理を行うノードである",
+      "音声を暗号化するためのノードである",
+      "複数の音声を1つに合成するミキサー専用のノードである",
+      "動画のフレームレートを変換するためのノードである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "BiquadFilterNodeは低域・高域を通過させたり特定周波数を強調・減衰させたりする2次フィルタ処理を行うAudioNodeである。typeプロパティでlowpassやhighpassなどのフィルタ種別を切り替えられる。暗号化や合成専用、動画フレームレート変換といった機能は持たない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BiquadFilterNode"
+  },
+  {
+    "id": "multimedia-052",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Audio APIのDelayNode.delayTimeプロパティに関する説明として正しいものはどれか。",
+    "choices": [
+      "入力音声を指定した秒数だけ遅延させて出力するための時間を保持するAudioParamである",
+      "ノード生成時に音声の再生が開始されるまでの遅延をミリ秒単位のNumber型で保持するプロパティである",
+      "video要素の再生開始を遅延させるためのプロパティである",
+      "HTMLMediaElement全体の読み込み遅延を設定するプロパティである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DelayNode.delayTimeは入力信号を何秒遅延させて出力するかを表すAudioParamであり、単純な数値ではなくsetValueAtTime()等のオートメーションメソッドも利用できる。HTML側のメディア要素の再生タイミングとは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DelayNode/delayTime"
+  },
+  {
+    "id": "multimedia-053",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Audio APIのStereoPannerNode.panプロパティが取り得る値の範囲として正しいものはどれか。",
+    "choices": [
+      "-1(完全に左)から1(完全に右)までの範囲で、0が中央を表す",
+      "0(完全に左)から1(完全に右)までの範囲",
+      "-100から100までの整数",
+      "0から360までの角度(度数)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "StereoPannerNode.panはAudioParamであり、-1(左)から1(右)の範囲で音の左右バランスを表す。既定値は0(中央)である。角度や0~100のパーセンテージで表現されるものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/StereoPannerNode/pan"
+  },
+  {
+    "id": "multimedia-054",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTMLMediaElementのpreservesPitchプロパティに関する記述として正しいものはどれか。",
+    "choices": [
+      "playbackRateを変更して再生速度を変えた際に、音の高さ(ピッチ)を補正して保つかどうかを制御する真偽値プロパティで、既定値はtrueである",
+      "動画の解像度を再生速度に応じて自動調整するかどうかを制御する",
+      "字幕の表示位置を再生中固定するかどうかを制御する",
+      "音量を再生位置によらず一定に保つかどうかを制御する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "preservesPitchは、playbackRateの変更に伴う再生速度の変化時にピッチ(音高)を補正して保持するかどうかを制御する真偽値プロパティで、既定値はtrueである。falseに設定すると再生速度に応じてピッチも変化する(いわゆるチップマンク効果)。かつてはmozPreservesPitch/webkitPreservesPitchという接頭辞付き名称が使われていた。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/preservesPitch"
+  },
+  {
+    "id": "multimedia-055",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "video要素のdisableRemotePlayback属性の役割として正しいものはどれか。",
+    "choices": [
+      "AirPlayやChromecastなどのリモート再生機能の候補としてそのメディア要素を提供しないようブラウザに指示する",
+      "動画のダウンロード機能を無効化する",
+      "字幕ファイルのネットワーク経由での取得を無効化する",
+      "ピクチャーインピクチャー機能を無効化する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "disableRemotePlayback属性を指定すると、ブラウザはそのメディア要素をAirPlayやChromecastなどのリモート再生(Remote Playback API)の対象として提示しないようになる。ピクチャーインピクチャーの無効化はdisablePictureInPicture属性の役割であり、両者は独立した別の属性である。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/disableRemotePlayback"
+  },
+  {
+    "id": "multimedia-056",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "video要素やaudio要素、img要素に指定するcrossorigin属性の値として、HTML標準に存在するものを全て選べ。",
+    "choices": ["anonymous", "use-credentials", "same-origin", "no-cors"],
+    "correctAnswers": [0, 1],
+    "explanation": "crossorigin属性に指定できる値は\"anonymous\"(認証情報を送らずCORSリクエストを行う)と\"use-credentials\"(認証情報を含めてCORSリクエストを行う)の2つである。\"same-origin\"や\"no-cors\"という値はこの属性には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/crossorigin"
+  },
+  {
+    "id": "multimedia-057",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "MediaRecorderオブジェクトのstateプロパティが取り得る値として、正しいものを全て選べ。",
+    "choices": ["inactive", "recording", "paused", "stopped"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "MediaRecorder.stateには録画を行っていない\"inactive\"、録画中の\"recording\"、一時停止中の\"paused\"の3つの値が定義されている。\"stopped\"という値は存在せず、stop()を呼び出すと状態は\"inactive\"に戻る。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/state"
+  },
+  {
+    "id": "multimedia-058",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "AudioContextのstateプロパティが取り得る値として、正しいものを全て選べ。",
+    "choices": ["suspended", "running", "closed", "paused", "stopped"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "AudioContext(BaseAudioContext)のstateには一時停止中の\"suspended\"、実行中の\"running\"、破棄済みの\"closed\"の3つの値が定義されている。\"paused\"や\"stopped\"という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BaseAudioContext/state"
+  },
+  {
+    "id": "multimedia-059",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "AudioBufferインターフェースが持つプロパティとして、正しいものを全て選べ。",
+    "choices": ["sampleRate", "numberOfChannels", "length", "duration", "bitrate"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "AudioBufferはsampleRate(サンプルレート)、numberOfChannels(チャンネル数)、length(サンプルフレーム数)、duration(秒数)を読み取り専用プロパティとして持つ。\"bitrate\"というプロパティは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioBuffer"
+  },
+  {
+    "id": "multimedia-060",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Audio APIのConvolverNodeの主な用途として正しいものはどれか。",
+    "choices": [
+      "インパルス応答(AudioBuffer)との畳み込み演算により、残響(リバーブ)などの音響効果を再現する",
+      "複数の音声トラックを単純に加算合成するミキサーである",
+      "音声データを別のサンプルレートに変換するリサンプラーである",
+      "音声信号を暗号化するためのノードである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ConvolverNodeはbufferプロパティに設定したインパルス応答(AudioBuffer)との畳み込み演算を行うノードで、部屋の残響のような音響効果(リバーブ)を再現する用途に広く使われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ConvolverNode"
+  },
+  {
+    "id": "multimedia-061",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Audio APIのWaveShaperNodeの主な用途として正しいものはどれか。",
+    "choices": [
+      "waveshaper curveを用いて非線形な歪み(ディストーション)効果を音声信号に加える",
+      "音声の周波数成分を解析してグラフ表示するためのノードである",
+      "音声のピッチ(音高)だけを変化させるためのノードである",
+      "複数の音声入力をチャンネルごとに分離するためのノードである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WaveShaperNodeはcurveプロパティに設定した変換テーブルに基づいて音声信号を非線形に変形し、ディストーションのような歪み効果を加えるためのノードである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WaveShaperNode"
+  },
+  {
+    "id": "multimedia-062",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Audio APIのDynamicsCompressorNodeの主な用途として正しいものはどれか。",
+    "choices": [
+      "音声信号の大きい部分を抑制することで、ダイナミックレンジを圧縮し全体の音量を均一化する",
+      "音声を左右のチャンネルに分離するためのノードである",
+      "音声波形を周波数領域のデータに変換して可視化するためのノードである",
+      "音声の再生速度を変更するためのノードである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DynamicsCompressorNodeは、しきい値を超える大きな音声を圧縮してダイナミックレンジを狭め、全体的な音量のばらつきを抑えるためのノードである。複数の音声を混合する際にクリッピングを防ぐ目的でよく利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DynamicsCompressorNode"
+  },
+  {
+    "id": "multimedia-063",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "navigator.mediaSessionに関する記述として正しいものはどれか。",
+    "choices": [
+      "OS・ブラウザのメディア通知UIやハードウェアの再生キーと連携するためのMediaSessionオブジェクトを提供する",
+      "メディアファイルをサーバーにアップロードするためのAPIである",
+      "複数タブ間でのみ再生状態を共有するためのAPIである",
+      "動画の再生履歴をブラウザの履歴(History API)に記録するためのAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.mediaSessionはMedia Session APIで定義されるMediaSessionオブジェクトであり、再生中メディアのメタデータをOSやブラウザの通知UIに表示したり、ハードウェアの再生キーからの操作をハンドリングしたりするために利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Media_Session_API"
+  },
+  {
+    "id": "multimedia-064",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "navigator.mediaDevices.getDisplayMedia()に関する記述として正しいものはどれか。",
+    "choices": [
+      "ユーザーに画面・ウィンドウ・タブの共有対象を選択させ、その映像を含むMediaStreamを取得する。カメラやマイクを取得するgetUserMedia()とは取得対象が異なる",
+      "getUserMedia()の別名であり両者は完全に同一の機能を提供する",
+      "ディスプレイの色域(色深度)情報のみを取得するAPIである",
+      "動画のフルスクリーン表示を要求するAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getDisplayMedia()はScreen Capture APIのメソッドで、ユーザーに共有する画面・ウィンドウ・タブを選択させ、その映像(場合によっては音声も)を含むMediaStreamを取得する。カメラ・マイクを取得するgetUserMedia()とは対象デバイスが異なる別のAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/getDisplayMedia"
+  },
+  {
+    "id": "multimedia-065",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "上記のようなWebVTTのキュー設定におけるpositionとsizeの役割として正しいものはどれか。",
+    "code": "WEBVTT\n\n00:00:01.000 --> 00:00:04.000 position:10% size:35% align:start\nテキスト",
+    "choices": [
+      "positionはキューボックスの水平方向の配置位置、sizeはキューボックスの幅を、それぞれ動画表示領域に対する割合(%)で指定する",
+      "positionは再生位置(秒)、sizeはフォントサイズ(px)を指定する",
+      "positionは字幕の表示優先順位、sizeは文字数の上限を指定する",
+      "positionとsizeはvertical属性が指定されている場合にのみ有効なキュー設定である"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WebVTTのキュー設定のうちpositionはキューボックスの配置位置、sizeはキューボックスの幅(縦書きの場合は高さ)を、それぞれ動画表示領域に対するパーセンテージで指定する。vertical属性の有無に関わらず利用できるキュー設定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebVTT_API"
+  },
+  {
+    "id": "multimedia-066",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードの効果として正しいものはどれか。",
+    "code": "gainNode.gain.setValueAtTime(1, audioContext.currentTime);\ngainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 2);",
+    "choices": [
+      "現在の音量(1)から2秒後にかけて音量が0まで線形(一定の変化率)に減少していくフェードアウトを実現する",
+      "現在時刻に音量を1に、2秒後に音量を0に、それぞれ瞬時に切り替える",
+      "音量を2秒間隔で1と0を交互に繰り返すループを設定する",
+      "linearRampToValueAtTime呼び出し後、直前のsetValueAtTimeで指定した値は無視される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "setValueAtTime()で開始値を明示的に設定した後にlinearRampToValueAtTime(value, endTime)を呼び出すと、直前に設定された値から指定した終了時刻までの間で値が線形に変化するオートメーションが設定される。この組み合わせはフェードイン・フェードアウトの典型的な実装パターンである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioParam/linearRampToValueAtTime"
+  },
+  {
+    "id": "multimedia-067",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Web Audio APIのPannerNode.panningModelプロパティに指定できる値として、正しいものを全て選べ。",
+    "choices": ["equalpower", "HRTF", "surround", "binaural"],
+    "correctAnswers": [0, 1],
+    "explanation": "panningModelには等パワーパンニングを行う\"equalpower\"(既定値)と、頭部伝達関数(Head-Related Transfer Function)による立体音響を再現する\"HRTF\"の2つの値が定義されている。\"surround\"や\"binaural\"という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PannerNode/panningModel"
+  },
+  {
+    "id": "multimedia-068",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードに関する説明として正しいものはどれか。",
+    "code": "const recorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });\nconst chunks = [];\nrecorder.ondataavailable = (event) => {\n  chunks.push(event.data);\n};\nrecorder.start();",
+    "choices": [
+      "MediaRecorderのコンストラクタでmimeTypeを指定して録画フォーマットを指定し、録画データが利用可能になるたびにondataavailableイベントでBlobデータを受け取っている",
+      "mimeTypeはあくまでヒントであり、ondataavailableイベントは録画開始時に一度だけ発火する",
+      "MediaRecorderはstream引数を必要とせず、video要素のsrc属性から直接データを取得する",
+      "ondataavailableイベントのevent.dataは常にArrayBufferを返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "MediaRecorderはMediaStreamと録画オプション(mimeTypeなど)を指定して生成し、start()で録画を開始する。録画中は一定間隔または区切りごとにondataavailableイベントが発火し、event.dataとしてBlob形式のデータが渡される。対応形式は事前にMediaRecorder.isTypeSupported()で確認できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaRecorder"
+  },
+  {
+    "id": "multimedia-069",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のCSSに関する説明として正しいものはどれか。",
+    "code": "video::cue {\n  color: yellow;\n  background-color: rgba(0, 0, 0, 0.7);\n}",
+    "choices": [
+      "::cue疑似要素を用いて、video要素上に表示されるWebVTT字幕・キャプションのテキストの色や背景色などを装飾できる",
+      "::cueはvideo要素のposter画像を装飾するための疑似要素である",
+      "::cueで指定できるプロパティに制限はなく、position等のレイアウトプロパティも自由に指定できる",
+      "::cueはtrack要素のkindがchaptersの場合にのみ適用される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "::cue疑似要素はメディア要素が表示するテキストトラック(字幕・キャプション)のキュー部分にスタイルを適用するための疑似要素である。color、background、font関連など指定可能なプロパティには仕様上の制限があり、position等のレイアウトに関わるプロパティは適用できない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/::cue"
+  },
+  {
+    "id": "multimedia-070",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のコードでcrossorigin属性を適切に設定していないクロスオリジンのvideo要素からcanvasに描画した場合に発生する現象として正しいものはどれか。",
+    "code": "const canvas = document.createElement('canvas');\nconst ctx = canvas.getContext('2d');\nctx.drawImage(video, 0, 0);\nconst dataUrl = canvas.toDataURL(); // SecurityError",
+    "choices": [
+      "canvasが\"tainted\"(汚染)状態となり、getImageData()やtoDataURL()などピクセルデータを取り出す操作を行うとSecurityErrorが発生する",
+      "drawImage()自体が例外をスローし、canvasへの描画が一切行われない",
+      "video要素の再生が自動的に停止する",
+      "canvasに描画された映像が自動的にモザイク処理される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "適切なCORSヘッダーが付与されていないクロスオリジンのメディアをcanvasに描画すると、そのcanvasは\"tainted\"な状態になる。描画自体(drawImage)は行われるが、getImageData()やtoDataURL()などピクセル情報を読み出す操作を行うとSecurityErrorがスローされる。これを避けるにはメディア要素にcrossorigin属性を設定し、サーバー側で適切なCORSヘッダーを返す必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/CORS_enabled_image"
+  },
+  {
+    "id": "multimedia-071",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Web Audio APIのBiquadFilterNode.typeプロパティに指定できる値として、正しいものを全て選べ。",
+    "choices": ["lowpass", "highpass", "bandpass", "peaking", "gaussian"],
+    "correctAnswers": [0, 1, 2, 3],
+    "explanation": "BiquadFilterNode.typeにはlowpass、highpass、bandpass、lowshelf、highshelf、peaking、notch、allpassの8種類が定義されている。\"gaussian\"という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BiquadFilterNode/type"
+  },
+  {
+    "id": "multimedia-072",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードにおけるcreateDelay()の引数(5.0)の役割として正しいものはどれか。",
+    "code": "const delay = audioContext.createDelay(5.0);\ndelay.delayTime.value = 3.0;",
+    "choices": [
+      "そのDelayNodeで設定可能な遅延時間の最大値(秒)をあらかじめ指定する。生成後にdelayTime.valueに設定できるのはこの最大値以下の値に限られる",
+      "遅延処理を開始するまでの初期待機時間を指定する",
+      "遅延バッファのサンプル数を直接指定する",
+      "接続先ノードの数を指定する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "createDelay(maxDelayTime)(またはnew DelayNode(context, { maxDelayTime }))の引数は、そのノードが確保する遅延バッファの最大遅延時間を指定するものであり、生成後にdelayTime(AudioParam)に設定できる値の上限を決める。この最大値自体は生成後に読み取れるプロパティとしては公開されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BaseAudioContext/createDelay"
+  },
+  {
+    "id": "multimedia-073",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードにおけるnormalizeプロパティの役割として正しいものはどれか。",
+    "code": "const convolver = audioContext.createConvolver();\nconvolver.normalize = false;\nfetch('impulse.wav')\n  .then((res) => res.arrayBuffer())\n  .then((buf) => audioContext.decodeAudioData(buf))\n  .then((audioBuffer) => {\n    convolver.buffer = audioBuffer;\n  });",
+    "choices": [
+      "trueの場合、bufferに設定したインパルス応答に基づき出力レベルが均一になるよう自動的に正規化される。falseにすると正規化を行わず、バッファの値がそのまま畳み込み演算に使われる",
+      "音声のサンプルレートをAudioContextのサンプルレートに自動変換するかどうかを制御する",
+      "ステレオ音声をモノラルに変換するかどうかを制御する",
+      "バッファの再生をループさせるかどうかを制御する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ConvolverNode.normalizeはbufferプロパティに新しいAudioBufferを設定する際、内部的にインパルス応答を正規化して均一な出力レベルを得るかどうかを制御する真偽値プロパティである。既定値はtrueであり、falseに設定するとバッファの値をそのまま畳み込み演算に使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ConvolverNode/normalize"
+  },
+  {
+    "id": "multimedia-074",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているpositionX/positionY/positionZプロパティに関する説明として正しいものはどれか。",
+    "code": "const panner = audioContext.createPanner();\npanner.positionX.setValueAtTime(10, audioContext.currentTime);\npanner.positionY.setValueAtTime(0, audioContext.currentTime);\npanner.positionZ.setValueAtTime(0, audioContext.currentTime);",
+    "choices": [
+      "いずれもAudioParamであり、setValueAtTime()などのオートメーションメソッドを使って3次元空間上の音源位置を時間経過に沿って変化させることができる。従来のsetPosition()メソッドはこれらのプロパティに置き換えられ非推奨となった",
+      "いずれも単純な数値(Number)型のプロパティであり、直接代入することしかできない",
+      "positionX/Y/Zはリスナー(AudioListener)の位置を表すプロパティであり、音源の位置は別のAPIで指定する",
+      "positionZは常に0に固定され、変更できない読み取り専用プロパティである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "PannerNodeのpositionX、positionY、positionZは音源の3次元位置を表すAudioParamであり、setValueAtTime()等のオートメーションメソッドで時間変化を設定できる。以前のsetPosition(x, y, z)メソッドはこれらのAudioParamベースのプロパティに置き換えられ、仕様上非推奨(deprecated)となっている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PannerNode/positionX"
+  },
+  {
+    "id": "multimedia-075",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで設定しているAudioListenerのforwardX/Y/ZおよびupX/Y/Zプロパティの役割として正しいものはどれか。",
+    "code": "const listener = audioContext.listener;\nlistener.forwardX.value = 0;\nlistener.forwardY.value = 0;\nlistener.forwardZ.value = -1;\nlistener.upX.value = 0;\nlistener.upY.value = 1;\nlistener.upZ.value = 0;",
+    "choices": [
+      "リスナー(視点)が向いている方向(forward)と、頭の上方向(up)をそれぞれ3次元ベクトルとして表し、空間音響における音の聞こえ方の基準となる向きを定義する",
+      "リスナーの現在位置(x, y, z座標)を表す",
+      "音源の移動速度をベクトルで表す",
+      "リスナーが受信できる音声の周波数帯域の上限と下限を表す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AudioListenerのforwardX/Y/Zはリスナーの前方向、upX/Y/Zは頭の上方向を表すベクトルであり、PannerNodeによる3次元音響処理において、音源とリスナーの相対的な向き・位置関係を計算する基準になる。リスナー自身の位置はpositionX/Y/Zプロパティで別途表される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioListener"
+  },
+  {
+    "id": "multimedia-076",
+    "category": "multimedia",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Web Audio APIのPannerNode.distanceModelプロパティに指定できる値として、正しいものを全て選べ。",
+    "choices": ["linear", "inverse", "exponential", "logarithmic"],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "distanceModelにはlinear(線形減衰)、inverse(距離の逆数に比例した減衰、既定値)、exponential(指数的な減衰)の3つの値が定義されている。\"logarithmic\"という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PannerNode/distanceModel"
+  },
+  {
+    "id": "multimedia-077",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているAudioParam.setTargetAtTime()メソッドの効果として正しいものはどれか。",
+    "code": "gainNode.gain.setTargetAtTime(0, audioContext.currentTime, 0.3);",
+    "choices": [
+      "指定した開始時刻から、指定した目標値(0)へ向かって指数的に近づいていく変化を設定する。timeConstant(この例では0.3)が変化の速さを決め、値は理論上目標値に完全には到達しない",
+      "指定した時刻に、目標値へ瞬時に(線形補間なしで)切り替える",
+      "指定した時刻から目標値までを線形に変化させ、必ずtimeConstant秒後に到達する",
+      "現在のオートメーションを全てキャンセルし、目標値のみを保持する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "setTargetAtTime(target, startTime, timeConstant)は、開始時刻から目標値へ向けて指数的に近づく(exponential approach)変化を設定するメソッドである。timeConstantは変化の速さを表す時定数で、値が小さいほど速く近づく。理論上は目標値に漸近するのみで完全には一致しない点が、値に到達することを前提とするlinearRampToValueAtTime()等との違いである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioParam/setTargetAtTime"
+  },
+  {
+    "id": "multimedia-078",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードを実行した場合の結果として正しいものはどれか。",
+    "code": "gainNode.gain.setValueAtTime(1, audioContext.currentTime);\ngainNode.gain.exponentialRampToValueAtTime(0, audioContext.currentTime + 2);",
+    "choices": [
+      "exponentialRampToValueAtTime()の目標値に0や負の値を指定することはできず、RangeErrorなどの例外がスローされる",
+      "音量が1から0まで指数的に滑らかに減少するフェードアウトが正常に実行される",
+      "exponentialRampToValueAtTime()はsetValueAtTime()と組み合わせて使用できないため、直前のsetValueAtTime()の呼び出しが無視される",
+      "音量が0から1まで増加するフェードインとして解釈される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "exponentialRampToValueAtTime()は指数関数的に値を変化させるため、対数を取ることができない0や負の値を目標値として指定することはできない。0まで滑らかに減少させたい場合は、非常に小さい正の値(例: 0.0001)を目標にするか、setTargetAtTime()を使うといった回避策が用いられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioParam/exponentialRampToValueAtTime"
+  },
+  {
+    "id": "multimedia-079",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているAudioParam.setValueCurveAtTime()メソッドの効果として正しいものはどれか。",
+    "code": "const curve = new Float32Array([0, 1, 0.5, 1, 0]);\ngainNode.gain.setValueCurveAtTime(curve, audioContext.currentTime, 2.0);",
+    "choices": [
+      "指定したFloat32Arrayの各値を、開始時刻から指定した時間(この例では2.0秒間)にわたって補間しながら順に適用し、任意の波形カーブを再現する",
+      "配列の値を1つずつ順番に、間隔を空けずに即座に切り替えて適用する",
+      "配列の要素数に応じて自動的にループ再生させる",
+      "配列の最初の要素のみを使用し、残りの要素は無視される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "setValueCurveAtTime(values, startTime, duration)は、Float32Arrayで与えた値の列を、開始時刻から指定した期間にわたって等間隔に補間しながら適用するメソッドで、単純なランプでは表現できない任意の変化カーブを再現できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioParam/setValueCurveAtTime"
+  },
+  {
+    "id": "multimedia-080",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードにおけるAudioBuffer.getChannelData()メソッドの戻り値に関する説明として正しいものはどれか。",
+    "code": "const buffer = audioContext.createBuffer(2, audioContext.sampleRate * 2, audioContext.sampleRate);\nconst channelData = buffer.getChannelData(0);\nfor (let i = 0; i < channelData.length; i++) {\n  channelData[i] = Math.random() * 2 - 1;\n}",
+    "choices": [
+      "指定したチャンネルのPCMサンプルデータを直接参照するFloat32Arrayを返し、その要素を書き換えることでバッファの内容そのものを変更できる",
+      "指定したチャンネルの音声データをコピーしたBlobオブジェクトを返す",
+      "指定したチャンネルの音量(RMS値)を表す単一の数値を返す",
+      "全チャンネルのデータをまとめた2次元配列を返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getChannelData(channel)は指定したチャンネル番号のPCMサンプルデータを表すFloat32Arrayを返す。このFloat32Arrayはバッファの内容への直接参照であるため、要素の値を書き換えることでAudioBufferの実際の音声データを変更できる(この例ではホワイトノイズ相当のランダムな値を書き込んでいる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioBuffer/getChannelData"
+  },
+  {
+    "id": "multimedia-081",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているAudioContext.decodeAudioData()メソッドに関する説明として正しいものはどれか。",
+    "code": "fetch('sound.mp3')\n  .then((response) => response.arrayBuffer())\n  .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))\n  .then((audioBuffer) => {\n    console.log(audioBuffer.duration);\n  });",
+    "choices": [
+      "ArrayBufferとして読み込んだ圧縮音声データをデコードし、Web Audio APIで扱えるAudioBufferを解決するPromiseを返す",
+      "video要素やaudio要素のsrc属性に指定できる文字列URLを生成する",
+      "音声データをテキストに変換する音声認識用のメソッドである",
+      "MediaStreamをArrayBufferに変換するメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "decodeAudioData()はMP3やAACなどエンコードされた音声データ(ArrayBuffer)をデコードし、PCMサンプルデータを保持するAudioBufferとして解決されるPromiseを返す非同期メソッドである。fetch()で取得したバイナリデータをWeb Audio APIで再生可能な形式に変換する際によく使われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/BaseAudioContext/decodeAudioData"
+  },
+  {
+    "id": "multimedia-082",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているOfflineAudioContextに関する説明として正しいものはどれか。",
+    "code": "const offlineCtx = new OfflineAudioContext(2, 44100 * 10, 44100);\nconst source = offlineCtx.createBufferSource();\nsource.buffer = myBuffer;\nsource.connect(offlineCtx.destination);\nsource.start();\nofflineCtx.startRendering().then((renderedBuffer) => {\n  console.log(renderedBuffer);\n});",
+    "choices": [
+      "通常のAudioContextのようにリアルタイムでスピーカーに出力する代わりに、可能な限り高速にオーディオグラフを処理し、結果をAudioBufferとして生成する。エフェクト処理済みの音声を書き出す用途などに使われる",
+      "OfflineAudioContextはネットワークがオフラインの状態でのみ利用できるAudioContextの特殊モードである",
+      "OfflineAudioContextはAudioContextとAPIの構成が全く異なり、AudioNodeを一切利用できない",
+      "startRendering()は同期的に処理を行い、即座にAudioBufferを返す"
+    ],
+    "correctAnswers": [0],
+    "explanation": "OfflineAudioContextは、AudioContextと同様のオーディオグラフ(AudioNode)を構築できるが、リアルタイム再生ではなく可能な限り高速にオフラインで処理し、startRendering()が返すPromiseの解決値としてレンダリング結果のAudioBufferを取得できる。エフェクトを適用した音声を事前に書き出す(プリレンダリングする)用途などに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/OfflineAudioContext"
+  },
+  {
+    "id": "multimedia-083",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードのような実装が必要とされる理由として最も適切なものはどれか。",
+    "code": "const audioContext = new AudioContext();\n\ndocument.getElementById('startBtn').addEventListener('click', async () => {\n  if (audioContext.state === 'suspended') {\n    await audioContext.resume();\n  }\n  playSound();\n});",
+    "choices": [
+      "多くのブラウザの自動再生ポリシーにより、AudioContextはユーザー操作なしに生成すると初期状態がsuspendedになる場合があり、resume()で明示的に再開する必要があるため",
+      "AudioContextは生成後10秒経過すると自動的にsuspended状態になる仕様のため",
+      "suspend()を呼ばない限りAudioContextは自動的にclosed状態になり、二度と使用できなくなるため",
+      "resume()を呼ばないとAudioContextのdestinationプロパティにアクセスできないため"
+    ],
+    "correctAnswers": [0],
+    "explanation": "多くのブラウザは自動再生ポリシーの一環として、ユーザーの明示的な操作(クリックなど)を伴わずに生成・使用されたAudioContextの状態をsuspendedのままにする場合がある。ユーザー操作のイベントハンドラ内でresume()(Promiseを返す)を呼び出すことで、音声再生を実際に開始できる状態にする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioContext/resume"
+  },
+  {
+    "id": "multimedia-084",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のようなAudioWorkletProcessorを利用したAudioWorkletに関する記述として正しいものはどれか。",
+    "code": "class MyProcessor extends AudioWorkletProcessor {\n  process(inputs, outputs) {\n    const output = outputs[0];\n    output.forEach((channel) => {\n      for (let i = 0; i < channel.length; i++) {\n        channel[i] = Math.random() * 2 - 1;\n      }\n    });\n    return true;\n  }\n}\nregisterProcessor('my-processor', MyProcessor);",
+    "choices": [
+      "メインスレッドとは別の専用スレッド(AudioWorkletGlobalScope)上で音声サンプル単位の処理を実行できるため、メインスレッドをブロックしがちな非推奨のScriptProcessorNodeに比べ低遅延・高パフォーマンスな信号処理が可能になる",
+      "AudioWorkletはメインスレッド上でのみ動作し、Web Workerとは無関係に音声処理を行う仕組みである",
+      "registerProcessor()はメインスレッド側で呼び出し、AudioWorkletProcessorのインスタンスを直接生成するために使う",
+      "AudioWorkletProcessorのprocess()メソッドは戻り値を持たず、常にvoidを返す必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AudioWorkletは、AudioWorkletProcessorを専用のオーディオ処理用スレッド上で実行することで、メインスレッドをブロックせずに低遅延な音声処理を実現する仕組みである。かつて使われていたScriptProcessorNodeはメインスレッド上で処理が行われるため遅延やドロップアウトが発生しやすく、非推奨とされている。registerProcessor()はAudioWorkletGlobalScope側(プロセッサファイル内)でプロセッサ名とクラスを登録するために使う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/AudioWorklet"
+  },
+  {
+    "id": "multimedia-085",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで構築されているオーディオグラフの効果として最も適切なものはどれか。",
+    "code": "const splitter = audioContext.createChannelSplitter(2);\nconst merger = audioContext.createChannelMerger(2);\n\nsource.connect(splitter);\nsplitter.connect(merger, 0, 1);\nsplitter.connect(merger, 1, 0);\nmerger.connect(audioContext.destination);",
+    "choices": [
+      "ステレオ音声の左右チャンネルをChannelSplitterNodeで分離した後、ChannelMergerNodeで左右を入れ替えて再合成する(左右チャンネルスワップ)",
+      "ステレオ音声をモノラルに完全にミックスダウンする",
+      "音声の音量を2倍に増幅する",
+      "音声のサンプルレートを2倍にアップサンプリングする"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ChannelSplitterNodeは入力の各チャンネルを個別の出力(モノラル)に分離し、ChannelMergerNodeは複数の入力を1つのノードの複数チャンネルとして統合する。connect()の第2・第3引数でそれぞれ出力チャンネル番号・入力チャンネル番号を指定できるため、この例ではsplitterの出力0(左)をmergerの入力1(右側)に、出力1(右)を入力0(左側)に接続することで左右チャンネルを入れ替えている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ChannelSplitterNode"
+  },
+  {
+    "id": "multimedia-086",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているMediaStreamAudioDestinationNodeに関する説明として正しいものはどれか。",
+    "code": "const destinationNode = audioContext.createMediaStreamDestination();\ngainNode.connect(destinationNode);\nconst processedStream = destinationNode.stream;\n\nconst recorder = new MediaRecorder(processedStream);\nrecorder.start();",
+    "choices": [
+      "Web Audio APIのオーディオグラフで処理した音声出力を、streamプロパティを通じて通常のMediaStreamとして取り出せるようにするノードで、これによりMediaRecorderでの録音やWebRTCでの送信などに利用できる",
+      "マイクからの入力をWeb Audio APIのオーディオグラフに取り込むためのノードである",
+      "AudioContextのdestinationプロパティと完全に同一であり、常にスピーカーに直接出力される",
+      "音声データをファイルとしてディスクに保存するためのノードである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "createMediaStreamDestination()で生成されるMediaStreamAudioDestinationNodeは、オーディオグラフで加工された音声をstreamプロパティ経由でMediaStreamとして取り出せるようにするノードである。マイク等の入力をWeb Audio APIに取り込む側はMediaStreamAudioSourceNode(createMediaStreamSource())が担う。取り出したストリームはMediaRecorderでの録音やRTCPeerConnectionでの送信などに利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaStreamAudioDestinationNode"
+  },
+  {
+    "id": "multimedia-087",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているHTMLCanvasElement.captureStream()メソッドに関する説明として正しいものはどれか。",
+    "code": "const canvas = document.querySelector('canvas');\nconst stream = canvas.captureStream(30);\nconst recorder = new MediaRecorder(stream);\nrecorder.start();",
+    "choices": [
+      "canvasに描画されている内容をリアルタイムの映像として含むMediaStreamを生成する。引数の30はキャプチャするフレームレート(fps)の目安を指定している",
+      "canvasの現在の描画内容を1枚の静止画としてBlobに変換するメソッドである",
+      "canvas要素のサイズを引数で指定したピクセル数に変更するメソッドである",
+      "canvasの描画履歴を巻き戻し可能なタイムラインとして保存するメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "captureStream()はcanvas(あるいはvideo/audio要素)の描画・再生内容をリアルタイムに取り込んだMediaStreamを生成するメソッドである。引数にフレームレートを指定でき、省略時は描画が更新されるたびにフレームが生成される。生成したストリームはMediaRecorderでの録画やWebRTCでの配信に利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement/captureStream"
+  },
+  {
+    "id": "multimedia-088",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードで使用されているHTMLVideoElement.getVideoPlaybackQuality()メソッドに関する説明として正しいものはどれか。",
+    "code": "const quality = videoElement.getVideoPlaybackQuality();\nconsole.log(quality.droppedVideoFrames, quality.totalVideoFrames);",
+    "choices": [
+      "再生された総フレーム数や描画時にドロップされたフレーム数などを含むVideoPlaybackQualityオブジェクトを返し、再生品質のモニタリングに利用できる",
+      "動画の画質(解像度・ビットレート)を自動的に最高品質に切り替えるメソッドである",
+      "動画のエンコード品質をパーセンテージで表す単一の数値を返す",
+      "字幕の表示品質(フォントの可読性)を評価するメソッドである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getVideoPlaybackQuality()は、totalVideoFrames(合計フレーム数)やdroppedVideoFrames(描画されずに破棄されたフレーム数)、corruptedVideoFrames(破損フレーム数)などの情報を持つVideoPlaybackQualityオブジェクトを返す。再生パフォーマンスのモニタリングやQoE(体感品質)測定などに利用される。",
+    "reference": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/getVideoPlaybackQuality"
+  },
+  {
+    "id": "multimedia-089",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードが利用しているEncrypted Media Extensions (EME) に関する説明として正しいものはどれか。",
+    "code": "navigator.requestMediaKeySystemAccess('com.widevine.alpha', [\n  {\n    initDataTypes: ['cenc'],\n    videoCapabilities: [{ contentType: 'video/mp4; codecs=\"avc1.42E01E\"' }]\n  }\n]).then((keySystemAccess) => {\n  return keySystemAccess.createMediaKeys();\n}).then((mediaKeys) => {\n  return videoElement.setMediaKeys(mediaKeys);\n});",
+    "choices": [
+      "DRM(デジタル著作権管理)で保護された暗号化コンテンツを、CDM(Content Decryption Module)と連携してブラウザ上で復号・再生するための仕組みを提供するAPIである",
+      "動画ファイル自体をブラウザ内で新たに暗号化してサーバーにアップロードするためのAPIである",
+      "字幕データを暗号化して第三者に解析されないようにするためのAPIである",
+      "HTTPS通信を行う際の証明書(TLS証明書)をJavaScriptから動的に生成するためのAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "EMEは、Widevineなどの鍵システム(Key System)へのアクセスをrequestMediaKeySystemAccess()で要求し、CDMと連携してライセンス取得・復号処理を行うことで、DRM保護されたコンテンツをHTMLMediaElement上で再生できるようにするための仕組みである。取得したMediaKeysはsetMediaKeys()でメディア要素に関連付けられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Encrypted_Media_Extensions_API"
+  },
+  {
+    "id": "multimedia-090",
+    "category": "multimedia",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のコードに関する説明として正しいものはどれか。",
+    "code": "navigator.mediaSession.metadata = new MediaMetadata({\n  title: 'サンプル楽曲',\n  artist: 'サンプルアーティスト',\n  album: 'サンプルアルバム',\n  artwork: [{ src: 'cover.jpg', sizes: '512x512', type: 'image/jpeg' }]\n});\n\nnavigator.mediaSession.setActionHandler('nexttrack', () => {\n  playNextTrack();\n});",
+    "choices": [
+      "MediaMetadataでOS・ブラウザのメディア通知に表示するタイトルやアートワーク等の情報を設定し、setActionHandler()でハードウェアキーや通知UIから発生する操作(この例では次トラック再生)に対する処理を登録している",
+      "MediaMetadataは動画のメタデータ(duration等)を書き換えるためのオブジェクトである",
+      "setActionHandler()はキーボードショートカットをカスタマイズするためのAPIであり、Media Session APIとは無関係である",
+      "この設定を行うにはHTMLMediaElement側でmediaSession属性を明示的にtrueにする必要がある"
+    ],
+    "correctAnswers": [0],
+    "explanation": "navigator.mediaSession.metadataにMediaMetadataオブジェクトを設定すると、OSやブラウザのメディア通知(ロック画面のコントロールなど)に曲名・アーティスト・アートワーク等が表示される。setActionHandler()は\"play\"、\"pause\"、\"nexttrack\"、\"previoustrack\"などのアクション名に対応するハンドラーを登録し、ハードウェアの再生キーや通知UIからの操作に応答できるようにする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/MediaSession/setActionHandler"
+  }
+]

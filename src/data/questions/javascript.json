@@ -1,0 +1,1512 @@
+[
+  {
+    "id": "javascript-001",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードを実行した結果、コンソールに出力される値として正しいものはどれか。",
+    "code": "let x = 10;\nfunction foo() {\n  console.log(x);\n  let x = 20;\n}\nfoo();",
+    "choices": [
+      "10",
+      "20",
+      "undefined",
+      "ReferenceError が発生する"
+    ],
+    "correctAnswers": [3],
+    "explanation": "let で宣言された変数は一時的死角(TDZ: Temporal Dead Zone)を持つため、同じスコープ内で宣言前に参照するとReferenceErrorになる。foo内のletによりxはローカルスコープの変数として扱われ、console.log(x)の時点ではまだ初期化されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz"
+  },
+  {
+    "id": "javascript-002",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Promiseの状態(state)として正しいものを全て選べ。",
+    "choices": [
+      "pending",
+      "fulfilled",
+      "rejected",
+      "resolved",
+      "waiting"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Promiseは pending(保留)・fulfilled(履行)・rejected(拒否)の3つの状態を持つ。resolvedやwaitingという状態名は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise"
+  },
+  {
+    "id": "javascript-003",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "var, let, const の宣言に関する説明のうち、正しいものを全て選べ。",
+    "choices": [
+      "var は関数スコープを持ち、同じスコープ内での再宣言が可能である",
+      "let と const はいずれもブロックスコープを持つ",
+      "var, let, const のいずれも巻き上げ(hoisting)は一切発生しない",
+      "const で宣言した変数が参照するオブジェクトのプロパティは、変更することができない"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "varは関数スコープを持ち再宣言も可能。letとconstはいずれもブロックスコープを持つ。var/let/constのいずれも宣言自体は巻き上げられる(TDZの有無は異なる)ため選択肢3は誤り。constは変数への再代入を禁止するだけであり、参照先オブジェクトのプロパティ自体は変更可能なため選択肢4も誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/var"
+  },
+  {
+    "id": "javascript-004",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの実行結果として正しいものはどれか。",
+    "code": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}",
+    "choices": [
+      "0 1 2",
+      "3 3 3",
+      "0 0 0",
+      "undefined undefined undefined"
+    ],
+    "correctAnswers": [1],
+    "explanation": "varは関数スコープであるため、ループ内のiはすべてのコールバックで共有される単一の変数となる。setTimeoutのコールバックが実行される時点ではループが終了しiは3になっているため、3が3回出力される。letを使えばブロックごとに新しいiが生成され0 1 2になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for"
+  },
+  {
+    "id": "javascript-005",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "関数宣言(function declaration)と関数式(function expression)の違いに関する記述として正しいものはどれか。",
+    "choices": [
+      "関数宣言は巻き上げによって定義前に呼び出すことができるが、関数式(varに代入した場合)は定義前に呼び出すとTypeErrorになる",
+      "関数式は巻き上げによって定義前に呼び出すことができるが、関数宣言はできない",
+      "関数宣言と関数式はいずれも巻き上げられず、定義前に呼び出すと必ずReferenceErrorになる",
+      "関数宣言はブロックスコープを持たないため、if文の中で定義しても常にグローバルから参照できる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "関数宣言は関数全体が巻き上げられるため定義前でも呼び出せる。一方、var foo = function(){} という関数式はvar部分のみ巻き上げられ、呼び出し時点ではundefinedのためTypeError(undefined is not a function)となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/function"
+  },
+  {
+    "id": "javascript-006",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "アロー関数(Arrow function)の特徴として正しいものを全て選べ。",
+    "choices": [
+      "自分自身のthisを持たず、定義時のスコープのthisを引き継ぐ",
+      "arguments オブジェクトを独自に持たない",
+      "new演算子でコンストラクタとして呼び出すことができる",
+      "関数本体が単一式の場合、returnを省略して値を返せる"
+    ],
+    "correctAnswers": [0, 1, 3],
+    "explanation": "アロー関数は自身のthisやargumentsを持たず、定義時の外側スコープのものを引き継ぐ。関数本体が単一式の場合はreturnを省略して暗黙的に値を返せる。一方、アロー関数は[[Construct]]内部メソッドを持たないため、new演算子で呼び出すとTypeErrorになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Arrow_functions"
+  },
+  {
+    "id": "javascript-007",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの実行結果はどれか。",
+    "code": "function greet(name = \"ゲスト\") {\n  return `こんにちは、${name}さん`;\n}\nconsole.log(greet());\nconsole.log(greet(undefined));\nconsole.log(greet(null));",
+    "choices": [
+      "こんにちは、ゲストさん / こんにちは、ゲストさん / こんにちは、nullさん",
+      "こんにちは、ゲストさん / こんにちは、undefinedさん / こんにちは、nullさん",
+      "こんにちは、ゲストさん / こんにちは、ゲストさん / こんにちは、ゲストさん",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "デフォルト引数は、引数が省略されるかundefinedが渡された場合にのみ適用される。nullは明示的な値として扱われデフォルト値は適用されないため、テンプレートリテラル内でnullがそのまま文字列化される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Default_parameters"
+  },
+  {
+    "id": "javascript-008",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "可変長引数(残余引数)を受け取る関数の書き方として正しいものはどれか。",
+    "code": "function sum(???) {\n  return nums.reduce((a, b) => a + b, 0);\n}",
+    "choices": [
+      "function sum(...nums)",
+      "function sum(nums...)",
+      "function sum(arguments[])",
+      "function sum(*nums)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "レスト構文は仮引数の前に...を付けて記述する。function sum(...nums)とすることで、渡された残りの引数が配列numsとして受け取れる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/rest_parameters"
+  },
+  {
+    "id": "javascript-009",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のクロージャに関するコードの出力として正しいものはどれか。",
+    "code": "function makeCounter() {\n  let count = 0;\n  return function () {\n    count++;\n    return count;\n  };\n}\nconst counter1 = makeCounter();\nconst counter2 = makeCounter();\nconsole.log(counter1());\nconsole.log(counter1());\nconsole.log(counter2());",
+    "choices": [
+      "1 2 1",
+      "1 2 3",
+      "1 1 1",
+      "undefined undefined undefined"
+    ],
+    "correctAnswers": [0],
+    "explanation": "makeCounterが呼ばれるたびに新しいcount変数を持つスコープが作られ、返された関数はそれぞれ独立したクロージャとしてcountを保持する。counter1とcounter2は別々のcountを参照するため、counter1を2回呼んでも2、counter2は初回呼び出しで1になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Closures"
+  },
+  {
+    "id": "javascript-010",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "クロージャの説明として最も適切なものはどれか。",
+    "choices": [
+      "外側の関数のスコープにある変数を、内側の関数が実行後もその変数への参照を保持し続ける仕組み",
+      "関数の実行が終わると同時にすべてのローカル変数を強制的に破棄する仕組み",
+      "オブジェクトのプロトタイプチェーンをたどって親のプロパティを検索する仕組み",
+      "非同期処理の完了を待たずに次の処理へ進むための仕組み"
+    ],
+    "correctAnswers": [0],
+    "explanation": "クロージャとは、関数とその関数が定義された時点のレキシカル環境(スコープ)の組み合わせであり、外側の関数の実行が終了していても内側の関数がその変数への参照を保持し続ける仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Closures"
+  },
+  {
+    "id": "javascript-011",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードを実行した結果として正しいものはどれか。",
+    "code": "const obj = {\n  name: \"HTML5\",\n  regular: function () {\n    console.log(this.name);\n  },\n  arrow: () => {\n    console.log(this.name);\n  }\n};\nobj.regular();\nobj.arrow();",
+    "choices": [
+      "HTML5 / undefined",
+      "HTML5 / HTML5",
+      "undefined / HTML5",
+      "undefined / undefined"
+    ],
+    "correctAnswers": [0],
+    "explanation": "regularは通常の関数なので呼び出し元のobjがthisとなりthis.nameは\"HTML5\"。arrowはアロー関数のため自身のthisを持たず、定義時の外側スコープ(この場合はモジュールまたはグローバルスコープ)のthisを参照するため、this.nameはundefinedになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/this"
+  },
+  {
+    "id": "javascript-012",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "関数のthisを明示的に指定するために使用できるメソッドを全て選べ。",
+    "choices": [
+      "call()",
+      "apply()",
+      "bind()",
+      "then()",
+      "map()"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "call, apply, bindはいずれもFunction.prototypeのメソッドであり、関数実行時のthisを明示的に指定できる。callとapplyは即座に関数を実行し、引数の渡し方(個別かor配列か)が異なる。bindは新しい関数を返し、thisが固定された関数を後で呼び出せる。then()とmap()はthisを固定する機能を持たない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/bind"
+  },
+  {
+    "id": "javascript-013",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "call() と apply() の違いとして正しいものはどれか。",
+    "choices": [
+      "callは引数をカンマ区切りで個別に渡し、applyは引数を配列としてまとめて渡す",
+      "callは非同期実行され、applyは同期実行される",
+      "callはthisを指定できるが、applyはthisを指定できない",
+      "callは新しい関数を返し、applyは即座に実行する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "callとapplyはどちらも関数を即座に実行しthisを指定できる点は共通だが、引数の渡し方が異なる。callは func.call(thisArg, arg1, arg2, ...) のように個別に渡し、applyは func.apply(thisArg, [arg1, arg2, ...]) のように配列で渡す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/apply"
+  },
+  {
+    "id": "javascript-014",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードにおいて、AnimalのインスタンスがhasOwnPropertyで自身のプロパティかどうかを判定するとき、trueになるものはどれか。",
+    "code": "function Animal(name) {\n  this.name = name;\n}\nAnimal.prototype.speak = function () {\n  return `${this.name}が鳴く`;\n};\nconst dog = new Animal(\"ポチ\");",
+    "choices": [
+      "dog.hasOwnProperty('name')",
+      "dog.hasOwnProperty('speak')",
+      "dog.hasOwnProperty('constructor')",
+      "dog.hasOwnProperty('prototype')"
+    ],
+    "correctAnswers": [0],
+    "explanation": "nameはコンストラクタ関数内でthisに直接代入されているためdog自身が持つプロパティ(own property)となる。speakやconstructorはAnimal.prototypeに定義されており、dog自身ではなくプロトタイプチェーンをたどって見つかるプロパティのためhasOwnPropertyはfalseを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"
+  },
+  {
+    "id": "javascript-015",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "オブジェクトのプロトタイプを取得する標準的な方法として推奨されるものはどれか。",
+    "choices": [
+      "Object.getPrototypeOf(obj)",
+      "obj.__proto__.get()",
+      "obj.prototype",
+      "Object.prototypeOf(obj)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Object.getPrototypeOf()はオブジェクトの内部[[Prototype]]を取得する標準メソッドである。__proto__はレガシーなアクセサでありメソッドではなくプロパティとして参照する(非推奨)。obj.prototypeは関数オブジェクトが持つプロパティであり、インスタンスには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf"
+  },
+  {
+    "id": "javascript-016",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のクラス構文のコードの出力として正しいものはどれか。",
+    "code": "class Animal {\n  constructor(name) {\n    this.name = name;\n  }\n  speak() {\n    return `${this.name}が鳴く`;\n  }\n}\nclass Dog extends Animal {\n  speak() {\n    return `${super.speak()}(ワンワン)`;\n  }\n}\nconst d = new Dog(\"ポチ\");\nconsole.log(d.speak());",
+    "choices": [
+      "ポチが鳴く(ワンワン)",
+      "ポチが鳴く",
+      "undefinedが鳴く(ワンワン)",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Dogクラスはコンストラクタを定義していないため、暗黙的にsuper(name)相当のデフォルトコンストラクタが呼ばれnameが設定される。speak()内でsuper.speak()を呼ぶことで親クラスのspeakメソッドの結果を取得し、それに(ワンワン)を付け加えている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/super"
+  },
+  {
+    "id": "javascript-017",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "ES2015以降のクラス構文に関する記述として正しいものを全て選べ。",
+    "choices": [
+      "クラス宣言は関数宣言と異なり巻き上げによる初期化(定義前の利用)ができない",
+      "クラス内のメソッドは自動的にstrict modeで実行される",
+      "staticキーワードを付けたメソッドはインスタンスからではなくクラス自身から呼び出す",
+      "クラス構文は内部的にプロトタイプベースの継承とは全く異なる独自の継承モデルを新たに導入した",
+      "#count のようにシャープ記号を付けたフィールドはプライベートフィールドとして扱われる"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "クラス宣言はTDZの影響を受け定義前に参照するとReferenceErrorになる。クラス本体は常にstrict modeで実行される。staticメソッドはクラス自身に属し、インスタンスからは呼び出せない。#で始まるフィールドはES2022で標準化されたプライベートフィールドである。クラス構文は「シンタックスシュガー」であり、内部的には従来のプロトタイプベース継承の仕組みの上に構築されているため、全く異なる独自モデルという記述は誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes"
+  },
+  {
+    "id": "javascript-018",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの実行結果はどれか。",
+    "code": "class Counter {\n  #count = 0;\n  increment() {\n    this.#count++;\n    return this.#count;\n  }\n}\nconst c = new Counter();\nc.increment();\nconsole.log(c.count);",
+    "choices": [
+      "undefined",
+      "1",
+      "0",
+      "SyntaxErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "#countはプライベートフィールドであり、クラスの外部からc.countのようにアクセスすることはできない。プライベートフィールド名にはハッシュ記号を含むため、c.countという通常のプロパティ名でアクセスしても該当プロパティは存在せずundefinedが返る(エラーにはならない)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/Private_properties"
+  },
+  {
+    "id": "javascript-019",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "try...catch...finally文に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "finallyブロックはtryブロック内でreturnした場合でも必ず実行される",
+      "ES2019以降、catchブロックの引数(エラーオブジェクト)を省略することができる",
+      "tryブロック内で例外が発生しなければcatchブロックは実行されない",
+      "finallyブロックはtryやcatch内で例外が発生した場合には実行されない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "finallyブロックはreturnの有無や例外の発生有無にかかわらず必ず実行されるため、選択肢4は誤り。ES2019以降、catchブロックの引数(エラーオブジェクト)は省略可能になった(optional catch binding)。tryブロックで例外が発生しなければcatchブロックは実行されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch"
+  },
+  {
+    "id": "javascript-020",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "カスタムエラークラスを作成する方法として最も適切なものはどれか。",
+    "choices": [
+      "class ValidationError extends Error { constructor(message) { super(message); this.name = 'ValidationError'; } }",
+      "class ValidationError { constructor(message) { this.message = message; } }",
+      "function ValidationError(message) { return new Error(message); }",
+      "const ValidationError = Error.create('ValidationError');"
+    ],
+    "correctAnswers": [0],
+    "explanation": "組み込みのErrorクラスを継承し、superでmessageを渡した上でnameプロパティを設定するのが標準的なカスタムエラーの作り方である。これによりinstanceof Errorの判定やstackプロパティが正しく機能する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Error"
+  },
+  {
+    "id": "javascript-021",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力順として正しいものはどれか。",
+    "code": "console.log(\"A\");\nsetTimeout(() => console.log(\"B\"), 0);\nPromise.resolve().then(() => console.log(\"C\"));\nconsole.log(\"D\");",
+    "choices": [
+      "A D C B",
+      "A D B C",
+      "A B C D",
+      "A C D B"
+    ],
+    "correctAnswers": [0],
+    "explanation": "同期処理のA, Dが先に実行される。その後、マイクロタスクキューにあるPromiseのthenコールバック(C)が、マクロタスクキューにあるsetTimeoutのコールバック(B)より先に実行される。よってA D C Bの順になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Using_promises"
+  },
+  {
+    "id": "javascript-022",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Promise.all()の説明として正しいものはどれか。",
+    "choices": [
+      "渡された全てのPromiseが履行(fulfilled)された場合に、それぞれの結果を配列で返すPromiseを返す。いずれか1つでも拒否(rejected)されると即座にそのエラーで拒否される",
+      "渡された全てのPromiseのうち、最初に完了したものの結果のみを返す",
+      "渡された全てのPromiseが拒否されない限り、いずれかの結果を待たずに即座に解決する",
+      "渡された配列内のPromise以外の値が含まれているとTypeErrorになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Promise.all()はすべてのPromiseが履行された時点で結果を配列としてまとめて返す。いずれか1つでもrejectされると、他の結果を待たずに即座にそのエラーでreject状態のPromiseを返す。Promise以外の値が含まれていても自動的にresolveされた値として扱われエラーにはならない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"
+  },
+  {
+    "id": "javascript-023",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Promiseに関する静的メソッドとその特徴の組み合わせとして正しいものを全て選べ。",
+    "choices": [
+      "Promise.all() - 全て成功すれば結果配列を返し、1つでも失敗すれば即座に失敗する",
+      "Promise.race() - 最初に決着(成功または失敗)したPromiseの結果を返す",
+      "Promise.allSettled() - 全てのPromiseの結果を、成功・失敗にかかわらず全て取得できる",
+      "Promise.any() - 全てのPromiseが失敗した場合のみ最初のPromiseの結果を返す",
+      "Promise.resolve() - 常に新しい非同期処理を開始し、既存のPromiseをラップすることはできない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Promise.all, race, allSettledの説明は正しい。Promise.any()は、いずれか1つでも成功すればその結果でfulfillされ、全て失敗した場合はAggregateErrorでrejectされる(選択肢の説明は誤り)。Promise.resolve()は既存のPromiseを渡すとそのままそのPromiseを返す(または同等に扱う)ため、常に新しい非同期処理を開始するという説明は誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled"
+  },
+  {
+    "id": "javascript-024",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "async関数に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "async関数は常にPromiseを返し、関数内でreturnした値はそのPromiseの履行値になる",
+      "トップレベルawaitはES2022以降、モジュールのトップレベルスコープで使用できる",
+      "async関数内でthrowされた例外は、返されるPromiseのrejectとして伝播する",
+      "async関数はPromiseを返さず、常に同期的に値を返す"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "async関数は必ずPromiseを返し、returnした値はそのPromiseの履行値になる。ES2022でモジュールのトップレベルにおけるawait(トップレベルawait)が標準化された。async関数内でthrowされた例外はPromiseのrejectとして伝播する。async関数が常に同期的に値を返すという記述は誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/async_function"
+  },
+  {
+    "id": "javascript-025",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの実行結果として正しいものはどれか。",
+    "code": "async function fetchData() {\n  throw new Error(\"失敗\");\n}\nasync function main() {\n  try {\n    await fetchData();\n  } catch (e) {\n    console.log(\"catch:\", e.message);\n  }\n}\nmain();",
+    "choices": [
+      "catch: 失敗",
+      "Uncaught (in promise) Error: 失敗 が発生しプログラムが停止する",
+      "何も出力されない",
+      "catch: undefined"
+    ],
+    "correctAnswers": [0],
+    "explanation": "fetchData内でthrowされたエラーは、fetchDataが返すPromiseのrejectとして伝播する。main関数内でtry/catchを使いawaitしているため、rejectされた例外はcatchブロックで捕捉され、\"catch: 失敗\"が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/await"
+  },
+  {
+    "id": "javascript-026",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Generator関数の特徴として正しいものを全て選べ。",
+    "choices": [
+      "function* のように、functionキーワードの後にアスタリスクを付けて定義する",
+      "yield式によって関数の実行を一時停止し、呼び出し元に値を返すことができる",
+      "Generator関数の呼び出しはIteratorであるGeneratorオブジェクトを返す",
+      "Generator関数を呼び出すと即座に関数本体が最後まで実行される"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "Generator関数はfunction*で定義し、yieldで実行を一時停止して値を返せる。呼び出すとIteratorであるGeneratorオブジェクトが返されるが、関数本体はすぐには実行されず、next()を呼び出すことで直前のyieldから次のyieldまたはreturnまで実行される。よって選択肢4は誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/function*"
+  },
+  {
+    "id": "javascript-027",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "function* gen() {\n  yield 1;\n  yield 2;\n  return 3;\n}\nfor (const v of gen()) {\n  console.log(v);\n}",
+    "choices": [
+      "1 2",
+      "1 2 3",
+      "3",
+      "1"
+    ],
+    "correctAnswers": [0],
+    "explanation": "for...ofループはイテレータのdoneがtrueになるまで値を取り出すが、done:trueとなった時点のvalue(つまりreturnで返された値)はループの結果には含めない。そのためyieldされた1と2のみが出力され、returnされた3は出力されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for...of"
+  },
+  {
+    "id": "javascript-028",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "for...in と for...of の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "for...inはオブジェクトの列挙可能なプロパティ名(キー)を反復し、for...ofはIterableオブジェクトの値を反復する",
+      "for...inは配列専用であり、for...ofはオブジェクト専用である",
+      "for...inとfor...ofは全く同じ動作をし、書き方が違うだけである",
+      "for...ofは列挙可能なプロパティ名を反復し、for...inは値を反復する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "for...inはオブジェクトのプロパティ名(キー、プロトタイプチェーン上の列挙可能なものも含む)を反復する。for...ofはSymbol.iteratorを実装したIterableなオブジェクト(配列、文字列、Map、Setなど)の値を反復する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for...in"
+  },
+  {
+    "id": "javascript-029",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次の分割代入(destructuring)のコードの出力として正しいものはどれか。",
+    "code": "const { a, b: renamed, c = 100 } = { a: 1, b: 2 };\nconsole.log(a, renamed, c);",
+    "choices": [
+      "1 2 100",
+      "1 undefined 100",
+      "undefined undefined undefined",
+      "SyntaxErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "オブジェクト分割代入では、aはそのままaに、bはrenamedという別名で束縛される。cはオブジェクトに存在しないためデフォルト値の100が適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"
+  },
+  {
+    "id": "javascript-030",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const arr1 = [1, 2, 3];\nconst arr2 = [...arr1, 4, 5];\nconst obj1 = { x: 1, y: 2 };\nconst obj2 = { ...obj1, y: 20, z: 3 };\nconsole.log(arr2, obj2);",
+    "choices": [
+      "[1, 2, 3, 4, 5]  { x: 1, y: 20, z: 3 }",
+      "[1, 2, 3]  { x: 1, y: 2, z: 3 }",
+      "[4, 5, 1, 2, 3]  { y: 20, z: 3 }",
+      "SyntaxErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "スプレッド構文は配列やオブジェクトの要素を展開してコピーする。arr2はarr1の要素を展開後に4,5を追加した配列になる。obj2はobj1のプロパティを展開後、後から指定したy:20で上書きし、新しいプロパティzを追加している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax"
+  },
+  {
+    "id": "javascript-031",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "タグ付きテンプレートリテラル(tagged template)に関する説明として正しいものを全て選べ。",
+    "code": "function tag(strings, ...values) {\n  console.log(strings, values);\n}\ntag`合計は${100 + 200}円です`;",
+    "choices": [
+      "タグ関数の第1引数には文字列の断片が配列として渡される",
+      "${}で埋め込まれた値は第2引数以降に個別の引数として渡される",
+      "タグ関数は文字列以外の任意の値を戻り値として返すことができる",
+      "タグ付きテンプレートリテラルは通常のテンプレートリテラルと出力結果が常に完全に同じになる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "タグ付きテンプレートリテラルでは、テンプレート文字列がタグ関数の第1引数に文字列断片の配列として渡され、${}で埋め込まれた各値が第2引数以降に個別に渡される。タグ関数は戻り値を自由に構築できる(文字列以外も可)ため、通常のテンプレートリテラルと出力結果が異なることが多く、選択肢4は誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#タグ付きテンプレート"
+  },
+  {
+    "id": "javascript-032",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ES Modulesにおいて、あるモジュールから複数の名前付きエクスポートとデフォルトエクスポートの両方をインポートする書き方として正しいものはどれか。",
+    "code": "// math.js\nexport const PI = 3.14;\nexport function add(a, b) { return a + b; }\nexport default function multiply(a, b) { return a * b; }",
+    "choices": [
+      "import multiply, { PI, add } from './math.js';",
+      "import { multiply, PI, add } from './math.js';",
+      "import * as multiply, { PI, add } from './math.js';",
+      "import default multiply, { PI, add } from './math.js';"
+    ],
+    "correctAnswers": [0],
+    "explanation": "デフォルトエクスポートは任意の名前(ここではmultiply)でインポートでき、名前付きエクスポートは波括弧内に元の名前を指定してインポートする。両者を同時に使う場合はデフォルトのバインディング名の後にカンマで区切り波括弧を続ける。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import"
+  },
+  {
+    "id": "javascript-033",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const numbers = [1, 2, 3, 4, 5];\nconst result = numbers\n  .filter((n) => n % 2 === 0)\n  .map((n) => n * 10);\nconsole.log(result);",
+    "choices": [
+      "[20, 40]",
+      "[10, 20, 30, 40, 50]",
+      "[2, 4]",
+      "[1, 3, 5]"
+    ],
+    "correctAnswers": [0],
+    "explanation": "filterで偶数(2と4)のみを抽出し、その後mapで各要素を10倍にすることで[20, 40]が得られる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+  },
+  {
+    "id": "javascript-034",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Array.prototype.reduce()の第2引数(初期値)を省略した場合の挙動として正しいものはどれか。",
+    "choices": [
+      "配列の先頭要素が初期値として使われ、コールバックは配列の2番目の要素から呼び出される",
+      "初期値は自動的に0になる",
+      "初期値を省略するとTypeErrorが必ず発生する",
+      "初期値は自動的にundefinedになり、コールバックの第1引数は常にundefinedになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "reduceの初期値を省略すると、配列の最初の要素が初期値(accumulator)として使われ、コールバックは配列の2番目の要素からインデックス1で呼び出される。ただし空配列に対して初期値なしでreduceを呼ぶとTypeErrorになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce"
+  },
+  {
+    "id": "javascript-035",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "配列を反復してコールバック関数を呼び出すメソッドのうち、元の配列とは異なる新しい配列を返すものを全て選べ。",
+    "choices": [
+      "map()",
+      "filter()",
+      "forEach()",
+      "find()",
+      "some()"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "map()は各要素にコールバックを適用した結果からなる新しい配列を返す。filter()は条件を満たす要素のみを含む新しい配列を返す。forEach()は戻り値がundefinedで新しい配列を返さない。find()は条件に一致する最初の要素そのものを返し、some()は真偽値を返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map"
+  },
+  {
+    "id": "javascript-036",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const obj = { a: 1, b: 2, c: 3 };\nconsole.log(Object.keys(obj));\nconsole.log(Object.values(obj));\nconsole.log(Object.entries(obj));",
+    "choices": [
+      "['a','b','c'] / [1,2,3] / [['a',1],['b',2],['c',3]]",
+      "[1,2,3] / ['a','b','c'] / [['a',1],['b',2],['c',3]]",
+      "['a','b','c'] / [1,2,3] / {a:1,b:2,c:3}",
+      "{a:1,b:2,c:3} / [1,2,3] / ['a','b','c']"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Object.keys()はプロパティ名の配列、Object.values()は値の配列、Object.entries()は[キー, 値]のペアからなる配列の配列を返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"
+  },
+  {
+    "id": "javascript-037",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Object.assign()に関する説明として正しいものはどれか。",
+    "code": "const target = { a: 1 };\nconst source = { b: 2 };\nconst result = Object.assign(target, source);",
+    "choices": [
+      "targetオブジェクト自体が変更され、targetとresultは同じオブジェクトを参照する",
+      "targetは変更されず、常に新しいオブジェクトが返される",
+      "sourceオブジェクトが変更され、target側は変更されない",
+      "targetとsourceの両方が変更されず、全く新しいオブジェクトが生成される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Object.assign(target, ...sources)はsourcesのプロパティをtargetに直接コピー(マージ)し、変更されたtarget自体を返す。そのためresult === targetとなり、target自体が変更される点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"
+  },
+  {
+    "id": "javascript-038",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "MapとObjectの違いに関する説明として誤っているものはどれか。",
+    "choices": [
+      "Mapはキーとして文字列やSymbolだけでなく、オブジェクトや関数など任意の値を使用できる",
+      "Mapのサイズはsizeプロパティで直接取得できるが、Objectのプロパティ数はObject.keys(obj).lengthのように間接的に求める必要がある",
+      "Objectは常にMapよりも頻繁なキーの追加・削除において高速に動作するよう設計されている",
+      "Mapは挿入した順序を保持して反復される"
+    ],
+    "correctAnswers": [2],
+    "explanation": "MapはObjectよりも頻繁なキーの追加・削除を伴うケースで最適化されていると一般的に説明されており、Objectが常に高速であるという記述は誤り。Mapは任意の値をキーにでき、sizeプロパティを持ち、挿入順序を保持する点は正しい。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Keyed_collections"
+  },
+  {
+    "id": "javascript-039",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const set = new Set([1, 2, 2, 3, 3, 3]);\nconsole.log(set.size);\nconsole.log([...set]);",
+    "choices": [
+      "3 / [1, 2, 3]",
+      "6 / [1, 2, 2, 3, 3, 3]",
+      "3 / [3, 2, 1]",
+      "6 / [1, 2, 3]"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Setは重複しない値の集合であるため、初期化時に重複した値は自動的に1つにまとめられる。挿入順序は保持されるため、スプレッド構文で配列化すると[1, 2, 3]になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set"
+  },
+  {
+    "id": "javascript-040",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "WeakMapとMapの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "WeakMapのキーはオブジェクトのみに限定され、キーへの参照がガベージコレクションの対象から除外されないため、メモリリークを防ぎやすい",
+      "WeakMapはキーに文字列や数値も使用でき、Mapよりも高速に動作する",
+      "WeakMapはsizeプロパティやforEachメソッドを持ち、Mapと同様に反復処理が可能である",
+      "WeakMapはMapのサブクラスであり、全く同じAPIを持つ"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WeakMapのキーはオブジェクト(または非登録シンボル)に限定され、他から参照されなくなったキーは自動的にガベージコレクションの対象になる(弱い参照)。この特性によりメモリリークを防ぎやすい。WeakMapは列挙不可能でありsizeやforEach、キーの列挙用メソッドを持たない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap"
+  },
+  {
+    "id": "javascript-041",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次の正規表現のコードの実行結果として正しいものはどれか。",
+    "code": "const str = \"2026-07-02\";\nconst pattern = /^(\\d{4})-(\\d{2})-(\\d{2})$/;\nconst match = str.match(pattern);\nconsole.log(match[1], match[2], match[3]);",
+    "choices": [
+      "2026 07 02",
+      "2026-07-02 2026-07-02 2026-07-02",
+      "null",
+      "07 02 2026"
+    ],
+    "correctAnswers": [0],
+    "explanation": "match()はマッチ全体をmatch[0]に、キャプチャグループを括弧の出現順にmatch[1]以降に格納する。この正規表現では年・月・日をそれぞれキャプチャしているため、match[1]は\"2026\"、match[2]は\"07\"、match[3]は\"02\"になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/match"
+  },
+  {
+    "id": "javascript-042",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "正規表現のフラグに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "gフラグは文字列全体から一致する全てのパターンを検索する",
+      "iフラグは大文字と小文字を区別せずにマッチングする",
+      "mフラグは複数行モードとして ^ と $ が各行の先頭・末尾にもマッチするようにする",
+      "uフラグは大文字と小文字を区別しないようにするためのフラグである"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "gフラグは全ての一致を検索し、iフラグは大文字小文字を区別せず、mフラグは複数行モードで^と$の挙動を変える。uフラグはUnicodeを正しく扱うためのモードであり、大文字小文字を区別しないという説明は誤り(それはiフラグの役割)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/RegExp"
+  },
+  {
+    "id": "javascript-043",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "JSON.stringify()に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "第2引数にreplacer関数や配列を指定することで、変換対象のプロパティを制御できる",
+      "第3引数にインデント用の空白数や文字列を指定することで、整形された(見やすい)JSON文字列を出力できる",
+      "DateオブジェクトはtoISOString()相当の文字列に変換される",
+      "オブジェクト内のfunction型のプロパティやundefinedの値は、変換結果にそのまま含まれる"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "replacerやスペース引数を使った変換制御、Dateの文字列化は正しい説明である。一方、値がfunction、undefined、Symbolであるプロパティは、オブジェクトのプロパティの場合は無視(スキップ)され、配列の要素の場合はnullに変換されるため、選択肢4の「そのまま含まれる」という記述は誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify"
+  },
+  {
+    "id": "javascript-044",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの実行結果として正しいものはどれか。",
+    "code": "const jsonStr = '{\"name\":\"HTML5\",\"version\":2}';\nconst obj = JSON.parse(jsonStr);\nconsole.log(obj.name, obj.version, typeof obj);",
+    "choices": [
+      "HTML5 2 object",
+      "HTML5 2 string",
+      "\"HTML5\" \"2\" object",
+      "SyntaxErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "JSON.parse()はJSON形式の文字列を解析してJavaScriptのオブジェクトに変換する。nameは文字列\"HTML5\"、versionは数値2としてパースされ、objの型はobjectになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"
+  },
+  {
+    "id": "javascript-045",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "厳格モード(strict mode)を有効にすることで発生する変化として正しいものを全て選べ。",
+    "choices": [
+      "宣言せずに変数へ代入するとReferenceErrorが発生するようになる(暗黙のグローバル変数の禁止)",
+      "通常の関数呼び出しにおけるthisがグローバルオブジェクトではなくundefinedになる",
+      "読み取り専用プロパティへの代入が、エラーにならず黙って失敗する(サイレントエラー)ようになる",
+      "同じ関数の引数名を重複して定義することが禁止される",
+      "with文の使用が禁止される"
+    ],
+    "correctAnswers": [0, 1, 3, 4],
+    "explanation": "strict modeでは未宣言変数への代入がエラーになり、通常関数呼び出し時のthisはundefinedになり、重複した引数名は許可されず、with文は使用できない。逆に非strictモードでは読み取り専用プロパティへの代入は黙って失敗するが、strict modeではこれがTypeErrorとして明示的にスローされるようになるため、選択肢の説明(サイレントエラーになる)はstrict modeの効果として誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Strict_mode"
+  },
+  {
+    "id": "javascript-046",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "console.log(1 == '1');\nconsole.log(1 === '1');\nconsole.log(null == undefined);\nconsole.log(null === undefined);\nconsole.log(NaN === NaN);",
+    "choices": [
+      "true false true false false",
+      "true true true true true",
+      "false false false false false",
+      "true false false false true"
+    ],
+    "correctAnswers": [0],
+    "explanation": "==は型変換を伴う等価演算子であり1と'1'は型変換後に等しいためtrue。===は型も含めて比較するため異なる型同士はfalse。nullとundefinedは==では等しいと判定されるがtrue、===では型が異なるためfalse。NaNはIEEE754の仕様上、自分自身とも等しくないためNaN===NaNはfalseになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Equality"
+  },
+  {
+    "id": "javascript-047",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "console.log([] + []);\nconsole.log([] + {});\nconsole.log(1 + '2');\nconsole.log('5' - 2);",
+    "choices": [
+      "\"\" / \"[object Object]\" / \"12\" / 3",
+      "0 / NaN / \"12\" / 3",
+      "\"\" / \"[object Object]\" / 3 / \"3\"",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "+演算子はオペランドのいずれかが文字列に変換可能な場合、暗黙的な型変換(ToPrimitive)を行う。[]は空文字列に、{}は\"[object Object]\"に変換されるため、[]+[]は\"\"、[]+{}は\"[object Object]\"になる。1+'2'は文字列連結となり\"12\"。一方、-演算子は数値変換を行うため'5'-2は数値の3になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Addition"
+  },
+  {
+    "id": "javascript-048",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Symbolに関する説明として正しいものはどれか。",
+    "choices": [
+      "Symbol()を呼び出すたびに、記述(description)が同じであっても常に一意な値が生成される",
+      "Symbol('key') は Symbol('key') と常に等しいと判定される",
+      "Symbolはnew演算子を使ってnew Symbol()のようにインスタンス化しなければならない",
+      "SymbolはJSON.stringify()で通常のプロパティと同様に文字列化される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Symbol()は呼び出すたびに一意なプリミティブ値を生成するため、同じ説明文字列を渡しても異なる値になる(Symbol('key') !== Symbol('key'))。Symbolはプリミティブ型でありnewでインスタンス化するとTypeErrorになる。Symbolをキーに持つプロパティはJSON.stringify()の結果からは除外される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol"
+  },
+  {
+    "id": "javascript-049",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のイベントループに関するコードの出力順として正しいものはどれか。",
+    "code": "console.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve()\n  .then(() => console.log('3'))\n  .then(() => console.log('4'));\nqueueMicrotask(() => console.log('5'));\nconsole.log('6');",
+    "choices": [
+      "1 6 3 5 4 2",
+      "1 6 2 3 4 5",
+      "1 6 3 4 5 2",
+      "1 2 3 4 5 6"
+    ],
+    "correctAnswers": [0],
+    "explanation": "まず同期コードの1と6が実行される。その後マイクロタスクキューが空になるまで処理されるため、Promiseの1つ目のthen(3)、queueMicrotask(5)、Promiseの2つ目のthen(4)の順で実行される。マイクロタスクはキューに登録された順に実行されるため3→5→4となり、最後にマクロタスクであるsetTimeoutの2が実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTML_DOM_API/Microtask_guide"
+  },
+  {
+    "id": "javascript-050",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "マイクロタスクとマクロタスク(タスク)に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "Promiseのthen/catch/finallyのコールバックはマイクロタスクキューに登録される",
+      "setTimeoutやsetIntervalのコールバックはマクロタスク(タスク)キューに登録される",
+      "1回のイベントループの反復では、レンダリング前にマイクロタスクキューが空になるまで全て処理される",
+      "マクロタスクキューにタスクが複数残っている場合でも、マイクロタスクより先に必ず全てのマクロタスクを処理し切ってからマイクロタスクを処理する",
+      "queueMicrotask()を使うと、コールバックをマイクロタスクキューに直接追加できる"
+    ],
+    "correctAnswers": [0, 1, 2, 4],
+    "explanation": "PromiseのコールバックやqueueMicrotask()で登録した関数はマイクロタスクキューに入り、setTimeout/setIntervalはマクロタスクキューに入る。イベントループは1つのマクロタスクを実行するたびに、マイクロタスクキューが空になるまで処理してから次のマクロタスク(やレンダリング)に進む。よって「マクロタスクを全て処理してからマイクロタスクを処理する」という記述は順序が逆であり誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTML_DOM_API/Microtask_guide"
+  },
+  {
+    "id": "javascript-051",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの実行結果として正しいものはどれか。",
+    "code": "const user = { profile: { name: \"Taro\" } };\nconsole.log(user.profile?.name);\nconsole.log(user.address?.city);\nconsole.log(user.getAge?.());",
+    "choices": [
+      "Taro / undefined / undefined",
+      "Taro / undefined / TypeErrorが発生する",
+      "Taro / null / undefined",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "オプショナルチェイニング(?.)は、参照がnullまたはundefinedの場合に式全体を短絡させてundefinedを返す。user.addressはundefinedのため?.nameアクセスはundefinedになる。user.getAgeもundefinedのため?.()による呼び出しは実行されずundefinedを返し、TypeErrorにはならない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Optional_chaining"
+  },
+  {
+    "id": "javascript-052",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const count = 0;\nconst name = \"\";\nconsole.log(count || 10);\nconsole.log(count ?? 10);\nconsole.log(name || \"デフォルト\");\nconsole.log(name ?? \"デフォルト\");",
+    "choices": [
+      "10 / 0 / デフォルト / (空文字)",
+      "0 / 10 / (空文字) / デフォルト",
+      "10 / 10 / デフォルト / デフォルト",
+      "0 / 0 / (空文字) / (空文字)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "||は左辺がfalsy(0, \"\", false, null, undefinedなど)であれば右辺を返す。??は左辺がnullまたはundefinedの場合のみ右辺を返す。countは0でfalsyだがnullishではないため、count||10は10、count??10は0になる。nameも\"\"でfalsyだがnullishではないため同様に、name||\"デフォルト\"は\"デフォルト\"、name??\"デフォルト\"は\"\"のままになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing"
+  },
+  {
+    "id": "javascript-053",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const arr = [10, 20, 30, 40, 50];\nconsole.log(arr.at(-1));\nconsole.log(arr.at(-2));\nconsole.log(arr[arr.length - 1]);",
+    "choices": [
+      "50 / 40 / 50",
+      "undefined / undefined / 50",
+      "10 / 20 / 50",
+      "エラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Array.prototype.at()は負の整数を指定すると配列の末尾から数えた要素を取得できる。at(-1)は最後の要素50、at(-2)は最後から2番目の40を返す。従来のarr[arr.length-1]という書き方と同じ結果になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/at"
+  },
+  {
+    "id": "javascript-054",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "console.log(\"7\".padStart(3, \"0\"));\nconsole.log(\"7\".padEnd(3, \"0\"));\nconsole.log(\"1234\".padStart(3, \"0\"));",
+    "choices": [
+      "\"007\" / \"700\" / \"1234\"",
+      "\"700\" / \"007\" / \"1234\"",
+      "\"007\" / \"007\" / \"000\"",
+      "エラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "padStart(targetLength, padString)は文字列の先頭を、padEndは末尾を指定文字で埋めて指定長にする。すでに指定長以上の場合は元の文字列がそのまま返る(切り詰められない)。\"7\".padStart(3,\"0\")は\"007\"、\"7\".padEnd(3,\"0\")は\"700\"、\"1234\"は既に4文字で3文字より長いためそのまま\"1234\"になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"
+  },
+  {
+    "id": "javascript-055",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const nested = [1, [2, 3], [4, [5, 6]]];\nconsole.log(nested.flat());\nconsole.log(nested.flat(2));\nconsole.log([1, 2, 3].flatMap((n) => [n, n * 2]));",
+    "choices": [
+      "[1,2,3,4,[5,6]] / [1,2,3,4,5,6] / [1,2,2,4,3,6]",
+      "[1,2,3,4,5,6] / [1,2,3,4,5,6] / [1,2,3,1,2,3]",
+      "[1,[2,3],[4,[5,6]]] / [1,2,3,4,5,6] / [1,2,2,4,3,6]",
+      "エラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "flat()は引数省略時は深さ1でネストを解消する。flat(2)は深さ2まで解消するため完全にフラット化される。flatMap()は各要素にコールバックを適用してmapした後、結果を深さ1でflatten化するため[1,2,2,4,3,6]になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
+  },
+  {
+    "id": "javascript-056",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のgetter/setterを使ったコードの出力として正しいものはどれか。",
+    "code": "class Circle {\n  constructor(radius) {\n    this._radius = radius;\n  }\n  get area() {\n    return Math.PI * this._radius ** 2;\n  }\n  set radius(value) {\n    if (value <= 0) throw new Error(\"半径は正の数である必要があります\");\n    this._radius = value;\n  }\n}\nconst c = new Circle(2);\nconsole.log(Math.round(c.area));\nc.radius = 4;\nconsole.log(Math.round(c.area));",
+    "choices": [
+      "13 / 50",
+      "13 / 13",
+      "c.area() のように呼び出す必要があるためTypeErrorが発生する",
+      "c.radius = 4; はエラーになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "getとsetで定義したアクセサプロパティは、メソッドのように()を付けず通常のプロパティと同じ書き方でアクセス・代入する。area = π×2^2 ≈ 12.57のため四捨五入で13。radiusに4を代入するとsetterが呼ばれ_radiusが更新され、area = π×4^2 ≈ 50.27のため四捨五入で50になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/get"
+  },
+  {
+    "id": "javascript-057",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const obj = { a: 1 };\nObject.freeze(obj);\nobj.a = 100;\nobj.b = 200;\ndelete obj.a;\nconsole.log(obj.a, obj.b, Object.isFrozen(obj));",
+    "choices": [
+      "1 undefined true",
+      "100 200 true",
+      "100 undefined false",
+      "TypeErrorが必ず発生してプログラムが停止する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Object.freeze()はオブジェクトのプロパティの追加・削除・変更を禁止する。非strictモードではこれらの禁止された操作は例外を投げずに黙って失敗する(サイレントエラー)ため、aは1のまま、bは追加されずundefined、deleteも失敗しaは残る。isFrozen()はtrueを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
+  },
+  {
+    "id": "javascript-058",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "function check(success) {\n  return new Promise((resolve, reject) => {\n    success ? resolve(\"OK\") : reject(new Error(\"NG\"));\n  });\n}\ncheck(false)\n  .then((v) => console.log(\"then:\", v))\n  .catch((e) => console.log(\"catch:\", e.message))\n  .finally(() => console.log(\"finally\"));",
+    "choices": [
+      "catch: NG に続けて finally が出力される",
+      "finally に続けて catch: NG が出力される",
+      "then: undefined のみ出力される",
+      "finally のみ出力され、catchは呼ばれない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "finally()は成功・失敗にかかわらず、チェーンの最後で必ず実行されるコールバックを登録する。check(false)はrejectされるためthenはスキップされcatchでエラーメッセージが処理され、その後finallyが実行される。よって\"catch: NG\"の後に\"finally\"が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally"
+  },
+  {
+    "id": "javascript-059",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のラベル付き文のコードの出力として正しいものはどれか。",
+    "code": "outer:\nfor (let i = 0; i < 3; i++) {\n  for (let j = 0; j < 3; j++) {\n    if (j === 1) continue outer;\n    console.log(i, j);\n  }\n}",
+    "choices": [
+      "0 0 / 1 0 / 2 0",
+      "0 0 / 0 1 / 0 2 / 1 0 / 1 1 / 1 2 / 2 0 / 2 1 / 2 2",
+      "0 0 のみ",
+      "SyntaxErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ラベル付きcontinueは、指定したラベルのループの次の反復に制御を移す。j===1になった時点でcontinue outerが実行され内側ループを抜けて外側ループの次の反復に進むため、各iでj=0のときのみconsole.logが実行され、0 0, 1 0, 2 0が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/continue"
+  },
+  {
+    "id": "javascript-060",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "配列のメソッドに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "sort()は元の配列自体を並べ替える(破壊的)メソッドである",
+      "toSorted()はES2023で追加された、元の配列を変更せず並べ替えた新しい配列を返す非破壊的メソッドである",
+      "splice()は元の配列を変更せず、削除・追加した結果を新しい配列として返す",
+      "reverse()は元の配列自体を反転させる(破壊的)メソッドである",
+      "toReversed()は元の配列を反転させた新しい配列を返し、元の配列は変更しない"
+    ],
+    "correctAnswers": [0, 1, 3, 4],
+    "explanation": "sort(), reverse(), splice()はいずれも元の配列を直接変更する破壊的メソッドである(splice()も元の配列自体を変更するため選択肢3は誤り)。ES2023で追加されたtoSorted(), toReversed(), toSpliced(), with()は、対応する破壊的メソッドと同じ結果を非破壊的に(元の配列を変更せず新しい配列として)得られるメソッドである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted"
+  },
+  {
+    "id": "javascript-061",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "console.log(Number.isInteger(5));\nconsole.log(Number.isInteger(5.0));\nconsole.log(Number.isInteger(\"5\"));\nconsole.log(parseFloat(\"3.14abc\"));\nconsole.log(Number(\"3.14abc\"));",
+    "choices": [
+      "true / true / false / 3.14 / NaN",
+      "true / false / true / 3.14 / NaN",
+      "true / true / true / 3.14 / 3.14",
+      "false / true / false / NaN / NaN"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Number.isInteger()は暗黙の型変換を行わないため、数値5.0は内部的に整数5と同一でtrueだが、文字列\"5\"はfalseになる。parseFloat()は文字列の先頭から解析可能な数値部分だけを読み取るため\"3.14abc\"は3.14になるが、Number()は文字列全体が数値として解釈できない場合NaNを返す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger"
+  },
+  {
+    "id": "javascript-062",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const original = { date: new Date(2026, 0, 1), nested: { value: 1 } };\nconst cloned = structuredClone(original);\ncloned.nested.value = 999;\nconsole.log(original.nested.value);\nconsole.log(cloned.date instanceof Date);\nconsole.log(original.nested === cloned.nested);",
+    "choices": [
+      "1 / true / false",
+      "999 / true / false",
+      "1 / false / true",
+      "1 / true / true"
+    ],
+    "correctAnswers": [0],
+    "explanation": "structuredClone()はオブジェクトの深いコピー(ディープコピー)を作成するため、cloned.nestedを変更してもoriginal.nestedには影響しない。Dateオブジェクトも正しく複製されinstanceof Dateはtrueのままになる。ネストしたオブジェクト同士は別々の参照になるため===はfalseになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/structuredClone"
+  },
+  {
+    "id": "javascript-063",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "class EvenNumber {\n  static [Symbol.hasInstance](instance) {\n    return typeof instance === \"number\" && instance % 2 === 0;\n  }\n}\nconsole.log(4 instanceof EvenNumber);\nconsole.log(3 instanceof EvenNumber);\nconsole.log(new Number(4) instanceof EvenNumber);",
+    "choices": [
+      "true / false / false",
+      "false / false / false",
+      "true / true / true",
+      "SyntaxErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "instanceof演算子は右辺のオブジェクトがSymbol.hasInstanceメソッドを持つ場合、それを呼び出して真偽を判定する。EvenNumberはこれをオーバーライドし数値かつ偶数かどうかを判定するため、4はtrue、3はfalse。new Number(4)はプリミティブではなくNumberオブジェクトのためtypeofは\"object\"となり判定はfalseになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance"
+  },
+  {
+    "id": "javascript-064",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次の自作Iterableオブジェクトのコードの出力として正しいものはどれか。",
+    "code": "const range = {\n  from: 1,\n  to: 3,\n  [Symbol.iterator]() {\n    let current = this.from;\n    const last = this.to;\n    return {\n      next() {\n        return current <= last\n          ? { value: current++, done: false }\n          : { value: undefined, done: true };\n      },\n    };\n  },\n};\nconsole.log([...range]);\nfor (const n of range) {\n  console.log(n);\n}",
+    "choices": [
+      "[1, 2, 3] に続けて 1, 2, 3 が出力される",
+      "[] に続けて何も出力されない",
+      "TypeError: range is not iterable が発生する",
+      "[1, 2, 3] のみ出力され、for...ofはエラーになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "オブジェクトにSymbol.iteratorメソッドを実装し、next()を持つイテレータオブジェクトを返すようにすることで、そのオブジェクトはIterableとなりスプレッド構文やfor...ofで反復できるようになる。この例ではfromからtoまでの値を順に返すため、[1,2,3]とその後の反復で1,2,3が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Iteration_protocols"
+  },
+  {
+    "id": "javascript-065",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "function add(a, b, c) {\n  return a + b + c;\n}\nconst multiply = (x, y) => x * y;\nconsole.log(add.length, add.name);\nconsole.log(multiply.length, multiply.name);\nfunction sum(...nums) {}\nconsole.log(sum.length);",
+    "choices": [
+      "3 add / 2 multiply / 0",
+      "3 add / 2 multiply / 1",
+      "undefined undefined / undefined undefined / undefined",
+      "3 \"add\" / 2 \"multiply\" / 2"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Function.prototype.lengthは、デフォルト引数やレスト引数を除いた仮引数の個数を表す。nameは関数名(アロー関数の場合は代入先の変数名)を表す。レスト引数のみを持つsum(...nums)はlengthのカウント対象外のためlengthは0になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/length"
+  },
+  {
+    "id": "javascript-066",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のProxyを使ったコードの出力として正しいものはどれか。",
+    "code": "const target = { message: \"hello\" };\nconst handler = {\n  get(obj, prop) {\n    return prop in obj ? obj[prop] : `プロパティ${String(prop)}は存在しません`;\n  },\n  set(obj, prop, value) {\n    obj[prop] = typeof value === \"string\" ? value.toUpperCase() : value;\n    return true;\n  },\n};\nconst proxy = new Proxy(target, handler);\nconsole.log(proxy.message);\nproxy.message = \"world\";\nconsole.log(proxy.message);\nconsole.log(proxy.unknown);",
+    "choices": [
+      "hello / WORLD / プロパティunknownは存在しません",
+      "hello / world / undefined",
+      "hello / WORLD / undefined",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Proxyはgetやsetなどのトラップを使ってオブジェクトへの基本操作をカスタマイズできる。getトラップはプロパティが存在すればその値を、存在しなければカスタムメッセージを返す。setトラップは文字列値を大文字に変換してから代入するよう定義されているため、\"world\"は\"WORLD\"として格納される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Proxy"
+  },
+  {
+    "id": "javascript-067",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のProxyとReflectを使ったコードの出力として正しいものはどれか。",
+    "code": "const handler = {\n  get(target, prop, receiver) {\n    console.log(`getting ${String(prop)}`);\n    return Reflect.get(target, prop, receiver);\n  },\n};\nconst obj = new Proxy({ x: 10 }, handler);\nconsole.log(obj.x);",
+    "choices": [
+      "\"getting x\" に続けて 10 が出力される",
+      "10 に続けて \"getting x\" が出力される",
+      "\"getting x\" のみ出力される",
+      "Reflect.get is not a function というエラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Reflect.get()はObjectの内部操作を関数として呼び出せるAPIで、Proxyのトラップ内でデフォルトの挙動を委譲するために使われる。getトラップが先にログを出力してからReflect.get()で実際の値を取得して返すため、\"getting x\"が先に出力され、その後戻り値の10が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Reflect/get"
+  },
+  {
+    "id": "javascript-068",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次の非同期イテレータのコードの出力として正しいものはどれか。",
+    "code": "async function* asyncGen() {\n  yield 1;\n  await new Promise((r) => setTimeout(r, 10));\n  yield 2;\n  yield 3;\n}\nasync function main() {\n  const results = [];\n  for await (const v of asyncGen()) {\n    results.push(v);\n  }\n  console.log(results);\n}\nmain();",
+    "choices": [
+      "[1, 2, 3]",
+      "[Promise, Promise, Promise]",
+      "[1]",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "async generator関数(async function*)はSymbol.asyncIteratorを実装したAsyncGeneratorを返し、for await...ofを使うことでyieldされた値を非同期に順番に取り出せる。各yield値は自動的にawaitされるため、resultsには[1, 2, 3]が格納される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for-await...of"
+  },
+  {
+    "id": "javascript-069",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のArrayBuffer/DataView/TypedArrayを使ったコードの出力として正しいものはどれか。",
+    "code": "const buffer = new ArrayBuffer(4);\nconst view = new DataView(buffer);\nview.setInt16(0, 258);\nconsole.log(view.getInt16(0));\nconst int8 = new Int8Array(buffer);\nconsole.log(int8[0], int8[1]);",
+    "choices": [
+      "258 / 2 1",
+      "258 / 1 2",
+      "2 / 258 258",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DataViewのsetInt16はデフォルトでビッグエンディアン(littleEndian省略時はfalse)でバイトを書き込む。258(0x0102)はビッグエンディアンでは上位バイト0x01、下位バイト0x02の順に格納されるため、同じバッファをバイト単位で読むInt8Arrayではint8[0]が1、int8[1]が2になる。getInt16(0)も同じビッグエンディアンで読み取るため258が正しく取得できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/DataView"
+  },
+  {
+    "id": "javascript-070",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "WeakRefとFinalizationRegistryに関する説明として正しいものはどれか。",
+    "choices": [
+      "WeakRefは対象オブジェクトへの弱い参照を保持し、deref()メソッドで参照先オブジェクトを取得できるが、ガベージコレクトされていればundefinedを返す",
+      "WeakRefはオブジェクトのガベージコレクションを防止するために使用する",
+      "FinalizationRegistryは、登録したオブジェクトが確実にいつガベージコレクトされるかを正確なタイミングで保証するAPIである",
+      "WeakRefとFinalizationRegistryはES2015(ES6)で標準化された古くからあるAPIである"
+    ],
+    "correctAnswers": [0],
+    "explanation": "WeakRefは対象への弱い参照を保持するオブジェクトで、deref()メソッドを呼び出すと参照先が生存していればそのオブジェクトを、ガベージコレクトされていればundefinedを返す。FinalizationRegistryはオブジェクトが回収された後にクリーンアップ処理を登録できるが、実行タイミングは保証されない。両APIはES2021で標準化された比較的新しい機能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakRef"
+  },
+  {
+    "id": "javascript-071",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードを実行した結果として正しいものはどれか。",
+    "code": "\"use strict\";\nconst obj = { x: 1 };\nwith (obj) {\n  console.log(x);\n}",
+    "choices": [
+      "SyntaxErrorが発生する(strict modeではwith文は使用禁止)",
+      "1が出力される",
+      "ReferenceErrorが発生する",
+      "undefinedが出力される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "with文はstrict modeでは構文として禁止されており、strict modeのコード内でwith文を記述するとパース時にSyntaxErrorとなる。非strictモードであれば1が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/with"
+  },
+  {
+    "id": "javascript-072",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のGeneratorのコードの出力として正しいものはどれか。",
+    "code": "function* gen() {\n  try {\n    yield 1;\n    yield 2;\n  } finally {\n    console.log(\"cleanup\");\n  }\n}\nconst it = gen();\nconsole.log(it.next());\nconsole.log(it.return(99));",
+    "choices": [
+      "{ value: 1, done: false } / cleanup / { value: 99, done: true }",
+      "{ value: 1, done: false } / { value: 99, done: true } / cleanup",
+      "{ value: 1, done: false } / { value: 2, done: false }",
+      "エラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "it.next()で最初のyield 1まで実行され{value:1,done:false}が返る。it.return(99)を呼び出すと、Generator内部でその位置からreturn文が実行されたのと同様に扱われ、途中にあるfinallyブロックが実行されてから(cleanupが出力)、指定した値99を持つ{value:99,done:true}が返される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Generator/return"
+  },
+  {
+    "id": "javascript-073",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のyield*を使ったコードの出力として正しいものはどれか。",
+    "code": "function* inner() {\n  yield \"a\";\n  yield \"b\";\n  return \"inner done\";\n}\nfunction* outer() {\n  const result = yield* inner();\n  yield result;\n}\nconsole.log([...outer()]);",
+    "choices": [
+      "[\"a\", \"b\", \"inner done\"]",
+      "[\"a\", \"b\"]",
+      "[\"inner done\"]",
+      "[\"a\", \"b\", undefined]"
+    ],
+    "correctAnswers": [0],
+    "explanation": "yield*は別のGeneratorに処理を委譲し、そのGeneratorがyieldする値をすべて順番にyieldする。innerがreturnした値(\"inner done\")はyield*式全体の評価結果としてresultに代入され、outer自身がさらにその値をyieldする。よって\"a\",\"b\",\"inner done\"の順で3つの値が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/yield*"
+  },
+  {
+    "id": "javascript-074",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のクラス静的初期化ブロックのコードの出力として正しいものはどれか。",
+    "code": "class Config {\n  static settings;\n  static {\n    console.log(\"初期化中\");\n    Config.settings = { env: \"production\" };\n  }\n}\nconsole.log(Config.settings);",
+    "choices": [
+      "初期化中 に続けて { env: 'production' } が出力される",
+      "{ env: 'production' } に続けて 初期化中 が出力される",
+      "undefined に続けて 初期化中 が出力される",
+      "SyntaxErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ES2022で追加されたstatic初期化ブロック(static { ... })は、クラス定義時に一度だけ実行される静的な初期化コードを記述できる。クラス宣言が評価されるタイミングでこのブロックが実行されるため、\"初期化中\"が先に出力され、その後Config.settingsを参照するとブロック内で設定された値が取得できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/static"
+  },
+  {
+    "id": "javascript-075",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のクラスフィールドの初期化順序に関するコードの出力として正しいものはどれか。",
+    "code": "class Base {\n  constructor() {\n    console.log(\"Base constructor, value =\", this.value);\n  }\n}\nclass Derived extends Base {\n  value = 10;\n  constructor() {\n    super();\n    console.log(\"Derived constructor, value =\", this.value);\n  }\n}\nnew Derived();",
+    "choices": [
+      "Base constructor, value = undefined / Derived constructor, value = 10",
+      "Base constructor, value = 10 / Derived constructor, value = 10",
+      "Derived constructor, value = 10 / Base constructor, value = undefined",
+      "エラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "クラスフィールドの初期化は、super()の呼び出しが完了した直後、コンストラクタ本体の残りの処理が実行される前に行われる。そのためsuper()の実行中(Baseのconstructorが動いている時点)ではまだvalueフィールドは初期化されておらずundefinedとなり、super()から戻った後にvalue=10が設定されてからDerivedのconstructorの残りが実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/Public_class_fields"
+  },
+  {
+    "id": "javascript-076",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のProxyのhas/deletePropertyトラップを使ったコードの出力として正しいものはどれか。",
+    "code": "const handler = {\n  has(target, prop) {\n    console.log(`has: ${prop}`);\n    return prop in target;\n  },\n  deleteProperty(target, prop) {\n    console.log(`delete: ${prop}`);\n    delete target[prop];\n    return true;\n  },\n};\nconst p = new Proxy({ a: 1 }, handler);\nconsole.log(\"a\" in p);\ndelete p.a;\nconsole.log(\"a\" in p);",
+    "choices": [
+      "has: a / true / delete: a / has: a / false",
+      "true / has: a / false / delete: a",
+      "has: a / delete: a / true / false",
+      "エラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "in演算子はProxyのhasトラップを、delete演算子はdeletePropertyトラップを経由する。まず\"a\" in pでhasトラップが呼ばれログ出力後trueが返る。delete p.aでdeletePropertyトラップが呼ばれログ出力後実際にプロパティが削除される。再度\"a\" in pを評価するとhasトラップが再度呼ばれfalseが返る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/has"
+  },
+  {
+    "id": "javascript-077",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードを実行した結果として正しいものはどれか。",
+    "code": "const data = {\n  name: \"test\",\n  greet: function () {\n    return \"hi\";\n  },\n};\ntry {\n  structuredClone(data);\n} catch (e) {\n  console.log(e.name);\n}",
+    "choices": [
+      "DataCloneError が出力される",
+      "何も出力されず正常にクローンされる",
+      "TypeError が出力される",
+      "greetプロパティが無視されただけの正常なオブジェクトがクローンされ、何も出力されない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "structuredClone()はStructured Clone Algorithmに基づいており、関数やDOM要素など複製できない値を含むオブジェクトを渡すとDataCloneError(DOMExceptionの一種)がスローされる。JSON.stringify()のように関数を単に無視して処理を続行するわけではない点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/structuredClone"
+  },
+  {
+    "id": "javascript-078",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のタグ付きテンプレートリテラルのコードの出力として正しいものはどれか。",
+    "code": "function showRaw(strings) {\n  console.log(strings.raw[0]);\n  console.log(strings[0]);\n}\nshowRaw`line1\\nline2`;",
+    "choices": [
+      "\"line1\\\\nline2\"(バックスラッシュとnを含む文字列) / 改行を含む\"line1\" と \"line2\"",
+      "改行を含む\"line1\" と \"line2\" / \"line1\\\\nline2\"(バックスラッシュとnを含む文字列)",
+      "\"line1\\\\nline2\" / \"line1\\\\nline2\"",
+      "エラーが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "タグ付きテンプレートリテラルのタグ関数の第1引数(strings)には、エスケープシーケンスが解釈された文字列断片の配列に加えて、rawプロパティにエスケープシーケンスが解釈される前の生の文字列断片の配列が用意される。そのためstrings.raw[0]は\\nがそのまま2文字(バックスラッシュとn)として残るが、strings[0]は実際の改行文字に変換されたものになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#raw_strings"
+  },
+  {
+    "id": "javascript-079",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のオプショナルチェイニングの短絡評価に関するコードの出力として正しいものはどれか。",
+    "code": "let callCount = 0;\nfunction withSideEffect() {\n  callCount++;\n  return null;\n}\nconst obj = null;\nconsole.log(obj?.method(withSideEffect()));\nconsole.log(callCount);",
+    "choices": [
+      "undefined / 0",
+      "undefined / 1",
+      "TypeErrorが発生する",
+      "null / 0"
+    ],
+    "correctAnswers": [0],
+    "explanation": "オプショナルチェイニングは、objがnullまたはundefinedであった時点で式全体の評価を短絡(short-circuit)し、それ以降のプロパティアクセスや関数呼び出しの引数の評価も一切行わない。そのためwithSideEffect()自体が呼び出されずcallCountは0のままとなり、式全体の評価結果はundefinedになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Optional_chaining#短絡評価"
+  },
+  {
+    "id": "javascript-080",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次の配列分割代入のコードの出力として正しいものはどれか。",
+    "code": "let a = 1, b = 2;\n[a, b] = [b, a];\nconsole.log(a, b);\nconst [x, y = 10, z = 20] = [100, undefined];\nconsole.log(x, y, z);\nconst [, second, , fourth] = [1, 2, 3, 4];\nconsole.log(second, fourth);",
+    "choices": [
+      "2 1 / 100 10 20 / 2 4",
+      "1 2 / 100 undefined 20 / 2 4",
+      "2 1 / 100 10 20 / 2 3",
+      "2 1 / 100 undefined 20 / 2 4"
+    ],
+    "correctAnswers": [0],
+    "explanation": "配列分割代入では[a,b]=[b,a]のように値を入れ替えられる(スワップ)。yはundefinedが渡されているためデフォルト値10が適用され、zは配列に対応する要素自体がないためデフォルト値20が適用される。カンマを連続させることで不要な要素をスキップでき、[, second, , fourth]は2番目と4番目の要素のみを取得する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"
+  },
+  {
+    "id": "javascript-081",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの出力順として正しいものはどれか。",
+    "code": "const p = new Promise((resolve, reject) => {\n  console.log(\"executor実行\");\n  throw new Error(\"同期エラー\");\n});\np.catch((e) => console.log(\"catch:\", e.message));\nconsole.log(\"後続処理\");",
+    "choices": [
+      "executor実行 / 後続処理 / catch: 同期エラー",
+      "executor実行 / catch: 同期エラー / 後続処理",
+      "Uncaught Error: 同期エラー が発生しプログラムが停止する",
+      "executor実行 のみ出力される"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Promiseのexecutor関数は同期的に即座に実行される。executor内でthrowされた例外は自動的に捕捉され、そのPromiseはreject状態になる。catchハンドラの呼び出しはマイクロタスクとして後で実行されるため、同期処理のexecutor実行と後続処理が先に出力され、その後catchコールバックが実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise"
+  },
+  {
+    "id": "javascript-082",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のErrorのcauseオプションを使ったコードの出力として正しいものはどれか。",
+    "code": "try {\n  try {\n    JSON.parse(\"{invalid json\");\n  } catch (err) {\n    throw new Error(\"設定の読み込みに失敗しました\", { cause: err });\n  }\n} catch (e) {\n  console.log(e.message);\n  console.log(e.cause instanceof SyntaxError);\n}",
+    "choices": [
+      "設定の読み込みに失敗しました / true",
+      "設定の読み込みに失敗しました / false",
+      "SyntaxError: Unexpected token / true",
+      "e.causeは常にundefinedになる"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ES2022で追加されたErrorのcauseオプションを使うと、第2引数に{cause: 元のエラー}を渡すことで元のエラー情報を保持したまま新しいエラーを送出できる。JSON.parseに不正なJSON文字列を渡すとSyntaxErrorが発生し、それがcauseとして保持されるため、e.causeはSyntaxErrorのインスタンスになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Error/Error#cause"
+  },
+  {
+    "id": "javascript-083",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "globalThisに関する説明として正しいものはどれか。",
+    "choices": [
+      "ブラウザではwindow、Node.jsではglobalなど、実行環境ごとに異なるグローバルオブジェクトへ、環境を問わず統一的な方法でアクセスするためのプロパティである",
+      "globalThisは全てのブラウザとNode.jsで常にwindowという名前のオブジェクトを指す",
+      "globalThisはES2022で削除が予定されている非推奨機能である",
+      "globalThisはモジュール内でのみ使用でき、通常のスクリプトでは使用できない"
+    ],
+    "correctAnswers": [0],
+    "explanation": "globalThisはES2020で標準化され、ブラウザ(window/self)、Node.js(global)、Web Workerなど実行環境によって異なっていたグローバルオブジェクトへの参照方法を、環境に依存せず統一的に取得できるようにしたプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/globalThis"
+  },
+  {
+    "id": "javascript-084",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のObject.definePropertyを使ったコードの出力として正しいものはどれか。",
+    "code": "const obj = {};\nObject.defineProperty(obj, \"id\", {\n  value: 42,\n  writable: false,\n  enumerable: false,\n  configurable: false,\n});\nobj.id = 100;\nconsole.log(obj.id);\nconsole.log(Object.keys(obj));\ndelete obj.id;\nconsole.log(obj.id);",
+    "choices": [
+      "42 / [] / 42",
+      "100 / ['id'] / undefined",
+      "42 / ['id'] / 42",
+      "undefined / [] / undefined"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Object.defineProperty()でwritable:false, enumerable:false, configurable:falseを指定すると、そのプロパティは値の変更・列挙・削除・再定義のいずれもできなくなる(非strictモードでは黙って失敗する)。そのためobj.id=100は無視され値は42のまま、Object.keys()には現れず、deleteも失敗しidは42のまま残る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"
+  },
+  {
+    "id": "javascript-085",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの出力として正しいものはどれか。",
+    "code": "const arr = [1, 2, 3];\nconst arrayLike = { 0: \"a\", 1: \"b\", length: 2 };\nconsole.log(typeof arr);\nconsole.log(Array.isArray(arr));\nconsole.log(Array.isArray(arrayLike));\nconsole.log(Array.isArray(Array.from(arrayLike)));",
+    "choices": [
+      "object / true / false / true",
+      "array / true / false / true",
+      "object / true / true / true",
+      "object / false / false / true"
+    ],
+    "correctAnswers": [0],
+    "explanation": "typeofは配列に対しても\"object\"を返すため配列かどうかの判定には使えない。配列かどうかを正しく判定するにはArray.isArray()を使う。arrayLikeは配列風オブジェクト(lengthを持つがArrayのインスタンスではない)なのでfalseになるが、Array.from()で変換すれば真の配列になりtrueになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray"
+  },
+  {
+    "id": "javascript-086",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの出力順として正しいものはどれか。",
+    "code": "async function a() {\n  console.log(\"a start\");\n  await b();\n  console.log(\"a end\");\n}\nasync function b() {\n  console.log(\"b start\");\n}\nconsole.log(\"script start\");\na();\nconsole.log(\"script end\");",
+    "choices": [
+      "script start / a start / b start / script end / a end",
+      "script start / a start / b start / a end / script end",
+      "script start / a start / script end / b start / a end",
+      "script start / a start / b start / script end / (a endとscript endの順序は不定)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "a()を呼ぶと即座に\"a start\"が同期的に出力され、続いてb()が呼ばれ\"b start\"も同期的に出力される。b()は非同期関数だが本体に非同期処理がないため即座にreturnし、awaitによってa関数の残りの処理(a end)はマイクロタスクとしてキューに入る。そのため同期処理である\"script end\"が先に出力され、その後マイクロタスクとして\"a end\"が出力される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/async_function"
+  },
+  {
+    "id": "javascript-087",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のArray.prototype.sort()のコードの出力として正しいものはどれか。",
+    "code": "const nums = [10, 1, 21, 2];\nconsole.log(nums.sort());\nconst nums2 = [10, 1, 21, 2];\nconsole.log(nums2.sort((a, b) => a - b));",
+    "choices": [
+      "[1, 10, 2, 21] / [1, 2, 10, 21]",
+      "[1, 2, 10, 21] / [1, 2, 10, 21]",
+      "[10, 1, 21, 2] / [1, 2, 10, 21]",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "sort()に比較関数を渡さない場合、要素は文字列に変換された上でUTF-16のコード単位で辞書順に比較されるため、数値としては直感に反する並びになる(文字列として\"10\"が\"2\"より前になる)。比較関数(a,b)=>a-bを渡すことで正しく数値として昇順にソートできる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"
+  },
+  {
+    "id": "javascript-088",
+    "category": "javascript",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次の疎な配列(sparse array)に関するコードについて、正しいものを全て選べ。",
+    "code": "const arr = [1, , 3];\nlet count = 0;\narr.forEach(() => count++);\nconsole.log(arr.length, count);\nconst mapped = arr.map((v) => v * 2);\nconsole.log(1 in mapped);\nconst values = [];\nfor (const v of arr) {\n  values.push(v);\n}\nconsole.log(values);",
+    "choices": [
+      "arr.lengthは3で、forEachはホール(欠番)をスキップするためcountは2になる",
+      "mapped配列は元の配列と同様にインデックス1がホールのままになるため、1 in mappedはfalseになる",
+      "for...ofはホールをスキップせずundefinedとして扱うため、valuesは[1, undefined, 3]になる",
+      "forEach, map, for...ofはすべてホールを完全に無視するため、いずれの結果にもインデックス1の要素は現れない"
+    ],
+    "correctAnswers": [0, 1, 2],
+    "explanation": "疎な配列のホール(欠番)は、forEachやmapなどの配列メソッドでは要素が存在しないインデックスとしてコールバック自体の呼び出しがスキップされる(そのためforEachのcountは2)。mapもホールをスキップしつつ結果配列の同じインデックスにホールを保持するため、1 in mappedはfalseになる。一方、for...ofはArrayのイテレータを使うため、ホールをundefinedとして扱いスキップしない。したがって選択肢4は誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Indexed_collections"
+  },
+  {
+    "id": "javascript-089",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のSymbol.toPrimitiveを使ったコードの出力として正しいものはどれか。",
+    "code": "class Money {\n  constructor(amount) {\n    this.amount = amount;\n  }\n  [Symbol.toPrimitive](hint) {\n    if (hint === \"number\") return this.amount;\n    if (hint === \"string\") return `¥${this.amount}`;\n    return `Money(${this.amount})`;\n  }\n}\nconst m = new Money(1000);\nconsole.log(+m);\nconsole.log(`${m}`);\nconsole.log(m + \"\");",
+    "choices": [
+      "1000 / ¥1000 / Money(1000)",
+      "1000 / Money(1000) / ¥1000",
+      "NaN / ¥1000 / Money(1000)",
+      "TypeErrorが発生する"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Symbol.toPrimitiveを実装すると、オブジェクトをプリミティブ値に変換する際の挙動をhint(\"number\", \"string\", \"default\")に応じて完全にカスタマイズできる。単項+演算子はhintとして\"number\"を、テンプレートリテラルへの埋め込みは\"string\"を、二項演算子の+は\"default\"を渡すため、それぞれ1000、¥1000、Money(1000)になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive"
+  },
+  {
+    "id": "javascript-090",
+    "category": "javascript",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のクラス構文の実体に関するコードの出力として正しいものはどれか。",
+    "code": "class Foo {}\nconsole.log(typeof Foo);\nconsole.log(Foo.prototype.constructor === Foo);\nconsole.log(Object.getPrototypeOf(Foo) === Function.prototype);\ntry {\n  Foo();\n} catch (e) {\n  console.log(e instanceof TypeError);\n}",
+    "choices": [
+      "function / true / true / true",
+      "class / true / true / false",
+      "function / false / true / true",
+      "object / true / false / true"
+    ],
+    "correctAnswers": [0],
+    "explanation": "クラス構文はシンタックスシュガーであり、typeofで判定すると通常の関数と同じ\"function\"になる。Foo.prototype.constructorはFoo自身を指す。クラス自体のプロトタイプも通常の関数と同様にFunction.prototypeである。ただしクラスはnewを使わずに直接呼び出せないよう内部的に制御されており、Foo()のようにnewなしで呼び出すとTypeErrorが発生する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes"
+  }
+]

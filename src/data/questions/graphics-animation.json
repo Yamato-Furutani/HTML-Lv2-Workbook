@@ -1,0 +1,1726 @@
+[
+  {
+    "id": "graphics-animation-001",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML5のcanvas要素から2D描画用のコンテキストオブジェクトを取得するコードとして正しいものはどれか。",
+    "code": "const canvas = document.getElementById('myCanvas');\nconst ctx = ???;",
+    "choices": [
+      "canvas.getContext('2d')",
+      "canvas.get2DContext()",
+      "canvas.createContext('2d')",
+      "canvas.context('2d')"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "canvas要素からCanvasRenderingContext2Dオブジェクトを取得するにはgetContext('2d')を呼び出す。WebGLを利用する場合はgetContext('webgl')を使う。getContext()はHTMLCanvasElementのメソッドであり、get2DContext()やcreateContext()、context()という名前のメソッドは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement/getContext"
+  },
+  {
+    "id": "graphics-animation-002",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML内で<canvas></canvas>のようにwidth属性・height属性を指定しなかった場合、canvas要素の描画領域の既定サイズはどれか。",
+    "choices": [
+      "幅300ピクセル、高さ150ピクセル",
+      "幅100ピクセル、高さ100ピクセル",
+      "幅640ピクセル、高さ480ピクセル",
+      "幅0ピクセル、高さ0ピクセル(明示指定が必須)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "canvas要素はwidth属性・height属性を省略した場合、既定値としてそれぞれ300、150が適用される。これはCSSで見た目の表示サイズを変えても、描画バッファの解像度はこの既定値のままである点に注意が必要。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/canvas"
+  },
+  {
+    "id": "graphics-animation-003",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "canvas要素のサイズに関する記述として正しいものを2つ選べ。",
+    "code": "<canvas id=\"c\" width=\"200\" height=\"100\" style=\"width:400px; height:200px;\"></canvas>",
+    "choices": [
+      "width/height属性は描画バッファ(座標系)の解像度を決める",
+      "styleで指定したwidth/heightはCSS上の表示サイズであり、描画バッファは200x100のまま拡大表示される",
+      "この例では描画された図形は縦横比を保ったまま高精細に表示される",
+      "CSSでサイズを指定すると、自動的にwidth/height属性の値も書き換えられる",
+      "width属性とstyleのwidthが異なっても、描画品質には一切影響しない"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "canvas要素にはwidth/height属性(描画バッファの実解像度)とCSSのwidth/height(表示上のサイズ)という2つの異なるサイズの概念がある。この例では200x100で描画された内容が400x200に引き伸ばされて表示されるため、ぼやけて見えることがある。CSS指定が属性値を書き換えることはなく、両者が乖離すると表示がぼやけたり歪んだりする原因になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Canvas_API/Tutorial/Basic_usage"
+  },
+  {
+    "id": "graphics-animation-004",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Canvas 2D APIの座標系に関する説明として正しいものはどれか。",
+    "choices": [
+      "原点(0,0)は左上隅にあり、x軸は右方向、y軸は下方向が正である",
+      "原点(0,0)は左下隅にあり、x軸は右方向、y軸は上方向が正である",
+      "原点(0,0)はcanvasの中心にあり、上下左右に均等に広がる",
+      "原点はブラウザのウィンドウ全体の左上隅であり、canvasの位置に依存しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Canvasのデフォルトの座標系は左上隅を原点(0,0)とし、x軸は右方向、y軸は下方向に向かって正の値が増える。数学の一般的なグラフとは異なりy軸の向きが逆であることに注意する。transform系メソッドで座標系自体を変更することも可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Canvas_API/Tutorial/Basic_usage"
+  },
+  {
+    "id": "graphics-animation-005",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Canvas 2D APIでbeginPath()メソッドを呼び出す目的として最も適切なものはどれか。",
+    "choices": [
+      "新しいパスを開始し、以前の描画命令の影響を受けないようにする",
+      "現在のパスを画面に描画(レンダリング)する",
+      "canvas全体を透明な状態にリセットする",
+      "パスを閉じて開始点と終了点を直線で結ぶ"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "beginPath()は新しいパスの構築を開始するメソッドで、これを呼ばないと直前に構築したサブパスの点列が引き継がれてしまい、意図しない図形が描かれることがある。実際に描画するのはfill()やstroke()であり、パスを閉じるのはclosePath()の役割である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/beginPath"
+  },
+  {
+    "id": "graphics-animation-006",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードで描かれる円弧の説明として正しいものはどれか。",
+    "code": "ctx.beginPath();\nctx.arc(100, 100, 50, 0, Math.PI, false);\nctx.stroke();",
+    "choices": [
+      "中心(100,100)、半径50で、角度0ラジアンからπラジアンまで時計回りに描く半円",
+      "中心(100,100)、半径50で、角度0度からπ度まで反時計回りに描く円弧",
+      "中心(50,50)、半径100の全円",
+      "中心(100,100)、直径50の全円"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "arc(x, y, radius, startAngle, endAngle, counterclockwise)の角度はラジアンで指定する。第6引数のcounterclockwiseがfalse(既定値)の場合は時計回りに描画される。0からπラジアン(180度)なので、円の下半分にあたる半円が描かれる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/arc"
+  },
+  {
+    "id": "graphics-animation-007",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Canvas 2D APIの曲線描画メソッドに関する記述として正しいものを2つ選べ。",
+    "choices": [
+      "quadraticCurveTo(cpx, cpy, x, y)は制御点を1つ持つ2次ベジェ曲線を描く",
+      "bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)は制御点を2つ持つ3次ベジェ曲線を描く",
+      "bezierCurveTo()とquadraticCurveTo()はどちらも制御点を3つ指定する必要がある",
+      "これらのメソッドは現在のパスの最後の点から曲線の描画を開始する",
+      "quadraticCurveTo()は円弧専用のメソッドであり、直線的な曲線は描けない"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "quadraticCurveTo()は制御点1つの2次ベジェ曲線、bezierCurveTo()は制御点2つの3次ベジェ曲線を描く。いずれも現在のパス上の直前の点(moveToやlineToなどで設定した点)を始点として曲線が描かれる。制御点が3つ必要という記述は誤りで、円弧専用という記述も誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo"
+  },
+  {
+    "id": "graphics-animation-008",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードを実行した結果、描画される図形として正しいものはどれか。",
+    "code": "ctx.beginPath();\nctx.moveTo(50, 50);\nctx.lineTo(150, 50);\nctx.lineTo(100, 150);\nctx.closePath();\nctx.stroke();",
+    "choices": [
+      "3つの頂点を結んだ三角形の輪郭",
+      "始点と終点を結ばない、開いた2本の線分",
+      "2本の線分のみで、closePath()は無視される",
+      "点(50,50)から(150,50)への直線1本のみ"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "moveTo・lineToで3点を結ぶ折れ線を作り、closePath()を呼ぶことで現在のサブパスの最後の点(100,150)から開始点(50,50)まで自動的に直線が引かれ、パスが閉じられる。その結果、3頂点からなる三角形の輪郭がstroke()で描画される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/closePath"
+  },
+  {
+    "id": "graphics-animation-009",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードのclearRect()の動作として正しい説明はどれか。",
+    "code": "ctx.fillStyle = 'red';\nctx.fillRect(0, 0, 300, 150);\nctx.clearRect(50, 50, 100, 50);",
+    "choices": [
+      "指定した矩形範囲(50,50,100,50)を透明にし、下地(canvas自体の背景)が透けて見えるようにする",
+      "指定した矩形範囲を現在のfillStyleの色で塗りつぶす",
+      "canvas全体を白色でリセットする",
+      "指定した矩形の輪郭線のみを消去し、内部の塗りは残す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "clearRect(x, y, width, height)は指定した矩形範囲のピクセルを完全に透明な状態に戻すメソッドである。fillStyleの色に関係なく透明にする点がfillRect()との違いであり、白色で塗りつぶすわけではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/clearRect"
+  },
+  {
+    "id": "graphics-animation-010",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CanvasRenderingContext2Dのfill()メソッドが受け取ることができる引数に関する説明として正しいものはどれか。",
+    "choices": [
+      "塗りつぶしルールとして'nonzero'または'evenodd'を文字列で指定でき、パスの内部・外部の判定方法を変更できる",
+      "fill()には色を表す文字列を直接渡すことができ、fillStyleの設定は不要になる",
+      "fill()は必ず引数なしで呼び出さなければならず、オプション引数は存在しない",
+      "塗りつぶしルールは'clockwise'または'counterclockwise'から選択する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fill()は省略可能な引数としてfill-ruleを受け取ることができ、'nonzero'(既定値)または'evenodd'を指定できる。これは自己交差するパスなどでどの領域を内部とみなすかを決めるルールである。色の指定はfillStyleプロパティで行うものであり、fill()の引数ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/fill"
+  },
+  {
+    "id": "graphics-animation-011",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Canvas 2D APIのメソッドのうち、事前にbeginPath()でパスを構築しなくても単独で図形を描画できるものを2つ選べ。",
+    "choices": [
+      "fillRect(x, y, width, height)",
+      "strokeRect(x, y, width, height)",
+      "fill()",
+      "stroke()",
+      "arc(x, y, radius, startAngle, endAngle)"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "fillRect()とstrokeRect()は矩形を直接塗りつぶし・描画する独立したメソッドで、パス構築なしに単独で呼び出せる。一方、fill()やstroke()は現在構築されているパスに対して塗り・線描を適用するものであり、arc()はパスに円弧を追加するだけで描画自体は行わない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/fillRect"
+  },
+  {
+    "id": "graphics-animation-012",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの実行結果として正しいものはどれか。",
+    "code": "ctx.font = '20px sans-serif';\nctx.fillStyle = 'black';\nctx.fillText('Hello', 10, 50);",
+    "choices": [
+      "座標(10,50)を基準として文字列'Hello'を黒色・フォントサイズ20pxで描画する",
+      "文字列'Hello'を輪郭線のみで描画する(塗りつぶしはされない)",
+      "座標(10,50)は文字列の右下端の座標として扱われる",
+      "fillText()には最大3つまでしか引数を渡せず、幅の指定はできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fillText(text, x, y [, maxWidth])はfillStyleの色で塗りつぶされた文字列を描画する。x, yはtextAlign/textBaselineの設定によって基準点の意味が変わるが、既定では左揃え・alphabeticベースラインとなる。輪郭線のみの描画はstrokeText()の役割であり、fillText()には省略可能な第4引数maxWidthも存在する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/fillText"
+  },
+  {
+    "id": "graphics-animation-013",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CanvasRenderingContext2DのtextBaselineプロパティの既定値はどれか。",
+    "choices": [
+      "alphabetic",
+      "top",
+      "middle",
+      "bottom"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "textBaselineの既定値は'alphabetic'であり、ラテン文字などのベースライン(文字の下端付近、ディセンダを除いた基準線)にy座標を合わせて描画する。'top'、'middle'、'bottom'、'hanging'、'ideographic'なども指定可能だが、既定値ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/textBaseline"
+  },
+  {
+    "id": "graphics-animation-014",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードでテキストが描画される位置の説明として正しいものはどれか。",
+    "code": "ctx.textAlign = 'center';\nctx.fillText('Sample', 150, 75);",
+    "choices": [
+      "文字列'Sample'の水平方向の中心がx座標150に来るように描画される",
+      "文字列'Sample'の左端がx座標150に来るように描画される",
+      "textAlignはcanvas全体の中央揃えを指定するプロパティであり、fillTextの座標とは無関係である",
+      "'center'は無効な値であり、既定のstartとして扱われる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "textAlignは水平方向のテキスト配置を指定するプロパティで、'center'を指定すると文字列の水平方向の中央がfillText()に渡したx座標に一致するように描画される。他に'start'(既定)、'end'、'left'、'right'が指定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/textAlign"
+  },
+  {
+    "id": "graphics-animation-015",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードのdrawImage()の呼び出しに関する説明として正しいものはどれか。",
+    "code": "const img = new Image();\nimg.src = 'photo.png';\nimg.onload = () => {\n  ctx.drawImage(img, 20, 30);\n};",
+    "choices": [
+      "画像を元のサイズのまま、canvas上の座標(20,30)を左上として描画する",
+      "画像を幅20、高さ30にリサイズして原点に描画する",
+      "画像のうち座標(20,30)から右下の部分だけを切り出して描画する",
+      "画像の読み込みが完了する前でもdrawImage()は正しく描画できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "drawImage(image, dx, dy)の3引数形式は、画像を元のサイズのまま、canvas上の(dx, dy)を左上の位置として描画する。画像の読み込みは非同期のため、onloadイベント内でdrawImage()を呼ぶ必要があり、読み込み完了前に呼ぶと何も描画されない(あるいはエラーになる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/drawImage"
+  },
+  {
+    "id": "graphics-animation-016",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "スプライトシート(複数の画像を1枚にまとめた画像)から一部分だけを切り出してcanvasに拡大描画したい。次のコードの空欄に入れるべきdrawImage()の引数の並びとして正しいものはどれか。",
+    "code": "// spriteは1枚の画像。そこから (32,0) を左上とする 32x32 の領域を切り出し、\n// canvas上の (0,0) から 64x64 のサイズで拡大して描画したい\nctx.drawImage(sprite, ___);",
+    "choices": [
+      "32, 0, 32, 32, 0, 0, 64, 64",
+      "0, 0, 64, 64, 32, 0, 32, 32",
+      "32, 0, 64, 64, 0, 0, 32, 32",
+      "0, 0, 32, 32, 32, 0, 64, 64"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "drawImage()の9引数形式は drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) の順である。切り出し元の左上座標と大きさ(sx, sy, sWidth, sHeight)を先に指定し、続けて描画先の位置と大きさ(dx, dy, dWidth, dHeight)を指定する。よって32, 0, 32, 32, 0, 0, 64, 64が正しい順序となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/drawImage"
+  },
+  {
+    "id": "graphics-animation-017",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "再生中のHTMLVideoElementの現在のフレームをcanvasに描画する方法として適切なものはどれか。",
+    "choices": [
+      "drawImage()の第1引数にvideo要素をそのまま渡すことで、その時点の映像フレームを描画できる",
+      "video要素はdrawImage()の引数として使用できないため、一度画像ファイルに変換する必要がある",
+      "video要素の場合はdrawVideo()という専用メソッドを使う必要がある",
+      "canvasに映像を描画するにはWebGLコンテキストを使う以外の方法はない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "drawImage()はHTMLImageElementだけでなく、HTMLVideoElementやHTMLCanvasElement、ImageBitmapなども画像ソースとして受け取ることができる。video要素を渡した場合、呼び出された時点で再生されているフレームがcanvasに描画される。これを利用してビデオへのエフェクト処理やフレームキャプチャが実装できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/drawImage"
+  },
+  {
+    "id": "graphics-animation-018",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CanvasRenderingContext2D.drawImage()の画像ソースとして渡すことができるオブジェクトを3つ選べ。",
+    "choices": [
+      "HTMLImageElement",
+      "HTMLVideoElement",
+      "HTMLCanvasElement",
+      "文字列で表した画像のURL",
+      "Blobオブジェクト"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "drawImage()の第1引数(CanvasImageSource)には、HTMLImageElement、HTMLVideoElement、HTMLCanvasElement、ImageBitmap、SVGImageElement、OffscreenCanvasなどが利用できる。URLの文字列やBlobオブジェクトをそのまま渡すことはできず、これらを使う場合はImageオブジェクトのsrcに設定して読み込んでから渡すか、createImageBitmap()でImageBitmapに変換する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/drawImage"
+  },
+  {
+    "id": "graphics-animation-019",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードで矩形が描画される位置として正しいものはどれか。",
+    "code": "ctx.translate(50, 30);\nctx.fillRect(0, 0, 20, 20);",
+    "choices": [
+      "canvas上の座標(50,30)を左上として20x20の矩形が描かれる",
+      "canvas上の座標(0,0)を左上として20x20の矩形が描かれる(translateは無視される)",
+      "matrixがリセットされ、canvasの中心に矩形が描かれる",
+      "translate()はfillRect()と併用できないためエラーになる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "translate(x, y)は座標系の原点を(x, y)だけ移動させる。以降の描画命令はこの新しい原点を基準に解釈されるため、fillRect(0, 0, 20, 20)はcanvas全体で見ると(50, 30)を左上とする位置に描画される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/translate"
+  },
+  {
+    "id": "graphics-animation-020",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "rotate()メソッドに関する記述として正しいものはどれか。",
+    "code": "ctx.rotate(Math.PI / 2);",
+    "choices": [
+      "引数はラジアン単位で指定し、正の値を渡すと現在の原点を中心に時計回りに座標系が回転する",
+      "引数は度(degree)単位で指定し、90度回転させるにはrotate(90)と書く",
+      "rotate()は図形そのものではなく、canvas要素のDOM上の見た目を回転させる",
+      "回転の中心は常にcanvasの中心に固定されており、変更できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "rotate(angle)の引数はラジアン単位で指定する必要があり、度数からラジアンへは angle * Math.PI / 180 のように変換する。回転は現在の原点を中心に行われ、正の値では時計回り(canvasのy軸が下向きであるため)に回転する。回転の中心を変えたい場合はtranslate()と組み合わせて原点を移動させる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/rotate"
+  },
+  {
+    "id": "graphics-animation-021",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "transform()メソッドとsetTransform()メソッドの違いに関する記述として正しいものはどれか。",
+    "choices": [
+      "transform()は現在の変換行列に新しい行列を掛け合わせて合成するのに対し、setTransform()は変換行列を単位行列にリセットしてから指定した行列を設定する",
+      "transform()とsetTransform()は同じ効果を持ち、引数の順序が異なるだけである",
+      "setTransform()は拡大縮小のみに使用でき、回転や平行移動は指定できない",
+      "transform()はsave()を呼ばないと使用できないメソッドである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "transform(a, b, c, d, e, f)は現在の変換行列に対して新しい変換を乗算(合成)するのに対し、setTransform(a, b, c, d, e, f)はまず変換行列を単位行列にリセットしてから指定した変換を適用する。そのためsetTransform()を使うと、それまでのtranslateやrotateの累積を無視して絶対的な変換状態を指定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/setTransform"
+  },
+  {
+    "id": "graphics-animation-022",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードでsave()とrestore()を使う目的として最も適切な説明はどれか。",
+    "code": "ctx.save();\nctx.fillStyle = 'blue';\nctx.translate(100, 100);\nctx.fillRect(0, 0, 50, 50);\nctx.restore();\nctx.fillRect(0, 0, 50, 50);",
+    "choices": [
+      "fillStyleや変換行列などの描画状態をスタックに退避し、restore()呼び出し後に変更前の状態へ戻すため",
+      "canvasの内容全体をビットマップとして保存し、あとで再利用するため",
+      "save()を呼ばないとfillRect()自体が実行できないため",
+      "save()とrestore()はイベントリスナーの登録・解除に使うメソッドである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "save()は現在の描画スタイル(fillStyleなど)や変換行列などの状態をスタックにプッシュし、restore()を呼ぶと直近に保存された状態をポップして復元する。これにより、一時的にスタイルや座標系を変更してから元の状態に戻す、という処理が簡潔に書ける。canvasのピクセル内容自体を保存するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/save"
+  },
+  {
+    "id": "graphics-animation-023",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "transform(a, b, c, d, e, f)メソッドの各引数が表す変換行列の要素に関する記述として正しいものを2つ選べ。",
+    "choices": [
+      "aは水平方向のスケール、dは垂直方向のスケールを表す",
+      "eは水平方向の平行移動量、fは垂直方向の平行移動量を表す",
+      "bとcは常に0でなければならず、傾斜(スキュー)や回転を表現することはできない",
+      "この6つの引数だけでは回転を表現することはできず、別途rotate()の呼び出しが必須である",
+      "aとdは常にfillStyleの色に関する係数である"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "transform(a, b, c, d, e, f)は2次元アフィン変換行列[[a, c, e], [b, d, f], [0, 0, 1]]に相当し、aとdはそれぞれ水平・垂直方向のスケール、bとcは傾斜(スキュー)や回転成分、eとfは水平・垂直方向の平行移動を表す。b, cを使えば回転やスキューも6引数だけで表現でき、rotate()の呼び出しは必須ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/transform"
+  },
+  {
+    "id": "graphics-animation-024",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードにおけるglobalAlphaプロパティの説明として正しいものはどれか。",
+    "code": "ctx.globalAlpha = 0.5;\nctx.fillStyle = 'red';\nctx.fillRect(0, 0, 100, 100);",
+    "choices": [
+      "以降に描画される図形全体の不透明度を50%にする(0.0が完全透明、1.0が完全不透明)",
+      "赤色の彩度を50%に下げて描画する",
+      "globalAlphaは負の値も1を超える値も自由に設定でき、1を超えると図形が発光したように見える",
+      "globalAlphaはstroke()にのみ適用され、fill()には影響しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "globalAlphaは0.0(完全に透明)から1.0(完全に不透明)の範囲で指定する、以降のすべての描画操作に適用されるグローバルな不透明度である。範囲外の値を設定した場合は無視され直前の値が維持される。fillだけでなくstrokeやdrawImageなど、すべての描画操作に影響する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/globalAlpha"
+  },
+  {
+    "id": "graphics-animation-025",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "globalCompositeOperationに'destination-over'を設定して図形を描画したときの効果として正しいものはどれか。",
+    "code": "ctx.fillStyle = 'blue';\nctx.fillRect(50, 50, 100, 100); // 既存の描画(destination)\n\nctx.globalCompositeOperation = 'destination-over';\nctx.fillStyle = 'yellow';\nctx.fillRect(0, 0, 100, 100); // 新しい描画(source)",
+    "choices": [
+      "新しく描画する図形(source)が、既存の描画内容(destination)の背面に配置される",
+      "新しく描画する図形が既存の描画内容を完全に上書きして消去する",
+      "新しく描画する図形と既存の描画内容が重なる部分だけが残り、他は透明になる",
+      "'destination-over'は透過処理を無効化し、常に不透明として描画するモードである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "globalCompositeOperationの既定値は'source-over'(新しい描画が上に重なる)だが、'destination-over'を指定すると新しく描画する内容が既存の描画内容の背面(下)に合成される。そのため、重なった部分では先に描かれていた図形が上に見える。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation"
+  },
+  {
+    "id": "graphics-animation-026",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "globalCompositeOperationプロパティに指定できる値とその効果の組み合わせとして正しいものを2つ選べ。",
+    "choices": [
+      "'source-atop':新しい図形のうち、既存の描画内容と重なる部分だけが描画される",
+      "'xor':新旧の図形が重なる部分は透明になり、重ならない部分がそれぞれ描画される",
+      "'copy':新しい図形と既存の図形を単純に加算合成し、常に明るい色になる",
+      "'lighter'は新しい描画内容だけを残し、既存の描画内容を完全に消去するモードである",
+      "'source-over'は指定しても何も描画されなくなる特殊なモードである"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "'source-atop'は新しい図形を既存の描画内容と重なる範囲にのみ描画する。'xor'は新旧が重なる部分を透明にし、重ならない部分だけを残す排他的論理和的な合成である。'copy'は新しい図形だけを残し既存を消去するモード、'lighter'は色を加算合成するモードであり、選択肢の説明は入れ替わっている。'source-over'は最も一般的な既定値で通常通り上書き描画する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation"
+  },
+  {
+    "id": "graphics-animation-027",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードで作成されるグラデーションの説明として正しいものはどれか。",
+    "code": "const grad = ctx.createLinearGradient(0, 0, 200, 0);\ngrad.addColorStop(0, 'red');\ngrad.addColorStop(1, 'blue');\nctx.fillStyle = grad;\nctx.fillRect(0, 0, 200, 100);",
+    "choices": [
+      "座標(0,0)から(200,0)にかけて水平方向に赤から青へ変化する線形グラデーション",
+      "座標(0,0)を中心に赤から青へ変化する円形(放射状)グラデーション",
+      "addColorStop()の第1引数は色、第2引数が0.0〜1.0の位置を表す",
+      "createLinearGradient()の引数は塗りつぶす矩形の幅と高さを指定するものである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "createLinearGradient(x0, y0, x1, y1)は、始点(x0, y0)から終点(x1, y1)に向かう直線に沿って色が変化する線形グラデーションオブジェクトを生成する。addColorStop(offset, color)は第1引数がオフセット位置(0.0〜1.0)、第2引数が色であり、選択肢3の説明は引数の順序が逆である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/createLinearGradient"
+  },
+  {
+    "id": "graphics-animation-028",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "createRadialGradient()メソッドの引数として正しい説明はどれか。",
+    "choices": [
+      "createRadialGradient(x0, y0, r0, x1, y1, r1)のように、2つの円(開始円と終了円)の中心座標と半径をそれぞれ指定する",
+      "createRadialGradient(x, y, r)のように、1つの円の中心座標と半径のみを指定する",
+      "createRadialGradient()は色の指定を引数として直接渡し、addColorStop()は使用しない",
+      "createRadialGradient()は正方形の領域を指定するメソッドであり、円形の指定はできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "createRadialGradient(x0, y0, r0, x1, y1, r1)は、開始円(中心x0,y0、半径r0)から終了円(中心x1,y1、半径r1)へ向かって色が変化する放射状グラデーションを作成する。線形グラデーションと同様に、生成したオブジェクトに対してaddColorStop()で色の変化点を追加する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/createRadialGradient"
+  },
+  {
+    "id": "graphics-animation-029",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "createPattern(image, repetition)メソッドのrepetition引数に指定できない値はどれか。",
+    "choices": [
+      "stretch",
+      "repeat",
+      "repeat-x",
+      "no-repeat"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "createPattern()のrepetition引数に指定できる値は'repeat'(既定、縦横に繰り返す)、'repeat-x'(横方向のみ繰り返す)、'repeat-y'(縦方向のみ繰り返す)、'no-repeat'(繰り返さない)の4種類であり、'stretch'という値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/createPattern"
+  },
+  {
+    "id": "graphics-animation-030",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードで取得できるImageDataオブジェクトのdataプロパティに関する説明として正しいものはどれか。",
+    "code": "const imageData = ctx.getImageData(0, 0, 10, 10);\nconsole.log(imageData.data);",
+    "choices": [
+      "各ピクセルのR, G, B, Aの値(各0〜255)が順番に並んだUint8ClampedArrayである",
+      "各ピクセルの色を16進数カラーコードの文字列として格納した配列である",
+      "画像全体を1つの数値としてエンコードしたBase64文字列である",
+      "R, G, Bの3値のみが格納され、アルファ値は別のプロパティに格納される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "getImageData(sx, sy, sw, sh)が返すImageDataオブジェクトのdataプロパティは、各ピクセルの赤・緑・青・アルファ(R,G,B,A)の値を0〜255の範囲で順番に格納したUint8ClampedArrayである。10x10ピクセルであれば長さは10*10*4=400になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/getImageData"
+  },
+  {
+    "id": "graphics-animation-031",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "putImageData()メソッドに関する記述として正しいものはどれか。",
+    "choices": [
+      "putImageData()で描画されるピクセルは、現在設定されているglobalAlphaやglobalCompositeOperation、変換行列の影響を受けずに直接上書きされる",
+      "putImageData()はgetImageData()と同様にfillStyleやstrokeStyleの設定に従って色を調整して描画する",
+      "putImageData()を使う際は事前にbeginPath()を呼ぶ必要がある",
+      "putImageData()は画像の拡大縮小を行いながら描画できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "putImageData()はImageDataのピクセル値をcanvasに直接書き込むメソッドで、globalAlpha・globalCompositeOperation・変換行列(transform)などの描画状態の影響を受けない点がdrawImage()などと異なる。また、drawImageのような拡大縮小機能もなく、常に元のピクセルサイズのまま描画される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/putImageData"
+  },
+  {
+    "id": "graphics-animation-032",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "ImageDataオブジェクトが持つプロパティを2つ選べ。",
+    "choices": [
+      "width",
+      "height",
+      "context",
+      "canvas",
+      "alpha"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "ImageDataオブジェクトは、ピクセルデータの幅を表すwidth、高さを表すheight、そしてピクセルデータ本体を保持するdata(Uint8ClampedArray)というプロパティを持つ。contextやcanvas、alphaといった独立したプロパティは持たない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ImageData"
+  },
+  {
+    "id": "graphics-animation-033",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "WebGLに関する説明として正しいものはどれか。",
+    "choices": [
+      "OpenGL ES 2.0相当の機能をブラウザ上のJavaScriptから利用可能にする、GPUを用いた3D(および2D)描画のためのAPIである",
+      "WebGLはCanvas 2D APIの拡張であり、getContext('2d')から利用を開始する",
+      "WebGLはSVG専用の描画エンジンであり、canvas要素からは利用できない",
+      "WebGLは動画のストリーミング配信専用のAPIである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WebGLはOpenGL ES(組み込み機器向けOpenGL)をベースに標準化された、ブラウザ上でGPUを利用した高性能な2D/3Dグラフィックス描画を実現するAPIである。canvas要素からgetContext('webgl')(またはgetContext('webgl2'))によってコンテキストを取得して利用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebGL_API"
+  },
+  {
+    "id": "graphics-animation-034",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "WebGLにおけるバーテックスシェーダ(頂点シェーダ)とフラグメントシェーダの役割の説明として正しいものはどれか。",
+    "choices": [
+      "頂点シェーダは各頂点の位置(座標変換)を計算し、フラグメントシェーダは各ピクセル(フラグメント)の色を計算する",
+      "頂点シェーダは色の計算を行い、フラグメントシェーダは頂点の座標変換を行う",
+      "頂点シェーダとフラグメントシェーダはどちらもJavaScriptで記述する",
+      "頂点シェーダはテクスチャ画像の読み込みのみを担当する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WebGLのレンダリングパイプラインでは、頂点シェーダが各頂点の座標変換(モデル・ビュー・射影変換など)を担当し、その後ラスタライズを経て、フラグメントシェーダが画面上の各ピクセル(フラグメント)の最終的な色を計算する。これらのシェーダはJavaScriptではなくGLSL(OpenGL Shading Language)で記述される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL"
+  },
+  {
+    "id": "graphics-animation-035",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Canvas 2D APIとWebGLの違いに関する記述として正しいものを2つ選べ。",
+    "choices": [
+      "Canvas 2D APIはfillRectやarcなど高水準な描画命令を提供するのに対し、WebGLは頂点データとシェーダプログラムを用いた低水準な描画モデルを採用している",
+      "WebGLの描画処理はGPUを活用できるため、大量のオブジェクトを扱う描画やパーティクル表現などで高いパフォーマンスを発揮しやすい",
+      "WebGLはCanvas 2D APIの上位互換であり、Canvas 2D APIの構文をそのまま利用できる",
+      "Canvas 2D APIは3D描画専用であり、2D図形の描画にはWebGLが必須である",
+      "WebGLではシェーダを記述する必要がなく、すべての描画がfillStyleのような高水準プロパティで完結する"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "Canvas 2D APIはfillRect()やarc()のような高水準のメソッドで手軽に図形を描けるのに対し、WebGLは頂点バッファやシェーダプログラム(GLSL)を自前で用意する必要がある低水準なAPIである。その分GPUの並列処理性能を直接活用でき、大量のポリゴンやパーティクルを扱う表現に向く。両者はAPIとして互換性がなく、置き換えて利用することはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebGL_API"
+  },
+  {
+    "id": "graphics-animation-036",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "SVGで基本図形を描画するための要素を3つ選べ。",
+    "choices": [
+      "<circle>",
+      "<rect>",
+      "<polygon>",
+      "<canvas>",
+      "<div>"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "SVGには<circle>(円)、<rect>(矩形)、<line>(直線)、<polygon>(多角形)、<polyline>(折れ線)、<ellipse>(楕円)、<path>(任意のパス)といった基本図形要素が用意されている。<canvas>やHTMLの<div>はSVGの図形要素ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/circle"
+  },
+  {
+    "id": "graphics-animation-037",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のSVGコードにおけるviewBox属性の役割として正しい説明はどれか。",
+    "code": "<svg width=\"200\" height=\"100\" viewBox=\"0 0 100 50\">\n  <circle cx=\"50\" cy=\"25\" r=\"20\" fill=\"red\" />\n</svg>",
+    "choices": [
+      "SVG内部の座標系(この例では幅100、高さ50)を定義し、それを実際の表示サイズ(200x100)に合わせて拡大・縮小して表示する",
+      "SVGを表示する際の背景色を指定する属性である",
+      "viewBoxは実際の表示サイズを直接指定するものであり、width/height属性は無視される",
+      "viewBoxはSVGアニメーションの再生範囲(開始・終了フレーム)を指定する属性である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "viewBox=\"min-x min-y width height\"は、SVG内部で図形を配置する際に使用する座標系(ビューポート)を定義する。この例では内部座標系が100x50に設定されており、それがwidth/height属性で指定された実際の表示サイズ200x100に引き伸ばされて表示されるため、円は表示上2倍のサイズで見える。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Attribute/viewBox"
+  },
+  {
+    "id": "graphics-animation-038",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "SVGの図形のスタイルに関する記述として正しいものはどれか。",
+    "code": "circle {\n  fill: orange;\n  stroke: black;\n  stroke-width: 2;\n}",
+    "choices": [
+      "SVGの多くの図形属性(fill, strokeなど)はCSSのプロパティとしても扱うことができ、外部スタイルシートから指定できる",
+      "SVGの図形のスタイルはSVGファイル内のタグ属性でのみ指定可能で、CSSからは一切変更できない",
+      "fill属性は図形の輪郭線の色を指定するものであり、内部の塗りつぶし色はcolor属性で指定する",
+      "SVGにはCSSのセレクタという概念が存在しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGのfillやstroke、stroke-widthなどの提示属性(presentation attributes)は、HTML文書内やインラインSVGにおいてCSSのプロパティとしても機能し、外部スタイルシートやstyle要素、JS(element.style)から変更できる。fillは塗りつぶし色、strokeは輪郭線の色を指定するプロパティであり、説明が逆になっている選択肢は誤り。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Attribute/fill"
+  },
+  {
+    "id": "graphics-animation-039",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "JavaScriptからSVG要素を操作する方法に関する記述として正しいものを2つ選べ。",
+    "code": "<svg id=\"stage\">\n  <circle id=\"ball\" cx=\"50\" cy=\"50\" r=\"10\" fill=\"blue\" />\n</svg>",
+    "choices": [
+      "document.getElementById('ball')でDOM要素として取得し、setAttribute('cx', 80)のように属性を変更できる",
+      "取得した円要素に対してstyle.fillのようにCSSプロパティとして色を変更することもできる",
+      "SVG要素はDOMツリーに属さないため、document.getElementById()では取得できない",
+      "SVG要素はイベントリスナーを登録することができず、addEventListener()は使用できない",
+      "SVGの図形を変更するには必ずページ全体をリロードする必要がある"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "インラインSVGの要素はHTML文書のDOMツリーに組み込まれるため、通常のHTML要素と同様にgetElementById()やquerySelector()で取得し、setAttribute()で属性を変更したり、style.fillのようにCSSプロパティを操作したり、addEventListener()でイベントを扱ったりできる。これによりCSSアニメーションやJavaScriptでのインタラクティブな図形操作が可能になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Tutorial/SVG_and_CSS"
+  },
+  {
+    "id": "graphics-animation-040",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSの記述の説明として正しいものはどれか。",
+    "code": ".box {\n  width: 100px;\n  transition: width 0.5s ease-in-out;\n}\n.box:hover {\n  width: 200px;\n}",
+    "choices": [
+      "要素にマウスホバーした際、widthプロパティが0.5秒かけてease-in-outのタイミング関数に従って100pxから200pxへ滑らかに変化する",
+      "ホバーした瞬間に即座にwidthが200pxに切り替わり、0.5秒後にアニメーションが開始される",
+      "transitionプロパティは:hoverのような擬似クラスと組み合わせて使うことができない",
+      "transition: width 0.5s ease-in-out;という記述は文法エラーであり、プロパティ名を先に書くことはできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "transitionショートハンドはtransition-property, transition-duration, transition-timing-function(, transition-delay)をまとめて指定でき、この例ではホバー時にwidthプロパティが0.5秒かけてease-in-outのイージングで滑らかに変化するトランジションが定義されている。:hoverなどの状態変化と組み合わせて使うのが典型的な用法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_transitions/Using_CSS_transitions"
+  },
+  {
+    "id": "graphics-animation-041",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "transition-timing-functionプロパティに指定できる値として正しいものを3つ選べ。",
+    "choices": [
+      "ease",
+      "linear",
+      "cubic-bezier(0.1, 0.7, 1.0, 0.1)",
+      "keyframes",
+      "forwards"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "transition-timing-functionには、変化の速度カーブを表すキーワード(ease, linear, ease-in, ease-out, ease-in-out, step-startなど)や、cubic-bezier()関数、steps()関数を指定できる。keyframesは@keyframesルールの名前を指すanimation-nameで使う概念であり、forwardsはanimation-fill-modeの値であって、いずれもtransition-timing-functionの値ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transition-timing-function"
+  },
+  {
+    "id": "graphics-animation-042",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CSS Transitionsの発火条件に関する記述として正しいものはどれか。",
+    "choices": [
+      "transitionはクラスの切り替えや:hoverなど、対象プロパティの計算値が変化したタイミングで発火する。ページ読み込み時の初期スタイル適用そのものでは発火しない",
+      "transitionはページが読み込まれた瞬間に必ず1回自動的に再生される",
+      "transitionはdisplay: none から display: block への切り替えを含め、あらゆるCSSプロパティの変化を滑らかにアニメーションできる",
+      "transitionはJavaScriptからのstyle変更には反応せず、CSSの擬似クラスによる変化にのみ反応する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "トランジションは、対象要素の指定プロパティの計算値が何らかの理由(クラスの切り替え、擬似クラスの適用、JavaScriptによるstyle変更など)で変化したときに発火する。ページ初期表示時にスタイルが設定される場合は通常発火しない。また、displayのように離散的な値しか取らずアニメーション不可能なプロパティも存在する点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_transitions/Using_CSS_transitions"
+  },
+  {
+    "id": "graphics-animation-043",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSアニメーションの定義に関する説明として正しいものはどれか。",
+    "code": "@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n.el {\n  animation: fadeIn 2s linear;\n}",
+    "choices": [
+      "@keyframesでアニメーションの各時点でのスタイルを定義し、animationプロパティでその名前・再生時間・タイミング関数を指定して要素に適用する",
+      "@keyframesはtransitionプロパティと組み合わせなければ効果を持たない",
+      "fromとtoはそれぞれ0%と50%を意味するキーワードである",
+      "animationプロパティにはアニメーション名を複数指定することはできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "@keyframesルールでアニメーション名(この例ではfadeIn)とその過程の各時点(0%相当のfrom、100%相当のto、または任意のパーセンテージ)のスタイルを定義し、要素にはanimationショートハンドプロパティでアニメーション名・再生時間(2s)・タイミング関数(linear)などを指定して適用する。animation-nameにはカンマ区切りで複数のアニメーションを指定することも可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@keyframes"
+  },
+  {
+    "id": "graphics-animation-044",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のCSSの記述によるアニメーションの挙動として正しいものはどれか。",
+    "code": ".el {\n  animation-name: bounce;\n  animation-duration: 1s;\n  animation-iteration-count: infinite;\n  animation-direction: alternate;\n}",
+    "choices": [
+      "アニメーションを無限に繰り返し、奇数回目は0%から100%へ、偶数回目は100%から0%へと逆再生を交互に行う",
+      "アニメーションはちょうど1回だけ再生され、その後停止する",
+      "animation-direction: alternate;を指定すると、毎回必ず0%から100%へ同じ向きで再生される",
+      "animation-iteration-count: infinite;は「無限」ではなく「実行しない」ことを意味する特殊な値である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "animation-iteration-count: infinite;はアニメーションを無限に繰り返すことを指定する。animation-direction: alternate;を組み合わせると、1回目は通常方向(0%→100%)、2回目は逆方向(100%→0%)というように、再生ごとに方向を交互に切り替える。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/animation-direction"
+  },
+  {
+    "id": "graphics-animation-045",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "animation-fill-modeプロパティの値に関する記述として正しいものを2つ選べ。",
+    "choices": [
+      "'forwards'を指定すると、アニメーション終了後も最後のキーフレームのスタイルが適用され続ける",
+      "'backwards'を指定すると、アニメーション開始前(delay中)の間、最初のキーフレームのスタイルが適用される",
+      "既定値の'none'は、アニメーション開始前・終了後ともに最初/最後のキーフレームのスタイルを適用し続ける",
+      "'both'を指定すると、アニメーションは常に1回しか再生されなくなる",
+      "animation-fill-modeはアニメーションの再生速度を制御するプロパティである"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "animation-fill-modeの'forwards'はアニメーション終了後に最終キーフレームのスタイルを維持し、'backwards'はanimation-delayで再生が待機している間に最初のキーフレームのスタイルを先取りして適用する。'both'はforwardsとbackwardsの両方を同時に適用するものであり、既定値の'none'はどちらの効果も持たない(アニメーション前後は要素本来のスタイルに戻る)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/animation-fill-mode"
+  },
+  {
+    "id": "graphics-animation-046",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "requestAnimationFrame()に渡すコールバック関数の引数に関する記述として正しいものはどれか。",
+    "code": "function step(timestamp) {\n  console.log(timestamp);\n  requestAnimationFrame(step);\n}\nrequestAnimationFrame(step);",
+    "choices": [
+      "コールバックには、コールバックの実行が開始された時刻を表すDOMHighResTimeStampが引数として渡され、前回の時刻との差分からフレーム間の経過時間を計算できる",
+      "コールバックには引数は渡されず、必要に応じてDate.now()を自分で呼び出す必要がある",
+      "コールバックの引数はキャンセルに使うリクエストIDであり、時刻情報は含まれない",
+      "コールバックの引数は常に前回呼び出しからの経過ミリ秒(差分)そのものである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "requestAnimationFrame()のコールバックには、performance.now()と同じ基準の高精度な時刻(DOMHighResTimeStamp)が引数として渡される。これは呼び出し時点での絶対的な時刻であり、差分そのものではないが、前回の値を保持しておくことでフレーム間の経過時間(デルタタイム)を算出でき、フレームレートに依存しない一定速度のアニメーションを実装する際によく利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestAnimationFrame"
+  },
+  {
+    "id": "graphics-animation-047",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "requestAnimationFrame()を使った継続的なアニメーションループの実装に関する記述として正しいものはどれか。",
+    "code": "let rafId;\nfunction loop() {\n  update();\n  render();\n  rafId = requestAnimationFrame(loop);\n}\nrafId = requestAnimationFrame(loop);\n\n// 停止したいとき\ncancelAnimationFrame(rafId);",
+    "choices": [
+      "requestAnimationFrame()は1回呼び出すと1フレームだけコールバックが実行されるため、アニメーションを継続するにはコールバック内で再度requestAnimationFrame()を呼び出す必要があり、停止するにはcancelAnimationFrame()に予約IDを渡す",
+      "requestAnimationFrame()は一度呼び出せば自動的に繰り返し実行され続け、setIntervalのように明示的な停止処理は不要である",
+      "cancelAnimationFrame()は引数を取らず、呼び出すとページ内のすべてのアニメーションが停止する",
+      "requestAnimationFrame()はコールバック内で再度自分自身を呼び出すと無限ループによるスタックオーバーフローを起こすため避けるべきである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "requestAnimationFrame()は次の再描画タイミングで1回だけコールバックを実行する予約を行うAPIであるため、継続的なアニメーションを実現するにはコールバックの中で再びrequestAnimationFrame()を呼び出す必要がある。各呼び出しはリクエストIDを返すため、そのIDをcancelAnimationFrame()に渡すことでループを停止できる。再帰呼び出しといっても実際にはブラウザの描画サイクルに合わせて非同期に呼び出されるため、スタックオーバーフローは発生しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/cancelAnimationFrame"
+  },
+  {
+    "id": "graphics-animation-048",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "JavaScriptによるアニメーション実装においてsetInterval()よりもrequestAnimationFrame()を用いることが推奨される理由を2つ選べ。",
+    "choices": [
+      "requestAnimationFrame()はブラウザの再描画タイミングに同期して呼び出されるため、無駄な再描画やティアリングが起きにくい",
+      "非表示のタブやバックグラウンドのタブでは自動的に呼び出し頻度が抑制され、CPUやバッテリーの消費を節約できる",
+      "requestAnimationFrame()は常にsetInterval()より高い頻度(1秒間に多い回数)で呼び出されることが保証されている",
+      "requestAnimationFrame()を使えばCanvasの再描画処理そのものが自動化され、fillRectなどの呼び出しが不要になる",
+      "requestAnimationFrame()はIE8以前を含むすべてのブラウザで昔からサポートされている"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "requestAnimationFrame()はディスプレイのリフレッシュタイミングに合わせてコールバックを呼び出すため、setIntervalで固定間隔に描画しようとした場合に起きがちなティアリングや無駄な再描画を避けられる。また、タブが非表示になっている間はブラウザが自動的に呼び出し頻度を落とす(あるいは停止する)ため、リソースの節約にもなる。呼び出し頻度がsetIntervalより常に高いという保証はなく、描画処理自体を肩代わりしてくれるものでもない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/requestAnimationFrame"
+  },
+  {
+    "id": "graphics-animation-049",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "頻繁に更新される要素と、背景など変化の少ない要素が混在するCanvasアプリケーションのパフォーマンスを改善する手法として最も適切なものはどれか。",
+    "choices": [
+      "変化の少ない背景と、頻繁に再描画するオブジェクトとで別々のcanvas要素を重ねて配置し、更新が必要な部分のcanvasだけを再描画するようにする",
+      "すべての描画を1つのcanvasにまとめ、毎フレームcanvas全体のwidth属性を再設定してリセットする",
+      "描画のたびにgetContext('2d')を呼び直し、新しいコンテキストオブジェクトを取得する",
+      "globalCompositeOperationを常に'copy'に設定して描画速度を強制的に一定にする"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "背景のように毎フレーム再描画する必要のない内容と、頻繁に動くオブジェクトを1枚のcanvasにまとめて毎回全体を再描画すると無駄が多い。複数のcanvas要素をCSSで重ねて配置し、レイヤーごとに必要なものだけを再描画することで無駄な描画コストを削減できる。canvasのwidth属性を毎フレーム変更すると、描画内容だけでなく状態(スタイルや変換)までリセットされてしまい非効率かつバグの原因になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas"
+  },
+  {
+    "id": "graphics-animation-050",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Canvasを使ったアニメーションのパフォーマンスを最適化する手法として適切なものを3つ選べ。",
+    "choices": [
+      "画面外(視界に入っていない)のオブジェクトについては描画処理をスキップする",
+      "毎フレームcanvas要素のwidth/height属性を書き換えて強制的にクリアする",
+      "save()/restore()の呼び出し回数を必要最小限に抑え、頻繁な状態の退避・復元を避ける",
+      "シャドウ(shadowBlurなど)や複雑なグラデーションを毎フレーム多用しても描画コストは変わらない",
+      "変化しない図形は事前にオフスクリーンのcanvasに描画しておき、必要なときにdrawImage()で貼り付ける"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      4
+    ],
+    "explanation": "パフォーマンス最適化の代表的な手法として、画面外のオブジェクトの描画をスキップするカリング、save()/restore()のような状態操作の呼び出し回数を減らすこと、そして変化しない複雑な図形をあらかじめオフスクリーンcanvasに描いておき、毎フレームはdrawImage()で軽量にコピーするという手法が挙げられる。canvasのサイズ属性を毎フレーム書き換えるとコンテキストの状態がリセットされコストも高い。shadowBlurや複雑なグラデーションは一般に描画コストが高く、多用すればパフォーマンスは低下する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas"
+  },
+  {
+    "id": "graphics-animation-051",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSのtransformプロパティに関する記述として正しいものはどれか。",
+    "code": ".box {\n  transform: translate(50px, 20px) rotate(45deg) scale(1.5);\n}",
+    "choices": [
+      "transform関数はスペース区切りで複数指定でき、記述された順序で左から右へ順次合成される",
+      "transform関数は記述順に関係なく、常にscale→rotate→translateの順で適用される",
+      "複数のtransform関数を同時に指定することはできず、1プロパティにつき1つの関数のみ指定できる",
+      "transform: translate(50px, 20px) rotate(45deg) scale(1.5);という記述は文法エラーであり、transformプロパティでは使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "transformプロパティには複数の変換関数をスペース区切りで指定でき、記述された順序で左から順次合成される。この例ではtranslate→rotate→scaleの順に適用される合成変換が生成される。関数の適用順序を変えると見た目の結果も変わる点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform"
+  },
+  {
+    "id": "graphics-animation-052",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSSのtransform-originプロパティを何も指定しなかった場合の既定値はどれか。",
+    "choices": [
+      "要素の中央(50% 50%)",
+      "要素の左上(0 0)",
+      "要素の右下(100% 100%)",
+      "ブラウザのビューポートの中心"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "transform-originの既定値は要素のボックスの中心を表す「50% 50%」(center center)である。例えばrotate()を適用すると、指定がなければ要素の中心を軸に回転する。原点を変えたい場合はピクセル値やパーセンテージ、キーワードで明示的に指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform-origin"
+  },
+  {
+    "id": "graphics-animation-053",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "CSSのfilterプロパティに指定できる関数として正しいものを3つ選べ。",
+    "code": "img {\n  filter: blur(5px) grayscale(50%) contrast(150%);\n}",
+    "choices": [
+      "blur(5px)",
+      "grayscale(50%)",
+      "contrast(150%)",
+      "translateX(20px)",
+      "font-weight(700)"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "filterプロパティにはblur()(ぼかし)、grayscale()(グレースケール化)、contrast()(コントラスト調整)のほか、brightness()、saturate()、hue-rotate()、drop-shadow()などの関数をスペース区切りで複数指定できる。translateX()はtransformプロパティで使う変形関数であり、font-weight()という関数はCSSに存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/filter"
+  },
+  {
+    "id": "graphics-animation-054",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSの記述の説明として正しいものはどれか。",
+    "code": ".box {\n  clip-path: circle(50% at center);\n}",
+    "choices": [
+      "要素の表示領域を指定した図形(この例では中心を基準とした円)の内側だけに切り抜く",
+      "clip-pathはbackground-imageにのみ適用でき、要素本体には効果がない",
+      "clip-pathは要素の枠線(border)の色を変更するプロパティである",
+      "circle()は必ずpx単位で半径を指定しなければならず、%は使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "clip-pathは指定した図形(circle(), ellipse(), polygon(), inset()など)の内側だけを表示し、それ以外の部分を切り抜いて非表示にするプロパティである。circle(50% at center)は要素の中心を中心とした半径50%の円で切り抜く。半径にはパーセンテージ指定も可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/clip-path"
+  },
+  {
+    "id": "graphics-animation-055",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSSのwill-changeプロパティの目的として正しいものはどれか。",
+    "code": ".box {\n  will-change: transform, opacity;\n}",
+    "choices": [
+      "ブラウザに対して、指定したプロパティが今後変化することを事前に伝え、コンポジットレイヤーの生成などの最適化を促す",
+      "will-changeを指定したプロパティは、それ以降JavaScriptから変更できなくなる",
+      "will-changeはアニメーションの再生速度を制御するプロパティである",
+      "will-changeを指定すると、対象プロパティのtransitionやanimationの効果が無効化される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "will-changeは、ブラウザに対して今後どのプロパティが変化する予定かを事前に知らせるヒントであり、ブラウザは事前に最適化(独立したコンポジットレイヤーの生成など)を行うことでアニメーションを滑らかにできる可能性がある。ただし多用するとメモリ消費が増えるため、必要な箇所に限定して使うことが推奨される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/will-change"
+  },
+  {
+    "id": "graphics-animation-056",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のSVGコードの<animate>要素に関する説明として正しいものはどれか。",
+    "code": "<svg>\n  <circle cx=\"50\" cy=\"50\" r=\"20\" fill=\"red\">\n    <animate attributeName=\"r\" from=\"20\" to=\"40\" dur=\"2s\" repeatCount=\"indefinite\" />\n  </circle>\n</svg>",
+    "choices": [
+      "<animate>要素は、attributeNameで指定した属性の値をfromからtoへdur時間かけて変化させるSVG組み込みのアニメーション要素であり、repeatCount=\"indefinite\"で無限に繰り返す",
+      "<animate>要素はSVGの外部でのみ使用でき、SVG内部に子要素として記述することはできない",
+      "attributeNameには変換系の属性のみ指定でき、rのような図形属性は指定できない",
+      "<animate>要素はCSSアニメーションを完全に置き換えるものであり、CSSと併用することはできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGには<animate>というアニメーション専用の要素があり、対象図形の子要素として配置することで、attributeNameで指定した属性値をfrom/toやvaluesで指定した範囲・時間(dur)で変化させられる。repeatCount=\"indefinite\"を指定すると無限ループになる。CSSアニメーションとは別に、SVG自体が持つ宣言的なアニメーション機構である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/animate"
+  },
+  {
+    "id": "graphics-animation-057",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のSVGコードにおける<symbol>と<use>要素の関係の説明として正しいものはどれか。",
+    "code": "<svg>\n  <symbol id=\"star\" viewBox=\"0 0 20 20\">\n    <polygon points=\"10,1 4,19 19,7 1,7 16,19\" />\n  </symbol>\n  <use href=\"#star\" x=\"0\" y=\"0\" width=\"20\" height=\"20\" />\n  <use href=\"#star\" x=\"30\" y=\"0\" width=\"20\" height=\"20\" />\n</svg>",
+    "choices": [
+      "<symbol>で図形を定義しておき、<use>要素で参照することで、同じ図形を複数箇所に再利用して描画できる",
+      "<symbol>要素で定義した図形はそのままでは画面に表示されないが、<use>で参照できるのは1つの<symbol>につき1回までである",
+      "<use>要素はSVGの図形を複製できず、テキスト要素のみを参照できる",
+      "<use>要素にx, y, width, heightなどの属性は指定できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<symbol>要素は単独では描画されないテンプレートとして図形を定義でき、<use>要素のhref(またはxlink:href)で参照することで、位置やサイズを変えながら同じ図形を何度でも再利用して描画できる。これによりアイコンなどのスプライトを効率よく管理できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/use"
+  },
+  {
+    "id": "graphics-animation-058",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のSVGコードのフィルタ機構に関する説明として正しいものはどれか。",
+    "code": "<svg>\n  <filter id=\"blurFilter\">\n    <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"5\" />\n  </filter>\n  <circle cx=\"50\" cy=\"50\" r=\"30\" fill=\"blue\" filter=\"url(#blurFilter)\" />\n</svg>",
+    "choices": [
+      "<filter>要素内に<feGaussianBlur>のようなフィルタプリミティブを定義し、図形のfilter属性でurl(#id)として参照することでぼかし効果を適用できる",
+      "filter属性はSVG図形には効果を持たず、HTML要素にのみ適用可能である",
+      "stdDeviation属性はぼかしの色を指定するものである",
+      "<feGaussianBlur>はSVGのテキスト要素にのみ適用でき、図形要素には使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGでは<filter>要素の中に<feGaussianBlur>などのフィルタプリミティブを組み合わせて定義し、図形要素のfilter属性でurl(#id)の形式で参照することでぼかしなどの視覚効果を適用できる。stdDeviation属性はぼかしの強さ(標準偏差)を指定するものであり、色とは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/feGaussianBlur"
+  },
+  {
+    "id": "graphics-animation-059",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードにおけるPath2Dオブジェクトの説明として正しいものはどれか。",
+    "code": "const path = new Path2D();\npath.rect(10, 10, 100, 50);\npath.moveTo(200, 10);\npath.arc(200, 60, 50, 0, Math.PI * 2);\nctx.fill(path);",
+    "choices": [
+      "Path2Dオブジェクトはパスの情報を保持するオブジェクトで、beginPath()を呼ばずに複数の図形をまとめて構築し、fill()やstroke()に渡して描画できる",
+      "Path2Dはcanvasの状態(fillStyleなど)も保持するため、色の指定は不要になる",
+      "Path2Dオブジェクトは一度描画すると再利用できず、毎回new Path2D()し直す必要がある",
+      "Path2D()のコンストラクタには引数を渡すことができず、既存のパスを複製することはできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Path2Dはパスの構築と保持を独立したオブジェクトとして扱えるAPIで、コンテキストのbeginPath()の状態に依存せずパスを構築できる。fill(path)やstroke(path)、isPointInPath(path, x, y)のように様々なメソッドに渡して再利用できる。色などのスタイルは保持せず、fillStyleなどは従来通りコンテキスト側で設定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Path2D"
+  },
+  {
+    "id": "graphics-animation-060",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のコードの説明として正しいものはどれか。",
+    "code": "const elem = document.querySelector('.box');\nelem.animate(\n  [\n    { transform: 'translateX(0px)' },\n    { transform: 'translateX(300px)' }\n  ],\n  {\n    duration: 1000,\n    iterations: Infinity\n  }\n);",
+    "choices": [
+      "Web Animations APIのanimate()メソッドは、キーフレームの配列とオプションを指定してJavaScriptから直接アニメーションを実行でき、@keyframesをCSSに記述する必要がない",
+      "animate()メソッドはCSSのtransitionプロパティを内部的に書き換えるだけの糖衣構文であり、実行結果はtransitionと完全に同じである",
+      "animate()の第2引数には数値(duration)しか指定できず、iterationsのようなオプションは存在しない",
+      "animate()はSVG要素には使用できず、HTML要素専用のメソッドである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Element.animate()はWeb Animations APIのメソッドで、キーフレームの配列とduration・iterations・easingなどのオプションを渡すことで、CSSに@keyframesを書かずにJavaScriptから直接アニメーションを生成・実行できる。CSS Animationsと同様のアニメーションエンジンを利用するがtransitionの糖衣構文ではなく、SVG要素に対しても利用可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/animate"
+  },
+  {
+    "id": "graphics-animation-061",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSのperspectiveプロパティに関する説明として正しいものはどれか。",
+    "code": ".stage {\n  perspective: 800px;\n}\n.card {\n  transform: rotateY(45deg);\n}",
+    "choices": [
+      "perspectiveプロパティは要素に3D変換を適用する際の視点からの距離を指定し、値が小さいほど遠近感が強く(誇張されて)表示される",
+      "perspectiveプロパティはrotateY()のような3D変換とは無関係で、単に要素を拡大縮小するだけのプロパティである",
+      "perspectiveは常にrotateX/rotateYの回転角度を自動的に計算するため、rotateY(45deg)のような値の指定は不要になる",
+      "perspectiveプロパティは2D変換専用であり、3D変換には使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "perspectiveプロパティは、3D変換(rotateX, rotateY, translateZ等)を適用した子要素を見る際の視点(カメラ)から要素までの距離を指定する。値が小さいほど遠近感が強調され奥行きが誇張されて見え、大きい値では遠近効果が弱く平坦に近づく。3D変換と組み合わせて使用するプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/perspective"
+  },
+  {
+    "id": "graphics-animation-062",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSのanimation-play-stateプロパティに関する記述として正しいものはどれか。",
+    "code": ".el {\n  animation: spin 2s linear infinite;\n  animation-play-state: paused;\n}",
+    "choices": [
+      "animation-play-stateに'paused'を指定すると、アニメーションはその時点の状態で一時停止し、'running'に変更すると再開する",
+      "animation-play-stateは要素の表示・非表示を切り替えるプロパティであり、'paused'は要素を非表示にする",
+      "animation-play-stateは一度'paused'にすると、その後JavaScriptから変更することはできない",
+      "animation-play-stateはCSS Transitionsにのみ存在し、CSS Animationsには存在しないプロパティである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "animation-play-stateプロパティは、CSSアニメーションの再生状態を制御するもので、'running'(既定、再生中)と'paused'(一時停止)の2つの値を持つ。'paused'にするとその時点のキーフレーム状態で見た目が固定され、後から'running'に戻すと途中から再生を再開できる。JavaScriptからstyle.animationPlayStateを操作して動的に切り替えることも可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/animation-play-state"
+  },
+  {
+    "id": "graphics-animation-063",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "OffscreenCanvasに関する説明として正しいものはどれか。",
+    "choices": [
+      "DOMに接続されていない状態でも描画コンテキストを持つことができるcanvasで、メインスレッドだけでなくWeb Worker上でも描画処理を行える",
+      "OffscreenCanvasは画面外(ビューポート外)に配置されたcanvas要素のことを指す用語である",
+      "OffscreenCanvasはCanvas 2D APIの旧名称であり、現在は使用が非推奨となっている",
+      "OffscreenCanvasを使うには必ずSVGとの併用が必要である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "OffscreenCanvasは、DOMツリーに配置されていなくても描画コンテキストを取得して描画処理を行えるcanvasのオブジェクトである。canvas要素からtransferControlToOffscreen()で生成したり、直接new OffscreenCanvas()で生成してWeb Worker上に処理を移したりすることで、メインスレッドの描画負荷を軽減しつつ画面がフリーズしにくいアニメーションを実装できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/OffscreenCanvas"
+  },
+  {
+    "id": "graphics-animation-064",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSのtranslateZ()に関する説明として正しいものはどれか。",
+    "code": ".card {\n  transform: translateZ(100px);\n}",
+    "choices": [
+      "translateZ()はz軸(奥行き)方向への移動を指定する3D変換関数で、効果を視覚的に確認するには祖先要素などにperspectiveの指定が必要になる",
+      "translateZ()は2次元のtranslate()と全く同じ効果であり、z軸という概念はCSSには存在しない",
+      "translateZ()の引数にはpxなどの長さの単位を使うことはできず、%のみ指定可能である",
+      "translateZ()を使うと要素の不透明度が自動的に変化する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "translateZ()はCSSの3D変換関数の一つで、要素をz軸(奥行き)方向に移動させる。perspectiveが設定されていない(遠近感がない)状態ではz軸方向の移動による見た目の変化が分かりにくいため、祖先要素にperspectiveプロパティを指定して使うのが一般的である。単位は%ではなくpxなどの長さの単位で指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform-function/translateZ"
+  },
+  {
+    "id": "graphics-animation-065",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CSSのgapプロパティとアニメーションに関する記述として正しいものを2つ選べ。",
+    "code": ".container {\n  display: flex;\n  gap: 10px;\n  transition: gap 0.3s ease;\n}\n.container:hover {\n  gap: 30px;\n}",
+    "choices": [
+      "gapプロパティは数値(長さ)として計算されるため、他の長さプロパティ同様にtransitionやanimationの対象にできる",
+      "FlexboxだけでなくCSS Gridのgapプロパティも同様にtransition/animationの対象にできる",
+      "gapプロパティはレイアウトモードに関わらず常にアニメーション不可能なプロパティである",
+      "gapの値は整数のインデックス番号でしか指定できず、pxなどの単位は使用できない",
+      "gapの変化をtransitionさせるには、必ずtransform関数に置き換えて指定する必要がある"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "gapプロパティ(row-gap/column-gapを含む)は数値として補間可能な値であるため、FlexboxでもCSS Gridでも他の長さプロパティ同様にtransitionやanimationの対象にできる。この例ではホバー時にアイテム間の間隔が0.3秒かけて滑らかに変化する。数値ではなくインデックスで指定するという説明や、transform関数への置き換えが必要という説明はいずれも誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/gap"
+  },
+  {
+    "id": "graphics-animation-066",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のSVGコードの<animateTransform>要素に関する説明として正しいものはどれか。",
+    "code": "<svg>\n  <rect x=\"10\" y=\"10\" width=\"30\" height=\"30\" fill=\"green\">\n    <animateTransform attributeName=\"transform\" type=\"rotate\" from=\"0 25 25\" to=\"360 25 25\" dur=\"2s\" repeatCount=\"indefinite\" />\n  </rect>\n</svg>",
+    "choices": [
+      "<animateTransform>はtransform属性のような変換値をアニメーションさせるための要素で、type属性で'rotate'や'scale'、'translate'などの変換の種類を指定する",
+      "<animateTransform>は<animate>と完全に同じ機能であり、typeという属性は存在しない",
+      "<animateTransform>のfrom/to属性には色の値のみ指定できる",
+      "<animateTransform>はCSSのtransformプロパティに対しては使用できるが、SVGのtransform属性には使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<animateTransform>は、通常の<animate>では直接アニメーションできないtransform属性(SVGの変換リスト)を対象にするための専用要素で、type属性で'translate'、'scale'、'rotate'、'skewX'、'skewY'のいずれかを指定する。この例ではtype=\"rotate\"により、点(25,25)を中心に0度から360度まで回転するアニメーションになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/animateTransform"
+  },
+  {
+    "id": "graphics-animation-067",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のコードのPath2Dオブジェクトに関する記述として正しいものを2つ選べ。",
+    "code": "const square = new Path2D();\nsquare.rect(0, 0, 50, 50);\nconst combined = new Path2D();\ncombined.addPath(square);\ncombined.moveTo(100, 0);\ncombined.arc(100, 25, 25, 0, Math.PI * 2);\nctx.fill(combined);",
+    "choices": [
+      "addPath()を使うと、既存のPath2Dオブジェクトのパスを別のPath2Dオブジェクトに追加でき、第2引数にDOMMatrixなどの変換行列を渡して追加時に変換を適用することもできる",
+      "Path2Dオブジェクトはfill()やstroke()、isPointInPath()など複数のメソッドに渡して再利用できる",
+      "Path2Dオブジェクトは一度描画に使うと内部状態が消費され、以後は再利用できない",
+      "addPath()はパスの形状だけでなく、fillStyleなどの色情報もまとめてコピーする",
+      "1つのPath2Dオブジェクトには1種類の図形(矩形なら矩形のみ)しか追加できない"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "Path2D.addPath(path[, transform])は、指定した別のPath2Dオブジェクトのパスを現在のパスに追加するメソッドで、第2引数にDOMMatrixなどの変換行列を渡すことで追加する際に平行移動・回転・拡大縮小を適用できる。Path2Dはパスの形状情報のみを保持し、色などのスタイル情報は持たない。また、fill()やstroke()、isPointInPath()など複数のメソッドに何度でも渡して再利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Path2D/addPath"
+  },
+  {
+    "id": "graphics-animation-068",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのisPointInPath()の使い方に関する説明として正しいものはどれか。",
+    "code": "const path = new Path2D();\npath.rect(50, 50, 100, 100);\ncanvas.addEventListener('click', (e) => {\n  const rect = canvas.getBoundingClientRect();\n  const x = e.clientX - rect.left;\n  const y = e.clientY - rect.top;\n  if (ctx.isPointInPath(path, x, y)) {\n    console.log('clicked inside');\n  }\n});",
+    "choices": [
+      "isPointInPath(path, x, y)は、指定した座標(x, y)がPath2Dで表されるパスの内部に含まれるかどうかを真偽値で判定でき、クリック判定などのヒットテストに利用できる",
+      "isPointInPath()は必ずcanvasの中心を基準とした座標を渡す必要があり、canvasの左上を原点とした座標は使用できない",
+      "isPointInPath()はパスの塗りつぶし部分ではなく、輪郭線(ストローク)上の点であるかどうかのみを判定する",
+      "isPointInPath()はPath2Dオブジェクトを引数に取ることができず、常に現在構築中のパスに対してのみ判定できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "isPointInPath(path, x, y[, fillRule])は指定した点がパス(塗りつぶし領域)の内部にあるかどうかを判定するメソッドで、Path2Dオブジェクトを渡す形式と、現在コンテキストに構築されているパスを対象にする形式(引数省略)の両方が使える。canvas上のローカル座標(左上原点)で判定するため、イベント座標をcanvasの位置基準に変換してから渡す必要がある。輪郭線上の判定にはisPointInStroke()を使う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/isPointInPath"
+  },
+  {
+    "id": "graphics-animation-069",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのoffsetプロパティに関する説明として正しいものはどれか。",
+    "code": "elem.animate(\n  [\n    { opacity: 0, offset: 0 },\n    { opacity: 1, offset: 0.3 },\n    { opacity: 0.5, offset: 1 }\n  ],\n  2000\n);",
+    "choices": [
+      "各キーフレームオブジェクトのoffsetプロパティは、そのキーフレームがアニメーション全体の何割の時点で適用されるかを0〜1の範囲で指定する",
+      "offsetは常に均等に自動計算されるため、明示的に指定した値は無視される",
+      "animate()の第2引数に数値を直接渡すことはできず、必ずオプションオブジェクト形式でdurationを指定する必要がある",
+      "offsetプロパティは整数のミリ秒でキーフレームのタイミングを指定するものである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Web Animations APIのキーフレームオブジェクトにはoffsetプロパティを指定でき、0(開始)から1(終了)の範囲でそのキーフレームが適用されるタイミングの割合を明示的に制御できる。省略した場合は均等な間隔で自動配置される。animate()の第2引数には、オプションオブジェクトの代わりに再生時間を表す数値(ミリ秒)を直接渡すことも可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/animate"
+  },
+  {
+    "id": "graphics-animation-070",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のCSSの記述の効果として正しいものはどれか。",
+    "code": ".box {\n  clip-path: circle(0% at 50% 50%);\n  transition: clip-path 0.5s ease-out;\n}\n.box.open {\n  clip-path: circle(75% at 50% 50%);\n}",
+    "choices": [
+      "clip-path: circle()の半径や中心位置のような値は補間可能なため、この例では円が0%から75%へ滑らかに広がるような開閉アニメーションを実現できる",
+      "clip-pathプロパティはtransitionの対象プロパティとして指定することができない",
+      "clip-pathのcircle()に'at'キーワードで中心位置を指定することはできず、常に要素の中心が基準になる",
+      "この例のtransitionは、circle()の形状がinset()やpolygon()に変化する場合を含め、あらゆる図形間の変化を保証する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "clip-pathの値であるcircle()などの図形関数は、同じ種類の図形同士であれば半径や中心位置などのパラメータを補間してアニメーションさせることができる。この例ではcircle(0%...)からcircle(75%...)への変化がtransitionにより滑らかに描かれ、円形に広がる/閉じる演出になる。ただしcircle()とpolygon()のように異なる種類の図形関数間の補間は保証されない場合がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/clip-path"
+  },
+  {
+    "id": "graphics-animation-071",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSのmatrix()関数に関する記述として正しいものはどれか。",
+    "code": ".box {\n  transform: matrix(1, 0, 0, 1, 100, 50);\n}",
+    "choices": [
+      "matrix(a, b, c, d, e, f)はCSSの2次元アフィン変換を1つの行列として指定するもので、この例はscaleやrotateを行わずx方向に100px、y方向に50px平行移動するのと等価である",
+      "matrix()の6つの引数は角度(deg)を6段階に分けて指定するものである",
+      "matrix()はCanvasのtransform()やsetTransform()とは全く異なる意味を持つ引数の並びである",
+      "matrix(a, b, c, d, e, f)のeとfはそれぞれ横方向・縦方向の拡大率を表す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CSSのmatrix(a, b, c, d, e, f)はCanvasのtransform()/setTransform()と同様の2次元アフィン変換行列を表し、aとdはスケール、bとcは回転・スキュー成分、eとfは平行移動量を表す。この例ではa=d=1、b=c=0のためスケールや回転はなく、e=100, f=50によりx方向100px、y方向50pxの平行移動のみが行われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform-function/matrix"
+  },
+  {
+    "id": "graphics-animation-072",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CSSのtransform: matrix3d(...)に関する記述として正しいものはどれか。",
+    "choices": [
+      "matrix3d()は4x4の変換行列を16個の数値で指定するもので、3D空間での回転・拡大縮小・平行移動などを1つの関数にまとめて表現できる",
+      "matrix3d()は必ず9個の引数を取り、2次元のmatrix()を単純に3倍に拡張したものである",
+      "matrix3d()はSVGの<animateTransform>専用の値であり、CSSのtransformプロパティには指定できない",
+      "matrix3d()を使うとperspectiveプロパティの指定は完全に不要になり、常に遠近感が自動的に適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "matrix3d()は3D変換を表す4x4の同次座標変換行列を16個の数値として指定する関数で、rotateX/rotateY/rotateZ/translate3d/scale3dなど複数の3D変換を1つの行列にまとめて表現できる。CSSのtransformプロパティに直接指定でき、SVG専用ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform-function/matrix3d"
+  },
+  {
+    "id": "graphics-animation-073",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSのrotateY()とperspectiveの組み合わせに関する記述として正しいものはどれか。",
+    "code": ".stage {\n  perspective: 600px;\n}\n.card {\n  transform: rotateY(60deg);\n  transition: transform 0.5s;\n}",
+    "choices": [
+      "rotateY()はy軸を回転軸として要素を回転させ、perspectiveと組み合わせることで奥行きのある3D的な回転として表示される",
+      "rotateY()はz軸を中心とした2次元的な回転であり、rotate()と全く同じ結果になる",
+      "rotateY(60deg)はy軸方向に60pxだけ要素を平行移動させる効果を持つ",
+      "perspectiveを指定しない場合でも、rotateY()による見た目の変化はperspectiveを指定した場合と全く同じになる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "rotateY()は垂直方向の軸(y軸)を中心に要素を回転させる3D変換関数で、祖先要素または自身にperspectiveが指定されていると、回転に伴う奥行き方向の圧縮や拡大が表現され、立体的にめくれるような見た目になる。perspectiveがない場合は消失点による遠近感が生じず、平坦に押しつぶされたように見える。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform-function/rotateY"
+  },
+  {
+    "id": "graphics-animation-074",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSのtransform-styleプロパティに関する記述として正しいものはどれか。",
+    "code": ".scene {\n  perspective: 800px;\n}\n.cube {\n  transform-style: preserve-3d;\n  transform: rotateY(45deg);\n}\n.cube .face {\n  transform: translateZ(50px);\n}",
+    "choices": [
+      "transform-style: preserve-3d;を親要素に指定すると、その子要素が持つ3D変換が平面化されずに3次元空間内に配置され続け、立方体のような3D構造を表現できる",
+      "transform-styleの既定値はpreserve-3dであり、明示的に指定しなくても子要素は常に3D空間に配置される",
+      "transform-style: preserve-3d;はアニメーションの再生速度を変更するプロパティである",
+      "transform-style: preserve-3d;を指定すると、子要素のtranslateZ()の効果は無視され、常に平面上に描画される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "transform-styleの既定値は'flat'であり、子要素の3D変換は親の平面に投影されて平坦化される。'preserve-3d'を指定すると、子要素は親と同じ3D空間を共有し、translateZ()などによる奥行きが維持されるため、立方体やカードの表裏のような立体構造を表現できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform-style"
+  },
+  {
+    "id": "graphics-animation-075",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSのbackface-visibilityプロパティに関する記述として正しいものはどれか。",
+    "code": ".card-back {\n  transform: rotateY(180deg);\n  backface-visibility: hidden;\n}",
+    "choices": [
+      "backface-visibility: hidden;を指定すると、3D回転によって要素の背面が視点側を向いたときにその要素が非表示になる",
+      "backface-visibility: hidden;は要素の背景色を常に透明にするプロパティである",
+      "backface-visibilityは2D変換(transform: rotate())にのみ適用され、3D変換には影響しない",
+      "backface-visibilityの既定値は'hidden'であり、明示的にvisibleを指定しない限り背面は常に見えない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "backface-visibilityプロパティは、3D変換によって要素が回転し、その背面(裏側)がビューアの方を向いた際に、その面を表示するか('visible'、既定値)、非表示にするか('hidden')を制御する。カードめくりのような表裏を切り替える演出で、裏返った際に鏡像の文字が見えてしまうのを防ぐために使われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/backface-visibility"
+  },
+  {
+    "id": "graphics-animation-076",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSのperspective-originプロパティに関する記述として正しいものはどれか。",
+    "code": ".stage {\n  perspective: 600px;\n  perspective-origin: 20% 20%;\n}",
+    "choices": [
+      "perspective-originは、3D変換を適用した子要素を見る際の消失点(視点の位置)を親要素内のどこに置くかを指定するプロパティである",
+      "perspective-originはperspectiveプロパティと無関係に単独で3D効果を生成できるプロパティである",
+      "perspective-originは子要素の回転角度そのものを直接指定するプロパティである",
+      "perspective-originの既定値は要素の左上(0% 0%)である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "perspective-originは、perspectiveによって生じる3D空間における消失点(視点)の位置を、親要素の座標系内のどこに置くかを指定する。既定値は要素の中心(50% 50%)であり、この例のように20% 20%のような値を指定すると消失点が左上寄りに移動し、3D変換された子要素の見え方(歪み方)が変化する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/perspective-origin"
+  },
+  {
+    "id": "graphics-animation-077",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Web Animations APIのAnimationオブジェクトに関する記述として正しいものを3つ選べ。",
+    "code": "const animation = elem.animate(\n  [{ transform: 'scale(1)' }, { transform: 'scale(1.5)' }],\n  { duration: 1000, iterations: Infinity }\n);",
+    "choices": [
+      "play()は一時停止中または未再生のアニメーションを再生・再開する",
+      "pause()は現在の再生位置でアニメーションを一時停止する",
+      "cancel()を呼び出すとアニメーションは一時停止するだけで、適用されていたスタイルの効果はそのまま要素に残り続ける",
+      "finish()を呼び出すと、アニメーションは必ず先頭(開始状態)に即座にリセットされる",
+      "playStateプロパティを参照することで、現在の再生状態(running/paused/finishedなど)を取得できる"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      4
+    ],
+    "explanation": "element.animate()の戻り値であるAnimationオブジェクトのplay()は一時停止中や未再生のアニメーションを再生(再開)し、pause()は現在の再生位置で一時停止する。playStateプロパティでidle/running/paused/finishedなどの状態を取得できる。一方cancel()は再生を停止し適用されていたスタイル効果を除去して元の状態に戻す点でpause()と異なり、finish()は先頭ではなく再生方向に応じた終端へ即座にジャンプさせる点で選択肢の記述は誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Animation"
+  },
+  {
+    "id": "graphics-animation-078",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのKeyframeEffectに関する記述として正しいものはどれか。",
+    "code": "const effect = new KeyframeEffect(\n  elem,\n  [{ opacity: 0 }, { opacity: 1 }],\n  { duration: 500, fill: 'forwards' }\n);\nconst animation = new Animation(effect, document.timeline);\nanimation.play();",
+    "choices": [
+      "KeyframeEffectはターゲット要素・キーフレーム・タイミングオプションをまとめたオブジェクトで、Animationコンストラクタに渡すことでelement.animate()を使わずに明示的にアニメーションを構築できる",
+      "KeyframeEffectはCSSの@keyframesルールをJavaScriptの文字列として表現したものにすぎず、再生には別途element.animate()の呼び出しが必須である",
+      "new Animation(effect, document.timeline)のdocument.timelineは省略不可のCSSセレクタ文字列である",
+      "KeyframeEffectはSVGの<animate>要素をラップするためだけに存在するAPIである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "KeyframeEffectはWeb Animations APIの構成要素の一つで、対象要素・キーフレーム・タイミングプロパティをまとめて保持するオブジェクトである。element.animate()は内部的にKeyframeEffectとAnimationを生成する糖衣構文であり、この例のようにKeyframeEffectとAnimationを個別に生成してplay()を呼ぶことで、より低レベルにアニメーションを構築・再利用できる。document.timelineは既定のドキュメントタイムラインを表すオブジェクトである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/KeyframeEffect"
+  },
+  {
+    "id": "graphics-animation-079",
+    "category": "graphics-animation",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Web Animations APIのキーフレームにおけるcompositeプロパティに指定できる値として正しいものを2つ選べ。",
+    "code": "elem.animate(\n  [{ transform: 'translateX(100px)', composite: 'add' }],\n  { duration: 1000, iterations: 3 }\n);",
+    "choices": [
+      "'add'(基準値やアニメーション前の値に加算する)",
+      "'accumulate'(繰り返し再生のたびに値を積算する)",
+      "'multiply'(値を乗算する)",
+      "'source-over'(Canvasのグローバル合成モード)",
+      "'ease'(イージング関数を表すキーワード)"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "キーフレームのcompositeプロパティには既定の'replace'(値を置き換える)のほか、'add'(基準値に加算)や'accumulate'(繰り返しごとに値を積み上げる)を指定できる。'multiply'という値は存在せず、'source-over'はCanvasのglobalCompositeOperationの値、'ease'はイージング関数のキーワードであり、いずれもcompositeプロパティの値ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/KeyframeEffect/composite"
+  },
+  {
+    "id": "graphics-animation-080",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のSVGコードの<animateMotion>要素に関する説明として正しいものはどれか。",
+    "code": "<svg>\n  <path id=\"track\" d=\"M10,10 C50,90 150,10 190,90\" fill=\"none\" stroke=\"gray\" />\n  <circle r=\"5\" fill=\"red\">\n    <animateMotion dur=\"3s\" repeatCount=\"indefinite\">\n      <mpath href=\"#track\" />\n    </animateMotion>\n  </circle>\n</svg>",
+    "choices": [
+      "<animateMotion>は対象要素を指定したパスに沿って移動させるアニメーション要素で、<mpath>を子要素に置くことで既存の<path>要素をそのまま移動経路として参照できる",
+      "<animateMotion>はSVGの色や不透明度を変化させるための要素であり、要素の位置を変えることはできない",
+      "<mpath>はSVGにおける音声(オーディオ)再生パスを指定するための要素である",
+      "<animateMotion>を使う場合、path属性やmpathによる経路指定は必須ではなく、常に円軌道で移動する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<animateMotion>要素は対象図形をモーションパスに沿って移動させるアニメーションを実現する。移動経路はpath属性で直接パスデータを書く方法のほか、この例のように子要素<mpath>のhrefで既存の<path>要素を参照する方法でも指定でき、経路の再利用がしやすくなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/animateMotion"
+  },
+  {
+    "id": "graphics-animation-081",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のSVGフィルタの<feColorMatrix>に関する記述として正しいものはどれか。",
+    "code": "<filter id=\"grayscale\">\n  <feColorMatrix type=\"matrix\"\n    values=\"0.33 0.33 0.33 0 0\n            0.33 0.33 0.33 0 0\n            0.33 0.33 0.33 0 0\n            0    0    0    1 0\" />\n</filter>",
+    "choices": [
+      "<feColorMatrix>は入力画像のRGBA各値に行列演算を適用して色を変換するフィルタプリミティブで、この例は各チャンネルを均等に混合してグレースケール化する行列を表している",
+      "<feColorMatrix>は画像の位置(座標)を移動させるためのフィルタプリミティブである",
+      "<feColorMatrix>のtype属性には'matrix'以外の値は存在しない",
+      "<feColorMatrix>はSVG専用であり、CSSのfilterプロパティからurl()で参照することはできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<feColorMatrix>はピクセルごとのRGBA値に対して行列演算を行うことで色変換を行うフィルタプリミティブである。type属性には'matrix'のほか'saturate'、'hueRotate'、'luminanceToAlpha'も指定できる。この例のような各行が均等な係数を持つ行列を適用すると、RGB各チャンネルが平均化されグレースケールに近い効果が得られる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/feColorMatrix"
+  },
+  {
+    "id": "graphics-animation-082",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のSVGフィルタの組み合わせが表現している効果として正しいものはどれか。",
+    "code": "<filter id=\"dropShadow\">\n  <feGaussianBlur in=\"SourceAlpha\" stdDeviation=\"3\" result=\"blur\" />\n  <feOffset in=\"blur\" dx=\"4\" dy=\"4\" result=\"offsetBlur\" />\n  <feMerge>\n    <feMergeNode in=\"offsetBlur\" />\n    <feMergeNode in=\"SourceGraphic\" />\n  </feMerge>\n</filter>",
+    "choices": [
+      "この一連のフィルタプリミティブは、図形のアルファ成分をぼかし、それを少しずらした影として元の図形の下に重ねることで、ドロップシャドウ効果を作り出している",
+      "feOffsetは画像の色を反転させるためのプリミティブであり、位置のずらしとは無関係である",
+      "feMergeNodeは1つの<feMerge>内に1つしか配置できないため、この例は仕様違反である",
+      "SourceAlphaは元画像の色情報(RGB)のみを表し、透明度の情報は含まれない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "この例はSVGフィルタでドロップシャドウを自作する典型的なパターンである。feGaussianBlurでSourceAlpha(元図形のアルファ形状)をぼかし、feOffsetでそのぼけた影をdx, dyだけずらし、feMergeでずらした影(offsetBlur)を先に、元の図形(SourceGraphic)を後に重ねることで、図形の背後にずれたぼんやりした影が見える効果を作る。feMerge内には複数のfeMergeNodeを配置して重ね順を制御できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/feMerge"
+  },
+  {
+    "id": "graphics-animation-083",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のSVGコードのpreserveAspectRatio属性に関する記述として正しいものはどれか。",
+    "code": "<svg width=\"400\" height=\"200\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid slice\">\n  <circle cx=\"50\" cy=\"50\" r=\"40\" />\n</svg>",
+    "choices": [
+      "preserveAspectRatio=\"xMidYMid slice\"は、viewBoxの内容のアスペクト比を保ったまま表示領域いっぱいに拡大し、はみ出した部分は切り取られ、中央に配置される",
+      "preserveAspectRatio=\"xMidYMid slice\"は、内容を表示領域に収まるように縮小し、余白ができる場合は上下左右を均等に空ける('meet'と同じ動作をする)",
+      "preserveAspectRatioはviewBox属性と組み合わせて使うことができない",
+      "'slice'を指定すると、アスペクト比を無視して表示領域の幅と高さにそれぞれ独立に引き伸ばされる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "preserveAspectRatioは<align> <meetOrSlice>の形式で指定し、'meet'(既定)は内容全体が収まるように縮小して余白ができる場合があるのに対し、'slice'はアスペクト比を保ったまま表示領域全体を覆うように拡大し、はみ出た部分をクリップする。xMidYMidは中央揃えを意味し、viewBoxと組み合わせてSVGの内容をどのように表示領域にフィットさせるかを制御する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Attribute/preserveAspectRatio"
+  },
+  {
+    "id": "graphics-animation-084",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのtransferControlToOffscreen()に関する説明として正しいものはどれか。",
+    "code": "// メインスレッド\nconst canvas = document.querySelector('canvas');\nconst offscreen = canvas.transferControlToOffscreen();\nworker.postMessage({ canvas: offscreen }, [offscreen]);\n\n// worker.js\nself.onmessage = (e) => {\n  const ctx = e.data.canvas.getContext('2d');\n  function draw() {\n    ctx.clearRect(0, 0, 300, 150);\n    // 描画処理...\n    requestAnimationFrame(draw);\n  }\n  draw();\n};",
+    "choices": [
+      "transferControlToOffscreen()はcanvas要素の描画制御をOffscreenCanvasとしてWeb Workerなどに転送し、メインスレッドをブロックせずにバックグラウンドスレッドで描画処理を行えるようにする",
+      "transferControlToOffscreen()を呼び出した後も、メインスレッドのcanvasに対してgetContext('2d')で通常通り描画を続けられる",
+      "Web Worker内ではrequestAnimationFrame()やgetContext('2d')は一切使用できないため、この例は動作しない",
+      "postMessage()の第2引数(転送リスト)にoffscreenを含めることは不可能であり、常にコピーされる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTMLCanvasElement.transferControlToOffscreen()は、そのcanvas要素の描画制御をOffscreenCanvasオブジェクトとして取得するメソッドで、postMessage()の転送リストを使ってWeb Workerに所有権を移すことができる。これにより重い描画処理をメインスレッドから切り離し、UIの応答性を保ったままアニメーションを実行できる。一度転送すると、メインスレッド側のcanvasから直接2Dコンテキストで描画することはできなくなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement/transferControlToOffscreen"
+  },
+  {
+    "id": "graphics-animation-085",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのisPointInStroke()に関する説明として正しいものはどれか。",
+    "code": "ctx.lineWidth = 10;\nconst path = new Path2D();\npath.rect(50, 50, 100, 100);\nctx.stroke(path);\nconst hit = ctx.isPointInStroke(path, 50, 100);",
+    "choices": [
+      "isPointInStroke()は、指定した座標が現在のlineWidthやlineJoinなどのストローク設定を踏まえた輪郭線の描画範囲内にあるかどうかを判定する",
+      "isPointInStroke()はfill()で塗りつぶした内部領域を判定するメソッドであり、isPointInPath()と全く同じ結果を返す",
+      "isPointInStroke()はlineWidthの値を無視し、常に幅0の線として判定を行う",
+      "isPointInStroke()はPath2Dを引数に取ることができず、現在のパスに対してのみ判定できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "isPointInStroke(path, x, y)は、塗り色ではなく、lineWidthやlineJoin、lineDashなど現在設定されているストローク関連のスタイルを反映した「線として描画される範囲」に指定座標が含まれるかを判定する。isPointInPath()がパスの内部(塗りつぶし領域)を判定するのに対し、isPointInStroke()は輪郭線の描画幅を考慮する点が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/isPointInStroke"
+  },
+  {
+    "id": "graphics-animation-086",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "will-changeプロパティの使用に関する注意点として正しいものはどれか。",
+    "choices": [
+      "will-changeを多数の要素に常時指定するとブラウザが多くの独立したコンポジットレイヤーを生成し、メモリ消費が増大してかえってパフォーマンスが悪化することがあるため、実際に変化する直前に指定し不要になれば解除するといった運用が推奨される",
+      "will-changeは指定するプロパティの数に制限がなく、何個でも同時に指定してもパフォーマンスへの悪影響は一切ない",
+      "will-changeはブラウザに対する強制命令であり、指定した通りに必ず最適化が行われることが仕様で保証されている",
+      "will-changeを指定すると、対象要素の子要素すべてに自動的に同じ最適化が継承される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "will-changeはブラウザへの最適化のヒントに過ぎず、指定した要素ごとに独立した合成レイヤーが作られる可能性があるため、多用するとメモリ使用量が増えGPUリソースを圧迫し、逆にパフォーマンスが低下する場合がある。そのため常時すべての要素に指定するのではなく、実際にアニメーションが始まる直前にJavaScriptで付与し、終了後に解除するといった使い方が推奨されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/will-change"
+  },
+  {
+    "id": "graphics-animation-087",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSのbackdrop-filterプロパティに関する記述として正しいものはどれか。",
+    "code": ".overlay {\n  background-color: rgba(255, 255, 255, 0.3);\n  backdrop-filter: blur(10px);\n}",
+    "choices": [
+      "backdrop-filterは要素自身ではなく、その要素の背後にある(透けて見える)コンテンツに対してぼかしなどのフィルタ効果を適用するプロパティである",
+      "backdrop-filterはfilterプロパティと全く同じ対象・効果を持ち、名前が異なるだけのエイリアスである",
+      "backdrop-filterを使うには要素の背景を必ず不透明にする必要があり、半透明の背景と組み合わせることはできない",
+      "backdrop-filterはSVG要素専用のプロパティであり、HTML要素には適用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "backdrop-filterは、要素自体の見た目ではなく、その要素の背後に透けて見えているコンテンツ(背景)に対してblur()などのフィルタ効果を適用するプロパティである。半透明の背景色と組み合わせることで、すりガラスのような効果(グラスモーフィズム)を実現するためによく利用される。filterプロパティが要素自身やその子孫全体に効果を適用するのとは対象が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/backdrop-filter"
+  },
+  {
+    "id": "graphics-animation-088",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSのmask-imageプロパティに関する記述として正しいものはどれか。",
+    "code": ".box {\n  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);\n}",
+    "choices": [
+      "mask-imageはグラデーションや画像の明度・アルファ値を使って要素の一部を透明にすることができ、この例では下に向かって徐々に透明になるフェードアウト効果が得られる",
+      "mask-imageは要素の色を変更するプロパティであり、透過効果を作ることはできない",
+      "mask-imageに指定できる値はurl()による画像のみであり、グラデーション関数は使用できない",
+      "mask-imageはbackground-imageの別名であり、機能は完全に同一である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "mask-imageプロパティは、指定した画像やグラデーションの輝度やアルファ値に基づいて要素をどの程度透過させるかを制御するマスク効果を提供する。この例のように黒から透明へ変化する線形グラデーションを指定すると、要素の下部に向かって徐々に透明になっていくフェードアウトのような視覚効果を作ることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/mask-image"
+  },
+  {
+    "id": "graphics-animation-089",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードのdevicePixelRatioを用いたcanvas描画の目的として正しいものはどれか。",
+    "code": "const dpr = window.devicePixelRatio || 1;\nconst canvas = document.getElementById('c');\ncanvas.width = 300 * dpr;\ncanvas.height = 150 * dpr;\ncanvas.style.width = '300px';\ncanvas.style.height = '150px';\nconst ctx = canvas.getContext('2d');\nctx.scale(dpr, dpr);",
+    "choices": [
+      "devicePixelRatioに応じてcanvasの描画バッファ(width/height属性)を実ピクセル数に合わせて拡大し、CSSサイズは元のまま維持したうえでctx.scale()で座標系を調整することで、高解像度(Retina等)ディスプレイでもぼやけない描画を実現できる",
+      "devicePixelRatioは常に1固定の値であり、ディスプレイの解像度によって変化することはない",
+      "canvas.width/heightをdevicePixelRatio倍にすると、CSS上の表示サイズも自動的にdevicePixelRatio倍になってしまう",
+      "ctx.scale()を使わなくても、devicePixelRatioに応じてcanvas.width/heightを変更するだけで、描画命令の座標は自動的に補正される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "高DPIディスプレイでは、canvasのCSS表示サイズはそのままにwidth/height属性(実際の描画バッファの解像度)だけをdevicePixelRatio倍に増やし、CSSでは元のサイズを維持することで、限られた表示領域により高精細なピクセルを描き込める。ただしこのままでは描画命令の座標もdevicePixelRatio倍にする必要が生じるため、ctx.scale(dpr, dpr)で座標系自体を拡大し、以降の描画コードは元の座標のまま記述できるようにするのが一般的な手法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/devicePixelRatio"
+  },
+  {
+    "id": "graphics-animation-090",
+    "category": "graphics-animation",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のSVGコードの<clipPath>要素に関する記述として正しいものはどれか。",
+    "code": "<svg>\n  <clipPath id=\"clip1\">\n    <circle cx=\"50\" cy=\"50\" r=\"40\" />\n  </clipPath>\n  <image href=\"photo.jpg\" width=\"100\" height=\"100\" clip-path=\"url(#clip1)\" />\n</svg>",
+    "choices": [
+      "SVGの<clipPath>要素はクリッピングに使う図形をあらかじめ定義しておき、他の要素からclip-path=\"url(#id)\"のように参照して、その図形の内側だけを表示させることができる",
+      "<clipPath>要素はSVG内では使用できず、HTML要素にのみ適用可能である",
+      "<clipPath>で定義した図形は、参照しなくても自動的にすべての兄弟要素に適用される",
+      "<clipPath>はCSSのclip-path: circle()などの図形関数と併用することは仕様上禁止されている"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGの<clipPath>要素は、クリッピングに使用する図形(circleやpath等)をひとまとめに定義しておくための要素で、実際に適用する対象の要素側でclip-path属性(またはCSSのclip-pathプロパティ)にurl(#id)の形式で参照することで、その図形の内側だけを表示させることができる。CSSのcircle()などの図形関数によるクリッピングとは別に、SVGの<clipPath>を参照する方式も広くサポートされている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/clipPath"
+  }
+]
