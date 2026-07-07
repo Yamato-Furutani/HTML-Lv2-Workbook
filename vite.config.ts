@@ -4,5 +4,5 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/',  // ← '/HTML-Lv2-Workbook/' から '/' に変更
+  base: '/HTML-Lv2-Workbook/',  // ← '/HTML-Lv2-Workbook/' に戻す
 })
