@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { QuestionCard } from '../components/QuestionCard'
 import { allQuestions, getQuestionsByCategory } from '../data'
 import { useProgressContext } from '../context/ProgressContext'
-import { pickRandom } from '../utils/shuffle'
+import { pickRandom, shuffleChoices } from '../utils/shuffle'
 import { isCorrect } from '../utils/scoring'
 import type { CategoryId, Difficulty, Question, QuizMode } from '../types'
 import type { ReviewItem } from '../components/AnswerReviewList'
@@ -25,11 +25,11 @@ export function QuizPage() {
 
   const questions = useMemo(() => {
     if (!state) return []
-    if (state.customQuestions) return state.customQuestions
+    if (state.customQuestions) return state.customQuestions.map(shuffleChoices)
     const pool = state.categoryId === 'all' ? allQuestions : getQuestionsByCategory(state.categoryId as CategoryId)
     const filteredPool =
       state.difficulty && state.difficulty !== 'all' ? pool.filter((q) => q.difficulty === state.difficulty) : pool
-    return pickRandom(filteredPool, state.count)
+    return pickRandom(filteredPool, state.count).map(shuffleChoices)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
