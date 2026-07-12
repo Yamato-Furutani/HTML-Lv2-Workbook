@@ -8,6 +8,7 @@ export const categories: Category[] = [
     shortName: 'JavaScript',
     description: '変数・関数・クロージャ・クラス構文・非同期処理などプログラミング言語の基礎',
     color: '#f7df1e',
+    level: 'L2',
   },
   {
     id: 'web-api',
@@ -16,6 +17,7 @@ export const categories: Category[] = [
     shortName: 'Web API',
     description: 'DOM操作・イベント処理・Web Componentsなどブラウザ環境での実装',
     color: '#3b82f6',
+    level: 'L2',
   },
   {
     id: 'graphics-animation',
@@ -24,6 +26,7 @@ export const categories: Category[] = [
     shortName: 'グラフィックス',
     description: 'Canvas・SVG・WebGL・CSSアニメーションなどビジュアル表現技術',
     color: '#a855f7',
+    level: 'L2',
   },
   {
     id: 'multimedia',
@@ -32,6 +35,7 @@ export const categories: Category[] = [
     shortName: 'マルチメディア',
     description: 'audio/video要素やWeb Audio APIなど音声・動画の取り扱い',
     color: '#ec4899',
+    level: 'L2',
   },
   {
     id: 'storage',
@@ -40,6 +44,7 @@ export const categories: Category[] = [
     shortName: 'ストレージ',
     description: 'Cookie・Web Storage・IndexedDB・File APIなどデータ保存機能',
     color: '#22c55e',
+    level: 'L2',
   },
   {
     id: 'communication',
@@ -48,6 +53,7 @@ export const categories: Category[] = [
     shortName: '通信',
     description: 'Fetch・WebSocket・Server-Sent Events・CORSなどネットワーク通信技術',
     color: '#06b6d4',
+    level: 'L2',
   },
   {
     id: 'device-access',
@@ -56,6 +62,7 @@ export const categories: Category[] = [
     shortName: 'デバイスアクセス',
     description: 'Geolocation・Device Orientation・Pointer Eventsなど端末機能へのアクセス',
     color: '#f97316',
+    level: 'L2',
   },
   {
     id: 'performance-offline',
@@ -64,6 +71,7 @@ export const categories: Category[] = [
     shortName: 'パフォーマンス',
     description: 'Service Worker・Web Worker・Performance APIなど最適化とオフライン機能',
     color: '#14b8a6',
+    level: 'L2',
   },
   {
     id: 'security',
@@ -72,6 +80,7 @@ export const categories: Category[] = [
     shortName: 'セキュリティ',
     description: '同一オリジンポリシー・CORS・CSP・XSS対策などセキュリティ関連技術',
     color: '#ef4444',
+    level: 'L2',
   },
   {
     id: 'comprehensive',
@@ -80,6 +89,52 @@ export const categories: Category[] = [
     shortName: '総合問題',
     description: '複数分野を組み合わせた複合的な問題演習',
     color: '#6366f1',
+    level: 'L2',
+  },
+  {
+    id: 'l1-web-fundamentals',
+    order: 1,
+    name: '1.1 Webの基礎知識',
+    shortName: 'Web基礎',
+    description: 'HTTP/HTTPS・HTMLの書式(DOCTYPE・文字コード)・セキュリティ脅威などWeb関連技術の概要',
+    color: '#f59e0b',
+    level: 'L1',
+  },
+  {
+    id: 'l1-css',
+    order: 2,
+    name: '1.2 CSS',
+    shortName: 'CSS',
+    description: 'セレクタ・レイアウト・カスケード(優先順位)などスタイルシートの基本',
+    color: '#3b82f6',
+    level: 'L1',
+  },
+  {
+    id: 'l1-elements',
+    order: 3,
+    name: '1.3 要素',
+    shortName: '要素',
+    description: '要素・属性のセマンティクス、メディア要素、インタラクティブ要素',
+    color: '#22c55e',
+    level: 'L1',
+  },
+  {
+    id: 'l1-responsive',
+    order: 4,
+    name: '1.4 レスポンシブWebデザイン',
+    shortName: 'レスポンシブ',
+    description: 'マルチデバイス対応・ビューポート・メディアクエリ',
+    color: '#a855f7',
+    level: 'L1',
+  },
+  {
+    id: 'l1-api-fundamentals',
+    order: 5,
+    name: '1.5 APIの基礎知識',
+    shortName: 'API基礎',
+    description: 'マルチメディア・デバイスアクセス・ストレージ・通信系APIの概要',
+    color: '#ec4899',
+    level: 'L1',
   },
 ]
 

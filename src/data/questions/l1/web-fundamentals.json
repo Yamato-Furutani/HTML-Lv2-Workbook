@@ -1,0 +1,1654 @@
+[
+  {
+    "id": "l1-web-fundamentals-001",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のうち、HTTPステータスコードにおいて「成功」を表す範囲として正しいものはどれか。",
+    "choices": [
+      "100番台",
+      "200番台",
+      "300番台",
+      "400番台"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "HTTPステータスコードは100番台:情報、200番台:成功、300番台:リダイレクト、400番台:クライアントエラー、500番台:サーバエラーに分類される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Status"
+  },
+  {
+    "id": "l1-web-fundamentals-002",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML5文書の先頭に記述するDOCTYPE宣言として正しいものはどれか。",
+    "choices": [
+      "<!DOCTYPE html>",
+      "<!DOCTYPE HTML5>",
+      "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\">",
+      "<?xml version=\"1.0\"?>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTML5のDOCTYPE宣言は<!DOCTYPE html>のみで、バージョン番号やDTDの指定は不要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Doctype"
+  },
+  {
+    "id": "l1-web-fundamentals-003",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTTPのGETメソッドとPOSTメソッドの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "GETはリクエストパラメータをURLに含めるが、POSTはリクエストボディに含める",
+      "GETはデータを送信できないが、POSTはデータを送信できる",
+      "GETはキャッシュされないが、POSTはキャッシュされる",
+      "GETはHTTPSでのみ使用でき、POSTはHTTPでのみ使用できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "GETはクエリパラメータをURLに付与して送信しブラウザにキャッシュされやすい。POSTはリクエストボディにデータを格納し、フォーム送信などデータの作成・更新に使われることが多い。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Methods"
+  },
+  {
+    "id": "l1-web-fundamentals-004",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML文書の文字エンコーディングをUTF-8として指定する記述として正しいものはどれか。",
+    "choices": [
+      "<meta charset=\"UTF-8\">",
+      "<meta encoding=\"UTF-8\">",
+      "<meta http-equiv=\"charset\" content=\"UTF-8\">",
+      "<html charset=\"UTF-8\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTML5では<meta charset=\"UTF-8\">という簡潔な記法で文字エンコーディングを指定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/meta"
+  },
+  {
+    "id": "l1-web-fundamentals-005",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTTPSがHTTPと比較して提供する主な機能として最も適切なものはどれか。",
+    "choices": [
+      "通信内容の暗号化と通信相手の認証",
+      "通信速度の高速化",
+      "HTMLファイルの圧縮",
+      "画像形式の変換"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTTPSはSSL/TLSにより通信内容を暗号化し、サーバー証明書によって通信相手のなりすましを防ぐ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/HTTPS"
+  },
+  {
+    "id": "l1-web-fundamentals-016",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "サーバー上の指定したリソースを削除するために標準的に使用されるHTTPメソッドはどれか。",
+    "choices": [
+      "DELETE",
+      "GET",
+      "POST",
+      "HEAD"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "DELETEメソッドは指定したURIのリソースを削除することを要求するHTTPメソッドである。GETは取得、POSTは登録・送信、HEADはヘッダー情報のみの取得に用いられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Methods/DELETE"
+  },
+  {
+    "id": "l1-web-fundamentals-017",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "GETメソッドと同様にリソースを要求するが、レスポンスボディを含まずヘッダー情報のみを返すHTTPメソッドはどれか。",
+    "choices": [
+      "HEAD",
+      "PUT",
+      "OPTIONS",
+      "TRACE"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HEADメソッドはGETと同じ処理をサーバーに要求するが、レスポンスボディを返さずヘッダー情報のみを取得できるため、リソースの存在確認や更新日時の確認に利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Methods/HEAD"
+  },
+  {
+    "id": "l1-web-fundamentals-018",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "リクエストされたリソースがサーバー上に存在しない場合に返されるHTTPステータスコードはどれか。",
+    "choices": [
+      "404",
+      "200",
+      "301",
+      "500"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "404 Not Foundは、リクエストされたURIに対応するリソースがサーバー上に見つからない場合に返されるクライアントエラーである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Status/404"
+  },
+  {
+    "id": "l1-web-fundamentals-019",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "サーバー内部で処理中に予期しないエラーが発生したことを示す汎用的なHTTPステータスコードはどれか。",
+    "choices": [
+      "500",
+      "400",
+      "404",
+      "503"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "500 Internal Server Errorは、サーバー内部で処理中に予期しない状態が発生したことを示す汎用的なエラーコードである。503 Service Unavailableはサーバーが一時的にサービスを提供できない状態を表す点で異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Status/500"
+  },
+  {
+    "id": "l1-web-fundamentals-020",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "次のHTTPステータスコードのうち、クライアント側のエラーを表すものを全て選べ。",
+    "choices": [
+      "400",
+      "401",
+      "404",
+      "200",
+      "500"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "400番台はクライアントエラーを表し、400はBad Request、401はUnauthorized(未認証)、404はNot Foundである。200は成功、500はサーバーエラーを表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Status"
+  },
+  {
+    "id": "l1-web-fundamentals-021",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "URL「https://example.com:8080/products/list?category=book#section2」に含まれる要素として正しいものを全て選べ。",
+    "choices": [
+      "ポート番号(8080)",
+      "クエリ文字列(category=book)",
+      "フラグメント(section2)",
+      "CSSセレクタ",
+      "HTTPメソッド"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "URLはスキーム、ホスト、ポート番号、パス、クエリ文字列、フラグメントなどから構成される。CSSセレクタやHTTPメソッドはURLの構成要素ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL"
+  },
+  {
+    "id": "l1-web-fundamentals-022",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTTPおよびHTTPSにおいて、URLでポート番号を省略した場合に使用される既定のポート番号の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "HTTP:80、HTTPS:443",
+      "HTTP:8080、HTTPS:8443",
+      "HTTP:21、HTTPS:22",
+      "HTTP:443、HTTPS:80"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTTPの既定のポート番号は80、HTTPSの既定のポート番号は443である。URLでポート番号を省略した場合、通信に使用されるプロトコルに応じてこれらの既定値が使用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL"
+  },
+  {
+    "id": "l1-web-fundamentals-023",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTTPリクエストヘッダーの一つである「User-Agent」が伝える情報として正しいものはどれか。",
+    "choices": [
+      "リクエストを送信しているクライアント(ブラウザやOS)の情報",
+      "リクエストするリソースのファイル形式",
+      "サーバーが応答に要した処理時間",
+      "Cookieの有効期限"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "User-Agentヘッダーは、リクエストを送信しているブラウザの種類やバージョン、OSなどのクライアント情報をサーバーに伝えるために使用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/User-Agent"
+  },
+  {
+    "id": "l1-web-fundamentals-024",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTTPレスポンスヘッダーの一つである「Content-Type」の役割として正しいものはどれか。",
+    "choices": [
+      "レスポンスボディのデータ形式(MIMEタイプ)と文字エンコーディングを示す",
+      "レスポンスの圧縮アルゴリズムを指定する",
+      "キャッシュの有効期限を指定する",
+      "リダイレクト先のURLを示す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Content-Typeヘッダーは、レスポンスボディがどのようなメディアタイプ(例: text/html; charset=UTF-8)であるかをクライアントに伝える役割を持つ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Type"
+  },
+  {
+    "id": "l1-web-fundamentals-025",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "HTTP Cookieに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "ステートレスなHTTPにおいて、サーバーがクライアントの状態を識別するために利用される",
+      "サーバーが発行し、以降のリクエストでブラウザが自動的に送信する",
+      "Cookieの内容は送信時に自動的に暗号化される",
+      "1つのCookieに保存できるデータサイズに制限はない"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "CookieはHTTPのステートレス性を補うためにサーバーが発行し、ブラウザが以降のリクエストで自動送信する仕組みである。Cookie自体に暗号化機能はなく、保存できるデータサイズにも一般的に上限(多くのブラウザで約4KB)がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "l1-web-fundamentals-026",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML文書のルート要素に、文書の主要な言語が日本語であることを指定する記述として正しいものはどれか。",
+    "choices": [
+      "<html lang=\"ja\">",
+      "<html language=\"japanese\">",
+      "<html locale=\"ja-JP\">",
+      "<meta lang=\"ja\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "html要素のlang属性に言語コード(日本語であれば\"ja\")を指定することで、文書全体の言語を宣言できる。これは検索エンジンや音声読み上げソフトなどに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/lang"
+  },
+  {
+    "id": "l1-web-fundamentals-027",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "モバイル端末での表示領域(ビューポート)の幅を端末の画面幅に合わせるためのmeta要素の記述として最も適切なものはどれか。",
+    "choices": [
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "<meta name=\"viewport\" content=\"width=1024\">",
+      "<meta http-equiv=\"viewport\" content=\"device-width\">",
+      "<meta charset=\"viewport\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "meta要素のname=\"viewport\"にwidth=device-widthを指定することで表示領域の幅を端末の画面幅に合わせ、initial-scaleで初期の拡大率を指定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Viewport_meta_tag"
+  },
+  {
+    "id": "l1-web-fundamentals-028",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "外部のCSSファイル「style.css」をHTML文書に読み込むための記述として正しいものはどれか。",
+    "choices": [
+      "<link rel=\"stylesheet\" href=\"style.css\">",
+      "<style src=\"style.css\"></style>",
+      "<script rel=\"stylesheet\" src=\"style.css\"></script>",
+      "<import href=\"style.css\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "外部CSSファイルの読み込みには、head要素内でlink要素のrel属性に\"stylesheet\"を指定し、href属性にファイルパスを記述する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/link"
+  },
+  {
+    "id": "l1-web-fundamentals-029",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "外部のJavaScriptファイル「app.js」をHTML文書内で読み込むための記述として正しいものはどれか。",
+    "choices": [
+      "<script src=\"app.js\"></script>",
+      "<link rel=\"script\" href=\"app.js\">",
+      "<script href=\"app.js\">",
+      "<import src=\"app.js\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "外部JavaScriptファイルはscript要素のsrc属性にファイルパスを指定して読み込む。href属性ではなくsrc属性を用いる点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/script"
+  },
+  {
+    "id": "l1-web-fundamentals-030",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "現在、Webブラウザに標準で搭載され、クライアントサイドで動作する代表的なスクリプト言語はどれか。",
+    "choices": [
+      "JavaScript",
+      "Java",
+      "Python",
+      "PHP"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "JavaScriptはWebブラウザに標準搭載されたクライアントサイドスクリプト言語であり、HTML文書の動的な操作(DOM操作など)に用いられる。PHPはサーバーサイドで実行される言語であり、Javaはブラウザに標準搭載されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript"
+  },
+  {
+    "id": "l1-web-fundamentals-031",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画像フォーマットの一つであるBMP(ビットマップ)形式の特徴として正しいものはどれか。",
+    "choices": [
+      "圧縮を行わず画素情報をそのまま保存するため、ファイルサイズが大きくなりやすい",
+      "非可逆圧縮によりファイルサイズを大幅に削減できる",
+      "アニメーションを保存できる唯一の形式である",
+      "Web表示専用に設計された形式であり、他形式より高速に表示される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "BMP形式は基本的に無圧縮で画素データをそのまま保持するため、画質は保たれるがファイルサイズが大きくなりやすく、Webでの利用にはあまり適さない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-032",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画像フォーマットの一つであるJPEG形式の特徴として正しいものはどれか。",
+    "choices": [
+      "非可逆圧縮を採用しており、写真など色数の多い画像の圧縮に適している",
+      "可逆圧縮のみをサポートし、画質の劣化が一切発生しない",
+      "透過(透明)情報を保持できる",
+      "1枚のファイルに複数のフレームを保存しアニメーション表示できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "JPEGは非可逆圧縮を採用しており、圧縮率を高めるほど画質が劣化するが、写真のような色数の多い画像を効率よく圧縮できる。透過やアニメーションには対応していない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-033",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "次の画像フォーマットのうち、可逆圧縮(圧縮によって元のデータが劣化しない圧縮方式)を採用しているものを全て選べ。",
+    "choices": [
+      "PNG",
+      "JPEG",
+      "GIF",
+      "BMP"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "explanation": "PNGとGIFはいずれも可逆圧縮方式を採用しており、圧縮後もデータを完全に復元できる。JPEGは非可逆圧縮であり圧縮の過程で画質が劣化する。BMPは一般に圧縮を行わない形式である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-034",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画像フォーマットの一つであるGIF形式の特徴として正しいものはどれか。",
+    "choices": [
+      "最大256色までしか扱えないが、複数フレームを利用した簡易的なアニメーションを保存できる",
+      "フルカラー(1677万色)を扱うことができ、写真の保存に最適である",
+      "非可逆圧縮によって高い圧縮率を実現している",
+      "透過情報を保持することができない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "GIFはパレット方式により最大256色までしか表現できない反面、複数の画像フレームを1ファイルに格納することで簡易的なアニメーションを実現できる。また可逆圧縮であり、透過情報も保持できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-035",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "次の画像フォーマットのうち、画像の一部を透過(透明)にする機能をサポートしているものを全て選べ。",
+    "choices": [
+      "PNG",
+      "JPEG",
+      "GIF",
+      "BMP"
+    ],
+    "correctAnswers": [
+      0,
+      2
+    ],
+    "explanation": "PNGはアルファチャンネルによる多段階の透過を、GIFは1色を透明色として指定する透過をサポートしている。JPEGとBMPには標準的な透過機能は用意されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-036",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "クロスサイトスクリプティング(XSS)に関する説明として正しいものはどれか。",
+    "choices": [
+      "攻撃者が悪意のあるスクリプトをWebページに埋め込み、それを閲覧した他の利用者のブラウザ上で実行させる攻撃である",
+      "データベースへの不正なSQL文を注入し、データを窃取・改ざんする攻撃である",
+      "ログイン中の利用者に、利用者の意図しないリクエストを別サイト経由で送信させる攻撃である",
+      "ファイルパスを操作して非公開ディレクトリのファイルを閲覧する攻撃である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "XSS(クロスサイトスクリプティング)は、脆弱性のあるWebサイトに悪意のあるスクリプトを注入し、それを閲覧した他の利用者のブラウザ上で実行させることで情報窃取やなりすましを行う攻撃である。",
+    "reference": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "id": "l1-web-fundamentals-037",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "クロスサイトリクエストフォージェリ(CSRF)に関する説明として正しいものはどれか。",
+    "choices": [
+      "ログイン済みの利用者のブラウザに対し、利用者の意図しないリクエストを別サイトから送信させ、Webアプリケーション上で不正な処理を実行させる攻撃である",
+      "通信経路上のデータを盗聴し、パスワードなどの情報を窃取する攻撃である",
+      "大量のリクエストを送りつけてサーバーを機能停止に追い込む攻撃である",
+      "SQL文を不正に注入してデータベースを操作する攻撃である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CSRFは、利用者が別のサイト等を閲覧している間に、その利用者が認証済みのサイトに対して意図しないリクエストを送信させ、パスワード変更や送金などの処理を利用者の意思に反して実行させる攻撃である。",
+    "reference": "https://owasp.org/www-community/attacks/csrf"
+  },
+  {
+    "id": "l1-web-fundamentals-038",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "SQLインジェクションに関する説明として正しいものはどれか。",
+    "choices": [
+      "入力フォームなどを通じて不正なSQL文の断片を注入し、データベースへの想定外の操作(情報漏えいや改ざん)を引き起こす攻撃である",
+      "HTMLタグを埋め込み、他の利用者のブラウザ上でスクリプトを実行させる攻撃である",
+      "暗号化されていない通信を盗聴し、Cookieの情報を窃取する攻撃である",
+      "認証情報を大量に試行してログインを突破する攻撃である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SQLインジェクションは、入力値の検証やエスケープが不十分なアプリケーションに対して不正なSQL文を注入し、データベースに意図しない操作を行わせる攻撃である。",
+    "reference": "https://owasp.org/www-community/attacks/SQL_Injection"
+  },
+  {
+    "id": "l1-web-fundamentals-039",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "DOM(Document Object Model)に関する説明として最も適切なものはどれか。",
+    "choices": [
+      "HTML文書やXML文書の要素をツリー構造のオブジェクトとして表現し、プログラムから操作できるようにする仕組みである",
+      "HTTP通信を暗号化するためのプロトコルである",
+      "CSSのスタイル定義を管理するための仕様である",
+      "サーバーとクライアント間でデータをやり取りするための通信規約である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "DOMは、HTML/XML文書の構造を要素・属性・テキストなどのオブジェクトから成るツリー構造として表現し、JavaScriptなどのプログラムから文書の内容や構造を動的に操作できるようにする仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model"
+  },
+  {
+    "id": "l1-web-fundamentals-040",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML5のマイクロデータに関する説明として正しいものはどれか。",
+    "choices": [
+      "HTML要素にitemscope属性やitemprop属性などを付与し、文書内のデータの意味(構造化データ)を検索エンジンなどに伝える仕組みである",
+      "HTML文書をより小さいファイルサイズに圧縮する技術である",
+      "画像データをBase64形式でHTML内に埋め込む記法である",
+      "CSSのメディアクエリを用いて画面サイズごとに異なるスタイルを適用する仕組みである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "マイクロデータは、itemscope・itemtype・itemprop等の属性をHTML要素に付与することで、文書内の情報が何を表すか(人物、商品など)を構造化データとして検索エンジン等に伝えるための仕様である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Microdata"
+  },
+  {
+    "id": "l1-web-fundamentals-006",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTTPステータスコード301と302の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "301は恒久的リダイレクト、302は一時的リダイレクトを表す",
+      "301は一時的リダイレクト、302は恒久的リダイレクトを表す",
+      "301はGETリクエスト専用、302はPOSTリクエスト専用のリダイレクトである",
+      "301と302はどちらもクライアントエラーを表す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "301 Moved Permanentlyは恒久的な移転、302 Foundは一時的な移転を示す。検索エンジンのインデックス更新などSEOの観点でも区別が重要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Status/301"
+  },
+  {
+    "id": "l1-web-fundamentals-007",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTTP Cookieに設定できる属性として正しいものを全て選べ。",
+    "choices": [
+      "HttpOnly",
+      "Secure",
+      "SameSite",
+      "Immutable",
+      "Serverless"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "HttpOnlyはJavaScriptからのアクセスを禁止し、SecureはHTTPS通信時のみ送信、SameSiteはクロスサイトでの送信可否を制御する。ImmutableやServerlessはCookie属性として存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "l1-web-fundamentals-008",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "クロスサイトスクリプティング(XSS)への対策として最も適切なものはどれか。",
+    "choices": [
+      "ユーザー入力値をHTMLに出力する際にエスケープ処理を行う",
+      "SQL文をすべてストアドプロシージャにする",
+      "HTTPSを利用して通信を暗号化する",
+      "Cookieの有効期限を短くする"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "XSSは悪意あるスクリプトをページに埋め込む攻撃であり、出力時のHTMLエスケープが基本的な対策となる。SQLインジェクション対策やHTTPS化とは異なる観点の対策である。",
+    "reference": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "id": "l1-web-fundamentals-009",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTML要素に独自のデータを埋め込むためのカスタムデータ属性の記述として正しいものはどれか。",
+    "choices": [
+      "<div data-user-id=\"123\"></div>",
+      "<div custom-user-id=\"123\"></div>",
+      "<div x-user-id=\"123\"></div>",
+      "<div user-id:data=\"123\"></div>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTML5ではdata-プレフィックスを付けたカスタムデータ属性(data-*)が標準で定義されており、JavaScriptからはdataset(例: element.dataset.userId)で取得できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/data-*"
+  },
+  {
+    "id": "l1-web-fundamentals-010",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のうち、Data URIスキームの記述として正しいものはどれか。",
+    "choices": [
+      "data:image/png;base64,iVBORw0KGgoAAAANSU...",
+      "file:image/png;base64,iVBORw0KGgoAAAANSU...",
+      "base64:image/png;data,iVBORw0KGgoAAAANSU...",
+      "src:image/png;base64,iVBORw0KGgoAAAANSU..."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Data URIスキームは data:[MIMEタイプ][;base64],データ という形式で、画像などのバイナリデータをBase64エンコードして直接埋め込むことができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/URI/Schemes/data"
+  },
+  {
+    "id": "l1-web-fundamentals-041",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTTPメソッドのうち、べき等性(同一のリクエストを複数回実行しても結果が変わらない性質)を持つものを全て選べ。",
+    "choices": [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE"
+    ],
+    "correctAnswers": [
+      0,
+      2,
+      3
+    ],
+    "explanation": "GET・PUT・DELETEはべき等性を持ち、同じリクエストを何度実行してもサーバー側の状態は変わらない(DELETEは2回目以降は対象が既に存在しないだけで結果的状態は同じとみなす)。POSTは実行のたびに新しいリソースが作成されうるためべき等ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Methods"
+  },
+  {
+    "id": "l1-web-fundamentals-042",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTTPステータスコード401と403の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "401は認証情報が不足または無効であることを示し、403は認証済みであってもアクセス権限がないことを示す",
+      "401はサーバー内部エラー、403はリクエストの構文エラーを示す",
+      "401はリソースが見つからないこと、403はリダイレクトが必要なことを示す",
+      "401と403はどちらも成功を表す情報ステータスである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "401 Unauthorizedは有効な認証情報が提示されていない場合に返され、403 Forbiddenは認証されていても対象リソースへのアクセスが許可されていない場合に返される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Status/401"
+  },
+  {
+    "id": "l1-web-fundamentals-043",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "URI「https://example.com:8080/path/to/page?query=1#section」において「8080」が表す要素として正しいものはどれか。",
+    "choices": [
+      "ポート番号",
+      "スキーム",
+      "クエリ文字列",
+      "フラグメント識別子"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "URIの authority 部分に含まれる「:8080」はホストへの接続に使用するポート番号を表す。スキームは「https」、クエリは「query=1」、フラグメントは「section」に該当する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web"
+  },
+  {
+    "id": "l1-web-fundamentals-044",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTTPリクエストヘッダーとして正しいものを全て選べ。",
+    "choices": [
+      "User-Agent",
+      "Referer",
+      "Accept-Language",
+      "Set-Cookie"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "User-Agentはクライアント情報、Refererはリンク元URL、Accept-Languageは希望する言語をサーバーに伝えるリクエストヘッダーである。Set-Cookieはサーバーがクライアントにクッキーの設定を指示するレスポンスヘッダーであり、リクエストヘッダーではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers"
+  },
+  {
+    "id": "l1-web-fundamentals-045",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTTPレスポンスヘッダーのうち、キャッシュの保存可否や有効期間をクライアントに指示するために使用されるものはどれか。",
+    "choices": [
+      "Cache-Control",
+      "Content-Disposition",
+      "Location",
+      "Accept-Ranges"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Cache-Controlヘッダーはmax-ageやno-store、no-cacheなどのディレクティブにより、レスポンスをキャッシュしてよいか、どの程度の期間有効かをブラウザやプロキシに指示する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Cache-Control"
+  },
+  {
+    "id": "l1-web-fundamentals-046",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTTP Cookieの属性に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "Max-Age属性は設定時点からの相対的な秒数で有効期限を指定する",
+      "Expires属性はGMT形式の絶対日時で有効期限を指定する",
+      "Domain属性を指定すると、指定したドメインおよびそのサブドメインにCookieが送信される",
+      "Path属性はCookieの内容を暗号化する方式を指定する"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Max-Ageは相対秒数、Expiresは絶対日時で有効期限を指定し、両方指定された場合はMax-Ageが優先される。Domain属性はCookieを送信するドメイン範囲を指定する。Path属性はCookieを送信するURLパスの範囲を指定するものであり、暗号化方式を指定するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Cookies"
+  },
+  {
+    "id": "l1-web-fundamentals-047",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "SSL/TLSで利用される公開鍵暗号方式に関する説明として正しいものはどれか。",
+    "choices": [
+      "暗号化に使う鍵と復号に使う鍵が異なり、公開鍵で暗号化したデータは対応する秘密鍵でのみ復号できる",
+      "暗号化と復号に全く同じ鍵を用いるため、鍵を通信相手に安全に渡す必要がある",
+      "ハッシュ関数の一種であり、元のデータへ復元することはできない",
+      "サーバー証明書を用いずに通信相手を認証する方式である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "公開鍵暗号方式は暗号化用の公開鍵と復号用の秘密鍵が対になっており、公開鍵で暗号化したデータは対応する秘密鍵でしか復号できない。TLSのハンドシェイクではこの仕組みとサーバー証明書を用いて鍵交換や相手の認証を行う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/TLS"
+  },
+  {
+    "id": "l1-web-fundamentals-048",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTTP/1.1のPersistent Connections(持続的接続)に関する説明として正しいものはどれか。",
+    "choices": [
+      "1つのTCPコネクションを複数のHTTPリクエスト・レスポンスのやり取りで再利用できる",
+      "リクエストごとに必ず新しいTCPコネクションを確立する",
+      "1本のコネクション上で複数のリクエストを並行して多重送信できるストリーム機能である",
+      "HTTPSでのみ利用可能な機能である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTTP/1.1では既定でPersistent Connections(Keep-Alive)が有効となり、1つのTCPコネクションを再利用して複数のリクエスト・レスポンスをやり取りできるため、コネクション確立のオーバーヘッドを削減できる。ただし1本のコネクション上でのリクエストの多重化(ストリーム)はHTTP/2の特徴である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Basics_of_HTTP/Connection_management_in_HTTP_1.x"
+  },
+  {
+    "id": "l1-web-fundamentals-049",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTML文書でDOCTYPE宣言を省略した場合に起こりうることとして正しいものはどれか。",
+    "choices": [
+      "ブラウザが互換モード(quirksモード)で文書を解釈し、標準モードとはCSSのレイアウト計算などが異なる場合がある",
+      "ブラウザがHTMLファイルの読み込み自体を拒否する",
+      "文字エンコーディングが自動的にUTF-8に固定される",
+      "JavaScriptの実行が無効化される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "適切なDOCTYPE宣言がないと、ブラウザは古いHTMLとの互換性を保つためquirksモードで文書を解釈することがあり、ボックスモデルの計算など標準モード(standardsモード)と異なるレンダリング結果になる場合がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Quirks_Mode_and_Standards_Mode"
+  },
+  {
+    "id": "l1-web-fundamentals-050",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "<html lang=\"ja\">のように指定するlang属性の主な目的として最も適切なものはどれか。",
+    "choices": [
+      "文書の主要な言語を明示し、音声読み上げソフトの発音や検索エンジンの言語判定などに利用される",
+      "文書の文字エンコーディングを指定する",
+      "ページの表示に使用するタイムゾーンを指定する",
+      "使用する画像フォーマットを指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "lang属性は要素の内容の自然言語を指定するグローバル属性であり、スクリーンリーダーの発音選択や翻訳ツール・検索エンジンの言語判定などに利用される。文字エンコーディングの指定はcharset属性が担う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/lang"
+  },
+  {
+    "id": "l1-web-fundamentals-051",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "モバイル端末でのビューポート幅をデバイスの画面幅に合わせるためのmeta要素の記述として正しいものはどれか。",
+    "choices": [
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+      "<meta name=\"viewport\" content=\"screen=mobile\">",
+      "<meta http-equiv=\"viewport\" content=\"auto\">",
+      "<meta charset=\"viewport\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "viewport metaタグにwidth=device-widthを指定すると、ビューポート幅がデバイスの画面幅と等しくなり、initial-scale=1で初期のズーム倍率を等倍に設定できる。これによりモバイル端末でのレイアウト崩れを防ぐ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Viewport_meta_tag"
+  },
+  {
+    "id": "l1-web-fundamentals-052",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "外部CSSファイルを読み込むためのlink要素の記述として正しいものはどれか。",
+    "choices": [
+      "<link rel=\"stylesheet\" href=\"style.css\">",
+      "<link src=\"style.css\" type=\"text/css\">",
+      "<link import=\"style.css\">",
+      "<style src=\"style.css\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "外部CSSを読み込むには、link要素にrel=\"stylesheet\"とhref属性でファイルパスを指定する。styleタグは埋め込み用でsrc属性は持たず、link要素にsrc属性は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/link"
+  },
+  {
+    "id": "l1-web-fundamentals-053",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "外部JavaScriptファイルの取得をHTML解析と並行して行いつつ、文書内に記述された順序どおりに実行させたい場合に指定する属性として最も適切なものはどれか。",
+    "choices": [
+      "defer",
+      "async",
+      "crossorigin",
+      "preload"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "defer属性を指定したscriptは、ダウンロードをHTML解析と並行して行いつつ、実行はHTML解析完了後に文書内の記述順で行われる。async属性はダウンロード完了次第、解析を中断して即座に実行するため実行順序は保証されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/script"
+  },
+  {
+    "id": "l1-web-fundamentals-054",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "可逆圧縮(ロスレス圧縮)方式を採用し、アルファチャンネルによる透過表現をサポートする画像フォーマットはどれか。",
+    "choices": [
+      "PNG",
+      "JPEG",
+      "BMP",
+      "該当なし"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "PNGは可逆圧縮方式を採用しており、アルファチャンネルによる透過表現(半透明を含む)をサポートする。JPEGは非可逆圧縮で透過をサポートせず、BMPは無圧縮または簡易な可逆圧縮が中心でアルファチャンネルは一般的に利用されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-055",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "JPEG画像形式の特徴に関する説明として正しいものはどれか。",
+    "choices": [
+      "非可逆圧縮(不可逆圧縮)方式を採用しており、写真など色数の多い画像の圧縮に適している",
+      "可逆圧縮方式のみをサポートし、透過色を扱える",
+      "アニメーション画像を作成できる",
+      "1ピクセルあたり1ビットの白黒2値画像専用の形式である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "JPEGは非可逆圧縮方式を採用し、人間の視覚特性を利用して情報量を削減することで、写真のような色数の多い画像を高い圧縮率で保存できる。ただし圧縮のたびに画質が劣化し、透過やアニメーションには対応していない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-056",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "GIF画像形式の特徴として正しいものはどれか。",
+    "choices": [
+      "最大256色のパレット方式を採用し、透過やアニメーションに対応している",
+      "フルカラー(約1677万色)を表現でき、非可逆圧縮を採用している",
+      "ベクター形式であり、拡大しても画質が劣化しない",
+      "音声データを埋め込むことができる形式である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "GIFは最大256色というパレット制限のある可逆圧縮形式で、1色を透過色として指定できるほか、複数フレームによるアニメーションに対応している。フルカラー表現や非可逆圧縮はJPEGの特徴である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-057",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "クロスサイトスクリプティング(XSS)の分類として一般的に挙げられるものを全て選べ。",
+    "choices": [
+      "反射型(Reflected XSS)",
+      "格納型(Stored XSS)",
+      "DOM Based XSS",
+      "セッション固定型(Session Fixation)"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "XSSは攻撃スクリプトの混入経路により、反射型・格納型・DOM Based型に大別されるのが一般的である。セッション固定型(Session Fixation)はセッションIDの取り扱いに起因する別種の攻撃手法であり、XSSの分類には含まれない。",
+    "reference": "https://owasp.org/www-community/attacks/xss/"
+  },
+  {
+    "id": "l1-web-fundamentals-058",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CookieのSameSite属性をStrictまたはLaxに設定することが有効な対策となる攻撃はどれか。",
+    "choices": [
+      "クロスサイトリクエストフォージェリ(CSRF)",
+      "SQLインジェクション",
+      "ディレクトリトラバーサル",
+      "総当たり攻撃(ブルートフォース)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SameSite属性は、クロスサイトのリクエストに対してCookieを送信するかどうかを制御できる。StrictやLaxに設定することで、他サイトを起点とした不正なリクエストにCookie(セッション情報)が付与されにくくなり、CSRF対策の一助となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "l1-web-fundamentals-059",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードが持つ脆弱性と、その対策の組み合わせとして正しいものはどれか。",
+    "code": "String sql = \"SELECT * FROM users WHERE id = '\" + userId + \"'\";\nstatement.execute(sql);",
+    "choices": [
+      "SQLインジェクションの脆弱性があり、プレースホルダを用いたプリペアドステートメントで対策する",
+      "クロスサイトスクリプティングの脆弱性があり、HTMLエスケープで対策する",
+      "ディレクトリトラバーサルの脆弱性があり、パスの正規化で対策する",
+      "CSRFの脆弱性があり、トークン検証で対策する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "ユーザー入力であるuserIdを文字列連結でそのままSQL文に埋め込んでいるため、悪意ある文字列によってSQL文の構造が改変されるSQLインジェクションの脆弱性がある。プレースホルダを用いたプリペアドステートメント(パラメータ化クエリ)により入力値を単なるデータとして扱わせることで対策できる。",
+    "reference": "https://owasp.org/www-community/attacks/SQL_Injection"
+  },
+  {
+    "id": "l1-web-fundamentals-060",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "ディレクトリトラバーサル攻撃への対策として最も適切なものはどれか。",
+    "choices": [
+      "ユーザーが指定したファイルパスを正規化し、「../」等によって公開ディレクトリ外を参照していないか検証する",
+      "Cookieに Secure属性を設定する",
+      "SQL文をプレースホルダ化して実行する",
+      "レスポンスをgzip形式で圧縮して送信する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "ディレクトリトラバーサル対策では、外部から受け取ったファイルパスを正規化(パス解決)したうえで、公開が許可されたディレクトリの範囲外を指していないかをサーバー側で検証することが基本となる。",
+    "reference": "https://owasp.org/www-community/attacks/Path_Traversal"
+  },
+  {
+    "id": "l1-web-fundamentals-061",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Webアプリケーションの設計でよく用いられるMVCアーキテクチャにおける各要素の役割の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "Model:データとビジネスロジックの管理、View:画面表示、Controller:入力の受け付けと処理の振り分け",
+      "Model:画面表示、View:データの永続化、Controller:通信の暗号化",
+      "Model:入力の受け付け、View:データベース接続、Controller:画面レイアウトの定義",
+      "Model:通信プロトコルの実装、View:ユーザー認証、Controller:データの保存"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "MVCはModel(データとビジネスロジック)、View(画面表示)、Controller(ユーザー入力の受け付けとModel・Viewへの処理の振り分け)の3つの役割に責務を分離する設計パターンである。",
+    "reference": "https://ja.wikipedia.org/wiki/Model_View_Controller"
+  },
+  {
+    "id": "l1-web-fundamentals-062",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Base64エンコードに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "バイナリデータを64種類の印字可能なASCII文字のみで表現する方式である",
+      "エンコード後のデータサイズは元のデータよりおよそ33%程度増加する",
+      "エンコードによってデータは暗号化され、第三者に内容を秘匿できる",
+      "3バイトの入力データを4文字の出力に変換する"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "Base64は3バイトの入力を4文字(64種類の印字可能文字)に変換するエンコード方式で、データ量はおよそ4/3(約33%増)になる。Base64はあくまで表現方法の変換であり暗号化ではないため、誰でも容易に元のデータへ復元でき、秘匿性はない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Base64"
+  },
+  {
+    "id": "l1-web-fundamentals-063",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Data URIスキームを用いて画像を多数HTML/CSSに埋め込んだ場合の一般的なデメリットとして最も適切なものはどれか。",
+    "choices": [
+      "HTMLやCSSファイル自体のサイズが増大し、画像単体でのブラウザキャッシュの再利用ができなくなる",
+      "画像データが自動的に非可逆圧縮されて画質が劣化する",
+      "HTTPS通信では利用できない",
+      "JavaScriptからは一切参照できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Data URIは画像などのバイナリデータをBase64文字列としてHTML/CSSに直接埋め込むため、ファイル自体が肥大化し、また画像ファイル単体としてブラウザにキャッシュされないため、同じ画像を複数ページで使い回す場合に転送量が増える傾向がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/URI/Schemes/data"
+  },
+  {
+    "id": "l1-web-fundamentals-064",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "DOM(Document Object Model)に関する説明として正しいものはどれか。",
+    "choices": [
+      "HTML文書をノードから成る木構造(ツリー)として表現し、プログラムから文書の構造・内容・スタイルを操作するためのAPIを提供する",
+      "HTTP通信を暗号化するためのプロトコルである",
+      "CSSのレイアウト計算アルゴリズムの名称である",
+      "サーバーサイドでデータベースへ接続するためのAPIである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "DOMはHTMLやXML文書をオブジェクトのツリー構造として表現するモデルであり、JavaScriptなどのプログラムからdocument.getElementByIdなどのAPIを通じて文書の構造・内容・スタイルを動的に操作できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model"
+  },
+  {
+    "id": "l1-web-fundamentals-065",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTMLのマイクロデータ(Microdata)に関する記述として正しいものはどれか。",
+    "choices": [
+      "itemscope・itemtype・itemprop属性を用いて、検索エンジンなどが解釈しやすい構造化データをHTML要素に埋め込む仕組みである",
+      "CSSのメディアクエリを用いて画面サイズごとに異なるレイアウトを適用する仕組みである",
+      "JavaScriptの非同期処理の完了を管理するためのAPIである",
+      "画像のExif情報をHTML内に埋め込むための専用タグである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "マイクロデータはHTML要素にitemscope・itemtype・itemprop属性を付与することで、人物・製品・レビューといった構造化データを文書内に埋め込む仕組みであり、検索エンジンによるリッチスニペット表示などに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Microdata"
+  },
+  {
+    "id": "l1-web-fundamentals-011",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "クロスサイトリクエストフォージェリ(CSRF)への対策として最も有効なものはどれか。",
+    "choices": [
+      "フォーム送信時にサーバー側で発行したトークンを検証する",
+      "パスワードを暗号化してデータベースに保存する",
+      "レスポンスヘッダーにX-Content-Type-Optionsを設定する",
+      "画像のalt属性を必ず指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CSRF対策の代表的な手法はCSRFトークンの発行と検証であり、正規のフォームからのリクエストであることをサーバー側で確認する。",
+    "reference": "https://owasp.org/www-community/attacks/csrf"
+  },
+  {
+    "id": "l1-web-fundamentals-012",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "SQLインジェクション対策として最も適切なものはどれか。",
+    "choices": [
+      "プレースホルダ(パラメータ化クエリ)を使用してSQL文を組み立てる",
+      "SQL文を文字列連結で動的に生成する",
+      "ユーザー入力をそのままWHERE句に埋め込む",
+      "HTTPメソッドをPOSTに限定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SQLインジェクションは入力値をエスケープせずにSQL文に埋め込むことで発生する。プレースホルダを用いたパラメータ化クエリにより、入力値がSQL文として解釈されることを防げる。",
+    "reference": "https://owasp.org/www-community/attacks/SQL_Injection"
+  },
+  {
+    "id": "l1-web-fundamentals-013",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ディレクトリトラバーサル攻撃に関する説明として正しいものはどれか。",
+    "choices": [
+      "「../」などの相対パス表記を悪用し、意図しないディレクトリのファイルにアクセスする攻撃である",
+      "大量のリクエストを送信してサーバーを停止させる攻撃である",
+      "偽のメールでパスワードを詐取する攻撃である",
+      "通信経路を盗聴して情報を窃取する攻撃である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "ディレクトリトラバーサルは、ファイルパスに含まれる「../」などを利用して、公開を意図していないディレクトリ配下のファイルに不正アクセスする攻撃手法である。",
+    "reference": "https://owasp.org/www-community/attacks/Path_Traversal"
+  },
+  {
+    "id": "l1-web-fundamentals-014",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTPの認証方式であるBasic認証とDigest認証の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "Basic認証はID/パスワードをBase64エンコードして送信し、Digest認証はハッシュ化して送信する",
+      "Basic認証は暗号化されて送信され、Digest認証は平文で送信される",
+      "Basic認証はCookieを使用し、Digest認証はセッションを使用する",
+      "Basic認証はサーバー側のみで完結し、Digest認証はクライアント証明書が必須である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Basic認証はユーザー名とパスワードをBase64エンコード(暗号化ではない)して送信するのに対し、Digest認証はパスワードをハッシュ化して送信するため、盗聴に対する耐性が高い。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Authentication"
+  },
+  {
+    "id": "l1-web-fundamentals-015",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTP/1.1と比較したHTTP/2の特徴として正しいものはどれか。",
+    "choices": [
+      "1つのTCPコネクション上で複数のリクエスト・レスポンスを多重化(ストリーム)できる",
+      "暗号化通信が必須仕様として定められている",
+      "リクエストメソッドとしてGET/POSTのみをサポートする",
+      "ヘッダー情報を圧縮せず毎回そのまま送信する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTTP/2は1本のTCPコネクション上で複数のストリームを多重化するほか、ヘッダー圧縮(HPACK)などによりHTTP/1.1のパフォーマンス上の課題を改善している。暗号化は仕様上必須ではないが、主要ブラウザはHTTPS上でのみHTTP/2をサポートする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP"
+  },
+  {
+    "id": "l1-web-fundamentals-066",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTPメソッドのPUTとPOSTの違いに関する説明として最も適切なものはどれか。",
+    "choices": [
+      "PUTは冪等性(べき等性)を持つメソッドであり、同一のリクエストを複数回送信しても結果は変わらないが、POSTは冪等性を持たない",
+      "PUTはURLにパラメータを含められないメソッドであり、POSTのみパラメータを送信できる",
+      "PUTはリソースの読み取り専用メソッドであり、POSTはリソースの削除専用メソッドである",
+      "PUTはブラウザのアドレスバーから直接実行できるが、POSTはできない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "PUTは指定したURIのリソースを送信内容で置き換える操作であり、同じリクエストを何度実行しても結果が変わらない冪等なメソッドとして定義されている。POSTは冪等性が保証されず、実行のたびに新しいリソースが作成される場合がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Methods/PUT"
+  },
+  {
+    "id": "l1-web-fundamentals-067",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTPのHEADメソッドに関する説明として正しいものはどれか。",
+    "choices": [
+      "GETと同様の処理を行いレスポンスヘッダーを返すが、レスポンスボディは含まない",
+      "サーバー上にリソースを新規作成するために使用される",
+      "リクエストボディに送信したデータをそのままレスポンスとして返す",
+      "レスポンスヘッダーを持たず、ボディのみを返す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HEADはGETと同じ処理を行うが、レスポンスボディを返さずヘッダー情報のみを返す。リソースの存在確認やContent-Lengthの事前取得などに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Methods/HEAD"
+  },
+  {
+    "id": "l1-web-fundamentals-068",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTPステータスコード401と403の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "401は有効な認証情報が提供されていないことを示し、403は認証情報の有無に関わらずサーバーがアクセスを拒否したことを示す",
+      "401はサーバー内部のエラーを示し、403はリクエストがタイムアウトしたことを示す",
+      "401と403はいずれもリソースが存在しないことを示すコードである",
+      "401はリダイレクトを促すコードであり、403はキャッシュ済みであることを示すコードである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "401 Unauthorizedは有効な認証情報が不足していることを示し、通常WWW-Authenticateヘッダーで要求される認証方式が提示される。403 Forbiddenは認証情報の有無にかかわらずサーバーがアクセス自体を許可しないことを示す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Status/401"
+  },
+  {
+    "id": "l1-web-fundamentals-069",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ブラウザがキャッシュ済みリソースの有効性をサーバーに問い合わせる仕組みに関する説明として正しいものはどれか。",
+    "choices": [
+      "リクエストヘッダーIf-None-Matchに、前回受信したETagの値を指定し、サーバー側の現在の値と一致すればステータスコード304が返される",
+      "レスポンスヘッダーIf-None-Matchを付与すると、ブラウザは常にキャッシュを破棄して再取得する",
+      "リクエストヘッダーContent-Lengthを指定すると、サーバーは無条件にステータスコード304を返す",
+      "ETagはCookieの一種であり、クライアント側でのみ生成される値である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "サーバーはリソースの識別子としてETagを発行し、クライアントは次回のリクエストでIf-None-Matchヘッダーにその値を指定する。サーバー側の現在のETagと一致する場合、リソース本体を送信せず304 Not Modifiedを返すことで帯域を節約する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/If-None-Match"
+  },
+  {
+    "id": "l1-web-fundamentals-070",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "URI「https://user:pass@example.com:8080/path?query=1#section」の各構成要素に関する説明として、誤っているものはどれか。",
+    "choices": [
+      "「user:pass」はホスト名(ホスト)そのものを表す構成要素であり、userinfoという概念は存在しない",
+      "「8080」はポート番号であり、省略された場合はスキームに応じた既定のポート(HTTPSなら443)が使用される",
+      "「query=1」はクエリ文字列であり、サーバーに送信されるリクエストパラメータとして利用される",
+      "「section」で示されるフラグメント識別子は、サーバーには送信されずクライアント側の処理(ページ内アンカー移動など)に利用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "「user:pass」はuserinfoと呼ばれる構成要素であり、ホスト名(hostname)とは別に区別される要素である(現在はセキュリティ上の理由から非推奨とされる)。ポート省略時のデフォルト、クエリ文字列の用途、フラグメント識別子がサーバーに送信されない点はいずれも正しい説明である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL"
+  },
+  {
+    "id": "l1-web-fundamentals-071",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTPレスポンスヘッダーContent-Security-Policy(CSP)の目的として最も適切なものはどれか。",
+    "choices": [
+      "スクリプトや画像などのリソースを読み込んでよい送信元をポリシーとして指定し、XSSなどによる不正なリソース読み込みの被害を軽減する",
+      "レスポンスの圧縮アルゴリズムをクライアントに指示する",
+      "Cookieの有効期限や送信範囲を制御する",
+      "サーバーが対応するHTTPメソッドの一覧をクライアントに通知する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CSPは、スクリプトや画像などのリソースの許可された読み込み元をブラウザに指示するヘッダーであり、たとえXSSの脆弱性が存在してもインラインスクリプトの実行や許可されていないドメインからのリソース読み込みを防ぐ多層防御として機能する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CSP"
+  },
+  {
+    "id": "l1-web-fundamentals-072",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "HTTPレスポンスヘッダーCache-Controlに指定できるディレクティブとして正しいものを全て選べ。",
+    "choices": [
+      "no-store",
+      "max-age",
+      "immutable",
+      "must-transmit"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "no-store(キャッシュを一切保存しない)、max-age(キャッシュの有効期間を秒数で指定)、immutable(内容が変化しないため再検証不要であることを示す)はいずれも実在するCache-Controlディレクティブである。must-transmitというディレクティブは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Guides/Caching"
+  },
+  {
+    "id": "l1-web-fundamentals-073",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Cookieに設定するSameSite属性に関する説明として正しいものはどれか。",
+    "choices": [
+      "SameSite=Noneを指定する場合、多くのブラウザでは同時にSecure属性を指定することが求められる",
+      "SameSite=Strictを指定すると、自サイトのリンクを他サイトのページに掲載した場合でも、そのリンク経由の遷移でCookieが送信される",
+      "SameSite=Laxはあらゆるクロスサイトリクエスト(画像の読み込みやnon-GETリクエストを含む)でCookieを送信する",
+      "SameSite属性はCookieのDomain属性やPath属性と同じ役割を持ち、送信先ホストを制限するものである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SameSite=Noneでクロスサイト送信を許可する場合、多くのブラウザでは併せてSecure属性(HTTPS限定送信)の指定が求められる。SameSite=Strictは自サイト以外からのリクエスト(他サイトのリンク経由のトップレベル遷移も含む)でCookieを送信しない。SameSite=Laxは既定値であり、GETによる安全なトップレベルナビゲーションなど限られた場合のみクロスサイト送信を許可する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  {
+    "id": "l1-web-fundamentals-074",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTTPレスポンスヘッダーReferrer-Policyの役割として正しいものはどれか。",
+    "choices": [
+      "リンク先への遷移時にRefererヘッダーとして送信される参照元情報の詳細度を制御する",
+      "リクエストを再送信できる最大回数を制限する",
+      "レスポンス本文の文字エンコーディングを指定する",
+      "クライアントがリソースをキャッシュできる期間を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Referrer-Policyは、ページ遷移時にリクエストのRefererヘッダーとして送信する参照元情報の範囲(送信しない、オリジンのみ、フルURLなど)を制御するためのヘッダーである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Referrer-Policy"
+  },
+  {
+    "id": "l1-web-fundamentals-075",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "SSL/TLSが提供する主要なセキュリティサービスとして正しいものを全て選べ。",
+    "choices": [
+      "通信相手の認証(なりすましの防止)",
+      "通信内容の暗号化",
+      "データの完全性(改ざんの検知)",
+      "通信速度の恒久的な高速化"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "TLSは主に、通信相手が正当であることを確認する認証、通信内容を第三者から秘匿する暗号化、データが改ざんされていないことを保証する完全性の3つのセキュリティサービスを提供する。通信速度の高速化自体はTLSの目的ではなく、暗号化処理やハンドシェイクによりむしろわずかなオーバーヘッドが生じる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Security/Transport_Layer_Security"
+  },
+  {
+    "id": "l1-web-fundamentals-076",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTML文書の先頭でDOCTYPE宣言が省略された、または誤った記述がされている場合にブラウザで発生する挙動として正しいものはどれか。",
+    "choices": [
+      "ブラウザが「quirks mode(後方互換モード)」でレンダリングし、ボックスモデルの解釈などが標準モードと異なる場合がある",
+      "ブラウザは文書の表示を拒否し、常にエラー画面を表示する",
+      "文書内の文字エンコーディング指定がすべて無視され、常にShift_JISとして解釈される",
+      "video要素やcanvas要素などのHTML5の新要素が一切使用できなくなる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "多くのブラウザは、DOCTYPE宣言がない場合や誤った記述の場合、古いHTMLとの互換性を保つためquirks mode(後方互換モード)でレンダリングし、標準モード(standards mode)とはボックスモデルなどの解釈が異なることがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Quirks_Mode_and_Standards_Mode"
+  },
+  {
+    "id": "l1-web-fundamentals-077",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "<meta charset=\"UTF-8\">のようにHTML5文書内で文字エンコーディングを宣言する際の制約として正しいものはどれか。",
+    "choices": [
+      "charset属性の値は大文字小文字を区別せず\"utf-8\"と一致する必要があり、この要素は文書先頭から1024バイト以内に完全に収まっている必要がある",
+      "charset属性にはShift_JISやEUC-JPなど任意の文字エンコーディング名を自由に指定でき、文書内のどこに配置してもよい",
+      "charset属性はHTML5で廃止されており、必ずhttp-equiv=\"Content-Type\"で代替しなければならない",
+      "charset属性の値は\"UTF-8\"と大文字で指定しなければならず、小文字の\"utf-8\"は無効である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTML5仕様上、<meta charset>のcharset属性は大文字小文字を区別せず\"utf-8\"と一致する値のみが有効とされ(UTF-8がHTML5文書で唯一の有効なエンコーディング)、この要素は文書の先頭1024バイト以内に完全に収まっている必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/meta"
+  },
+  {
+    "id": "l1-web-fundamentals-078",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "DOM(Document Object Model)におけるノードの種類に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "HTML要素はElementノードとしてツリーに表現される",
+      "要素内のテキスト文字列はTextノードとして別個に表現される",
+      "コメント<!-- -->はCommentノードとして表現される",
+      "CSSのセレクタはノードの一種としてDOMツリーに含まれる"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "DOMはHTML文書をElement(要素)、Text(テキスト)、Comment(コメント)などのノードから成るツリー構造として表現する。CSSセレクタはDOMツリーの構成要素ではなく、要素を選択するための記法にすぎない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction"
+  },
+  {
+    "id": "l1-web-fundamentals-079",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTML要素に指定するlang属性の主な目的として最も適切なものはどれか。",
+    "choices": [
+      "文書や要素の内容が記述されている自然言語を示し、スクリーンリーダーが適切な言語で読み上げるための助けとなる",
+      "文書の文字エンコーディングを指定する",
+      "テキストの表示方向(左から右か右から左か)を自動的に切り替える",
+      "JavaScriptの構文バージョンを指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "lang属性は文書やその一部が記述されている自然言語(例: ja、en-GB)を示す属性であり、WCAGでもスクリーンリーダーなどの支援技術が正しい言語で読み上げるために指定が求められている。文字方向の指定には別途dir属性を用いる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/lang"
+  },
+  {
+    "id": "l1-web-fundamentals-080",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "モバイル端末でページの表示幅をデバイスの画面幅に合わせ、初期のズーム倍率を等倍にするmeta要素の記述として正しいものはどれか。",
+    "choices": [
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+      "<meta name=\"viewport\" content=\"width=1024, initial-scale=1\">",
+      "<meta http-equiv=\"viewport\" content=\"device-width\">",
+      "<meta charset=\"viewport\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "viewportメタタグでwidth=device-widthを指定するとビューポート幅がデバイスの画面幅に合わせられ、initial-scale=1で初期のズーム倍率が等倍に設定される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Viewport_meta_tag"
+  },
+  {
+    "id": "l1-web-fundamentals-081",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "検索エンジンのクローラーに対し、そのページ自体のインデックス化は禁止しつつ、ページ内のリンク先のクロールは許可したい場合のmeta要素の記述として正しいものはどれか。",
+    "choices": [
+      "<meta name=\"robots\" content=\"noindex, follow\">",
+      "<meta name=\"robots\" content=\"index, nofollow\">",
+      "<meta name=\"crawler\" content=\"noindex, nofollow\">",
+      "<meta name=\"robots\" content=\"noindex, nofollow\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "content属性にnoindexを指定するとそのページのインデックス化を禁止し、followを指定するとページ内のリンク先へのクロールを許可する。両方を拒否したい場合はnofollowを併用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/meta/name/robots"
+  },
+  {
+    "id": "l1-web-fundamentals-082",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "<link rel=\"preload\">と<link rel=\"prefetch\">の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "preloadは現在のページで近いうちに確実に必要となるリソースを高い優先度で先読みし、prefetchは将来のページ遷移で使われる可能性のあるリソースを低優先度で先読みする",
+      "preloadは画像専用のヒントであり、prefetchはスクリプト専用のヒントである",
+      "preloadとprefetchはいずれもリソースをキャッシュに保存せず、毎回サーバーから再取得させる",
+      "preloadはCSSファイルにのみ、prefetchはHTMLファイルにのみ使用できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "rel=\"preload\"は現在のページで必要になることが分かっているリソースを高優先度で先読みするために使い、rel=\"prefetch\"は次のページ遷移などで将来利用される可能性のあるリソースをブラウザのアイドル時間に低優先度で先読みするために使う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/preload"
+  },
+  {
+    "id": "l1-web-fundamentals-083",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "<script>要素のdefer属性とasync属性の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "defer属性を指定したスクリプトは非同期にダウンロードされつつ、実行はHTML解析完了後に記述順を保って行われる。async属性を指定したスクリプトはダウンロード完了次第、解析を中断して即座に実行される",
+      "defer属性を指定したスクリプトは同期的にダウンロードされ、async属性を指定したスクリプトは常にHTML解析完了後にのみ実行される",
+      "defer属性とasync属性はいずれも同じ挙動を指定するものであり、実行順序に違いは生じない",
+      "defer属性はインラインスクリプトにのみ、async属性は外部スクリプトにのみ指定できる属性である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "defer属性を指定した外部スクリプトはHTML解析と並行して非同期にダウンロードされ、実行はDOM構築(HTML解析)が完了した後、記述順を保って行われる。async属性を指定したスクリプトはダウンロードが完了し次第、HTML解析を中断してただちに実行されるため実行順序は保証されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/script"
+  },
+  {
+    "id": "l1-web-fundamentals-084",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "<script type=\"module\">を用いてスクリプトを読み込む場合の特徴に関する説明として正しいものはどれか。",
+    "choices": [
+      "import/export構文を使用してモジュール間で機能を共有でき、defer属性を指定しなくても自動的に遅延実行される",
+      "モジュール内で定義した変数や関数は常にグローバルスコープに公開され、他のスクリプトから直接参照できる",
+      "type=\"module\"を指定したスクリプトはHTML解析より前に同期的にダウンロードと実行を完了させる",
+      "type=\"module\"を指定するとCORSの制約を受けなくなり、任意のオリジンのモジュールを読み込める"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "type=\"module\"を指定したスクリプトはESモジュールとして扱われ、import/export構文が利用できる。またdefer属性を指定しなくても自動的に遅延実行される。モジュールは独自のスコープを持つため、内部の変数はグローバルスコープに自動的には公開されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules"
+  },
+  {
+    "id": "l1-web-fundamentals-085",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "画像フォーマットにおける透過(透明)表現に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "PNG(アルファ付きトゥルーカラー)はアルファチャンネルにより256段階の半透明を表現できる",
+      "GIFは特定のカラーインデックスを透明として指定できるが、そのピクセルは完全な透明か不透明かのいずれかであり、半透明のグラデーションは表現できない",
+      "JPEGはアルファチャンネルに対応しており、透過情報を保持できる",
+      "BMPは他の形式より高い圧縮率を持ち、透過情報を効率的に保持できる"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "PNGはアルファチャンネルにより256段階の半透明を表現できる。GIFは特定のカラーインデックスを透明色として指定するインデックスカラー方式のため、ピクセルは完全な透明か不透明のいずれかとなりグラデーション状の半透明は表現できない。JPEGはアルファチャンネルに対応しておらず、BMPは一般に非圧縮でありPNGやJPEGより圧縮率は高くない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-086",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "BMP(ビットマップ)画像形式の特徴として正しいものはどれか。",
+    "choices": [
+      "一般的に非圧縮のラスター画像としてデータを保持するため、PNGやJPEGに比べてファイルサイズが大きくなりやすい",
+      "非可逆圧縮によってファイルサイズを大幅に削減できるため、写真の配信に広く利用されている",
+      "複数フレームを1ファイルに格納できるアニメーション画像形式である",
+      "ベクター画像形式であり、拡大しても画質が劣化しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "BMPは一般的に非圧縮でピクセル情報をそのまま保持するラスター(ビットマップ)形式であり、同じ画像を表現する場合にPNGやJPEGと比較してファイルサイズが大きくなりやすいため、Web用途にはあまり適さない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Image_types"
+  },
+  {
+    "id": "l1-web-fundamentals-087",
+    "category": "l1-web-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "MVCアーキテクチャにおける各コンポーネントの役割に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "Modelはアプリケーションのデータやビジネスロジックの管理を担当する",
+      "Viewはユーザーに提示する画面のレイアウトや表示を担当する",
+      "Controllerはユーザーからの入力を受け取り、Modelの更新やViewの選択を仲介する",
+      "ViewはControllerを介さず直接Modelを更新することが推奨される設計である"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "MVCはModel(データ・ビジネスロジック)、View(表示)、Controller(入力の仲介とModel・Viewの連携)の3つの役割に責務を分離する設計パターンである。ViewがControllerを介さず直接Modelを更新することは、関心の分離という設計原則には反する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/MVC"
+  },
+  {
+    "id": "l1-web-fundamentals-088",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Base64エンコードに関する説明として正しいものはどれか。",
+    "choices": [
+      "エンコードにはA〜Z、a〜z、0〜9、+、/の64種類の文字(および必要に応じてパディング文字=)が用いられ、元データよりおよそ3分の1(約33%)サイズが大きくなる",
+      "Base64は非可逆圧縮の一種であり、エンコード後のデータサイズは元データより小さくなる",
+      "Base64はバイナリデータを暗号化するための方式であり、デコードには秘密鍵が必要である",
+      "Base64エンコードされた文字列には、元データにない情報が付加され、元データより情報量が増加する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Base64はバイナリデータを64種類のASCII文字(A-Z、a-z、0-9、+、/)のみで表現するエンコード方式であり、3バイトのデータを4文字で表現するため、エンコード後のサイズは元データよりおよそ33%増加する。暗号化ではなく、あくまで文字集合の変換(バイナリからテキストへの変換)である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Base64"
+  },
+  {
+    "id": "l1-web-fundamentals-089",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTMLのマイクロデータに関する説明として正しいものはどれか。",
+    "choices": [
+      "itemscope属性で項目(アイテム)のスコープを定義し、itemprop属性でその項目のプロパティ(名前と値の組)を追加する",
+      "itemscope属性はCSSのスコープ付きスタイルを定義するための属性であり、構造化データとは関係がない",
+      "マイクロデータはHTML5の仕様には含まれず、外部ライブラリの読み込みが必須である",
+      "itemtype属性はプロパティの値のデータ型(数値・文字列など)を指定するための属性である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "マイクロデータはitemscope属性で項目のスコープを定義し、itemprop属性でその項目に名前と値の組から成るプロパティを追加する。itemtype属性はSchema.orgなどの語彙(ボキャブラリー)を定義するURLを指定するものであり、マイクロデータはWHATWG HTML標準の一部として定義されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Microdata"
+  },
+  {
+    "id": "l1-web-fundamentals-090",
+    "category": "l1-web-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "document.querySelectorAll()とdocument.getElementsByClassName()の返り値の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "querySelectorAll()は静的(非ライブ)なNodeListを返すため、取得後にDOMを変更しても内容は更新されないが、getElementsByClassName()が返すHTMLCollectionはライブであり、DOMの変更が即座に反映される",
+      "querySelectorAll()はライブなHTMLCollectionを返し、getElementsByClassName()は静的なNodeListを返す",
+      "両者はまったく同じ型のオブジェクトを返し、挙動に違いはない",
+      "querySelectorAll()もgetElementsByClassName()も配列(Array)を返すため、forEachメソッドをそのまま使用できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "querySelectorAll()は取得時点のスナップショットである静的なNodeListを返すため、その後のDOM変更は反映されない。一方、getElementsByClassName()が返すHTMLCollectionはライブであり、DOMの変更がリアルタイムに反映される点で挙動が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Document/querySelectorAll"
+  }
+]

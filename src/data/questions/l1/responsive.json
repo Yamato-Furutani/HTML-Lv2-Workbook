@@ -1,0 +1,1690 @@
+[
+  {
+    "id": "l1-responsive-001",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "モバイル端末でページの表示幅をデバイスの画面幅に合わせるために指定するmeta要素として正しいものはどれか。",
+    "choices": [
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+      "<meta name=\"viewport\" content=\"width=100%\">",
+      "<meta name=\"screen\" content=\"width=device-width\">",
+      "<meta name=\"responsive\" content=\"true\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "viewportメタタグにwidth=device-widthを指定することで、表示幅をデバイスの画面幅に合わせ、initial-scale=1で初期のズーム倍率を等倍に設定する。これはレスポンシブWebデザインの基本設定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-002",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画面幅が600px以下の場合にのみ適用されるスタイルを定義するメディアクエリとして正しいものはどれか。",
+    "choices": [
+      "@media (max-width: 600px) { ... }",
+      "@media (min-width: 600px) { ... }",
+      "@media screen and 600px { ... }",
+      "@responsive (width: 600px) { ... }"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "max-widthは指定した値以下の場合に適用される条件、min-widthは指定した値以上の場合に適用される条件を表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-003",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "画像がその親要素の幅を超えないようにするCSSの指定として最も適切なものはどれか。",
+    "choices": [
+      "max-width: 100%;",
+      "width: auto !important;",
+      "min-width: 100%;",
+      "overflow: hidden;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "画像にmax-width: 100%(多くの場合height: autoと併用)を指定することで、親要素の幅を超えないフルードイメージとして表示できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/max-width"
+  },
+  {
+    "id": "l1-responsive-004",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "レスポンシブWebデザインの目的として最も適切なものはどれか。",
+    "choices": [
+      "1つのHTML/CSSで様々な画面サイズのデバイスに適した表示を実現すること",
+      "サーバー側でデバイスごとに異なるURLのページを用意すること",
+      "検索エンジンの表示順位を上げること",
+      "画像のファイルサイズを常に最小化すること"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "レスポンシブWebデザインは、単一のHTML/CSSでフルードグリッド・フルードイメージ・メディアクエリなどを組み合わせ、PC・タブレット・スマートフォンなど様々な画面サイズに適応した表示を実現する手法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Responsive_design"
+  },
+  {
+    "id": "l1-responsive-005",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "レスポンシブWebデザインにおける「ブレークポイント」の説明として最も適切なものはどれか。",
+    "choices": [
+      "レイアウトを切り替える基準となる画面幅などの値",
+      "JavaScriptの実行を一時停止する箇所",
+      "CSSの読み込みを中断するタイミング",
+      "HTTPリクエストを分割する単位"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "ブレークポイントとは、メディアクエリなどによってレイアウトやスタイルを切り替える基準となる画面幅(またはその他の条件)の値のことを指す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Breakpoint/CSS"
+  },
+  {
+    "id": "l1-responsive-016",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "viewportメタタグのcontent属性で「initial-scale=1」を指定する目的として最も適切なものはどれか。",
+    "choices": [
+      "ページが読み込まれた際の初期のズーム倍率を等倍(1倍)に設定する",
+      "ページ内の全てのフォントサイズを1remに固定する",
+      "ブラウザの拡大縮小機能自体を無効化する",
+      "viewportの幅を1pxに設定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "initial-scaleはページ読み込み時の初期のズーム倍率を指定するプロパティであり、1を指定すると等倍表示になる。拡大縮小操作自体の無効化にはuser-scalableを用いる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-017",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "viewportメタタグで「user-scalable=no」を指定した場合の効果として最も適切なものはどれか。",
+    "choices": [
+      "ユーザーによるピンチ操作などでの拡大縮小を禁止する",
+      "ページの初期ズーム倍率を2倍にする",
+      "ビューポートの幅をデバイス幅の半分にする",
+      "スクロールバーの表示を禁止する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "user-scalable=noを指定すると、ピンチイン・ピンチアウトなどによるユーザーの拡大縮小操作を禁止できる。ただしアクセシビリティ低下につながるため多用は推奨されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-018",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のlink要素の記述の説明として最も適切なものはどれか。",
+    "code": "<link rel=\"stylesheet\" href=\"print.css\" media=\"print\">",
+    "choices": [
+      "print.cssは印刷時(または印刷プレビュー時)にのみ適用され、通常の画面表示には適用されない",
+      "print.cssは常に画面表示にのみ適用される",
+      "print.cssはJavaScriptが無効な環境でのみ適用される",
+      "media属性は無視され、常にスタイルが適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "link要素のmedia属性にprintを指定すると、そのスタイルシートは印刷時にのみ適用され、通常の画面(screen)表示には適用されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/link"
+  },
+  {
+    "id": "l1-responsive-019",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSの記述に関する説明として最も適切なものはどれか。",
+    "code": "@media screen and (max-width: 480px) {\n  .nav { display: none; }\n}",
+    "choices": [
+      "screenメディアで、かつビューポート幅が480px以下の場合に.navクラスの要素を非表示にする",
+      "印刷時に.navクラスの要素を非表示にする",
+      "画面幅が480px以上の場合にのみ.navクラスの要素を表示する",
+      "すべてのメディアで常に.navクラスの要素を非表示にする"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "このメディアクエリはメディアタイプがscreenであり、かつビューポート幅が480px以下という2つの条件を満たす場合にのみ、.navをdisplay: noneにする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-020",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メディアクエリのメディアタイプ「speech」が主に対象とする用途として最も適切なものはどれか。",
+    "choices": [
+      "スクリーンリーダーなど音声で読み上げるデバイス向けのスタイル指定",
+      "印刷向けのスタイル指定",
+      "高解像度ディスプレイ向けのスタイル指定",
+      "モバイル端末専用のスタイル指定"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "speechメディアタイプは、スクリーンリーダーなど音声合成によってページを読み上げる出力向けのスタイルを指定する際に使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media#media_types"
+  },
+  {
+    "id": "l1-responsive-021",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "CSSのメディアクエリで指定できるメディアタイプとして実在するものを全て選べ。",
+    "choices": [
+      "screen",
+      "speech",
+      "mobile",
+      "retina"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "メディアタイプとして規定されているのはall、print、screen、speechの4種類である。mobileやretinaといった名称のメディアタイプは存在せず、高解像度判定にはresolutionなどのメディア特徴を用いる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media#media_types"
+  },
+  {
+    "id": "l1-responsive-022",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メディアクエリのメディア特徴「resolution」が判定する対象として最も適切なものはどれか。",
+    "choices": [
+      "出力デバイスの画素密度(解像度)",
+      "画面の縦横比",
+      "ポインティングデバイスでのホバー可否",
+      "画面の向き(縦・横)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "resolutionメディア特徴は、出力デバイスのピクセル密度(dpiやdppxなど)を判定するために用いられ、高解像度ディスプレイ向けのスタイルの出し分けなどに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/resolution"
+  },
+  {
+    "id": "l1-responsive-023",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メディアクエリのメディア特徴「aspect-ratio」が判定する対象として最も適切なものはどれか。",
+    "choices": [
+      "ビューポートの幅と高さの比率",
+      "画面の色の深さ",
+      "デバイスが対応する入力方式(タッチかマウスか)",
+      "ネットワークの通信速度"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "aspect-ratioメディア特徴は、ビューポートの幅と高さの比率(例: 16/9)を判定するために使用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/aspect-ratio"
+  },
+  {
+    "id": "l1-responsive-024",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メディアクエリのメディア特徴「hover」が判定する対象として最も適切なものはどれか。",
+    "choices": [
+      "主な入力機構が要素の上にカーソルを重ねる(ホバーする)ことが可能かどうか",
+      "画面の解像度が一定値以上かどうか",
+      "ユーザーがダークモードを有効にしているかどうか",
+      "ページが印刷されようとしているかどうか"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "hoverメディア特徴は、マウスのように要素の上にポインタを重ねる操作が可能なデバイスかどうかを判定する。タッチのみの端末では通常hover: noneと評価される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/hover"
+  },
+  {
+    "id": "l1-responsive-025",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メディアクエリのメディア特徴「width」が判定する対象として最も適切なものはどれか。",
+    "choices": [
+      "ブラウザのビューポート(表示領域)の幅",
+      "画像ファイルの元のピクセル幅",
+      "デバイスの物理的な画面サイズ(インチ)",
+      "HTML文書のファイルサイズ"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "widthメディア特徴は、ブラウザのビューポートの幅を判定する。min-width/max-widthと組み合わせてブレークポイントの条件として広く利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/width"
+  },
+  {
+    "id": "l1-responsive-026",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "メディアクエリで複数の条件を組み合わせる際の構文に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "andキーワードで条件を連結すると、すべての条件を満たす場合に適用される",
+      "カンマ(,)で条件を区切ると、いずれかの条件を満たす場合に適用される",
+      "orキーワードで条件を連結すると、いずれかの条件を満たす場合に適用される",
+      "notキーワードは常に無視され、実際には機能しない"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "メディアクエリの複数条件は、andで連結すると論理積(すべて満たす場合に適用)、カンマまたはorで連結すると論理和(いずれか満たす場合に適用)として扱われる。ただしorをandやnotと同じ階層で混在させる場合は括弧で優先順位を明示する必要がある。notは条件を否定する働きを持つキーワードであり、常に無視されるわけではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-027",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のimg要素の記述について、sizes属性とsrcsetのw記述子の役割の説明として最も適切なものはどれか。",
+    "code": "<img src=\"photo-800.jpg\"\n     srcset=\"photo-400.jpg 400w, photo-800.jpg 800w, photo-1200.jpg 1200w\"\n     sizes=\"(max-width: 600px) 100vw, 50vw\"\n     alt=\"写真\">",
+    "choices": [
+      "w記述子は各候補画像の実際の幅(ピクセル数)を示し、sizes属性は表示時のおおよその幅をブラウザに伝えることで最適な画像選択を助ける",
+      "w記述子はデバイスピクセル比を示し、sizes属性は画像の圧縮率を指定する",
+      "sizes属性は必須ではなく、指定しても効果はない",
+      "w記述子は画像の読み込み優先度を示す数値である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "srcsetのw記述子は各候補画像の実際の幅をピクセル単位で示す。sizes属性はビューポート条件に応じた表示幅の目安を指定し、ブラウザはこの情報とデバイスピクセル比から最適な画像を選択する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img"
+  },
+  {
+    "id": "l1-responsive-028",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のimg要素の記述における「2x」の意味として最も適切なものはどれか。",
+    "code": "<img src=\"photo.jpg\" srcset=\"photo.jpg 1x, photo@2x.jpg 2x\" alt=\"写真\">",
+    "choices": [
+      "デバイスピクセル比が2倍の環境ではphoto@2x.jpgを使用することを示す",
+      "画像を2倍の速さで読み込むことを示す",
+      "画像の表示サイズを2倍に拡大することを示す",
+      "画像の圧縮率を2分の1にすることを示す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "x記述子(ピクセル密度記述子)は、デバイスピクセル比に応じて使用する画像を指定するもので、「2x」はデバイスピクセル比が2の環境(高解像度ディスプレイなど)で使用される画像であることを示す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img"
+  },
+  {
+    "id": "l1-responsive-029",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSSのimage-set()関数の用途として最も適切なものはどれか。",
+    "choices": [
+      "background-imageなどのプロパティで、デバイスピクセル比に応じて複数の画像候補から適切なものを選択させる",
+      "複数の画像を1つのCSSアニメーションとして連続再生する",
+      "SVG画像をラスタ画像に変換する",
+      "画像の読み込みを完全に停止する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "image-set()は、background-imageなどのプロパティにおいて、img要素のsrcsetのx記述子と同様に、デバイスピクセル比に応じた画像候補を指定できるCSS関数である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/image/image-set"
+  },
+  {
+    "id": "l1-responsive-030",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "picture要素を使用する際、フォールバック画像として必ず含める必要がある子要素はどれか。",
+    "choices": [
+      "img要素",
+      "figcaption要素",
+      "object要素",
+      "embed要素"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "picture要素には最低1つのimg要素を子要素として含める必要があり、source要素の条件に一致しない場合やpicture要素に対応していない環境ではこのimg要素が表示される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/picture"
+  },
+  {
+    "id": "l1-responsive-031",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "picture要素内のsource要素に指定するmedia属性の役割として最も適切なものはどれか。",
+    "choices": [
+      "指定したメディア条件に一致する場合に、その候補の画像を採用させる",
+      "画像ファイルの著作権情報を記述する",
+      "画像の読み込みを常に遅延させる",
+      "画像に代替テキストを設定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "source要素のmedia属性にはメディアクエリを指定でき、条件に一致した場合にその候補(srcset)の画像が採用される。これによりアートディレクション(画面条件に応じたトリミング違いの出し分け)が実現できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/source"
+  },
+  {
+    "id": "l1-responsive-032",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "img要素のloading属性を省略した場合のデフォルトの読み込み動作として正しいものはどれか。",
+    "choices": [
+      "eager(通常どおりすぐに読み込む)",
+      "lazy(遅延読み込みする)",
+      "auto(ブラウザが自動で判断する)",
+      "none(読み込まない)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "loading属性を省略した場合のデフォルト値はeagerであり、画像は他のリソースと同様にすぐに読み込まれる。遅延読み込みを行うにはloading=\"lazy\"を明示的に指定する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Performance/Guides/Lazy_loading"
+  },
+  {
+    "id": "l1-responsive-033",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Webページの表示パフォーマンスを高める最適化手法として適切なものを全て選べ。",
+    "choices": [
+      "画像を適切な形式・サイズに圧縮してファイルサイズを削減する",
+      "画面外にある画像にloading=\"lazy\"を指定して読み込みを遅延させる",
+      "すべての画像を常に元のサイズ(無圧縮)のまま読み込む",
+      "複数の小さな画像を1枚のスプライト画像にまとめてリクエスト数を削減する"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "画像圧縮、遅延読み込み、CSSスプライトはいずれもファイルサイズやHTTPリクエスト数を削減し表示速度を改善する代表的な手法である。無圧縮の画像をそのまま読み込むことは、パフォーマンス低下の原因となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Performance/Guides/Lazy_loading"
+  },
+  {
+    "id": "l1-responsive-034",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSの記述の説明として最も適切なものはどれか。",
+    "code": "h1 {\n  font-size: clamp(1rem, 4vw, 2rem);\n}",
+    "choices": [
+      "推奨値(4vw)を基準に、ビューポート幅に応じてフォントサイズを可変にしつつ、最小1rem・最大2remの範囲に収める",
+      "常にフォントサイズを1remに固定する",
+      "常にフォントサイズを2remに固定する",
+      "4vwの値は無視され、1remと2remの平均値が採用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "clamp(最小値, 推奨値, 最大値)は、推奨値を基準としつつ、その値が最小値を下回る場合は最小値に、最大値を上回る場合は最大値に制限する関数であり、ビューポート幅に応じたレスポンシブなフォントサイズ指定などに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/clamp"
+  },
+  {
+    "id": "l1-responsive-035",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "レスポンシブWebデザインにおいて、要素の幅をpx(固定値)ではなく%やremなどの相対単位で指定する主な理由として最も適切なものはどれか。",
+    "choices": [
+      "画面サイズやユーザーの設定に応じてレイアウトが柔軟に伸縮できるようにするため",
+      "ブラウザの表示速度を常に高速化するため",
+      "CSSファイルのサイズを削減するため",
+      "JavaScriptを使わずにアニメーションさせるため"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "相対単位を用いることで、画面サイズやユーザーのフォント設定の違いに応じてレイアウトや文字サイズが柔軟に追従し、様々なデバイスに適応しやすくなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Responsive_design"
+  },
+  {
+    "id": "l1-responsive-036",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSSの単位「vw」と「vh」の説明として最も適切なものはどれか。",
+    "choices": [
+      "ビューポートの幅(vw)・高さ(vh)に対する割合を表す単位で、1vwはビューポート幅の1%に相当する",
+      "画像の元の幅(vw)・高さ(vh)を表す単位",
+      "デバイスピクセル比を表す単位",
+      "フォントの行間を表す単位"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "vwはビューポート幅の1/100、vhはビューポート高さの1/100を表す相対単位であり、画面サイズに応じたフルードなレイアウトの実現に利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/length"
+  },
+  {
+    "id": "l1-responsive-037",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "viewportメタタグのcontent属性に指定する「width=device-width」の意味として最も適切なものはどれか。",
+    "choices": [
+      "ビューポートの幅をデバイスのCSSピクセルでの画面幅に合わせる",
+      "ビューポートの幅を常に1024pxに固定する",
+      "ビューポートの幅を画像の元の幅に合わせる",
+      "ビューポートの幅の自動調整を無効化する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "width=device-widthは、ビューポートの幅をデバイスのCSSピクセルでの画面幅に一致させる指定であり、モバイル端末での縮小表示を防ぐレスポンシブデザインの基本設定の1つである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-038",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メディアクエリのメディア特徴「prefers-color-scheme」が判定する対象として最も適切なものはどれか。",
+    "choices": [
+      "ユーザーがOSやブラウザで設定しているライトモード・ダークモードなどの配色テーマの選択",
+      "画面の解像度が一定値以上かどうか",
+      "ページが印刷されようとしているかどうか",
+      "ネットワークの通信速度"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "prefers-color-schemeメディア特徴は、ユーザーがOSやブラウザで設定しているダークモード・ライトモードなどの配色テーマの選択(light/dark/no-preferenceなど)を判定するために使用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme"
+  },
+  {
+    "id": "l1-responsive-039",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "viewportメタタグのcontent属性に指定できるプロパティとして実在するものを全て選べ。",
+    "choices": [
+      "width",
+      "initial-scale",
+      "user-scalable",
+      "device-orientation"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "viewportメタタグのcontent属性にはwidth、height、initial-scale、minimum-scale、maximum-scale、user-scalableなどが指定できる。device-orientationという名前のプロパティは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-040",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メディアクエリの条件を満たさない場合、そのメディアクエリ内に記述されたスタイルはどのように扱われるか。",
+    "choices": [
+      "単に適用されないだけで、ページの他の部分の表示やエラーには影響しない",
+      "ブラウザがエラーを発生させ、CSSファイル全体の読み込みが停止する",
+      "条件を満たす別の値に自動的に置き換えられて適用される",
+      "JavaScriptの実行が停止する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "メディアクエリの条件を満たさない場合、そのブロック内のスタイルは単に適用されないだけであり、CSSファイル全体の解析やページの他の部分の表示に影響を与えることはない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-006",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のメディアクエリにおいて、\"orientation\"はどのようなメディア特徴を判定するものか。\n@media (orientation: landscape) { ... }",
+    "choices": [
+      "画面(ビューポート)が縦向きか横向きかを判定する",
+      "画面の色深度を判定する",
+      "印刷時かどうかを判定する",
+      "ユーザーの言語設定を判定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "orientationメディア特徴は、ビューポートの幅が高さ以上であればlandscape(横向き)、それ以外はportrait(縦向き)と判定される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/orientation"
+  },
+  {
+    "id": "l1-responsive-007",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "印刷時にのみ適用するスタイルを指定するメディアクエリのメディアタイプとして正しいものはどれか。",
+    "choices": [
+      "print",
+      "screen",
+      "speech",
+      "all"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "printメディアタイプは印刷プレビューや印刷時に適用されるスタイルを指定する際に使用する。screenは画面表示、speechは音声読み上げ、allはすべてのメディアタイプに適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media#media_types"
+  },
+  {
+    "id": "l1-responsive-008",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "フルードグリッド(liquid layout)の実現方法として最も適切なものはどれか。",
+    "choices": [
+      "要素の幅をpx(固定値)ではなく%(パーセンテージ)で指定する",
+      "すべての要素にposition: fixedを指定する",
+      "画面サイズに関わらずwidthを常に1024pxに固定する",
+      "メディアクエリを一切使用しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "フルードグリッドは、要素の幅をピクセルなどの絶対値ではなく親要素に対する割合(%)で指定することで、画面幅の変化に応じて柔軟にレイアウトが伸縮する手法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Responsive_design"
+  },
+  {
+    "id": "l1-responsive-009",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Retinaディスプレイなどの高解像度ディスプレイ向けに解像度に応じた画像を出し分けるimg要素の属性として正しいものはどれか。",
+    "choices": [
+      "srcset",
+      "src-hd",
+      "resolution",
+      "density"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "img要素のsrcset属性を用いると、デバイスピクセル比(1x, 2xなど)や画面幅に応じて複数の画像候補の中からブラウザが最適なものを選択して読み込むことができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img"
+  },
+  {
+    "id": "l1-responsive-010",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CSSスプライト技法の説明として最も適切なものはどれか。",
+    "choices": [
+      "複数の画像を1枚の画像ファイルにまとめ、background-positionで表示位置を切り替えて使用することで、HTTPリクエスト数を削減する手法",
+      "画像を複数のファイルに分割してレイアウトする手法",
+      "アニメーションを実現するJavaScriptライブラリ",
+      "動画のフレームを個別の画像として抽出する手法"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CSSスプライトは、複数の小さな画像を1枚の画像に結合し、background-positionプロパティで表示部分を切り替えることで、リクエスト数を削減しパフォーマンスを向上させる古典的な手法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_backgrounds_and_borders/Implementing_image_sprites_in_CSS"
+  },
+  {
+    "id": "l1-responsive-041",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "外部CSSファイルを読み込む次のlink要素について、正しい説明はどれか。",
+    "code": "<link rel=\"stylesheet\" href=\"print.css\" media=\"print\">",
+    "choices": [
+      "ブラウザはこのCSSファイルを画面表示時にもダウンロードするが、印刷時以外はスタイルの適用が抑制される",
+      "画面表示時にはこのファイル自体のダウンロードが行われない",
+      "media属性を指定すると常にレンダリングがブロックされ、ページ表示が遅延する",
+      "media属性はlink要素では無効な属性であり、ブラウザによって無視される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "media属性で条件を指定しても、多くのブラウザはmedia条件に関わらずリンク先のCSSファイル自体は取得する(条件に一致しない場合は低優先度で読み込まれることが多い)。取得したスタイルは、実際のメディア条件に一致する場合のみページに適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/link"
+  },
+  {
+    "id": "l1-responsive-042",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のviewportメタタグの指定について、アクセシビリティ上の観点から最も適切な説明はどれか。",
+    "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">",
+    "choices": [
+      "user-scalable=noはピンチズームによる拡大縮小を無効化するため、弱視のユーザーなどの利用を妨げる可能性があり、一般的に推奨されない",
+      "user-scalable=noを指定しないと、スマートフォンでは正しくレイアウトが表示されない",
+      "user-scalable=noはページの読み込み速度を大幅に向上させる設定である",
+      "user-scalable=noはSEO上必須の設定として推奨されている"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "user-scalable=noやmaximum-scale=1の指定はユーザーによるピンチズーム操作を無効にし、文字を拡大したいユーザーの利用を妨げるためアクセシビリティ上の問題があるとされ、一般的に指定しないことが推奨されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-043",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "上記のimg要素の説明として正しいものを全て選べ。",
+    "code": "<img src=\"small.jpg\"\n     srcset=\"small.jpg 480w, medium.jpg 800w, large.jpg 1200w\"\n     sizes=\"(max-width: 600px) 100vw, 50vw\"\n     alt=\"サンプル画像\">",
+    "choices": [
+      "ブラウザはsizes属性が示す表示幅とデバイスのピクセル密度をもとに、srcset内の候補から最も適した画像を選択する",
+      "ビューポート幅が600px以下の場合、この画像の表示幅は100vw(ビューポート幅相当)として計算される",
+      "sizes属性を指定すると、srcset内のw記述はすべて無視され、常にsrc属性の画像が使用される",
+      "srcset属性やsizes属性を解釈できない古いブラウザでは、これらの属性ごと無視され、src属性の画像が表示される"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "sizes属性はレイアウト上の表示幅をブラウザに伝え、ブラウザはこれとデバイスのピクセル密度を組み合わせてsrcset内から最適な画像を選ぶ。この例では600px以下では100vw、それ以外では50vwとして計算される。srcset/sizesを解釈できないブラウザは単にこれらの属性を無視し、src属性の画像を表示するため後方互換性が保たれる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img"
+  },
+  {
+    "id": "l1-responsive-044",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のsrcset属性中の\"2x\"という記述の意味として正しいものはどれか。",
+    "code": "<img src=\"photo.jpg\" srcset=\"photo.jpg 1x, photo-2x.jpg 2x, photo-3x.jpg 3x\" alt=\"写真\">",
+    "choices": [
+      "デバイスピクセル比(画面解像度)が2倍の環境で使用することを想定した画像であることを示す",
+      "画像の表示幅がビューポート幅の2倍であることを示す",
+      "画像ファイルの容量が2倍であることを示す",
+      "画像を2倍の速度で読み込むことを指示する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "x記述子(ピクセル密度記述子)は、その画像がどのデバイスピクセル比の画面向けかを示す。2xはRetinaディスプレイなどデバイスピクセル比2の画面向けの画像であることを表す。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img"
+  },
+  {
+    "id": "l1-responsive-045",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のCSSの目的として最も適切なものはどれか。",
+    "code": ".hero {\n  background-image: image-set(\"photo.jpg\" 1x, \"photo-2x.jpg\" 2x);\n}",
+    "choices": [
+      "背景画像について、デバイスピクセル比に応じて解像度の異なる画像候補の中から適切なものを選択させる(img要素のsrcsetのx記述子に相当する仕組み)",
+      "背景画像を複数枚同時に重ねて表示する",
+      "背景画像の読み込みを常に2倍の優先度で行わせる",
+      "背景画像のサイズをコンテナ幅の2倍に固定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "image-set()はCSSのbackground-imageなどに対して、img要素のsrcset(x記述子)と同様にデバイスピクセル比に応じた画像候補の切り替えを行うためのCSS関数である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/image/image-set"
+  },
+  {
+    "id": "l1-responsive-046",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "source要素のtype属性に指定する画像フォーマットのMIMEタイプとして正しいものを全て選べ。",
+    "code": "<picture>\n  <source srcset=\"photo.avif\" type=\"image/avif\">\n  <source srcset=\"photo.webp\" type=\"image/webp\">\n  <img src=\"photo.jpg\" alt=\"写真\">\n</picture>",
+    "choices": [
+      "image/webp",
+      "image/avif",
+      "image/jpg",
+      "image/svg"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "WebP形式の正しいMIMEタイプはimage/webp、AVIF形式はimage/avifである。JPEG形式の正しいMIMEタイプはimage/jpgではなくimage/jpeg、SVG形式はimage/svgではなくimage/svg+xmlであるため、これらは誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/source"
+  },
+  {
+    "id": "l1-responsive-047",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "ビューポート幅が480pxの環境でこのpicture要素を表示した場合、どの画像が表示されるか。",
+    "code": "<picture>\n  <source media=\"(max-width: 599px)\" srcset=\"crop-mobile.jpg\">\n  <source media=\"(min-width: 600px)\" srcset=\"wide-desktop.jpg\">\n  <img src=\"wide-desktop.jpg\" alt=\"風景写真\">\n</picture>",
+    "choices": [
+      "crop-mobile.jpg",
+      "wide-desktop.jpg(1つ目のsource経由)",
+      "wide-desktop.jpg(img要素のsrc経由)",
+      "エラーとなり画像は表示されない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "picture要素は複数のsource要素を記述順に評価し、media属性の条件に最初に一致したsourceのsrcsetを採用する。ビューポート幅480pxは(max-width: 599px)に一致するため、crop-mobile.jpgが表示される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/picture"
+  },
+  {
+    "id": "l1-responsive-048",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "ページを開いた直後に画面内に表示される(ファーストビューの)重要な画像に対してloading=\"lazy\"を指定することについて、最も適切な説明はどれか。",
+    "choices": [
+      "表示に必要な画像の読み込みがかえって遅延する可能性があるため、一般的には推奨されない",
+      "表示速度が必ず向上するため、すべての画像に指定すべきである",
+      "loading=\"lazy\"を指定した画像は検索エンジンにインデックスされなくなる",
+      "loading=\"lazy\"はscript要素にのみ有効であり、img要素には効果がない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "loading=\"lazy\"はビューポート付近まで読み込みを遅延させる仕組みのため、最初から画面に表示される重要な画像に指定すると、かえって表示完了(LCPなど)が遅れる可能性があり推奨されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Performance/Guides/Lazy_loading"
+  },
+  {
+    "id": "l1-responsive-049",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "img要素のdecoding属性の説明として最も適切なものはどれか。",
+    "choices": [
+      "画像のデコード処理を他のコンテンツの表示と並行して行ってよいかをブラウザに示唆するヒントである",
+      "画像ファイルのダウンロードを非同期に行うかどうかを指定する、loading属性と同じ機能である",
+      "画像の圧縮形式(JPEGやPNGなど)を指定する属性である",
+      "画像の読み込みが完了するまでalt属性のテキスト表示を遅延させる属性である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "decoding属性はブラウザに対して画像デコード処理を同期的に行うか非同期的に行ってよいかのヒントを与えるものであり、asyncを指定すると他のコンテンツの表示をブロックせずにデコードを進められる可能性がある。画像形式やダウンロードのタイミング自体を制御するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img"
+  },
+  {
+    "id": "l1-responsive-050",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のメディアクエリが適用される条件として正しいものはどれか。",
+    "code": "@media (min-resolution: 2dppx) {\n  .icon { background-image: url(icon-2x.png); }\n}",
+    "choices": [
+      "デバイスピクセル比(解像度)がおよそ2以上の画面",
+      "画面の物理的なインチサイズが2インチ以上",
+      "画面が表示できる色数が2ビット以上",
+      "ブラウザのズーム倍率が200%以上に設定されている場合"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "resolutionメディア特徴は画面の解像度(単位面積あたりのピクセル密度)を判定するものであり、dppx(1CSSピクセルあたりのデバイスピクセル数)などの単位で指定する。min-resolution: 2dppxはデバイスピクセル比がおおよそ2以上の高解像度ディスプレイを対象とする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/resolution"
+  },
+  {
+    "id": "l1-responsive-051",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "このメディアクエリのaspect-ratio(および min-aspect-ratio)というメディア特徴が判定する内容として正しいものはどれか。",
+    "code": "@media (min-aspect-ratio: 16/9) {\n  .banner { display: block; }\n}",
+    "choices": [
+      "ビューポートの幅と高さの比率",
+      "画像要素の横幅と縦幅の比率",
+      "コンテンツの文字数の比率",
+      "印刷用紙のサイズ比率"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "aspect-ratio(およびmin-/max-aspect-ratio)メディア特徴は、ビューポートの幅を高さで割った比率を判定するものであり、横長・縦長といったビューポート形状に応じたスタイル出し分けに利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/aspect-ratio"
+  },
+  {
+    "id": "l1-responsive-052",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "タッチ操作のみで操作される一般的なスマートフォンにおいて、一致すると考えられるメディア特徴の値を全て選べ。",
+    "choices": [
+      "(hover: none)",
+      "(pointer: coarse)",
+      "(hover: hover)",
+      "(pointer: fine)"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "hoverメディア特徴は主な入力機構がホバー操作(マウスオーバーなど)可能かどうかを、pointerメディア特徴はポインティングデバイスの精度を判定する。タッチ操作のみのスマートフォンでは一般にホバー操作ができず(hover: none)、指による操作は精度が粗いため(pointer: coarse)に一致する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/hover"
+  },
+  {
+    "id": "l1-responsive-053",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のメディアクエリが適用される条件として正しいものはどれか。",
+    "code": "@media not screen and (max-width: 600px) {\n  .desktop-only { display: block; }\n}",
+    "choices": [
+      "「screenメディアかつ画面幅600px以下」という条件全体を否定したもの(screen以外のメディア、またはscreenで画面幅が600pxを超える場合)に適用される",
+      "screenメディアのみを対象外とし、画面幅600px以下という条件はそのまま適用される",
+      "画面幅がちょうど600pxの場合にのみ適用される",
+      "notキーワードは無視され、@media screen and (max-width: 600px)と全く同じ意味になる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "not演算子はメディアクエリ全体を否定する。not screen and (max-width: 600px)は「screenかつ600px以下」という条件全体の否定であり、screen以外のメディアタイプの場合、またはscreenであっても画面幅が600pxを超える場合に一致する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-054",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のメディアクエリが適用される条件として正しいものはどれか。",
+    "code": "@media screen and (max-width: 600px), print {\n  .sidebar { display: none; }\n}",
+    "choices": [
+      "画面幅600px以下のscreenの場合、または印刷(print)の場合のいずれかに該当するとき",
+      "画面幅600px以下のscreenであり、かつ同時に印刷でもある場合のみ",
+      "screenと印刷の両方に対応したデバイスでのみ",
+      "カンマの前後どちらか片方しか評価されず、後者(print)は常に無視される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "メディアクエリをカンマ(,)で区切ると、それぞれの条件はOR(論理和)として扱われ、いずれか一方でも一致すればスタイルが適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-055",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "media属性に付与されているonlyキーワードの目的として最も適切なものはどれか。",
+    "code": "<link rel=\"stylesheet\" media=\"only screen and (max-width: 600px)\" href=\"mobile.css\">",
+    "choices": [
+      "メディアクエリの構文自体を解釈できない古いブラウザに対して、このスタイルシートを適用させないようにするため",
+      "screen以外のメディアタイプでも常にこのスタイルシートを適用させるため",
+      "画面幅600px以下という条件を無効化するため",
+      "onlyは非推奨のキーワードであり、現在は何の効果も持たない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "onlyキーワードは、メディアクエリの構文を理解できない古いブラウザがonlyを未知のメディアタイプと誤認識して条件全体を無視するようにするための後方互換性のための記述であり、モダンブラウザでの解釈上の意味には影響しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-056",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "スクリーンリーダーなど音声合成による読み上げに適用するスタイルを指定するために用意されているメディアタイプとして正しいものはどれか。",
+    "choices": [
+      "speech",
+      "aural",
+      "screen",
+      "print"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "speechメディアタイプは、音声合成ソフトウェアによる読み上げ時に適用するスタイルを指定するためのものである。以前のCSS2ではauralという名称が使われていたが、現在はspeechに置き換えられている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media#media_types"
+  },
+  {
+    "id": "l1-responsive-057",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "link要素のmedia属性やメディアクエリでメディアタイプを省略した場合、暗黙的にどのメディアタイプが指定されたものとして扱われるか。",
+    "choices": [
+      "all",
+      "screen",
+      "print",
+      "screenとprintの両方が別々に適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "メディアタイプを省略した場合はallが指定されたものとみなされ、すべての出力メディアに対してスタイルが適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media#media_types"
+  },
+  {
+    "id": "l1-responsive-058",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のCSSが適用されたページを、ビューポート幅900pxの端末で表示した場合、body要素のfont-sizeはどれになるか。",
+    "code": "body { font-size: 14px; }\n\n@media (min-width: 768px) {\n  body { font-size: 16px; }\n}\n\n@media (min-width: 1200px) {\n  body { font-size: 18px; }\n}",
+    "choices": [
+      "16px",
+      "14px",
+      "18px",
+      "無効な指定として14px, 16px, 18pxのいずれも適用されない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "モバイルファーストの設計では、まず基本スタイルを定義し、min-widthを使ったメディアクエリで画面が広がるごとに上書きしていく。900pxは(min-width: 768px)に一致し(min-width: 1200px)には一致しないため、後から定義された16pxが適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Mobile_First"
+  },
+  {
+    "id": "l1-responsive-059",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CSSのaspect-ratioプロパティをこのように画像に指定する主な目的として最も適切なものはどれか。",
+    "code": "img.thumbnail {\n  width: 100%;\n  aspect-ratio: 16 / 9;\n  object-fit: cover;\n}",
+    "choices": [
+      "画像の読み込み前にあらかじめ表示領域の縦横比を確保し、画像読み込み完了時のレイアウトのガタつき(レイアウトシフト)を防ぐため",
+      "画像のファイルサイズを圧縮するため",
+      "画像のalt属性を自動生成するため",
+      "画像の遅延読み込みを有効化するため"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "aspect-ratioプロパティは要素の幅と高さの比率を指定するプロパティで、画像などが未読込の段階でも表示領域の比率を確保できるため、読み込み完了時に発生しがちなレイアウトシフト(CLS)を軽減する目的でよく利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/aspect-ratio"
+  },
+  {
+    "id": "l1-responsive-060",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のgrid-template-columnsで使われている\"1fr\"という単位の説明として最も適切なものはどれか。",
+    "code": ".container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}",
+    "choices": [
+      "グリッドコンテナ内の利用可能なスペースを、他のfr指定と比例配分して分け合う柔軟な単位であり、フルードなグリッドレイアウトを実現できる",
+      "1文字分の幅を表す固定の絶対単位である",
+      "ビューポート幅の1%を表す単位である",
+      "印刷時のみ有効になる特殊な単位である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fr(フラクション)単位はCSS Gridにおいて、グリッドコンテナの余白(gapなどを除いた利用可能なスペース)を比例配分するための単位であり、repeat(3, 1fr)は利用可能な幅を3等分してカラムに割り当てるため、画面幅に応じて伸縮するフルードグリッドを容易に実現できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout"
+  },
+  {
+    "id": "l1-responsive-061",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "レスポンシブWebデザインにおいて、画面サイズやユーザー設定に応じて相対的に値が変化する(絶対単位ではない)CSSの単位を全て選べ。",
+    "choices": [
+      "rem",
+      "vw",
+      "%",
+      "px"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "rem(ルート要素のフォントサイズ基準)、vw(ビューポート幅基準)、%(親要素などを基準とした割合)はいずれも他の値を基準とした相対単位である。一方pxはCSSにおける絶対単位として扱われ、基準となる値の影響を受けない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/length"
+  },
+  {
+    "id": "l1-responsive-062",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のCSSのように、明示的なブレークポイント(メディアクエリ)を使わずに列数を可変にするgrid-template-columnsの指定について、最も適切な説明はどれか。",
+    "code": ".gallery {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n  gap: 12px;\n}",
+    "choices": [
+      "各列の最小幅を150pxとして確保しつつ、コンテナの利用可能な幅に収まる範囲でbrowser自ら列数を自動的に増減させ、余った幅はfrで比例配分する",
+      "常に150px幅の列を1つだけ生成し、残りの要素は折り返さず横にはみ出す",
+      "auto-fillとauto-fitは常に全く同じ結果になり、両者に違いは存在しない",
+      "minmax()はflexboxレイアウト専用の関数であり、grid-template-columnsでは使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "repeat(auto-fill, minmax(150px, 1fr))は、各トラックの最小幅を150pxに保ちながら、コンテナの幅に収まるだけの列数をブラウザが自動的に計算し、余白をfrで比例配分することで、メディアクエリなしでも画面幅に応じて列数が増減するフルードなグリッドを実現できる。なおauto-fillは空いたトラックをそのまま維持するのに対し、auto-fitは中身のないトラックを0幅に折りたたむ点で挙動が異なり、minmax()はCSS Grid(grid-template-columns/rowsなど)で使用する関数であってflexbox専用ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/repeat"
+  },
+  {
+    "id": "l1-responsive-063",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "上記のようなスタイルを用意する目的として最も適切なものはどれか。",
+    "code": "@media print {\n  nav, .no-print, .ads {\n    display: none;\n  }\n}",
+    "choices": [
+      "印刷時にナビゲーションメニューや広告など、紙面には不要な要素を非表示にし、印刷に適したレイアウトにするため",
+      "画面表示時にナビゲーションと広告を非表示にするため",
+      "印刷時のみJavaScriptの実行を無効化するため",
+      "印刷時にページの文字コードを変更するため"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "@media printブロック内でナビゲーションや広告など印刷時に不要な要素にdisplay: noneを指定することで、印刷時にのみそれらを非表示にし、紙面に適した出力に整えることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media#media_types"
+  },
+  {
+    "id": "l1-responsive-064",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "幅の広い表(table)をモバイル端末でも崩さずに表示するためによく使われる手法の説明として最も適切なものはどれか。",
+    "code": ".table-wrapper {\n  overflow-x: auto;\n}",
+    "choices": [
+      "表をラップする要素にoverflow-x: autoを指定し、表自体の幅は維持したまま横方向にスクロールできるようにする",
+      "表のcolspan属性の値を自動的に半分にする",
+      "table要素にposition: fixedを指定して画面に固定する",
+      "すべてのth要素をdisplay: noneで非表示にする"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "幅の広い表をラップする要素にoverflow-x: autoを指定すると、表の内容や列構成を崩すことなく、画面に収まらない部分を横スクロールで閲覧できるようになる、レスポンシブ対応でよく使われる手法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/overflow-x"
+  },
+  {
+    "id": "l1-responsive-065",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CSSのobject-fitプロパティに指定できる値として正しいものを全て選べ。",
+    "code": "img.thumb {\n  width: 150px;\n  height: 150px;\n  object-fit: cover;\n}",
+    "choices": [
+      "cover",
+      "contain",
+      "fill",
+      "stretch"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "object-fitプロパティにはcover(縦横比を保ちボックスを埋めるようトリミング)、contain(縦横比を保ちボックス内に収まるよう縮小)、fill(縦横比を無視してボックスに合わせる、既定値)などの値を指定できる。stretchはobject-fitの値としては存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/object-fit"
+  },
+  {
+    "id": "l1-responsive-011",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "画面幅が600px以上900px以下の場合にのみスタイルを適用するメディアクエリとして正しいものはどれか。",
+    "choices": [
+      "@media (min-width: 600px) and (max-width: 900px) { ... }",
+      "@media (min-width: 600px) or (max-width: 900px) { ... }",
+      "@media (width: 600px, 900px) { ... }",
+      "@media (width: 600px-900px) { ... }"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "複数条件を同時に満たす必要がある場合はandで条件を連結する。いずれかを満たせばよい場合はカンマ(,)で条件を区切る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media"
+  },
+  {
+    "id": "l1-responsive-012",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "画面外にある画像の読み込みをブラウザが自動的に遅延させるために指定する属性として正しいものはどれか。",
+    "choices": [
+      "loading=\"lazy\"",
+      "defer",
+      "async",
+      "preload=\"none\""
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "img要素にloading=\"lazy\"を指定すると、ビューポートに近づくまで画像の読み込みを遅延させ、初期表示のパフォーマンスを向上させることができる。deferとasyncはscript要素向けの属性である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Performance/Guides/Lazy_loading"
+  },
+  {
+    "id": "l1-responsive-013",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "レスポンシブWebデザインにおける「モバイルファースト」の考え方として最も適切なものはどれか。",
+    "choices": [
+      "まずスマートフォン向けの基本スタイルを設計し、メディアクエリのmin-widthで大画面向けのスタイルを追加していく",
+      "まずPC向けの詳細なスタイルを設計し、そこから不要な要素を削除してモバイル用にする",
+      "モバイル端末では常にJavaScriptを無効化する",
+      "モバイル端末専用の別ドメインを用意する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "モバイルファーストは、まず画面が小さいモバイル端末向けにシンプルな基本スタイルを設計し、min-widthを使ったメディアクエリで画面が大きくなるにつれて段階的にスタイルを追加していく設計手法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/Mobile_First"
+  },
+  {
+    "id": "l1-responsive-014",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "画面幅に応じて全く異なるトリミングの画像を出し分けたい場合に使用する要素として最も適切なものはどれか。",
+    "choices": [
+      "<picture>",
+      "<img srcset>",
+      "<figure>",
+      "<canvas>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "srcsetは同じ画像の解像度違いを出し分けるのに適しているが、<picture>要素と<source>要素のmedia属性を組み合わせることで、画面条件に応じて全く異なる画像(アートディレクション)を出し分けることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/picture"
+  },
+  {
+    "id": "l1-responsive-015",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ブラウザが解釈できない(サポートしていない)メディア特徴を含むメディアクエリに遭遇した場合の一般的な挙動として正しいものはどれか。",
+    "choices": [
+      "該当のメディアクエリ全体がfalse(適用対象外)として扱われる",
+      "ブラウザがエラーを表示してページの読み込みを停止する",
+      "該当のメディア特徴のみ無視して残りの条件は評価される",
+      "最も近い値に自動的に補正して評価される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "メディアクエリの構文仕様では、ブラウザが理解できないメディア特徴やキーワードを含む場合、そのメディアクエリ全体がfalseとして扱われ、スタイルは適用されない(将来の仕様拡張との互換性を保つための設計)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-066",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のviewportメタタグの指定によって生じうる問題として最も適切なものはどれか。",
+    "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">",
+    "choices": [
+      "ユーザーがピンチズームなどによる拡大縮小操作を行えなくなり、ロービジョンなど視覚に障がいのあるユーザーの利用を妨げる可能性がある",
+      "ページの文字がすべて非表示になる",
+      "CSSのメディアクエリが一切機能しなくなる",
+      "ページ内の画像がすべて読み込まれなくなる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "user-scalable=noを指定するとユーザーによるズーム操作を禁止する意図になり、ロービジョンなどのユーザーが文字を拡大できずアクセシビリティ上の問題となる。そのため近年の多くのブラウザはこの指定を尊重せずズームを許可する実装になっている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-067",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "viewportメタタグのcontent属性で次のように数値を指定した場合の説明として最も適切なものはどれか。",
+    "code": "<meta name=\"viewport\" content=\"width=1024\">",
+    "choices": [
+      "デバイスの実際の画面幅に関わらず、レイアウトビューポートの幅が1024ピクセルの固定値として扱われる",
+      "デバイスの画面解像度そのものが1024ピクセルに変更される",
+      "画面幅が1024ピクセル以上の端末でのみページが表示される",
+      "画像の表示幅がすべて1024ピクセルに固定される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "width属性にはdevice-widthというキーワードの代わりに具体的な数値を指定することもでき、その場合レイアウトビューポート幅は実際の画面幅とは無関係に指定した値に固定される。レスポンシブデザインでは通常device-widthを指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Guides/Viewport_meta_element"
+  },
+  {
+    "id": "l1-responsive-068",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のimg要素のsrcset属性・sizes属性の説明として最も適切なものはどれか。",
+    "code": "<img srcset=\"small.jpg 480w, large.jpg 1024w\" sizes=\"(min-width: 600px) 50vw, 100vw\" src=\"large.jpg\" alt=\"sample\">",
+    "choices": [
+      "ビューポート幅が600px以上なら表示幅をビューポートの50%、それ未満なら100%とみなし、その表示幅とw記述子(画像の実際の幅)およびデバイスピクセル比をもとにブラウザが最適な画像を選択する",
+      "sizes属性は画像ファイルの容量(バイト数)の上限を指定するものである",
+      "srcset内のw記述子はデバイスピクセル比(倍率)を表す",
+      "sizes属性を指定すると、常にsrcsetの最初に記載された画像が使用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "w記述子は画像本来の幅(ピクセル数)を表し、sizes属性でビューポート条件ごとの表示幅を宣言することで、ブラウザは実際の表示幅とデバイスピクセル比を考慮してsrcset内から最適な画像候補を選択できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img#sizes"
+  },
+  {
+    "id": "l1-responsive-069",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "srcset属性で使用できる\"w\"記述子と\"x\"記述子の違いに関する説明として最も適切なものはどれか。",
+    "choices": [
+      "w記述子は画像本来の幅を示しsizes属性と組み合わせて表示幅を考慮した選択ができるが、x記述子はデバイスピクセル比に対応した固定倍率の画像を指定するものであり、同一のsrcset内でwとxの記述子を混在させることはできない",
+      "w記述子とx記述子はまったく同じ意味を持ち、どちらを使っても挙動は変わらない",
+      "x記述子は画像ファイルの幅をピクセル単位で示す記述子である",
+      "w記述子はimg要素のsrc属性でのみ使用でき、srcset属性では使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "w記述子(例: 480w)は画像本来の幅を示し、sizes属性と併用して表示幅を考慮した選択に用いる。x記述子(例: 2x)はデバイスピクセル比に対応する固定倍率の画像を指定するもので、表示サイズが固定されているレイアウトなどで用いる。仕様上、同一のsrcset属性内でwとxを混在させることは認められていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img#srcset"
+  },
+  {
+    "id": "l1-responsive-070",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CSSのbackground-imageプロパティで、デバイスピクセル比に応じた解像度違いの画像候補をブラウザに選択させるための関数として正しいものはどれか。",
+    "choices": [
+      "image-set()",
+      "resolution()",
+      "media-image()",
+      "device-image()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "image-set() CSS関数を用いると、background-imageなどにおいて1x、2xなどのデバイスピクセル比に応じた画像候補を列挙し、ブラウザに最適な候補を選択させることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/image/image-set"
+  },
+  {
+    "id": "l1-responsive-071",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のメディアクエリの説明として最も適切なものはどれか。",
+    "code": "@media (min-resolution: 2dppx) { ... }",
+    "choices": [
+      "1CSSピクセルあたり2デバイスピクセル以上に相当する、いわゆるRetinaディスプレイなどの高解像度ディスプレイに対して適用される",
+      "画面の色深度が2ビット以上の場合に適用される",
+      "画面のリフレッシュレートが2Hz以上の場合に適用される",
+      "印刷時の解像度が2dpi以上の場合にのみ適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "resolutionメディア特徴はデバイスのピクセル密度を判定し、dppx(1CSSピクセルあたりのデバイスピクセル数)などの単位で指定する。min-resolution: 2dppxは、いわゆるRetinaディスプレイのような高解像度環境を対象とする典型的な指定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/resolution"
+  },
+  {
+    "id": "l1-responsive-072",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のうち、CSSメディアクエリにおいてビューポートの縦横比(アスペクト比)を判定するメディア特徴として正しいものをすべて選べ。",
+    "choices": [
+      "aspect-ratio",
+      "min-aspect-ratio",
+      "max-aspect-ratio",
+      "orientation",
+      "resolution"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "aspect-ratio、min-aspect-ratio、max-aspect-ratioはいずれもビューポートの幅と高さの比率を判定するメディア特徴である。orientationは縦向き・横向きを判定し、resolutionはピクセル密度を判定するものであり、いずれもアスペクト比とは異なる観点のメディア特徴である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/aspect-ratio"
+  },
+  {
+    "id": "l1-responsive-073",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のメディアクエリの説明として最も適切なものはどれか。",
+    "code": "@media (hover: hover) { ... }",
+    "choices": [
+      "マウスのように、要素の上にカーソルを重ねて操作できる入力機構が主たる入力手段である環境に適用される",
+      "タッチ操作が可能なデバイスすべてに適用される",
+      "印刷時にのみ適用される",
+      "画面の解像度が高い環境にのみ適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "hoverメディア特徴は、主たる入力機構がホバー操作(要素の上にカーソルを重ねる操作)に対応しているかを判定する。タッチのみのデバイスでは通常hover: noneと判定される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/hover"
+  },
+  {
+    "id": "l1-responsive-074",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CSSメディアクエリのpointerメディア特徴が取りうる値として正しいものをすべて選べ。",
+    "choices": [
+      "coarse",
+      "fine",
+      "none",
+      "medium",
+      "any"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "pointerメディア特徴の値には、coarse(タッチパネルなど精度の低いポインティングデバイス)、fine(マウスなど高精度なデバイス)、none(ポインティングデバイスが存在しない)の3種類が定義されている。mediumやanyはpointerの値としては定義されておらず、anyはany-pointerという別のメディア特徴の名前の一部であって値ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/pointer"
+  },
+  {
+    "id": "l1-responsive-075",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "hover/pointerメディア特徴と、any-hover/any-pointerメディア特徴の違いとして最も適切なものはどれか。",
+    "choices": [
+      "hover/pointerは端末の「主たる」入力機構のみを判定するのに対し、any-hover/any-pointerは端末に搭載されている入力機構のうちいずれか1つでも条件を満たせば真になる",
+      "any-hover/any-pointerはビューポートのサイズを判定するためのメディア特徴である",
+      "hover/pointerはメディアクエリの機能ではなく、JavaScriptから参照する専用APIの名称である",
+      "any-hover/any-pointerはprintメディアタイプのときにのみ有効なメディア特徴である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "タッチパネルとマウスの両方を備えるハイブリッド端末などでは、hover/pointerは主たる入力機構のみを評価するのに対し、any-hover/any-pointerは搭載されている複数の入力機構のいずれかが条件を満たせば真となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media/any-hover"
+  },
+  {
+    "id": "l1-responsive-076",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "現行のMedia Queries仕様でメディアクエリのメディアタイプとして使用できるものをすべて選べ。",
+    "choices": [
+      "screen",
+      "print",
+      "speech",
+      "all",
+      "mobile"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "explanation": "現行仕様で定義されているメディアタイプはscreen、print、speech、allである。かつてはhandheldやtv、projectionなど多くのメディアタイプが存在したが現在は非推奨とされている。mobileという名前のメディアタイプは定義されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media#media_types"
+  },
+  {
+    "id": "l1-responsive-077",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のメディアクエリの説明として最も適切なものはどれか。",
+    "code": "@media not screen and (color) { ... }",
+    "choices": [
+      "「screenメディアかつカラー表示に対応している」という条件全体を否定するため、screen以外のメディア、またはscreenであってもカラー表示に対応していない場合に適用される",
+      "screenメディアであり、かつカラー表示に対応していない場合にのみ適用される",
+      "not演算子はメディア特徴のみを否定し、メディアタイプの判定には影響を与えない",
+      "notキーワードはメディアクエリの構文として認められておらず、常に構文エラーになる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "not演算子はメディアタイプとメディア特徴を組み合わせたメディアクエリ全体の評価結果を反転させる。not screen and (color)は「screenメディアかつcolorを満たす」の否定であるため、screen以外のメディア、あるいはscreenであってもcolorを満たさない場合に真となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-078",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "メディアクエリにおけるonlyキーワードの目的として最も適切なものはどれか。",
+    "choices": [
+      "メディアクエリの構文を解釈できない古いブラウザが、メディアタイプだけを読み取ってスタイルを誤って適用してしまうことを防ぐための後方互換性を意図した記法である",
+      "指定したメディアタイプにのみ印刷権限を与えるための記法である",
+      "メディアクエリ同士の優先順位を最も高く設定するための記法である",
+      "CSSファイルの読み込みを1回だけに制限するための記法である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "onlyキーワードは、メディアクエリ構文をサポートしない古いブラウザが誤ってスタイルシート全体を適用してしまうことを防ぐための互換性維持の記法であり、メディアクエリに対応した現代のブラウザの評価結果自体には影響しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@media"
+  },
+  {
+    "id": "l1-responsive-079",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のメディアクエリの説明として最も適切なものはどれか。",
+    "code": "@media (max-width: 600px), print { ... }",
+    "choices": [
+      "画面幅が600px以下の場合、または印刷時のいずれかに該当すればスタイルが適用される",
+      "画面幅が600px以下であり、かつ印刷時である場合にのみスタイルが適用される",
+      "カンマの記述は構文エラーとなり、このメディアクエリ全体が常に無視される",
+      "画面幅600pxの場合にのみ印刷用スタイルが適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "メディアクエリをカンマで区切ると、それぞれが独立した条件のリストとして扱われ、いずれか1つでも条件を満たせばスタイルが適用される(論理和/OR)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_media_queries/Using_media_queries"
+  },
+  {
+    "id": "l1-responsive-080",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のlink要素の記述に関する説明として最も適切なものはどれか。",
+    "code": "<link rel=\"stylesheet\" href=\"print.css\" media=\"print\">",
+    "choices": [
+      "media属性の条件に一致する場合にのみそのスタイルシートが適用される。ファイル自体は条件に関わらず取得されることが多いが、条件に一致しない間はレンダリングをブロックしない",
+      "media属性の条件に一致しない場合、このlink要素は完全に無視されHTTPリクエストも発生しない",
+      "media属性はスタイルシートファイルの文字エンコーディングを指定するものである",
+      "media属性はJavaScriptによる動的な読み込みでのみ有効な属性である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "link要素のmedia属性に指定した条件に一致する場合のみスタイルが適用される。条件に一致しないスタイルシートもブラウザによって取得されるのが一般的だが、レンダリングをブロックしない扱いになる点がパフォーマンス最適化の観点で利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/link"
+  },
+  {
+    "id": "l1-responsive-081",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CSSファイル内で次のように記述した場合の説明として最も適切なものはどれか。",
+    "code": "@import url(\"narrow.css\") screen and (max-width: 600px);",
+    "choices": [
+      "画面幅が600px以下のscreenメディアの場合にのみ、narrow.cssの内容が取り込まれ適用される",
+      "@importにメディアクエリの条件を付与することはできず、構文エラーになる",
+      "narrow.cssは常に読み込まれるが、その内容はすべて無視される",
+      "@importルールは画像ファイルを取り込むための構文である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "@importルールにはメディアクエリを付与でき、条件に一致する場合にのみ指定したスタイルシートが取り込まれ適用される。ただし@importの多用はスタイルシートの読み込みが直列化されパフォーマンスに影響するため、一般的には推奨されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@import"
+  },
+  {
+    "id": "l1-responsive-082",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "img要素にsrcset属性を指定したが、sizes属性を省略した場合の挙動として最も適切なものはどれか。",
+    "choices": [
+      "sizesの既定値である100vw(ビューポート幅いっぱい)が指定されているものとして、ブラウザが画像候補を評価する",
+      "srcset属性自体が無視され、src属性で指定した画像のみが常に使用される",
+      "常にsrcset内で最後に記載された画像が使用される",
+      "ブラウザがエラーを発生させ、画像がまったく表示されなくなる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "sizes属性を省略した場合、その既定値は100vwとみなされる。ブラウザは表示幅をビューポート幅いっぱいと仮定し、デバイスピクセル比などを考慮してsrcset内の候補から画像を選択する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img#sizes"
+  },
+  {
+    "id": "l1-responsive-083",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のpicture要素の記述に関する説明として最も適切なものはどれか。",
+    "code": "<picture>\n  <source srcset=\"photo.avif\" type=\"image/avif\">\n  <source srcset=\"photo.webp\" type=\"image/webp\">\n  <img src=\"photo.jpg\" alt=\"sample\">\n</picture>",
+    "choices": [
+      "ブラウザは記載順にtype属性の形式への対応可否を判定し、最初に対応可能な形式のsource要素の画像を使用する。いずれの形式にも対応していない場合はimg要素のphoto.jpgが表示される",
+      "3つの画像はすべて同時に重ねて表示される",
+      "type属性はブラウザの対応可否とは無関係であり、常にファイルの拡張子だけで判定される",
+      "source要素が複数存在する場合は、常に最後に記載されたものが優先して使用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "picture要素内のsource要素にtype属性を指定すると、ブラウザは記載順に対応可能な画像形式(AVIF、WebPなど)を判定し、最初に対応可能な形式の画像を採用する。どの形式にも対応しない場合はimg要素にフォールバックする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/picture"
+  },
+  {
+    "id": "l1-responsive-084",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSコンテナクエリの記述に関する説明として最も適切なものはどれか。",
+    "code": ".card {\n  container-type: inline-size;\n  container-name: card;\n}\n@container card (min-width: 400px) {\n  .title { font-size: 1.5rem; }\n}",
+    "choices": [
+      "container-typeを指定した祖先要素(コンテナ)自身のサイズを基準に、その内部の子孫要素へスタイルを適用する。ビューポート全体の幅ではなく、コンテナのサイズに応じて条件が評価される",
+      "@containerはビューポートの高さのみを基準に判定する、メディアクエリの別名にすぎない構文である",
+      "container-typeプロパティを指定できるのはdiv要素などのHTMLの特定のコンテナ要素に限られる",
+      "@containerルールはスタイルを適用する要素自身のfont-sizeの値を基準に条件を評価する構文である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "コンテナクエリは、container-typeプロパティで「クエリコンテナ」に指定した祖先要素のサイズ(inline-sizeなど)を基準に、その内部の子孫要素へスタイルを適用する仕組みである。ビューポート全体を基準とするメディアクエリとは異なり、コンポーネント単位でレイアウトを切り替えられる。container-typeは任意の要素に指定可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_containment/Container_queries"
+  },
+  {
+    "id": "l1-responsive-085",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "img要素のdecoding属性に指定できる値として正しいものをすべて選べ。",
+    "choices": [
+      "sync",
+      "async",
+      "auto",
+      "lazy",
+      "eager"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "decoding属性にはsync(同期的にデコード)、async(非同期にデコード)、auto(ブラウザに委ねる既定値)の3つの値が定義されている。lazyやeagerはloading属性に指定する値であり、decoding属性の値ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/img#decoding"
+  },
+  {
+    "id": "l1-responsive-086",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "親要素のサイズに合わせて画像のアスペクト比を保ったまま、はみ出た部分をトリミングして表示するCSSの指定として最も適切なものはどれか。",
+    "choices": [
+      "object-fit: cover;",
+      "object-fit: fill;",
+      "background-repeat: no-repeat;",
+      "max-width: 100%;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "object-fit: coverは、指定されたボックスのサイズいっぱいに合わせて画像のアスペクト比を保ったまま拡大縮小し、はみ出た部分をトリミングして表示する。fillはアスペクト比を無視して要素いっぱいに引き伸ばす点で異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/object-fit"
+  },
+  {
+    "id": "l1-responsive-087",
+    "category": "l1-responsive",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CSSのobject-fitプロパティに指定できる値として正しいものをすべて選べ。",
+    "choices": [
+      "cover",
+      "contain",
+      "fill",
+      "none",
+      "stretch"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "explanation": "object-fitに指定できる値はfill、contain、cover、none、scale-downである。stretchという値はobject-fitには存在せず、要素いっぱいに引き伸ばす挙動は既定値であるfillが担う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/object-fit"
+  },
+  {
+    "id": "l1-responsive-088",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CSSのbackground-sizeプロパティにおいて、coverとcontainの違いとして最も適切なものはどれか。",
+    "choices": [
+      "coverは要素全体を覆うように画像を拡大縮小しはみ出た部分を切り取るのに対し、containは画像全体が見えるように収め、要素とのアスペクト比の違いによっては余白が生じる",
+      "coverは画像を繰り返し敷き詰めて表示し、containは1回だけ表示する",
+      "coverとcontainは完全に同じ意味であり、互換性のために2つの値が用意されている",
+      "containは画像のアスペクト比を無視して要素いっぱいに引き伸ばす"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "background-size: coverは背景領域を隙間なく覆うように画像を拡大縮小しはみ出た部分を切り取る。containは画像全体が要素内に収まるように縮小するため、要素と画像のアスペクト比が異なる場合は余白が生じる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/background-size"
+  },
+  {
+    "id": "l1-responsive-089",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CSSの単位vw・vhに関する説明として最も適切なものはどれか。",
+    "choices": [
+      "vwはビューポート幅の1%、vhはビューポート高さの1%を表す相対単位であり、親要素ではなく常にビューポートを基準とする",
+      "vwとvhは親要素の幅・高さに対する割合を表す単位であり、%とまったく同じ意味を持つ",
+      "vwはビューポートの幅をそのままピクセル単位で表す絶対単位である",
+      "vhはprintメディアタイプでのページ高さにのみ適用できる単位である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "vw/vhはビューポートの幅・高さに対する相対単位であり、1vwはビューポート幅の1%、1vhはビューポート高さの1%に相当する。%が親要素を基準とするのに対し、vw/vhは常にビューポートを基準とする点で異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/length#vw"
+  },
+  {
+    "id": "l1-responsive-090",
+    "category": "l1-responsive",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSS指定の説明として最も適切なものはどれか。",
+    "code": "font-size: clamp(1rem, 2vw + 0.5rem, 2rem);",
+    "choices": [
+      "ビューポート幅に応じて可変する推奨値(2vw + 0.5rem)を基本としつつ、フォントサイズを最小1rem・最大2remの範囲に収める",
+      "常に2vw + 0.5remの計算値がそのまま使用され、最小値・最大値は一切無視される",
+      "clamp()は色を3つ指定してグラデーションを作成するためのCSS関数である",
+      "clamp()は最小値と最大値のみを比較する関数で、2番目に指定した推奨値は使用されない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "clamp(最小値, 推奨値, 最大値)は、推奨値を基本としつつその値が最小値を下回る場合は最小値、最大値を上回る場合は最大値に制限するCSS関数である。ビューポート幅に応じて滑らかに可変しつつ極端な値を防ぐフルードタイポグラフィの実現によく用いられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/clamp"
+  }
+]

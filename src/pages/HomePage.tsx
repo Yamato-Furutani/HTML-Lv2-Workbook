@@ -2,17 +2,25 @@ import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CategoryCard } from '../components/CategoryCard'
 import { categories } from '../data/categories'
-import { allQuestions, questionsByCategory } from '../data'
+import { questionsByCategory } from '../data'
 import { useProgressContext } from '../context/ProgressContext'
+import { useLevelContext } from '../context/LevelContext'
 import { getCategoryStats } from '../hooks/useProgress'
 
 export function HomePage() {
   const navigate = useNavigate()
   const { progress, resetProgress } = useProgressContext()
+  const { level } = useLevelContext()
+
+  const levelCategories = useMemo(() => categories.filter((c) => c.level === level), [level])
+  const levelQuestions = useMemo(
+    () => levelCategories.flatMap((c) => questionsByCategory[c.id]),
+    [levelCategories],
+  )
 
   const overallStats = useMemo(
-    () => getCategoryStats(progress, allQuestions.map((q) => q.id)),
-    [progress],
+    () => getCategoryStats(progress, levelQuestions.map((q) => q.id)),
+    [progress, levelQuestions],
   )
 
   const handleResetProgress = () => {
@@ -24,13 +32,15 @@ export function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
       <section className="mb-8 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 p-6 text-white shadow-sm sm:p-8">
-        <h1 className="mb-2 text-xl font-bold sm:text-2xl">HTML5プロフェッショナル認定試験 レベル2 問題集</h1>
+        <h1 className="mb-2 text-xl font-bold sm:text-2xl">
+          HTML5プロフェッショナル認定試験 {level === 'L1' ? 'レベル1' : 'レベル2'} 問題集
+        </h1>
         <p className="mb-4 text-sm text-orange-50">
-          公式サイトの例題解説カテゴリとMDN Web Docsに基づいた全{allQuestions.length}問を収録。カテゴリ別演習と模擬試験モードで実力をチェックしましょう。
+          公式サイトの例題解説カテゴリとMDN Web Docsに基づいた全{levelQuestions.length}問を収録。カテゴリ別演習と模擬試験モードで実力をチェックしましょう。
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <button
-            onClick={() => navigate('/quiz/setup/all')}
+            onClick={() => navigate(`/quiz/setup/all-${level.toLowerCase()}`)}
             className="rounded-md bg-white px-4 py-2 text-sm font-semibold text-orange-600 shadow-sm transition hover:bg-orange-50"
           >
             模擬試験モードを開始
@@ -56,7 +66,7 @@ export function HomePage() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((category) => {
+        {levelCategories.map((category) => {
           const questions = questionsByCategory[category.id]
           const stats = getCategoryStats(progress, questions.map((q) => q.id))
           return (

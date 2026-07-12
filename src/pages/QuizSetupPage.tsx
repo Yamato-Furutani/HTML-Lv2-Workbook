@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { categoryMap } from '../data/categories'
 import { getQuestionsByCategory, allQuestions } from '../data'
-import type { CategoryId, Difficulty, QuizMode } from '../types'
+import type { CategoryId, Difficulty, ExamLevel, QuizMode } from '../types'
 
 const COUNT_OPTIONS = [10, 20, 50] as const
 
@@ -17,9 +17,13 @@ export function QuizSetupPage() {
   const { categoryId } = useParams<{ categoryId: string }>()
   const navigate = useNavigate()
 
-  const isAll = categoryId === 'all'
+  const allLevel: ExamLevel | null =
+    categoryId === 'all-l1' ? 'L1' : categoryId === 'all-l2' ? 'L2' : null
+  const isAll = allLevel !== null
   const category = !isAll ? categoryMap[categoryId ?? ''] : undefined
-  const categoryPool = isAll ? allQuestions : getQuestionsByCategory((categoryId ?? '') as CategoryId)
+  const categoryPool = isAll
+    ? allQuestions.filter((q) => categoryMap[q.category]?.level === allLevel)
+    : getQuestionsByCategory((categoryId ?? '') as CategoryId)
 
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all')
   const questionPool =
@@ -56,7 +60,7 @@ export function QuizSetupPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
       <h1 className="mb-1 text-lg font-bold text-slate-800">
-        {isAll ? '模擬試験モード' : category?.name}
+        {isAll ? `模擬試験モード(レベル${allLevel === 'L1' ? '1' : '2'})` : category?.name}
       </h1>
       <p className="mb-6 text-sm text-slate-500">
         {isAll ? '全カテゴリからランダムに出題します。' : category?.description}

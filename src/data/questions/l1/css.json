@@ -1,0 +1,1671 @@
+[
+  {
+    "id": "l1-css-001",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSSでクラス名が\"btn\"の要素を選択するセレクタとして正しいものはどれか。",
+    "choices": [
+      ".btn",
+      "#btn",
+      "btn",
+      ":btn"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "クラスセレクタはピリオド(.)に続けてクラス名を指定する。#はIDセレクタ、要素名のみは要素(タイプ)セレクタ、コロンは疑似クラスに使われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Class_selectors"
+  },
+  {
+    "id": "l1-css-002",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSSでid=\"header\"の要素のみを選択するセレクタとして正しいものはどれか。",
+    "choices": [
+      "#header",
+      ".header",
+      "header",
+      "@header"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "IDセレクタはシャープ(#)に続けてID名を指定する。1つの文書内でIDは一意であることが前提となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/ID_selectors"
+  },
+  {
+    "id": "l1-css-003",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "display: noneとvisibility: hiddenの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "display: noneは要素がレイアウト上の領域を占有しなくなるが、visibility: hiddenは領域を占有したまま非表示になる",
+      "display: noneは要素の色を透明にするが、visibility: hiddenは要素を完全に削除する",
+      "display: noneは印刷時のみ有効で、visibility: hiddenは画面表示のみ有効である",
+      "display: noneとvisibility: hiddenは全く同じ効果を持つ"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "display: noneは要素をレイアウトから完全に除外するため周囲の要素が詰めて配置されるが、visibility: hiddenは表示上は見えなくなるものの、レイアウト上の領域(スペース)は保持される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/visibility"
+  },
+  {
+    "id": "l1-css-004",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "box-sizing: border-boxを指定した場合の幅(width)の扱いとして正しいものはどれか。",
+    "choices": [
+      "widthにpaddingとborderの幅を含めた値が要素全体の幅になる",
+      "widthにmarginを含めた値が要素全体の幅になる",
+      "widthはcontentのみの幅を表し、paddingとborderは別途加算される",
+      "box-sizingはwidthの計算に影響しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "box-sizing: border-boxを指定すると、指定したwidth/heightの中にpaddingとborderが含まれるようになり、要素全体のサイズがwidthの値と一致するようになる(初期値のcontent-boxではpadding・borderがwidthに加算される)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/box-sizing"
+  },
+  {
+    "id": "l1-css-005",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "マウスカーソルが要素の上に乗っている状態にスタイルを適用する疑似クラスはどれか。",
+    "choices": [
+      ":hover",
+      ":focus",
+      ":active",
+      ":visited"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": ":hoverはマウスカーソルなどのポインティングデバイスが要素上にある状態を表す疑似クラスである。:focusはフォーカスされた状態、:activeは要素が活性化(クリック中)された状態、:visitedは訪問済みリンクに適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/:hover"
+  },
+  {
+    "id": "l1-css-016",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "CSSで文書内のすべての要素を選択する「全称セレクタ(ユニバーサルセレクタ)」として正しいものはどれか。",
+    "choices": [
+      "*",
+      "!",
+      "%",
+      "&"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "全称セレクタはアスタリスク(*)で表記し、文書内のすべての要素にマッチする。他の記号はCSSセレクタとして意味を持たない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Universal_selectors"
+  },
+  {
+    "id": "l1-css-017",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTMLの属性の値を条件にして要素を選択する「属性セレクタ」の記述として正しいものはどれか。",
+    "choices": [
+      "input[type=\"text\"]",
+      "input.type",
+      "input:type",
+      "input->type"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "属性セレクタは角括弧[]の中に属性名や属性値の条件を記述し、指定した属性(・値)を持つ要素を選択する。ピリオドはクラスセレクタ、コロンは疑似クラスの記法である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors"
+  },
+  {
+    "id": "l1-css-018",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "段落要素の先頭行にのみスタイルを適用したい場合に使用する疑似要素として正しいものはどれか。",
+    "choices": [
+      "::first-line",
+      ":first-child",
+      "::selection",
+      ":first-of-type"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "::first-lineはブロックコンテナの最初の行に対してスタイルを適用する疑似要素である。:first-childや:first-of-typeは要素の出現位置に基づく疑似クラスであり、::selectionは選択中のテキストに適用される疑似要素であるため、いずれも先頭行を対象にするものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/::first-line"
+  },
+  {
+    "id": "l1-css-019",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のセレクタ \"div p\" が選択する要素として正しいものはどれか。",
+    "choices": [
+      "div要素の子孫であるすべてのp要素",
+      "div要素の直下の子であるp要素のみ",
+      "div要素の直後に隣接するp要素",
+      "p要素の子孫であるdiv要素"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "半角スペースで区切られた「A B」は子孫結合子と呼ばれ、Aの子孫であるBをすべて選択する(ネストの深さは問わない)。直接の子のみに限定するのは子結合子(>)である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Descendant_combinator"
+  },
+  {
+    "id": "l1-css-020",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のセレクタ \"ul > li\" が選択する要素として正しいものはどれか。",
+    "choices": [
+      "ul要素の直接の子であるli要素のみ",
+      "ul要素の子孫であるすべてのli要素(孫要素も含む)",
+      "ul要素の兄弟であるli要素",
+      "li要素の子であるul要素"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "子結合子(>)は直接の親子関係にある要素のみを選択する。例えばli要素の中にさらにulとliがネストしていても、その孫にあたるliには適用されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Child_combinator"
+  },
+  {
+    "id": "l1-css-021",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のセレクタ \"h1 ~ p\" が選択する要素として正しいものはどれか。",
+    "choices": [
+      "h1要素より後に出現する、同じ親を持つすべての兄弟p要素",
+      "h1要素の直後に隣接するp要素のみ",
+      "h1要素の子要素であるp要素",
+      "h1要素より前に出現するp要素"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "一般兄弟結合子(~)は、ある要素より後に出現する同じ親を持つすべての兄弟要素を選択する。直後の1つだけに限定するのは隣接兄弟結合子(+)である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/General_sibling_combinator"
+  },
+  {
+    "id": "l1-css-022",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "複数の異なるセレクタに同じスタイル宣言を一括で適用したい場合に使用する記号として正しいものはどれか。",
+    "choices": [
+      ", (カンマ)",
+      "; (セミコロン)",
+      "& (アンパサンド)",
+      "| (パイプ)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "カンマで複数のセレクタを区切って記述すると、それらすべてに同じ宣言ブロックが適用される(セレクタのグルーピング)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Selector_list"
+  },
+  {
+    "id": "l1-css-023",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "displayプロパティにinlineを指定した要素の特徴として正しいものはどれか。",
+    "choices": [
+      "widthやheightプロパティを指定しても原則として効果を持たない",
+      "必ず新しい行から表示され、幅は親要素いっぱいに広がる",
+      "要素はレイアウトから除外され画面に表示されなくなる",
+      "flexコンテナの直接の子要素としてしか使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "inline要素は原則としてwidth/heightの指定が効かず、コンテンツの幅に応じてインラインの流れの中に配置される。改行して幅いっぱいに広がるのはblock要素の特徴である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/display"
+  },
+  {
+    "id": "l1-css-024",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "position: relativeを指定した要素にtopやleftなどのオフセットを指定した場合の挙動として正しいものはどれか。",
+    "choices": [
+      "要素本来の配置位置を基準として、そこからずらして表示される(元の位置のスペースは保持される)",
+      "最も近い配置済み祖先要素を基準に配置される",
+      "常にビューポートを基準に固定配置される",
+      "通常の文書の流れから完全に除外される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "position: relativeは要素が本来配置されるはずだった位置を基準にオフセットして表示され、その本来の位置は通常のレイアウトの中でスペースとして保持され続ける。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/position"
+  },
+  {
+    "id": "l1-css-025",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "position: absoluteを指定した要素の配置基準に関する説明として正しいものはどれか。",
+    "choices": [
+      "祖先要素のうちposition: static以外(relativeなど)が指定された最も近い要素を基準に配置される",
+      "常にウィンドウ(ビューポート)を基準に配置される",
+      "常に直前の兄弟要素を基準に配置される",
+      "親要素のmarginの値を基準に配置される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "position: absoluteの要素は、祖先要素のうちposition: static以外が指定された最も近い要素(containing block)を基準にtop/leftなどのオフセットが適用される。該当する祖先がない場合は初期の包含ブロックが基準となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/position"
+  },
+  {
+    "id": "l1-css-026",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のCSSの記述 \"margin: 10px 20px 30px 40px;\" において、各値が適用される順序として正しいものはどれか。",
+    "choices": [
+      "上10px 右20px 下30px 左40px",
+      "左10px 上20px 右30px 下40px",
+      "上10px 左20px 下30px 右40px",
+      "すべての辺に均等に10pxが適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "4つの値を指定するショートハンドは、時計回りに「上 右 下 左」の順で適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/margin"
+  },
+  {
+    "id": "l1-css-027",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "paddingプロパティに関する説明として正しいものはどれか。",
+    "choices": [
+      "要素のコンテンツとborderとの間の内側の余白を指定する",
+      "要素と隣接する他の要素との間の外側の余白を指定する",
+      "要素の枠線の太さや線種を指定する",
+      "要素の背景色を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "paddingはコンテンツ領域とborderの間の内側の余白を指定するプロパティである。外側の余白を指定するのはmargin、枠線を指定するのはborderである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/padding"
+  },
+  {
+    "id": "l1-css-028",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "floatプロパティにleftを指定した要素の挙動として正しいものはどれか。",
+    "choices": [
+      "要素が左側に寄せられ、後続の内容がその右側に回り込んで配置される",
+      "要素が画面の左端に固定され、スクロールしても位置が変わらない",
+      "要素が非表示になる",
+      "要素の左マージンだけが自動的に0に変更される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "floatはleftまたはrightを指定した方向に要素を寄せ、通常の文書の流れから外し、後続のインラインコンテンツをその周囲に回り込ませる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/float"
+  },
+  {
+    "id": "l1-css-029",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "次のうち、Flexboxコンテナ(display: flexを指定した要素)に対して指定するプロパティとして正しいものを全て選べ。",
+    "choices": [
+      "justify-content",
+      "align-items",
+      "flex-wrap",
+      "grid-template-rows"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "justify-content(主軸方向の配置)、align-items(交差軸方向の配置)、flex-wrap(折り返しの有無)はFlexboxコンテナに指定する代表的なプロパティである。grid-template-rowsはCSS Gridで使用するプロパティであり、Flexboxには使用しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox"
+  },
+  {
+    "id": "l1-css-030",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Flexboxコンテナのflex-directionプロパティに関する説明として正しいものはどれか。",
+    "choices": [
+      "子要素(フレックスアイテム)を並べる方向(主軸)を指定する",
+      "子要素の折り返しの有無を指定する",
+      "子要素の交差軸方向の配置を指定する",
+      "コンテナ自体の表示・非表示を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "flex-directionはフレックスコンテナの主軸の方向(row、row-reverse、column、column-reverse)を指定するプロパティである。折り返しはflex-wrap、交差軸方向の配置はalign-itemsが担当する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/flex-direction"
+  },
+  {
+    "id": "l1-css-031",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "要素をCSS Gridのグリッドコンテナにするための指定として正しいものはどれか。",
+    "choices": [
+      "display: grid;",
+      "display: flex;",
+      "position: grid;",
+      "grid: true;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "display: gridを指定することで、その要素はグリッドコンテナとなり、子要素がグリッドアイテムとして配置されるようになる。display: flexはFlexboxを有効にするための指定であり別物である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout"
+  },
+  {
+    "id": "l1-css-032",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "list-style-typeプロパティに指定できる値として正しいものを全て選べ。",
+    "choices": [
+      "disc",
+      "circle",
+      "square",
+      "roman"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "disc(黒丸)、circle(白丸)、square(黒四角)はlist-style-typeに指定できる代表的なキーワードである。ローマ数字を表すキーワードは\"roman\"単体ではなく\"upper-roman\"や\"lower-roman\"であるため、\"roman\"は誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/list-style-type"
+  },
+  {
+    "id": "l1-css-033",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "テーブルにおいて、隣接するセルの罫線を1本の線にまとめて表示するためのCSSの記述として正しいものはどれか。",
+    "choices": [
+      "border-collapse: collapse;",
+      "border-spacing: 0;",
+      "table-layout: fixed;",
+      "cellspacing: none;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "border-collapse: collapseを指定すると、隣接するセルの境界線が1本の線にまとめられて表示される。border-spacingはセパレート表示時のセル間隔、table-layoutはカラム幅の計算方式を指定するプロパティであり、cellspacingはHTMLの属性でありCSSプロパティではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/border-collapse"
+  },
+  {
+    "id": "l1-css-034",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "半透明の赤色(赤色で透明度50%)を指定するCSSの記述として正しいものはどれか。",
+    "choices": [
+      "rgba(255, 0, 0, 0.5)",
+      "rgb(255, 0, 0, 50)",
+      "color: red 50%;",
+      "opacity: red(0.5);"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "rgba()関数は赤・緑・青の各成分(0〜255)とアルファ値(透明度、0〜1の範囲)を指定する。アルファ値は0〜1の範囲で指定するため、50ではなく0.5が正しい。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/color_value"
+  },
+  {
+    "id": "l1-css-035",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "背景に関するCSSプロパティとして正しいものを全て選べ。",
+    "choices": [
+      "background-image",
+      "background-repeat",
+      "background-position",
+      "background-decoration"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "background-imageは背景画像の指定、background-repeatは背景画像の繰り返し方法、background-positionは背景画像の表示位置を指定するプロパティである。background-decorationというプロパティは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/background"
+  },
+  {
+    "id": "l1-css-036",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "borderプロパティ(ショートハンド)を構成する個別プロパティとして正しいものを全て選べ。",
+    "choices": [
+      "border-width",
+      "border-style",
+      "border-color",
+      "border-align"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "borderショートハンドはborder-width(太さ)、border-style(線種)、border-color(色)をまとめて指定するものである。border-alignというプロパティは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/border"
+  },
+  {
+    "id": "l1-css-037",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "要素のボックスに影(シャドウ)を付けるCSSプロパティとして正しいものはどれか。",
+    "choices": [
+      "box-shadow",
+      "text-shadow",
+      "border-shadow",
+      "drop-shadow"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "box-shadowは要素のボックスに対して影を描画するプロパティである。text-shadowはテキストに影を付けるためのプロパティであり対象が異なる。drop-shadow()はfilterプロパティなどで使用する関数であって単独のプロパティ名ではなく、border-shadowというプロパティも存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/box-shadow"
+  },
+  {
+    "id": "l1-css-038",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "サーバー等から独自のフォントファイルを読み込み、font-familyで指定できるフォントとして登録するために使用するCSSの規則(at-rule)として正しいものはどれか。",
+    "choices": [
+      "@font-face",
+      "@import",
+      "@media",
+      "@charset"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "@font-faceはフォントファイルの場所や名前を指定し、任意のWebフォントをfont-familyで指定できる名前として文書内で使用可能にするat-ruleである。@importは他のスタイルシートの読み込み、@mediaはメディアクエリ、@charsetは文字コードの指定に使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@font-face"
+  },
+  {
+    "id": "l1-css-039",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "text-decoration-line(text-decorationの構成要素)に指定できる値として正しいものを全て選べ。",
+    "choices": [
+      "underline",
+      "overline",
+      "line-through",
+      "line-under"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "underline(下線)、overline(上線)、line-through(取り消し線)はtext-decoration-lineに指定できる代表的な値である。\"line-under\"というキーワードは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/text-decoration-line"
+  },
+  {
+    "id": "l1-css-040",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "詳細度(specificity)が同じ複数のCSSルールが同じ要素に対して競合して適用される場合、どちらが優先されるか。",
+    "choices": [
+      "スタイルシート内で後に記述された(または後に読み込まれた)ルール",
+      "スタイルシート内で先に記述されたルール",
+      "セレクタの文字数がより多いルール",
+      "常にクラスセレクタを使用したルール"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CSSのカスケードでは、詳細度が同じ場合は記述順(ソースの並び順)が優先度を決定し、後から記述・読み込まれたルールの宣言が適用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Cascade"
+  },
+  {
+    "id": "l1-css-006",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Flexboxコンテナにおいて、子要素を主軸方向の中央に配置するプロパティ値として正しいものはどれか。",
+    "choices": [
+      "justify-content: center",
+      "align-items: center",
+      "flex-direction: center",
+      "justify-self: center"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "justify-contentはFlexboxの主軸(デフォルトでは横方向)方向の配置を制御するプロパティで、centerを指定すると中央揃えになる。align-itemsは交差軸方向の配置を制御する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/justify-content"
+  },
+  {
+    "id": "l1-css-007",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のセレクタ \"h1 + p\" が選択する要素として正しいものはどれか。",
+    "choices": [
+      "h1要素の直後に隣接するp要素",
+      "h1要素の子要素であるすべてのp要素",
+      "h1要素の子孫であるすべてのp要素",
+      "h1要素とp要素の両方"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "「A + B」は隣接兄弟結合子と呼ばれ、Aの直後に同じ親を持つ兄弟要素として存在するBを選択する。子孫結合子(半角スペース)や子結合子(>)とは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Adjacent_sibling_combinator"
+  },
+  {
+    "id": "l1-css-008",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "CSSの詳細度(specificity)に関する説明として正しいものはどれか。",
+    "choices": [
+      "IDセレクタはクラスセレクタよりも詳細度が高い",
+      "クラスセレクタは要素セレクタよりも詳細度が低い",
+      "要素セレクタはIDセレクタよりも詳細度が高い",
+      "詳細度はセレクタの記述順序のみで決まり、種類は関係しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "詳細度はインラインスタイル > IDセレクタ > クラス/属性/疑似クラスセレクタ > 要素/疑似要素セレクタ の順に高く、IDセレクタはクラスセレクタより詳細度が高い。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Specificity"
+  },
+  {
+    "id": "l1-css-009",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のCSSにおいて、hover時に0.3秒かけてbackground-colorを変化させる記述として正しいものはどれか。",
+    "code": ".box {\n  background-color: blue;\n  /* ここに指定 */\n}\n.box:hover {\n  background-color: red;\n}",
+    "choices": [
+      "transition: background-color 0.3s;",
+      "animation: background-color 0.3s;",
+      "transform: background-color 0.3s;",
+      "delay: background-color 0.3s;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "transitionプロパティは、プロパティの値が変化する際にその変化を指定時間かけて滑らかに行うための指定である。animationは@keyframesと組み合わせて使用する別の仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_transitions/Using_CSS_transitions"
+  },
+  {
+    "id": "l1-css-010",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "opacityプロパティとrgba()のアルファ値の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "opacityは要素全体(子要素を含む)の不透明度を変更するが、rgba()のアルファ値は指定したプロパティの色にのみ適用される",
+      "opacityは色のみに適用され、rgba()は要素全体に適用される",
+      "opacityとrgba()のアルファ値は完全に同じ効果を持つ",
+      "opacityはテキストにのみ適用でき、背景には適用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "opacityは要素とその子孫要素全体の不透明度を一括で変更するのに対し、rgba()(またはhsla())のアルファ値はcolorやbackground-colorなど指定したプロパティの色にのみ透明度を適用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/opacity"
+  },
+  {
+    "id": "l1-css-041",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "属性セレクタの構文として正しい記述を全て選べ。",
+    "choices": [
+      "a[href^=\"https\"] (値が指定文字列で始まる要素を選択)",
+      "img[src$=\".png\"] (値が指定文字列で終わる要素を選択)",
+      "input[type~=\"text\"] (空白区切りの値の中に指定語を含む要素を選択)",
+      "div[class*value] (演算子や引用符を用いない不正な構文)"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "属性セレクタには[attr^=val](前方一致)、[attr$=val](後方一致)、[attr*=val](部分一致)、[attr~=val](空白区切りの値の一致)などが用意されている。div[class*value]は比較演算子(=)が抜けており、有効なCSS構文ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors"
+  },
+  {
+    "id": "l1-css-042",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HTMLの表(table)の偶数行の背景色を変更したい場合に使用する疑似クラスとして最も適切なものはどれか。",
+    "choices": [
+      "tr:nth-child(2n)",
+      "tr:nth-of-type(1)",
+      "tr:last-child",
+      "tr:only-child"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": ":nth-child(2n)は2番目、4番目...というように偶数番目の要素を選択する疑似クラスであり、表の偶数行にスタイルを適用する際によく用いられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/:nth-child"
+  },
+  {
+    "id": "l1-css-043",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "::before疑似要素を使って要素の直前に文字列を挿入するために必須となるプロパティはどれか。",
+    "choices": [
+      "content",
+      "display",
+      "content-text",
+      "before-text"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "::before・::after疑似要素は、contentプロパティで挿入する内容を指定しない限り生成されない。contentが未指定または初期値のままの場合、疑似要素は表示されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/::before"
+  },
+  {
+    "id": "l1-css-044",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "セレクタ \"div p\" が選択する要素として正しいものはどれか。",
+    "choices": [
+      "div要素の子孫であるすべてのp要素",
+      "div要素の直下の子要素であるp要素のみ",
+      "div要素と隣接する兄弟のp要素",
+      "div要素とp要素の両方"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "半角スペースで区切られたセレクタは子孫結合子であり、divの子・孫・ひ孫など任意の深さにあるすべてのp要素を選択する。直下の子要素のみを選択する場合は\">\"(子結合子)を使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Descendant_combinator"
+  },
+  {
+    "id": "l1-css-045",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "セレクタ \"h1 ~ p\" が選択する要素として正しいものはどれか。",
+    "choices": [
+      "h1要素より後にあり、同じ親を持つすべてのp要素(直後に限らない)",
+      "h1要素の直後に隣接するp要素のみ",
+      "h1要素の子要素であるp要素",
+      "h1要素より前にあるp要素"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "\"A ~ B\"は一般兄弟結合子(subsequent-sibling combinator)であり、Aと同じ親を持ち、A以降に出現するすべてのB要素を選択する。直後の1つだけを選択する隣接兄弟結合子(+)とは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Subsequent-sibling_combinator"
+  },
+  {
+    "id": "l1-css-046",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のCSS記述 \"h1, h2, h3 { color: navy; }\" の意味として正しいものはどれか。",
+    "choices": [
+      "h1、h2、h3のそれぞれの要素に同じスタイルを一括して適用する",
+      "h1要素の子要素であるh2とh3にのみスタイルを適用する",
+      "h1かつh2かつh3をすべて満たす要素にのみスタイルを適用する",
+      "構文エラーとなりスタイルは適用されない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "カンマで区切られた複数のセレクタはセレクタリスト(グルーピング)と呼ばれ、それぞれのセレクタに一致する要素すべてに同じ宣言ブロックを適用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Selector_list"
+  },
+  {
+    "id": "l1-css-047",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "position: absoluteを指定した要素の配置基準に関する説明として正しいものはどれか。",
+    "choices": [
+      "position: static以外の値が指定された直近の祖先要素を基準に配置され、該当する祖先がなければ初期包含ブロックが基準になる",
+      "常にbody要素を基準に配置される",
+      "常に直接の親要素を基準に配置される",
+      "常にビューポート(画面表示領域)を基準に配置される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "position: absoluteの要素は、祖先要素のうちposition: static以外(relative/absolute/fixed/sticky)が指定された最も近い要素を配置の基準とする。該当する祖先要素がない場合は初期包含ブロックが基準となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/position"
+  },
+  {
+    "id": "l1-css-048",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "position: stickyの動作に関する説明として正しいものはどれか。",
+    "choices": [
+      "指定したしきい値(top等)に達するまでは通常のフローで配置され、超えるとfixedのように固定表示される",
+      "常にビューポートに対して固定表示され、スクロールしても位置が変わらない",
+      "親要素の内側でのみ相対的に位置をずらすだけで、固定表示にはならない",
+      "table要素にのみ適用できる特殊な値である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "position: stickyは、要素が祖先のスクロール範囲内にある間は通常のフローで配置され、指定したしきい値(top等)を超えるとその位置で固定されたように表示される、relativeとfixedを組み合わせたような挙動を持つ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/position"
+  },
+  {
+    "id": "l1-css-049",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "垂直方向に隣接するブロック要素同士のmarginが、大きい方の値に統合されて表示される現象を何と呼ぶか。",
+    "choices": [
+      "マージンの相殺(margin collapsing)",
+      "パディングの継承",
+      "ボックスの縮退(box shrinking)",
+      "フローティングの解除"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "マージンの相殺(collapsing)は、隣接するブロック要素の上下marginが重なり合い、大きい方の値のみが適用される現象で、通常のフロー(ブロック整形コンテキスト)内で発生する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing"
+  },
+  {
+    "id": "l1-css-050",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "floatさせた子要素のみを内包する親要素の高さが0になってしまう問題を解消する方法として適切なものはどれか。",
+    "choices": [
+      "親要素にoverflow: hiddenを指定するか、floatを解除するための疑似要素にclearを指定する",
+      "子要素にvisibility: hiddenを指定する",
+      "親要素のwidthを100%に指定する",
+      "子要素のmarginを0にする"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "floatした要素は通常のフローから外れ、親要素の高さ計算に含まれなくなる。親要素にoverflow: hidden(新しいブロック整形コンテキストの生成)を指定するか、clear: bothを持つ疑似要素(clearfix)を追加することで高さ崩れを解消できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/clear"
+  },
+  {
+    "id": "l1-css-051",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Flexboxコンテナのflex-wrapプロパティに指定できる値として正しいものを全て選べ。",
+    "choices": [
+      "nowrap",
+      "wrap",
+      "wrap-reverse",
+      "wrap-around",
+      "column-reverse"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "flex-wrapにはnowrap(折り返さない、初期値)、wrap(折り返す)、wrap-reverse(逆方向に折り返す)が指定できる。wrap-aroundは存在せず、column-reverseはflex-directionの値である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/flex-wrap"
+  },
+  {
+    "id": "l1-css-052",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Flexboxアイテムに対する \"flex: 1;\" という記述の意味として正しいものはどれか。",
+    "choices": [
+      "flex-grow: 1; flex-shrink: 1; flex-basis: 0%; と同等の省略記法である",
+      "flex-basisのみを1pxに設定する記法である",
+      "widthを100%に設定する記法である",
+      "flexアイテムの表示順序を1番目に固定する記法である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "flexショートハンドプロパティに1つの数値のみを指定した場合、flex-growにその値、flex-shrinkに1、flex-basisに0%が設定される(flex: 1 1 0%と同等)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/flex"
+  },
+  {
+    "id": "l1-css-053",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Flexboxコンテナ内で、特定の1つの子要素だけ交差軸(クロス軸)方向の配置をほかの子要素と異なる位置に指定したい場合に使用するプロパティはどれか。",
+    "choices": [
+      "align-self",
+      "align-items",
+      "justify-content",
+      "align-content"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "align-selfは個々のフレックスアイテムに対して交差軸方向の配置を個別に指定できるプロパティで、コンテナ全体に適用されるalign-itemsの設定を上書きできる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/align-self"
+  },
+  {
+    "id": "l1-css-054",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "grid-template-columnsプロパティの値として指定できるものを全て選べ。",
+    "choices": [
+      "1fr",
+      "200px",
+      "20%",
+      "auto",
+      "3vh!important"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "explanation": "grid-template-columnsにはfr単位(空きスペースの比率)、px・%などの長さ・割合、autoなどのキーワードをトラックサイズとして指定できる。!importantは宣言全体に付与するものであり、値の一部として記述することはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/grid-template-columns"
+  },
+  {
+    "id": "l1-css-055",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Flexbox・Grid双方のレイアウトで、アイテム間の間隔をmarginを使わずに指定できるモダンなプロパティはどれか。",
+    "choices": [
+      "gap",
+      "spacing",
+      "item-margin",
+      "grid-space"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "gapプロパティ(row-gap・column-gapの一括指定)は、FlexboxおよびGridコンテナ内のアイテム間の間隔を指定でき、個々のアイテムにmarginを設定する必要がない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/gap"
+  },
+  {
+    "id": "l1-css-056",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "マルチカラムレイアウトにおいて、カラムとカラムの間の余白を指定するプロパティはどれか。",
+    "choices": [
+      "column-gap",
+      "column-margin",
+      "column-space",
+      "column-padding"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "column-gapプロパティはマルチカラムレイアウト(およびFlexbox/Grid)におけるカラム間の余白を指定する。column-margin・column-space・column-paddingは存在しないプロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/column-gap"
+  },
+  {
+    "id": "l1-css-057",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "背景画像を水平方向にのみ繰り返して表示させたい場合の記述として正しいものはどれか。",
+    "choices": [
+      "background-repeat: repeat-x;",
+      "background-repeat: repeat-y;",
+      "background-position: horizontal;",
+      "background-size: repeat;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "background-repeatにrepeat-xを指定すると背景画像は水平方向(x軸)にのみ繰り返され、垂直方向には繰り返されない。垂直方向にのみ繰り返す場合はrepeat-yを使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/background-repeat"
+  },
+  {
+    "id": "l1-css-058",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "backgroundショートハンドプロパティにまとめて指定できる項目を全て選べ。",
+    "choices": [
+      "background-color",
+      "background-image",
+      "background-position",
+      "font-size",
+      "text-align"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "backgroundショートハンドには、background-color・background-image・background-position・background-repeat・background-size・background-attachment・background-originなどの背景関連プロパティをまとめて指定できる。font-sizeやtext-alignは背景とは無関係の別プロパティである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/background"
+  },
+  {
+    "id": "l1-css-059",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "ボックスの角を丸く表示するために使用するプロパティはどれか。",
+    "choices": [
+      "border-radius",
+      "border-corner",
+      "corner-radius",
+      "box-round"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "border-radiusプロパティは要素のボックスの四隅の角丸の半径を指定する。値を4つ指定すれば各コーナーを個別に設定することも可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/border-radius"
+  },
+  {
+    "id": "l1-css-060",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のbox-shadowの値の解釈として正しいものはどれか。",
+    "code": ".box {\n  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);\n}",
+    "choices": [
+      "水平オフセット2px、垂直オフセット4px、ぼかし半径6px、色rgba(0,0,0,0.5)",
+      "水平オフセット4px、垂直オフセット2px、拡散距離6px、色rgba(0,0,0,0.5)",
+      "ぼかし半径2px、拡散距離4px、水平オフセット6px、色rgba(0,0,0,0.5)",
+      "すべての数値は要素の角丸半径を指定している"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "box-shadowは「水平オフセット 垂直オフセット ぼかし半径 [拡散距離] 色」の順に指定する(拡散距離は省略可能)。よってこの例では水平2px、垂直4px、ぼかし6pxとなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/box-shadow"
+  },
+  {
+    "id": "l1-css-061",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "@font-faceでWebフォントを利用可能にする際、最低限指定する必要があるプロパティの組み合わせとして正しいものはどれか。",
+    "choices": [
+      "font-family と src",
+      "font-family のみ",
+      "src のみ",
+      "font-weight と font-style"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "@font-faceルールでは、フォントを識別するための名前を指定するfont-familyと、フォントファイルの取得先を指定するsrcの両方が必須である。font-weightやfont-styleは特定の太さ・スタイルのみに対応させたい場合に追加で指定するものである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@font-face"
+  },
+  {
+    "id": "l1-css-062",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "幅に収まりきらない1行のテキストを省略記号(...)で表示するために、コメント部分に追加すべきプロパティの組み合わせとして正しいものはどれか。",
+    "code": ".box {\n  width: 150px;\n  /* ここに指定 */\n}",
+    "choices": [
+      "overflow: hidden; white-space: nowrap; text-overflow: ellipsis;",
+      "overflow: scroll; white-space: normal; text-overflow: clip;",
+      "display: none; visibility: hidden; text-overflow: ellipsis;",
+      "text-overflow: ellipsis; のみで実現できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "text-overflow: ellipsisを機能させるには、要素の幅を超えたコンテンツを隠すoverflow: hiddenと、テキストを折り返させないwhite-space: nowrapを同時に指定する必要がある。text-overflowのみの指定では効果が現れない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/text-overflow"
+  },
+  {
+    "id": "l1-css-063",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "ul要素のリストマーカー(行頭記号)を非表示にするCSSの記述として正しいものはどれか。",
+    "choices": [
+      "list-style-type: none;",
+      "list-style-type: hidden;",
+      "list-marker: none;",
+      "display: no-marker;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "list-style-typeにnoneを指定すると、リスト項目のマーカー(黒丸や数字など)が表示されなくなる。hiddenという値は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/list-style-type"
+  },
+  {
+    "id": "l1-css-064",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "table要素において、隣接するセルの罫線(border)を重ねて1本の線として表示させるプロパティはどれか。",
+    "choices": [
+      "border-collapse: collapse;",
+      "border-style: single;",
+      "table-layout: fixed;",
+      "border-spacing: 0;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "border-collapseにcollapseを指定すると、隣接するセルの罫線が重なり合って1本の線として表示される。初期値のseparateでは、セルごとに独立した罫線が表示され、border-spacingで間隔を調整できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/border-collapse"
+  },
+  {
+    "id": "l1-css-065",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "CSSのカスケード(適用されるスタイルの決定)に関わる要素として正しいものを全て選べ。",
+    "choices": [
+      "セレクタの詳細度(specificity)",
+      "スタイルシート内での宣言の記述順序(同じ詳細度の場合は後方の宣言が優先されうる)",
+      "!importantの有無",
+      "プロパティ値に使われている単位の種類(pxかemか)",
+      "要素に指定されたfont-sizeの数値の大小"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "CSSのカスケードは、!importantの有無、セレクタの詳細度、スタイルシート内での記述順序(同じ詳細度の場合は後に書かれた宣言が優先)によって最終的に適用されるスタイルが決定される。値の単位の種類やfont-sizeの数値そのものはカスケードの決定要因ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Cascade"
+  },
+  {
+    "id": "l1-css-011",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次の2つのセレクタのうち、詳細度が高いのはどちらか。\nA: #nav .item a\nB: .menu li a.active",
+    "choices": [
+      "A (IDセレクタを含むため)",
+      "B (セレクタの数が多いため)",
+      "AとBは同じ詳細度である",
+      "詳細度はセレクタの長さでは決まらないため比較できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "詳細度はID・クラス・要素の個数で比較する。Aは(1 ID, 1 class, 1 element)、Bは(0 ID, 2 class, 2 element)であり、IDセレクタを1つでも含むAの方が詳細度は高くなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Specificity"
+  },
+  {
+    "id": "l1-css-012",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "CSSにおける!importantに関する説明として正しいものはどれか。",
+    "choices": [
+      "!importantを付与した宣言は、通常の詳細度の比較よりも優先して適用される",
+      "!importantは複数のスタイルシートの読み込み順序を無視して常に最後に評価される機能である",
+      "!importantを使用すると詳細度の計算が無効化され、後に書かれた通常のスタイルが常に優先される",
+      "!importantはJavaScriptからのみ設定できるプロパティである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "!importantを付けた宣言は通常の詳細度の比較ルールより優先されて適用される。ただし!important同士がぶつかった場合は改めて詳細度・記述順で比較されるため、多用は保守性を下げる原因になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/important"
+  },
+  {
+    "id": "l1-css-013",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のCSSで要素を継続的に回転させるアニメーションを定義する記述として正しいものはどれか。",
+    "code": "@keyframes spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n.icon {\n  /* ここに指定 */\n}",
+    "choices": [
+      "animation: spin 2s linear infinite;",
+      "transition: spin 2s linear infinite;",
+      "transform: spin 2s linear infinite;",
+      "keyframes: spin 2s linear infinite;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "@keyframesで定義したアニメーションを要素に適用するにはanimationプロパティ(またはanimation-nameなどの個別プロパティ)を使用する。transitionは状態変化時の補間であり、@keyframesとは併用しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_animations/Using_CSS_animations"
+  },
+  {
+    "id": "l1-css-014",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "要素内のテキストを3段組みのカラムレイアウトで表示するプロパティとして正しいものはどれか。",
+    "choices": [
+      "column-count: 3;",
+      "flex-wrap: 3;",
+      "grid-column: 3;",
+      "columns-number: 3;"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "column-countプロパティはマルチカラムレイアウトにおいて、コンテンツを分割するカラム数を指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/column-count"
+  },
+  {
+    "id": "l1-css-015",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "CSSのtransformプロパティで指定できる関数として正しいものを全て選べ。",
+    "choices": [
+      "translate()",
+      "scale()",
+      "rotate()",
+      "transitionate()",
+      "opacitize()"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "transformプロパティにはtranslate()(移動)、scale()(拡大縮小)、rotate()(回転)、skew()(せん断)などの関数を指定できる。transitionate()やopacitize()は存在しない関数である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/transform"
+  },
+  {
+    "id": "l1-css-066",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のHTML要素に対して、マッチするセレクタを全て選べ。",
+    "code": "<a href=\"https://example.com/file.pdf\" class=\"btn btn-large\">Download</a>",
+    "choices": [
+      "a[href$=\".pdf\"]",
+      "a[class~=\"btn\"]",
+      "a[href^=\"ftp\"]",
+      "a[class*=\"arge\"]"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "[href$=\".pdf\"]は末尾一致でhrefが.pdfで終わるため一致する。[class~=\"btn\"]は空白区切りの単語の完全一致で\"btn\"というクラスを持つため一致する。[class*=\"arge\"]は部分文字列一致で\"btn-large\"の中の\"arge\"を含むため一致する。[href^=\"ftp\"]は先頭一致だが、hrefは\"https\"で始まるため一致しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Attribute_selectors"
+  },
+  {
+    "id": "l1-css-067",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "`:nth-child(2n+1)`と同じ要素の集合を選択するキーワード指定はどれか。",
+    "choices": [
+      ":nth-child(odd)",
+      ":nth-child(even)",
+      ":first-child",
+      ":nth-last-child(odd)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "an+bの式でa=2, b=1のとき、n=0,1,2,...に対して1,3,5,...という奇数番目の要素が選ばれ、これはキーワードoddと同じ集合になる。evenは2,4,6...を選択し、nth-last-child(odd)は末尾から数えるため要素総数によっては異なる集合になり得る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/:nth-child"
+  },
+  {
+    "id": "l1-css-068",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のHTMLに対してセレクタ`div p:first-of-type`が選択する要素はどれか。",
+    "code": "<div>\n  <span>X</span>\n  <p>A</p>\n  <span>B</span>\n  <p>C</p>\n</div>",
+    "choices": [
+      "Aを含むp要素",
+      "Cを含むp要素",
+      "XとAの両方",
+      "該当する要素はない(pはdivの最初の子ではないため)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": ":first-of-typeは親要素内で同じ種類(タグ名)の要素のうち最初に現れるものを選択する。p要素の中で最初に出現するのはAであり、:first-childと異なり「親の最初の子であること」は要件にならない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/:first-of-type"
+  },
+  {
+    "id": "l1-css-069",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "`.box::before { }`のようにcontentプロパティを指定しなかった場合の挙動として正しいものはどれか。",
+    "choices": [
+      "疑似要素は生成されず、画面には何も表示されない",
+      "疑似要素は生成されるが、テキストは空文字として表示される",
+      "contentを省略すると自動的に要素のクラス名がテキストとして挿入される",
+      "ブラウザによって挙動が異なり、標準では規定されていない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "contentプロパティの初期値はnormalであり、::before/::afterに対してnormalはnoneと同等に扱われるため、疑似要素自体が生成されない。疑似要素を表示させるには最低でもcontent: \"\";の指定が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/content"
+  },
+  {
+    "id": "l1-css-070",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ユニバーサルセレクタ(*)の詳細度に関する説明として正しいものはどれか。",
+    "choices": [
+      "詳細度は(0,0,0,0)であり、他のどのセレクタよりも優先度で劣る",
+      "常にIDセレクタより優先して適用される",
+      "クラスセレクタと同じ詳細度を持つ",
+      "詳細度の計算対象外であり、常に最優先で適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "詳細度の計算においてユニバーサルセレクタや結合子は詳細度に加算されず(0として扱われ)、ユニバーサルセレクタ単体の詳細度は最も低い(0,0,0,0)になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Specificity"
+  },
+  {
+    "id": "l1-css-071",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のCSSとHTMLにおいて、赤色に変化する要素を全て選べ。",
+    "code": "/* CSS */\nh2 ~ p { color: red; }\n\n<!-- HTML -->\n<div>\n  <h2>Title</h2>\n  <span>x</span>\n  <p>A</p>\n  <p>B</p>\n</div>",
+    "choices": [
+      "pのA",
+      "pのB",
+      "spanのx",
+      "h2のTitle"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "一般兄弟結合子(~)は、指定した要素より後に出現する同じ親を持つすべての一致する兄弟要素を選択する(隣接している必要はない)。そのためh2より後に出現するp要素であるAとBの両方が対象になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/General_sibling_combinator"
+  },
+  {
+    "id": "l1-css-072",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のCSSで青色になるのはどのp要素か。",
+    "code": "/* CSS */\ndiv > p { color: blue; }\n\n<!-- HTML -->\n<div>\n  <p>A</p>\n  <section>\n    <p>B</p>\n  </section>\n</div>",
+    "choices": [
+      "Aのみ",
+      "Bのみ",
+      "AとBの両方",
+      "どちらも青色にならない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "子結合子(>)は直接の子要素のみを選択する。Aはdivの直接の子だが、Bはsectionの子(divから見ると孫)であるため選択されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Child_combinator"
+  },
+  {
+    "id": "l1-css-073",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のCSSに関する説明として正しいものはどれか。",
+    "code": "h1, h2 {\n  color: red;\n  margin: 0;\n}",
+    "choices": [
+      "h1とh2のそれぞれに対して、同じ宣言ブロックが独立に適用される(グルーピングの省略記法)",
+      "h1の子孫であるh2にのみ適用される",
+      "文書内にh1とh2の両方が存在する場合にのみ適用される",
+      "記述順で最初に一致した要素のみに適用される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "カンマ(,)はセレクタリスト(グルーピング)であり、リスト中の各セレクタに同じ宣言ブロックを個別に適用するための省略記法である。要素同士の親子関係を意味するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Selector_list"
+  },
+  {
+    "id": "l1-css-074",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "position: stickyの挙動に関する説明として正しいものはどれか。",
+    "choices": [
+      "指定したtop等のオフセット値のしきい値に達するまでは通常のフロー内に配置され、それ以降は直近のスクロールコンテナ内で固定表示される",
+      "ビューポートに対して常に固定され、ページをスクロールしても位置は一切変わらない",
+      "親要素のスクロール状態に関わらず、常にページ全体に対して固定される",
+      "top/bottom/left/rightなどのオフセットを指定しなくても単独で固定効果が働く"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "position: stickyはrelativeとfixedの性質を組み合わせたもので、指定したオフセットのしきい値に達するまでは通常配置され、それ以降は直近のスクロール可能な祖先内で固定される。オフセット(top等)を指定しないと固定は発生しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/position"
+  },
+  {
+    "id": "l1-css-075",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "position: absoluteを指定した要素の配置基準(containing block)として正しいものはどれか。",
+    "choices": [
+      "最も近い祖先要素のうちposition: static以外の値が指定されているもの(存在しない場合は初期包含ブロック)",
+      "常に直近の親要素",
+      "常にhtml要素(ルート要素)",
+      "常にbody要素"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "絶対配置(position: absolute)の要素は、祖先要素のうち最も近いposition: static以外が指定された要素(いわゆる「位置指定された祖先」)を基準に配置される。該当する祖先がない場合は初期包含ブロックが基準になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/position"
+  },
+  {
+    "id": "l1-css-076",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "floatさせた子要素により親要素の高さが0になってしまう現象を回避する古典的な手法(clearfix)として適切なものはどれか。",
+    "choices": [
+      "親要素の疑似要素に対して content: \"\"; display: block; clear: both; を指定する",
+      "親要素にfloat: none; を指定する",
+      "子要素にposition: sticky; を指定する",
+      "親要素にoverflow: visible; を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "floatした子要素は通常のフローから外れるため、親要素の高さ計算に含まれなくなることがある。::after疑似要素にcontent: \"\"; display: block; clear: both; を指定するclearfixテクニックにより、floatを内包させて高さ崩れを防ぐことができる。overflow: visibleでは効果がない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/clear"
+  },
+  {
+    "id": "l1-css-077",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "隣接するブロックレベル要素同士の上下マージンに関して正しい説明はどれか。",
+    "choices": [
+      "上の要素のmargin-bottomと下の要素のmargin-topが接する場合、両者のうち大きい方の値のみが有効になる(マージンの相殺)",
+      "上下のマージンは常に加算され、2つの合計値の間隔が生じる",
+      "マージンの相殺はflexコンテナやgridコンテナのアイテム同士でも常に発生する",
+      "paddingについても同様にマージンの相殺と同じ現象が発生する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "通常のフロー内にあるブロックレベル要素の隣接する上下マージンは相殺(collapse)され、大きい方の値のみが有効になる。ただしflexアイテムやgridアイテムにはマージンの相殺は発生せず、paddingにもこの現象は起こらない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing"
+  },
+  {
+    "id": "l1-css-078",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のCSS宣言`flex: 2 1 100px;`が表す内容として正しいものを全て選べ。",
+    "choices": [
+      "flex-growが2である",
+      "flex-shrinkが1である",
+      "flex-basisが100pxである",
+      "flex-directionがrowになる"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "flexショートハンドはflex-grow, flex-shrink, flex-basisの順で指定する。したがってこの宣言はflex-grow: 2; flex-shrink: 1; flex-basis: 100px;と等価であり、flex-directionは含まれない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/flex"
+  },
+  {
+    "id": "l1-css-079",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Flexアイテムに対してflex-basisとwidthの両方が指定されている場合の主軸方向のサイズ決定に関する説明として正しいものはどれか。",
+    "choices": [
+      "flex-basisがautoでない値の場合、主軸方向のサイズ決定にはwidthよりflex-basisが優先される",
+      "常にwidthがflex-basisより優先される",
+      "widthとflex-basisの値は常に加算されて適用される",
+      "flex-basisはwidthと同時に指定するとエラーになり、どちらのプロパティも無視される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "flexコンテナ内の子要素(flexアイテム)では、flex-basisがauto以外の値であれば、それが主軸方向の基準サイズとしてwidth(またはheight)よりも優先される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/flex-basis"
+  },
+  {
+    "id": "l1-css-080",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記のgrid-template-areasの指定に関する説明として正しいものはどれか。",
+    "code": ".container {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  grid-template-areas:\n    \"header header\"\n    \"sidebar main\";\n}",
+    "choices": [
+      "headerは1行目の2つのカラムをまたいで配置される",
+      "sidebarとmainは同じセルに重ねて配置される",
+      "header, sidebar, mainという名前のクラスを持つ要素に自動的に適用される",
+      "grid-template-areasは文字列ではなく数値でエリアを指定する必要がある"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "grid-template-areasは各行を文字列で表し、同じ名前を横に並べて書くとその名前のエリアが該当するカラムをまたいで配置される。この例ではheaderが1行目の2カラム分を占有する。各エリア名はgrid-areaプロパティで指定した要素に対応し、クラス名とは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/grid-template-areas"
+  },
+  {
+    "id": "l1-css-081",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "`grid-template-columns: repeat(3, 1fr);`と同じ意味になる指定はどれか。",
+    "choices": [
+      "grid-template-columns: 1fr 1fr 1fr;",
+      "grid-template-columns: 3fr;",
+      "grid-template-columns: 1fr, 1fr, 1fr;",
+      "grid-template-columns: repeat(1fr, 3);"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "repeat(回数, トラック定義)は指定した回数分だけトラック定義を繰り返す省略記法であり、repeat(3, 1fr)は1fr 1fr 1frと等価である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/repeat"
+  },
+  {
+    "id": "l1-css-082",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "background-size: coverとbackground-size: containの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "coverは要素全体を覆うように画像を拡大縮小し、はみ出た部分は切り取られることがある。containは画像全体が要素内に収まるように拡大縮小し、余白が生じることがある",
+      "coverは画像を繰り返し表示し、containは1回のみ表示する",
+      "coverは縦横比を無視して要素にぴったり合わせ、containは縦横比を保持する",
+      "containは画像が要素からはみ出すことを許可する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "coverとcontainはいずれも画像の縦横比を保持したまま拡大縮小する点は共通するが、coverは要素全体を覆うため画像の一部が切り取られることがあり、containは画像全体が収まるようにするため余白(レターボックス)が生じることがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/background-size"
+  },
+  {
+    "id": "l1-css-083",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "box-shadowプロパティにinsetキーワードを指定した場合の効果として正しいものはどれか。",
+    "choices": [
+      "影が要素の外側ではなく内側にくぼんだように描画される",
+      "影の色が反転する",
+      "影のぼかし半径(blur radius)が常に0になる",
+      "insetを指定すると影が非表示になる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "insetキーワードを指定すると、初期値である外側の影(drop shadow)から内側の影(inner shadow)に変更される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/box-shadow"
+  },
+  {
+    "id": "l1-css-084",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "上記の@font-face内で複数のsrc(フォーマット指定付き)を列挙している目的として正しいものはどれか。",
+    "code": "@font-face {\n  font-family: \"MyFont\";\n  src: url(\"myfont.woff2\") format(\"woff2\"),\n       url(\"myfont.woff\") format(\"woff\");\n}",
+    "choices": [
+      "ブラウザが対応している形式のフォントファイルを優先順に選んで読み込めるようにするため",
+      "同じフォントファイルを冗長化してダウンロード速度を上げるため",
+      "異なる文字コードの文字ごとに別のフォントファイルを割り当てるため",
+      "複数指定した場合、すべてのファイルが必ず同時にダウンロードされる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "format()付きで複数のsrcを列挙すると、ブラウザは記述順に各フォーマットへの対応可否を確認し、最初に対応している形式のファイルのみを読み込む。これにより新しい形式(woff2)を優先しつつ、対応していないブラウザ向けに旧形式(woff)へのフォールバックを提供できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/@font-face/src"
+  },
+  {
+    "id": "l1-css-085",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "`text-overflow: ellipsis;`を有効に機能させるために、合わせて指定する必要があるものを全て選べ。",
+    "choices": [
+      "overflow: hidden;",
+      "white-space: nowrap;",
+      "display: inline;",
+      "幅(width)などによる要素サイズの制約"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "text-overflow: ellipsisは、overflow: hiddenによってはみ出した内容が隠され、white-space: nowrapによってテキストが折り返されないようにし、かつ幅などでボックスのサイズが制約されてはみ出しが発生する状態でなければ省略記号が表示されない。display: inlineは幅の制約が効きにくく、この機能とは直接関係しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/text-overflow"
+  },
+  {
+    "id": "l1-css-086",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "list-style-position: insideとoutside(初期値)の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "insideはマーカーがリストアイテムのコンテンツボックス内に配置され、テキストが折り返す際にマーカー分のインデントは生まれない。outsideはマーカーがコンテンツボックスの外側に配置される",
+      "insideはマーカーを非表示にし、outsideはマーカーを表示する",
+      "list-style-positionはul/olにのみ適用可能で、liには適用できない",
+      "insideとoutsideはリストの番号を昇順・降順に切り替えるためのプロパティである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "list-style-position: insideではマーカーがリストアイテムのコンテンツの一部として内側に配置されるため、折り返した2行目以降はマーカー分インデントされない。初期値のoutsideではマーカーがコンテンツボックスの外側(通常はインデント領域)に配置される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/list-style-position"
+  },
+  {
+    "id": "l1-css-087",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "テーブルにborder-collapse: collapse;を指定した場合の効果として正しいものはどれか。",
+    "choices": [
+      "隣接するセルの罫線が1本の罫線として結合され、border-spacingの指定は効果を持たなくなる",
+      "セル間の間隔(border-spacing)が2倍になる",
+      "テーブルの罫線がすべて非表示になる",
+      "theadとtbodyの罫線がそれぞれ独立して二重に描画されるようになる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "border-collapse: collapseを指定すると隣接するセルの罫線が1本にまとめられ、セル間隔を指定するborder-spacingは適用されなくなる(初期値のseparateではセル間に間隔を持たせた個別の罫線になる)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/border-collapse"
+  },
+  {
+    "id": "l1-css-088",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": ":not()疑似クラスの詳細度(specificity)に関する説明として正しいものはどれか。",
+    "choices": [
+      ":not()自体は詳細度に加算されないが、その引数として指定したセレクタの詳細度が全体の詳細度に加算される",
+      ":not()は常に詳細度を0にリセットする",
+      ":not()は常にIDセレクタと同じ詳細度を持つ",
+      ":not()を使用したセレクタは詳細度の計算対象から除外される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": ":not()自体は詳細度に寄与しないが、仕様上は引数に指定したセレクタ(最も詳細度の高いもの)の詳細度がそのまま全体に加算される。例えば`:not(#id)`はIDセレクタと同等の詳細度を持つことになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/:not"
+  },
+  {
+    "id": "l1-css-089",
+    "category": "l1-css",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のCSSプロパティのうち、デフォルトで子要素に継承されるものを全て選べ。",
+    "choices": [
+      "color",
+      "font-family",
+      "line-height",
+      "margin",
+      "border"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "color、font-family、line-heightはテキスト関連のプロパティであり、デフォルトで子孫要素に継承される。一方marginやborderなどのボックスモデルに関わるプロパティは継承されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/Inheritance"
+  },
+  {
+    "id": "l1-css-090",
+    "category": "l1-css",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "transitionにおいて、変化を滑らかな曲線ではなく一定間隔で区切って段階的(離散的)に変化させるタイミング関数として正しいものはどれか。",
+    "choices": [
+      "steps(4, end)",
+      "ease-in-out",
+      "cubic-bezier(0.1, 0.7, 1.0, 0.1)",
+      "linear"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "steps()関数は指定した数のステップに区切って値を離散的に変化させるタイミング関数である。ease-in-outやcubic-bezier()は滑らかな曲線による補間、linearは一定速度の連続的な補間を行う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/CSS/easing-function/steps"
+  }
+]

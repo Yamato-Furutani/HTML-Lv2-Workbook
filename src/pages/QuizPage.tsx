@@ -2,10 +2,11 @@ import { useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { QuestionCard } from '../components/QuestionCard'
 import { allQuestions, getQuestionsByCategory } from '../data'
+import { categoryMap } from '../data/categories'
 import { useProgressContext } from '../context/ProgressContext'
 import { pickRandom, shuffleChoices } from '../utils/shuffle'
 import { isCorrect } from '../utils/scoring'
-import type { CategoryId, Difficulty, Question, QuizMode } from '../types'
+import type { CategoryId, Difficulty, ExamLevel, Question, QuizMode } from '../types'
 import type { ReviewItem } from '../components/AnswerReviewList'
 
 interface QuizLocationState {
@@ -26,7 +27,12 @@ export function QuizPage() {
   const questions = useMemo(() => {
     if (!state) return []
     if (state.customQuestions) return state.customQuestions.map(shuffleChoices)
-    const pool = state.categoryId === 'all' ? allQuestions : getQuestionsByCategory(state.categoryId as CategoryId)
+    const allLevel: ExamLevel | null =
+      state.categoryId === 'all-l1' ? 'L1' : state.categoryId === 'all-l2' ? 'L2' : null
+    const pool =
+      allLevel !== null
+        ? allQuestions.filter((q) => categoryMap[q.category]?.level === allLevel)
+        : getQuestionsByCategory(state.categoryId as CategoryId)
     const filteredPool =
       state.difficulty && state.difficulty !== 'all' ? pool.filter((q) => q.difficulty === state.difficulty) : pool
     return pickRandom(filteredPool, state.count).map(shuffleChoices)
@@ -78,7 +84,10 @@ export function QuizPage() {
     reviewItems.forEach((r) => recordAnswer(r.question.id, r.correct))
     addHistoryEntry({
       at: new Date().toISOString(),
-      categoryId: state.categoryId === 'all' ? 'all' : (state.categoryId as CategoryId),
+      categoryId:
+        state.categoryId === 'all-l1' || state.categoryId === 'all-l2'
+          ? state.categoryId
+          : (state.categoryId as CategoryId),
       mode: state.mode,
       score,
       total: questions.length,

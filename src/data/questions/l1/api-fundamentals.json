@@ -1,0 +1,1655 @@
+[
+  {
+    "id": "l1-api-fundamentals-001",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "JavaScriptを用いてビットマップ形式のグラフィックスを描画するためのHTML5要素として正しいものはどれか。",
+    "choices": [
+      "<canvas>",
+      "<svg>",
+      "<img>",
+      "<graphic>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<canvas>要素はJavaScriptのCanvas API(2dコンテキストやWebGLコンテキスト)を通じてビットマップ形式の図形・画像を描画するための領域を提供する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Canvas_API"
+  },
+  {
+    "id": "l1-api-fundamentals-002",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ユーザーの現在地(緯度・経度)を取得するためのAPIとして正しいものはどれか。",
+    "choices": [
+      "Geolocation API",
+      "Device Orientation API",
+      "Battery Status API",
+      "Vibration API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Geolocation APIはnavigator.geolocationオブジェクトを通じて、ユーザーの許可を得た上で現在地の緯度・経度情報を取得するためのAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation_API"
+  },
+  {
+    "id": "l1-api-fundamentals-003",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "localStorageとsessionStorageの違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "localStorageに保存したデータはブラウザを閉じても保持されるが、sessionStorageのデータはタブ(セッション)を閉じると破棄される",
+      "localStorageは1タブのみで共有され、sessionStorageは全タブで共有される",
+      "localStorageは文字列以外も保存できるが、sessionStorageは文字列のみ保存できる",
+      "localStorageはHTTPS環境でのみ使用でき、sessionStorageはHTTP環境でのみ使用できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "どちらもWeb Storage APIのオブジェクトで、キーと値はいずれも文字列として保存される。localStorageは明示的に削除するかブラウザから消去するまで永続化されるが、sessionStorageはそのタブ(セッション)が閉じられると破棄される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API"
+  },
+  {
+    "id": "l1-api-fundamentals-004",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ページ全体を再読み込みすることなく、サーバーと非同期にデータをやり取りするために使用する仕組みとして正しいものはどれか。",
+    "choices": [
+      "XMLHttpRequest / fetch API",
+      "Web Storage API",
+      "History API",
+      "Drag and Drop API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "XMLHttpRequestやそれをよりモダンにしたfetch APIは、ページ全体の再読み込みを行わずにサーバーと非同期にHTTP通信を行う(いわゆるAjax)ための仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Fetch_API"
+  },
+  {
+    "id": "l1-api-fundamentals-005",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "SVG(Scalable Vector Graphics)の特徴として正しいものはどれか。",
+    "choices": [
+      "拡大・縮小しても画質が劣化しないベクター形式の画像フォーマットである",
+      "ピクセル単位で色情報を持つビットマップ形式の画像フォーマットである",
+      "音声データを圧縮するためのフォーマットである",
+      "動画のコンテナフォーマットの一種である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGはXMLベースのベクター画像フォーマットであり、図形を数式的なパスとして記述するため、拡大・縮小しても画質が劣化しない。ビットマップ形式のPNGやJPEGとは異なる特徴を持つ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG"
+  },
+  {
+    "id": "l1-api-fundamentals-016",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "canvas要素から2D描画コンテキストを取得するために呼び出すメソッドとして正しいものはどれか。",
+    "choices": [
+      "canvas.getContext('2d')",
+      "canvas.getGraphics('2d')",
+      "canvas.createContext('2d')",
+      "canvas.draw2d()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "canvas要素のgetContext()メソッドに'2d'を渡すことでCanvasRenderingContext2Dオブジェクトを取得し、以降の描画命令(fillRectやarcなど)を呼び出せるようになる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement/getContext"
+  },
+  {
+    "id": "l1-api-fundamentals-017",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML文書内に<svg>要素を直接記述(インライン埋め込み)した場合の利点として正しいものはどれか。",
+    "choices": [
+      "CSSやJavaScriptから個々の図形要素に直接アクセスし、スタイル変更やイベント処理ができる",
+      "画像ファイルとしてキャッシュされるため、常に<img>要素より読み込みが高速になる",
+      "ラスター形式に自動変換されるため、印刷時の画質が向上する",
+      "外部ファイルとして読み込む場合と異なり、ネットワーク経由でのみ利用できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGをインラインで記述するとDOMツリーの一部として扱われるため、CSSでスタイルを当てたり、JavaScriptから各図形要素に対してイベントリスナーを設定したりできる。一方、<img>要素で読み込んだSVGはDOMとして操作できない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG"
+  },
+  {
+    "id": "l1-api-fundamentals-018",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "video要素やaudio要素が実装するHTMLMediaElementインターフェースにおいて、再生を開始するためのメソッドとして正しいものはどれか。",
+    "choices": [
+      "play()",
+      "start()",
+      "run()",
+      "resume()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTMLMediaElementインターフェースはplay()メソッドで再生を開始し、pause()メソッドで一時停止する。currentTimeプロパティで再生位置を、volumeプロパティで音量を制御できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/play"
+  },
+  {
+    "id": "l1-api-fundamentals-019",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HLS(HTTP Live Streaming)において、分割された動画セグメントの一覧や再生順序を記述するプレイリストファイルの拡張子として正しいものはどれか。",
+    "choices": [
+      ".m3u8",
+      ".mpd",
+      ".json",
+      ".xml"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HLSでは.m3u8拡張子を持つM3U8形式のプレイリストファイルに、分割された動画セグメント(.tsファイルなど)の一覧や再生順序、画質(ビットレート)ごとの情報が記述される。なお、MPEG-DASHのマニフェストファイルは.mpd拡張子が用いられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats"
+  },
+  {
+    "id": "l1-api-fundamentals-020",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Geolocation APIにおいて、一度だけ現在地を取得するgetCurrentPosition()とは異なり、位置情報の変化を継続的に監視し、変化があるたびにコールバックを呼び出すメソッドとして正しいものはどれか。",
+    "choices": [
+      "watchPosition()",
+      "observePosition()",
+      "trackPosition()",
+      "onPositionChange()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "watchPosition()は端末の位置情報の変化を継続的に監視し、位置が変わるたびに指定したコールバック関数を呼び出す。監視を終了する際にはclearWatch()を使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/watchPosition"
+  },
+  {
+    "id": "l1-api-fundamentals-021",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Device Orientation APIのdeviceorientationイベントで取得できる、端末の向き(傾き)を表す3つの角度プロパティの組み合わせとして正しいものはどれか。",
+    "choices": [
+      "alpha, beta, gamma",
+      "x, y, z",
+      "pitch, roll, yaw",
+      "top, left, right"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "deviceorientationイベントはalpha(z軸周りの回転)、beta(x軸周りの回転)、gamma(y軸周りの回転)という3つのプロパティで端末の傾きを表す。加速度についてはDevice Motion APIのx, y, zプロパティで取得する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceOrientationEvent"
+  },
+  {
+    "id": "l1-api-fundamentals-022",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "端末のバッテリー残量や充電状態を取得するためのAPIとして正しいものはどれか。",
+    "choices": [
+      "Battery Status API",
+      "Vibration API",
+      "Ambient Light Sensor API",
+      "Network Information API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Battery Status APIはnavigator.getBattery()メソッドが返すPromiseを通じてBatteryManagerオブジェクトを取得し、level(残量)やcharging(充電中かどうか)といった情報を参照できるAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Battery_Status_API"
+  },
+  {
+    "id": "l1-api-fundamentals-023",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "対応デバイス上でJavaScriptから端末を振動させるために使用するAPIとして正しいものはどれか。",
+    "choices": [
+      "navigator.vibrate()",
+      "navigator.shake()",
+      "navigator.buzz()",
+      "navigator.pulse()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Vibration APIはnavigator.vibrate()メソッドに振動時間(ミリ秒)や振動・休止パターンの配列を渡すことで、対応する端末を振動させることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Vibration_API"
+  },
+  {
+    "id": "l1-api-fundamentals-024",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Pointer Eventsによって統一的なイベント(pointerdown/pointermove/pointerupなど)として扱うことができる入力デバイスとして正しいものを全て選べ。",
+    "choices": [
+      "マウス",
+      "タッチ(指)",
+      "ペン(スタイラス)",
+      "キーボード"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Pointer EventsはPointerEventインターフェースにより、マウス・タッチ・ペンなど種類の異なるポインティングデバイスからの入力を共通のイベントセットとして扱えるようにする。キーボード入力はポインターイベントの対象ではなく、KeyboardEventで扱われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "l1-api-fundamentals-025",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Web Storage API(localStorage/sessionStorage)がCookieと比べて持つ特徴として正しいものはどれか。",
+    "choices": [
+      "保存したデータはHTTPリクエストのたびに自動的にサーバーへ送信されることはない",
+      "保存したデータは必ずサーバー側からも読み書きできる",
+      "保存できるデータ量はCookieよりも少ない",
+      "有効期限を指定しない限り一切データを保存できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Cookieはリクエストのたびに自動的にサーバーへ送信されるのに対し、localStorageやsessionStorageに保存したデータはブラウザ内のみで完結し、明示的にJavaScriptで送信しない限りサーバーへは送られない。保存容量もCookie(数KB程度)よりWeb Storageの方が大きい。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API"
+  },
+  {
+    "id": "l1-api-fundamentals-026",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "IndexedDBに関する説明として正しいものはどれか。",
+    "choices": [
+      "データベース操作の多くは非同期に行われ、処理完了はイベント(successやerrorなど)で通知される",
+      "全ての操作は同期的に実行され、処理が完了するまでJavaScriptの実行がブロックされる",
+      "SQL文を用いてデータを検索するリレーショナルデータベースである",
+      "保存できるデータはテキスト文字列のみに限られる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "IndexedDBはオブジェクトを格納するトランザクション対応のクライアントサイドデータベースで、open()やadd()などの操作はリクエストオブジェクトを返し、その完了・失敗はsuccess/errorイベントによって非同期に通知される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "l1-api-fundamentals-027",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "メインスレッドから新しいWeb Workerを生成し、ワーカーとの間でデータをやり取りする方法として正しいものはどれか。",
+    "choices": [
+      "new Worker('worker.js')でワーカーを生成し、postMessage()でデータを送信、onmessageイベントで受信する",
+      "document.createWorker('worker.js')でワーカーを生成し、DOM経由で直接データを共有する",
+      "<worker>要素をHTMLに記述するだけで自動的にバックグラウンド実行される",
+      "Worker.run('worker.js')を呼び出すと、メインスレッドと同じスレッドで同期実行される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Web Workerはnew Worker('worker.js')のようにWorkerコンストラクタでスクリプトを指定して生成し、メインスレッドとワーカーの間はpostMessage()メソッドによる送信とmessageイベント(onmessage)による受信でデータをやり取りする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Worker"
+  },
+  {
+    "id": "l1-api-fundamentals-028",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ページにService Workerを登録するために使用する記述として正しいものはどれか。",
+    "choices": [
+      "navigator.serviceWorker.register('sw.js')",
+      "navigator.registerWorker('sw.js')",
+      "window.serviceWorker.start('sw.js')",
+      "document.addServiceWorker('sw.js')"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Service Workerはnavigator.serviceWorker.register()メソッドにスクリプトファイルのパスを渡すことで登録され、登録が成功するとブラウザによってインストール・アクティベートのライフサイクルが開始される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/ServiceWorkerContainer/register"
+  },
+  {
+    "id": "l1-api-fundamentals-029",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Push APIを利用してプッシュ通知を受信するために、クライアント側でプッシュサービスへの購読(サブスクリプション)を行うために呼び出すメソッドとして正しいものはどれか。",
+    "choices": [
+      "PushManager.subscribe()",
+      "Notification.subscribe()",
+      "ServiceWorker.subscribe()",
+      "PushManager.connect()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Push APIでは、Service Worker登録オブジェクトが持つPushManagerのsubscribe()メソッドを呼び出すことで、プッシュサービスへの購読情報(エンドポイントURLや鍵情報)を含むPushSubscriptionを取得する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PushManager/subscribe"
+  },
+  {
+    "id": "l1-api-fundamentals-030",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "Ajax(Asynchronous JavaScript and XML)という概念に関する説明として正しいものを全て選べ。",
+    "choices": [
+      "ページ全体を再読み込みすることなく、非同期にサーバーとデータをやり取りしてページの一部を更新する手法の総称である",
+      "名称にXMLを含むが、実際にはJSONなど他の形式のデータをやり取りすることも多い",
+      "やり取りするデータの形式は必ずXMLでなければならない",
+      "通信には常にWebSocketプロトコルを使用しなければならない"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "AjaxはXMLHttpRequestなどを用いて非同期通信を行い、ページ全体を再読み込みせずに一部を更新する手法の総称であり、名称にXMLを含むもののやり取りするデータ形式は必ずしもXMLである必要はなく、現在ではJSONが広く使われている。WebSocketの使用は必須ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Glossary/AJAX"
+  },
+  {
+    "id": "l1-api-fundamentals-031",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "XMLHttpRequestオブジェクトが持つ、リクエストの現在の状態(未初期化・オープン済み・応答受信完了など)を表すプロパティとして正しいものはどれか。",
+    "choices": [
+      "readyState",
+      "status",
+      "responseType",
+      "timeout"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "readyStateプロパティは0(UNSENT)から4(DONE)までの値でリクエストの進行状況を表す。statusはHTTPステータスコード、responseTypeは応答データの型、timeoutはタイムアウト時間を表すプロパティであり、いずれもreadyStateとは役割が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/readyState"
+  },
+  {
+    "id": "l1-api-fundamentals-032",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "fetch APIに関する説明として正しいものはどれか。",
+    "choices": [
+      "fetch()はPromiseを返し、then()やasync/awaitを用いて非同期にレスポンスを扱える",
+      "fetch()は常に同期的にレスポンスを返すため、awaitなどを使う必要はない",
+      "fetch()はHTTP通信ではなく、ローカルファイルシステムへのアクセス専用APIである",
+      "fetch()を使用するとブラウザのイベントループがブロックされる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fetch()はPromiseを返す関数であり、レスポンスを受け取った後の処理をthen()チェーンやasync/awaitで記述できる、XMLHttpRequestに代わるモダンなHTTP通信APIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/fetch"
+  },
+  {
+    "id": "l1-api-fundamentals-033",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "WebSocket通信を開始する際に指定するURLのスキーム(接頭辞)として正しいものはどれか。",
+    "choices": [
+      "ws:// または wss://",
+      "http:// または https://のみ",
+      "ftp://",
+      "socket://"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WebSocketのURLはws://(非暗号化)またはwss://(TLSによる暗号化)というスキームで指定する。wss://はhttps://と同様にTLSによって通信内容が暗号化される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API"
+  },
+  {
+    "id": "l1-api-fundamentals-034",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Server-Sent Eventsを利用してサーバーからのイベントストリームを受信するために、クライアント側のJavaScriptで生成するオブジェクトとして正しいものはどれか。",
+    "choices": [
+      "EventSource",
+      "WebSocket",
+      "XMLHttpRequest",
+      "BroadcastChannel"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "クライアント側ではnew EventSource(url)によってEventSourceオブジェクトを生成し、messageイベントなどをlistenすることでサーバーから送られてくるtext/event-stream形式のイベントを受信する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventSource"
+  },
+  {
+    "id": "l1-api-fundamentals-035",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "WebRTCを構成する代表的なAPI/インターフェースとして正しいものを全て選べ。",
+    "choices": [
+      "MediaDevices.getUserMedia() (カメラ・マイクへのアクセス)",
+      "RTCPeerConnection (P2Pでのメディア・データ通信の確立)",
+      "RTCDataChannel (任意データの送受信)",
+      "XMLHttpRequest (P2P通信の確立)"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "WebRTCはカメラ・マイクの映像/音声を取得するMediaDevices.getUserMedia()、P2Pコネクションを確立するRTCPeerConnection、任意のデータを送受信するRTCDataChannelなどのAPIから構成される。XMLHttpRequestはサーバーとの非同期通信のためのAPIであり、WebRTCの構成要素ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API"
+  },
+  {
+    "id": "l1-api-fundamentals-036",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "次のJavaScriptコードを実行した結果として正しいものはどれか。",
+    "code": "const canvas = document.getElementById('myCanvas');\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = 'blue';\nctx.fillRect(10, 10, 100, 50);",
+    "choices": [
+      "canvas上の座標(10, 10)を左上として、幅100・高さ50の青色の塗りつぶし矩形が描画される",
+      "canvas上に幅100・高さ50の枠線のみの矩形(塗りつぶしなし)が描画される",
+      "canvas全体が青色で塗りつぶされる",
+      "座標(10, 10)を中心とした半径100の円が描画される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fillStyleプロパティで塗りつぶし色を青に設定した後、fillRect(x, y, width, height)を呼び出すと、座標(x, y)を左上の頂点として指定した幅・高さの塗りつぶし矩形が描画される。枠線のみを描く場合はstrokeRect()を使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D/fillRect"
+  },
+  {
+    "id": "l1-api-fundamentals-037",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "SVGで円を描画するために使用する要素として正しいものはどれか。",
+    "choices": [
+      "<circle>",
+      "<round>",
+      "<oval>",
+      "<ellipseShape>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGで正円を描画するには<circle>要素を用い、中心座標(cx, cy)と半径(r)属性で形状を指定する。楕円を描く場合は<ellipse>要素を使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG/Element/circle"
+  },
+  {
+    "id": "l1-api-fundamentals-038",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "MPEG-DASHに関する説明として正しいものはどれか。",
+    "choices": [
+      "特定のコーデックに依存しない、ISO/IECによって標準化されたアダプティブストリーミング技術である",
+      "Appleによって開発され、特定のコーデック(H.264等)専用のストリーミング技術である",
+      "動画のみを対象とし、音声のストリーミングには使用できない",
+      "WebSocketをベースとしたストリーミング技術である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "MPEG-DASH(Dynamic Adaptive Streaming over HTTP)はISO/IEC MPEGにより標準化されたアダプティブストリーミング技術で、特定のコーデックに依存しない点が、Appleが開発したHLSとの違いの一つとして挙げられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats"
+  },
+  {
+    "id": "l1-api-fundamentals-039",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "Service Workerと組み合わせて、ネットワークリクエストとレスポンスのペアを保存し、オフライン時にもリソースを提供できるようにするためのAPIとして正しいものはどれか。",
+    "choices": [
+      "Cache API",
+      "localStorage",
+      "sessionStorage",
+      "Cookie"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Cache APIはCacheStorageインターフェースを通じて、Requestオブジェクトとそれに対応するResponseオブジェクトのペアを保存するための仕組みである。Service Workerのfetchイベント内でキャッシュを参照することで、ネットワークに接続できない状況でも保存済みのリソースを返せるようになる。localStorageやsessionStorage、Cookieは文字列ベースのデータを保存する仕組みであり、Request/Responseペアの保存には使用しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Cache"
+  },
+  {
+    "id": "l1-api-fundamentals-040",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "利用に際してブラウザがユーザーに許可(パーミッション)を求めるダイアログを表示することがある代表的なAPIとして正しいものを全て選べ。",
+    "choices": [
+      "Geolocation API",
+      "Notifications API / Push API",
+      "Vibration API",
+      "Canvas API"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "Geolocation APIによる位置情報の取得や、Notifications API/Push APIによる通知の表示は、プライバシーに関わるためユーザーの明示的な許可が必要となる。一方、Vibration APIやCanvas APIは通常、許可ダイアログを必要とせずに利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Permissions_API"
+  },
+  {
+    "id": "l1-api-fundamentals-006",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "WebSocketの特徴として正しいものはどれか。",
+    "choices": [
+      "1つのコネクションを維持したまま、サーバーとクライアントが双方向にリアルタイム通信できる",
+      "リクエストごとに新しいTCPコネクションを確立する必要がある",
+      "サーバーからクライアントへの一方向通信のみをサポートする",
+      "HTTPとは全く互換性のない別のポート番号を必ず使用する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WebSocketは最初にHTTPでハンドシェイクを行った後、同一のTCPコネクション上でサーバー・クライアント間の双方向通信を低オーバーヘッドで実現するプロトコルである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API"
+  },
+  {
+    "id": "l1-api-fundamentals-007",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Service Workerの主な役割として正しいものはどれか。",
+    "choices": [
+      "ネットワークリクエストを横取り(インターセプト)し、キャッシュを利用したオフライン動作やプッシュ通知を実現する",
+      "CSSのアニメーションを高速化する",
+      "HTMLのパース処理を高速化する",
+      "データベースのテーブル定義を管理する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Service Workerはブラウザとネットワークの間で動作するプロキシのようなスクリプトで、ネットワークリクエストの制御やキャッシュ管理を通じてオフライン対応やプッシュ通知、バックグラウンド同期などを実現する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API"
+  },
+  {
+    "id": "l1-api-fundamentals-008",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "ブラウザ上で大量の構造化データをトランザクション付きで保存できるAPIとして正しいものはどれか。",
+    "choices": [
+      "IndexedDB",
+      "localStorage",
+      "Cookie",
+      "Cache API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "IndexedDBはキーと値のペアでオブジェクトを保存できるトランザクション対応のクライアントサイドデータベースAPIであり、localStorageと比べて大容量かつ非同期でのデータ操作が可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "l1-api-fundamentals-009",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Web Workerに関する説明として正しいものはどれか。",
+    "choices": [
+      "メインスレッドとは別のバックグラウンドスレッドでJavaScriptを実行できるが、直接DOMを操作することはできない",
+      "Web Workerはメインスレッドと同じスレッドで動作し、DOM操作も自由に行える",
+      "Web WorkerはCSSのみを処理するための仕組みである",
+      "Web Workerは1つのページにつき1つしか生成できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Web Workerはメインスレッドをブロックせずに重い処理をバックグラウンドで実行するための仕組みだが、ワーカースレッドからは直接DOMにアクセスできず、メインスレッドとはpostMessageによるメッセージのやり取りで連携する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API"
+  },
+  {
+    "id": "l1-api-fundamentals-010",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Server-Sent Events(SSE)の特徴として正しいものはどれか。",
+    "choices": [
+      "サーバーからクライアントへの一方向のイベントストリームを、単純なHTTP接続の上で実現する",
+      "クライアントからサーバーへの一方向通信のみをサポートする",
+      "バイナリデータの送受信に特化したプロトコルである",
+      "WebSocketよりも双方向通信に適したプロトコルである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Server-Sent Eventsは、EventSourceインターフェースを用いてサーバーからクライアントへテキストベースのイベントを一方向に送り続けるための仕組みであり、双方向通信が必要な場合はWebSocketの方が適している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events"
+  },
+  {
+    "id": "l1-api-fundamentals-041",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "<canvas>要素からJavaScriptで描画コンテキストを取得する際、パスや図形、テキストの描画など汎用的な2D描画機能を提供するコンテキストの識別子として正しいものはどれか。",
+    "choices": [
+      "'2d'",
+      "'webgl'",
+      "'3d'",
+      "'bitmaprenderer'"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "canvas.getContext('2d')を呼び出すことで、パスや図形、テキストなどを描画できる2Dレンダリングコンテキスト(CanvasRenderingContext2D)を取得できる。'webgl'は3DグラフィックスのためのWebGLコンテキストの識別子であり、'3d'という識別子は存在しない。'bitmaprenderer'はImageBitmapの表示に特化した別のコンテキストである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement/getContext"
+  },
+  {
+    "id": "l1-api-fundamentals-042",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "SVG画像を<img>要素のsrc属性で読み込んだ場合と、SVGマークアップを<svg>要素として直接HTML内に記述(インラインSVG)した場合の違いに関する説明として、最も適切なものはどれか。",
+    "choices": [
+      "インラインSVGはページ内の他の要素と同様にDOM操作やCSSによるスタイル適用が可能だが、<img>で読み込んだSVG内部の要素は外部のJavaScript/CSSから直接操作できない",
+      "<img>要素で読み込んだSVGの内部要素は、ページ側のJavaScriptから自由にDOM操作できる",
+      "インラインSVGはアニメーションを一切サポートしない",
+      "<img>要素でSVGを読み込むと必ずビットマップに変換されるため、拡大縮小時に画質が劣化するようになる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGをインラインで記述すると、通常のHTML要素と同様にDOM APIやCSSでスタイル・操作ができる。一方、<img>のsrcとして読み込んだSVGは独立した文書として扱われるため、ページ側のJavaScriptやCSSからSVG内部の要素を直接操作することはできない(拡大縮小による画質劣化がない点自体は<img>で読み込んでも変わらない)。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG"
+  },
+  {
+    "id": "l1-api-fundamentals-043",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードを実行した結果として正しいものはどれか。",
+    "code": "<video id=\"myVideo\" src=\"movie.mp4\"></video>\n<script>\n  const video = document.getElementById('myVideo');\n  video.currentTime = 30;\n  video.play();\n</script>",
+    "choices": [
+      "動画の再生位置を30秒地点に移動してから再生を開始する",
+      "動画の音量を30%に設定してから再生を開始する",
+      "動画の再生速度を30倍にしてから再生を開始する",
+      "30秒後に動画の再生を開始する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTMLMediaElementのcurrentTimeプロパティは現在の再生位置(秒)を表し、値を設定するとその位置にシークできる。play()メソッドはメディアの再生を開始(または再開)する。音量はvolumeプロパティ、再生速度はplaybackRateプロパティで制御するものであり、currentTimeとは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement"
+  },
+  {
+    "id": "l1-api-fundamentals-044",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTMLMediaElement(<video>/<audio>)がディスパッチするイベントとして正しいものを全て選べ。",
+    "choices": [
+      "ended",
+      "timeupdate",
+      "loadedmetadata",
+      "scroll"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "endedは再生が最後まで到達した時、timeupdateは再生位置(currentTime)が更新された時、loadedmetadataはメディアの長さや寸法などのメタデータが読み込まれた時に発火するHTMLMediaElement固有のイベントである。scrollは要素やウィンドウのスクロールに関するイベントであり、メディア要素固有のイベントではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement"
+  },
+  {
+    "id": "l1-api-fundamentals-045",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "HLS(HTTP Live Streaming)に関する説明として正しいものはどれか。",
+    "choices": [
+      "動画を数秒単位のセグメントに分割し、.m3u8形式のプレイリスト(マニフェスト)ファイルでセグメントの一覧や複数のビットレートを管理するアダプティブストリーミング技術である",
+      "動画全体を1つのファイルとして事前にダウンロードしてから再生を開始する技術である",
+      "WebSocketをベースにしたリアルタイム動画配信専用のプロトコルである",
+      "SVGアニメーションを利用した疑似的な動画再生技術である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HLSはAppleが開発したアダプティブビットレートストリーミング技術で、動画を短いセグメントに分割し、.m3u8拡張子のプレイリスト(マニフェスト)ファイルでセグメント構成や複数画質のバリエーションを記述する。多くのブラウザ(特にSafari)はネイティブ再生に対応し、それ以外ではMedia Source Extensions(MSE)ベースのJavaScriptライブラリで再生されることが多い。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media"
+  },
+  {
+    "id": "l1-api-fundamentals-046",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "MPEG-DASHに関する説明として正しいものはどれか。",
+    "choices": [
+      "特定のベンダーに依存しない国際標準規格のアダプティブストリーミング技術であり、マニフェストファイルとしてMPD(Media Presentation Description、拡張子.mpd)を使用する",
+      "Apple社が策定した独自のストリーミング規格であり、コンテナ形式はMP4に限定される",
+      "動画のみを対象とし、音声のみのストリーミングには利用できない",
+      "WebSocketの拡張仕様として標準化された技術である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "MPEG-DASH(Dynamic Adaptive Streaming over HTTP)はMPEGにより標準化された、特定ベンダーに依存しないアダプティブストリーミング技術であり、MPD(拡張子.mpd)と呼ばれるXML形式のマニフェストファイルでセグメント構成やビットレートのバリエーションを記述する。HLSはApple社が策定した別の技術である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media"
+  },
+  {
+    "id": "l1-api-fundamentals-047",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "DRM保護されたコンテンツを<video>要素でアダプティブストリーミング再生する場合、一般的にEncrypted Media Extensions(EME)と組み合わせて使用され、ネットワークから取得したメディアセグメントをJavaScriptから動的に供給するためのAPIとして正しいものはどれか。",
+    "choices": [
+      "Media Source Extensions (MSE)",
+      "WebRTC",
+      "Web Audio API",
+      "Fetch API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Media Source Extensions(MSE)は、ネットワーク経由で取得したメディアセグメントをJavaScriptからSourceBufferに追加し、<video>/<audio>要素で再生できるようにするAPIである。DRM保護されたコンテンツの場合、EMEと組み合わせることで、MSEで供給されたデータをContent Decryption Module(CDM)で復号しながら再生できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Media_Source_Extensions_API"
+  },
+  {
+    "id": "l1-api-fundamentals-048",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Geolocation APIにおいて、ユーザーの位置が変化するたびに継続的にコールバックを呼び出す監視を開始するメソッドとして正しいものはどれか。",
+    "choices": [
+      "navigator.geolocation.watchPosition()",
+      "navigator.geolocation.getCurrentPosition()",
+      "navigator.geolocation.clearWatch()",
+      "navigator.geolocation.observePosition()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "watchPosition()は位置情報の変化を継続的に監視し、変化のたびに指定したコールバック関数を呼び出す。戻り値として監視IDが返され、これをclearWatch()に渡すことで監視を停止できる。getCurrentPosition()は一度だけ現在位置を取得するメソッドであり、observePosition()というメソッドは存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/watchPosition"
+  },
+  {
+    "id": "l1-api-fundamentals-049",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Geolocation APIの利用条件に関する説明として正しいものはどれか。",
+    "choices": [
+      "多くのモダンブラウザでは、localhostなどの例外を除き、HTTPSなどのセキュアコンテキストでのみGeolocation APIの利用が許可される",
+      "Geolocation APIはユーザーの許可なしにいつでも位置情報を取得できる",
+      "Geolocation APIはHTTP環境でのみ動作し、HTTPS環境では利用できない",
+      "Geolocation APIは同一オリジン内であっても常に位置情報の取得に失敗する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "位置情報は機微な情報であるため、モダンブラウザではlocalhostなど一部の例外を除きHTTPSなどのセキュアコンテキストでのみGeolocation APIの利用を許可しており、利用時には必ずユーザーの許可(パーミッション)が必要となる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation_API"
+  },
+  {
+    "id": "l1-api-fundamentals-050",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "デバイスの傾きや動きに関するAPIについての説明として正しいものを全て選べ。",
+    "choices": [
+      "deviceorientationイベントのalpha, beta, gammaはそれぞれZ軸、X軸、Y軸周りの回転角度を表す",
+      "devicemotionイベントのaccelerationプロパティは重力の影響を除いた加速度を表す",
+      "devicemotionイベントのaccelerationIncludingGravityプロパティは重力を含んだ加速度を表す",
+      "deviceorientationイベントは端末の加速度センサーの値のみを提供し、角度情報は提供しない"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "deviceorientationイベントはalpha(Z軸)、beta(X軸)、gamma(Y軸)の回転角度を提供する。devicemotionイベントのaccelerationは重力の影響を除いた加速度、accelerationIncludingGravityは重力を含む加速度を表す。deviceorientationは角度情報を提供するイベントであり、「加速度センサーの値のみ」という説明は誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/deviceorientation_event"
+  },
+  {
+    "id": "l1-api-fundamentals-051",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Battery Status APIに関する説明として正しいものはどれか。",
+    "choices": [
+      "navigator.getBattery()はPromiseを返し、解決されたBatteryManagerオブジェクトからcharging(充電中か)やlevel(残量)などのプロパティを取得できる",
+      "navigator.getBattery()は同期的にバッテリー残量を表す数値を直接返す",
+      "Battery Status APIはバッテリー残量を変更(充電の開始・停止)するために使用する",
+      "Battery Status APIはデスクトップPCでのみ利用可能で、モバイル端末では利用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "navigator.getBattery()はPromiseを返す非同期APIであり、解決されたBatteryManagerオブジェクトを通じて充電状態(charging)、残量(level)、充電完了までの時間(chargingTime)などの情報を参照できる。バッテリー残量を変更する機能は提供しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Battery_Status_API"
+  },
+  {
+    "id": "l1-api-fundamentals-052",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードを実行した場合の端末の振動パターンとして正しいものはどれか。",
+    "code": "navigator.vibrate([200, 100, 200]);",
+    "choices": [
+      "200ミリ秒振動し、100ミリ秒停止し、その後200ミリ秒振動する",
+      "200ミリ秒間隔で振動を100回繰り返す",
+      "振動の強さを200、休止の強さを100、再度200の強さに設定する",
+      "200ミリ秒後に振動を開始し、100ミリ秒間隔で無限に繰り返す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "navigator.vibrate()に配列を渡すと、振動と停止の時間(ミリ秒)を交互に表すパターンとして解釈される。この例では200ミリ秒振動、100ミリ秒停止、200ミリ秒振動という一連の振動パターンを実行する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Vibration_API"
+  },
+  {
+    "id": "l1-api-fundamentals-053",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Pointer Eventsに関する説明として正しいものはどれか。",
+    "choices": [
+      "マウス、タッチ、ペンなど異なる入力デバイスからのポインター操作を、pointerdownやpointerupなど共通のイベントセットで統一的に扱うことができる",
+      "Pointer Eventsはマウス操作専用のイベントであり、タッチ操作には利用できない",
+      "Pointer EventsはCSSのプロパティであり、JavaScriptからは利用できない",
+      "Pointer Eventsは常にマウスイベントより後に発火することが仕様で保証されている"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Pointer Eventsは、マウス・タッチ・ペンなど多様な入力デバイスによる操作を、pointerdown/pointermove/pointerup等の共通のイベントインターフェースで扱えるようにする仕様であり、pointerTypeプロパティで入力デバイスの種類を判別できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "l1-api-fundamentals-054",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "あるタブでlocalStorageにデータを書き込んだ際に発火するstorageイベントに関する説明として正しいものはどれか。",
+    "choices": [
+      "storageイベントは、そのデータを書き込んだタブ自身では発火せず、同一オリジンを開いている他のタブやウィンドウで発火する",
+      "storageイベントは、データを書き込んだタブ自身でのみ発火する",
+      "storageイベントはsessionStorageの変更時にのみ発火し、localStorageの変更時には発火しない",
+      "storageイベントはCookieの変更を検知するためのイベントである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "storageイベントは、あるドキュメントでlocalStorage(またはsessionStorage)の内容が変更された際に、変更を行った文書自身ではなく、同一オリジンを開いている他のタブやウィンドウに対して発火する。これはタブ間でのデータ変更通知に利用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/storage_event"
+  },
+  {
+    "id": "l1-api-fundamentals-055",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Web Storage(localStorage/sessionStorage)とIndexedDBを比較した説明として正しいものを全て選べ。",
+    "choices": [
+      "Web StorageのAPIは同期的に動作するのに対し、IndexedDBのAPIは非同期(イベントベース)で動作する",
+      "Web Storageは文字列のキーと値のみを保存できるが、IndexedDBはオブジェクトを含む構造化データをキー付きで保存できる",
+      "Web StorageはIndexedDBよりも一般的に大容量のデータを保存できる",
+      "IndexedDBはトランザクションをサポートするが、Web Storageはトランザクションの概念を持たない"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "Web StorageのgetItem/setItemは同期的に動作しメインスレッドをブロックしうるが、IndexedDBは非同期APIとして設計されている。Web Storageは文字列のみを扱うシンプルなキーバリューストアだが、IndexedDBは構造化されたオブジェクトをオブジェクトストアやインデックスを使って保存でき、トランザクションもサポートする。一般に保存容量が大きいのはWeb StorageではなくIndexedDBの方である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API"
+  },
+  {
+    "id": "l1-api-fundamentals-056",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "IndexedDBのデータ格納構造に関する説明として正しいものはどれか。",
+    "choices": [
+      "データはオブジェクトストア(object store)に格納され、各レコードはキー(keyPathまたは別途指定するキー)に関連付けられ、必要に応じてインデックス(index)を作成して特定のプロパティで検索できる",
+      "IndexedDBはリレーショナルデータベースであり、SQL文を用いてテーブルを結合するのが標準的な方法である",
+      "IndexedDBに保存できるデータは文字列と数値のみで、Blobなどのバイナリデータは保存できない",
+      "IndexedDBの1つのデータベースには1つのオブジェクトストアしか作成できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "IndexedDBはNoSQL型のキーバリューストアであり、データベース内に複数のオブジェクトストアを作成できる。各レコードはキーに関連付けられて保存され、特定のプロパティで効率的に検索するためのインデックスを作成することもできる。SQLは使用せず、Blobなど文字列・数値以外の構造化クローン可能なデータも保存できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API/Basic_Terminology"
+  },
+  {
+    "id": "l1-api-fundamentals-057",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "IndexedDBのデータベースをopenする際に、指定したバージョン番号が既存のものより大きい場合に発火し、オブジェクトストアやインデックスの作成・変更を行うためのイベントとして正しいものはどれか。",
+    "choices": [
+      "onupgradeneeded",
+      "onversionchange",
+      "onsuccess",
+      "onblocked"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "indexedDB.open()の第2引数にバージョン番号を指定し、それが既存のデータベースのバージョンより大きい場合、onupgradeneededイベントが発火する。このイベントハンドラ内でオブジェクトストアやインデックスの作成・変更といったスキーマの更新を行う。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBOpenDBRequest/upgradeneeded_event"
+  },
+  {
+    "id": "l1-api-fundamentals-058",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Web Workerの種類に関する説明として正しいものはどれか。",
+    "choices": [
+      "Dedicated Workerは生成元の1つのスクリプト(ページ)からのみ利用できるが、SharedWorkerは同一オリジンの複数のブラウジングコンテキスト(タブなど)から共有して利用できる",
+      "Dedicated WorkerはDOM操作が可能だが、SharedWorkerはDOM操作ができない",
+      "SharedWorkerは異なるオリジン間でも自由に共有できるワーカーである",
+      "Dedicated Workerは複数のタブから同時に接続して共有利用することを前提として設計されている"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "通常のWorker(Dedicated Worker)は生成元のスクリプトとの1対1の関係で動作するのに対し、SharedWorkerは同一オリジンの複数のタブやiframeなど複数の接続元から共有して利用できる。いずれのワーカーもDOMには直接アクセスできない点は共通である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/SharedWorker"
+  },
+  {
+    "id": "l1-api-fundamentals-059",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "Service Workerのライフサイクルに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "登録されたService Workerは、まずinstallイベントが発火し、その後activateイベントが発火する",
+      "activate状態になったService Workerは、制御下のページからのネットワークリクエストに対してfetchイベントで応答できる",
+      "installイベントは、Service Workerがネットワークリクエストをインターセプトしている最中にのみ発火する",
+      "1つのオリジンに対して登録できるService Workerは常に1つのスコープに限られ、複数のService Workerを登録することはできない"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "Service Workerはインストール(install)、有効化(activate)という順序でライフサイクルを進み、有効化された後はfetchイベントを通じてネットワークリクエストをインターセプトして応答できる。installイベントはリソースの事前キャッシュなどの初期化処理のために発火するものであり、異なるスコープに対して複数のService Workerを登録することも可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API/Using_Service_Workers"
+  },
+  {
+    "id": "l1-api-fundamentals-060",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "Push APIを利用してWebアプリケーションがバックグラウンドでもサーバーからの通知を受け取れるようにするための一般的な手順に関する説明として正しいものはどれか。",
+    "choices": [
+      "Service Workerを登録した上で、PushManager.subscribe()を呼び出してプッシュ購読(サブスクリプション)を作成し、ユーザーの通知許可を得る必要がある",
+      "Push APIはService Workerなしで、通常のページスクリプトのみで完結して利用できる",
+      "Push APIはユーザーの許可を必要とせず、常にバックグラウンドで通知を受信できる",
+      "Push APIはWebSocketの別名であり、両者は同じ仕組みを指す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Push APIを利用するにはService Workerを登録し、そのregistration.pushManager.subscribe()を呼び出してプッシュ通知の購読情報(エンドポイント)を作成する必要がある。また通知の表示にはユーザーの許可が必要であり、WebSocketとは異なる仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Push_API"
+  },
+  {
+    "id": "l1-api-fundamentals-061",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードにおいて、readyStateが4になった状態を表すものとして正しいものはどれか。",
+    "code": "const xhr = new XMLHttpRequest();\nxhr.open('GET', '/api/data');\nxhr.onreadystatechange = function() {\n  if (xhr.readyState === 4 && xhr.status === 200) {\n    console.log(xhr.responseText);\n  }\n};\nxhr.send();",
+    "choices": [
+      "レスポンスの取得が完了した状態(DONE)",
+      "リクエストがまだ初期化されていない状態(UNSENT)",
+      "サーバーとの接続が確立されただけの状態(OPENED)",
+      "レスポンスヘッダーを受信し始めた状態(HEADERS_RECEIVED)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "XMLHttpRequestのreadyStateは0(UNSENT)から4(DONE)まで変化し、4はレスポンスの取得が完了したことを示す。ステータスコードと組み合わせてxhr.status === 200を確認することで、リクエストが正常に完了したかどうかを判定できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/readyState"
+  },
+  {
+    "id": "l1-api-fundamentals-062",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードで示すfetch()の挙動に関する説明として正しいものはどれか。",
+    "code": "fetch('/api/data')\n  .then(response => {\n    console.log(response.status);\n    return response.json();\n  })\n  .catch(error => {\n    console.error('通信エラー:', error);\n  });",
+    "choices": [
+      "サーバーが404や500などのHTTPエラーステータスを返した場合でも、fetch()が返すPromiseはrejectされず、resolveされたResponseオブジェクトのstatusプロパティなどでエラーかどうかを確認する必要がある",
+      "サーバーが404を返すと、fetch()が返すPromiseは自動的にrejectされ、catch()ブロックで処理される",
+      "fetch()はデフォルトでレスポンスをJSON形式に自動変換するため、response.json()を呼ぶ必要はない",
+      "fetch()は同期的にレスポンスを返すため、Promiseやthen()は使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fetch()は、ネットワークエラーなど通信自体が失敗した場合にPromiseがrejectされるが、404や500などのHTTPエラーステータスが返ってきた場合はPromiseはresolveされる。そのため、response.ok(またはresponse.status)を確認してエラーハンドリングを行う必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch"
+  },
+  {
+    "id": "l1-api-fundamentals-063",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "WebSocketに関する説明として正しいものはどれか。",
+    "choices": [
+      "接続先の指定にはws://(非暗号化)またはwss://(TLSで暗号化)というURLスキームを用い、接続が終了するとcloseイベントでコードや理由(reason)を受け取れる",
+      "WebSocketの接続にはhttp://またはhttps://のスキームのみを使用し、ws://やwss://というスキームは存在しない",
+      "WebSocketの通信は常に暗号化されており、平文で通信するws://スキームは仕様として存在しない",
+      "WebSocketのcloseイベントはエラーが発生した場合にのみ発火し、正常終了時には発火しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WebSocketはws://(平文)またはwss://(TLSで暗号化)というURLスキームで接続先を指定する。接続が閉じられると、正常終了・異常終了を問わずcloseイベントが発火し、その際にステータスコード(code)や理由(reason)を参照できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications"
+  },
+  {
+    "id": "l1-api-fundamentals-064",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のコードのようにEventSourceを用いてサーバーとの接続を確立した場合の挙動として正しいものはどれか。",
+    "code": "const source = new EventSource('/events');\nsource.onmessage = function(event) {\n  console.log(event.data);\n};",
+    "choices": [
+      "サーバーとの接続が何らかの理由で切断された場合、ブラウザは自動的に再接続を試みる",
+      "接続が切断されても、ブラウザは再接続を試みず、再度new EventSource()を呼び出すまで通信は再開されない",
+      "EventSourceはクライアントからサーバーへメッセージを送信するためのAPIである",
+      "EventSourceはバイナリデータの送受信専用であり、テキストデータは送受信できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "EventSourceはServer-Sent Eventsのクライアント側インターフェースであり、接続が切断された場合、ブラウザは自動的に再接続を試みる仕様になっている。EventSourceはサーバーからクライアントへの一方向のテキストベースのイベントストリームを受信するためのAPIであり、クライアントからの送信には使用しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/EventSource"
+  },
+  {
+    "id": "l1-api-fundamentals-065",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "WebRTCを構成する主要なAPI/技術要素として正しいものを全て選べ。",
+    "choices": [
+      "getUserMedia()によるカメラ・マイクなどのメディアストリーム取得(MediaDevices API)",
+      "RTCPeerConnectionによるピア間の接続確立とメディア伝送",
+      "RTCDataChannelによる任意データの送受信",
+      "シグナリング(SDPやICE candidateの交換)を行うための標準化されたプロトコル"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "WebRTCはMediaDevices.getUserMedia()によるメディア取得、RTCPeerConnectionによるP2P接続の確立、RTCDataChannelによる任意データの送受信といったAPI群から構成される。一方、シグナリング(SDPやICE candidateの交換方法)自体はWebRTCの仕様で標準化されておらず、WebSocketなど任意の手段をアプリケーション側で実装する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API"
+  },
+  {
+    "id": "l1-api-fundamentals-011",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "WebRTCの特徴として正しいものはどれか。",
+    "choices": [
+      "サーバーを介さずにブラウザ間で直接、映像・音声・データをリアルタイムにやり取りできるP2P通信を実現する",
+      "サーバーに保存された静的ファイルを配信するためのAPIである",
+      "ブラウザのローカルストレージを暗号化するためのAPIである",
+      "検索エンジン向けにページ内容を構造化するためのAPIである"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WebRTC(Web Real-Time Communication)は、シグナリングのために最初はサーバーを利用するものの、実際のメディア・データ通信はブラウザ間で直接行うP2P通信を実現するAPI群である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API"
+  },
+  {
+    "id": "l1-api-fundamentals-012",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ページを開いていない状態でもサーバーからの通知をユーザーに届けるために、Service Workerと組み合わせて使用するAPIとして正しいものはどれか。",
+    "choices": [
+      "Push API",
+      "Fetch API",
+      "Beacon API",
+      "Clipboard API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Push APIはService Workerと連携し、Webアプリケーションがバックグラウンドにある場合でも、サーバーからのプッシュメッセージを受信して通知を表示できるようにするAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Push_API"
+  },
+  {
+    "id": "l1-api-fundamentals-013",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "インターネット上で動画をセグメント化して段階的に配信し、回線状況に応じて画質を切り替えられるアダプティブストリーミング技術として正しいものを全て選べ。",
+    "choices": [
+      "HLS (HTTP Live Streaming)",
+      "MPEG-DASH",
+      "Base64",
+      "Data URI"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "HLSやMPEG-DASHは動画を短いセグメントに分割し、クライアントの回線状況に応じて画質(ビットレート)を切り替えながら再生するアダプティブストリーミング技術である。Base64やData URIはデータのエンコード方式であり、ストリーミング技術ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media"
+  },
+  {
+    "id": "l1-api-fundamentals-014",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "著作権保護されたメディアコンテンツをブラウザで再生するために、暗号化されたコンテンツの復号を可能にするAPIとして正しいものはどれか。",
+    "choices": [
+      "Encrypted Media Extensions (EME)",
+      "Media Session API",
+      "Web Audio API",
+      "Screen Capture API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Encrypted Media Extensions(EME)は、DRM(デジタル著作権管理)で保護されたコンテンツを、Content Decryption Module(CDM)と連携して復号し、video/audio要素で再生できるようにするためのAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Encrypted_Media_Extensions_API"
+  },
+  {
+    "id": "l1-api-fundamentals-015",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "スマートフォンなどの端末の傾きや加速度を取得するためのAPIとして正しいものはどれか。",
+    "choices": [
+      "Device Orientation API / Device Motion API",
+      "Battery Status API",
+      "Vibration API",
+      "Ambient Light Sensor API"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Device Orientation APIは端末の傾き(角度)、Device Motion APIは加速度や回転速度といったセンサー情報を取得するためのAPIである。Battery Status APIはバッテリー状態、Vibration APIは振動機能に関するAPIである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Device_orientation_events"
+  },
+  {
+    "id": "l1-api-fundamentals-066",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "canvas要素に対してgetContext('2d')を呼び出してコンテキストを取得した後、同じcanvas要素に対してgetContext('webgl')を呼び出した場合の動作として正しいものはどれか。",
+    "choices": [
+      "既に'2d'コンテキストを取得済みのため、'webgl'の取得はnullを返し、WebGLコンテキストは得られない",
+      "2つのコンテキストが同時に有効になり、同じcanvas上で2DとWebGLの描画を混在させられる",
+      "'2d'コンテキストが自動的に破棄され、'webgl'コンテキストに置き換えられる",
+      "エラーがスローされ、以降そのcanvas要素は使用不可になる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "1つのcanvas要素には1種類の描画コンテキストしか関連付けられない。既に'2d'コンテキストを取得済みの状態で異なる種類('webgl'等)をgetContext()で要求すると、ブラウザはnullを返し新しいコンテキストは生成されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement/getContext"
+  },
+  {
+    "id": "l1-api-fundamentals-067",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "クロスオリジンの画像を適切なCORS設定なしでcanvasにdrawImage()で描画した後、そのcanvasに対してtoDataURL()を呼び出すとどうなるか。",
+    "choices": [
+      "canvasが「汚染(tainted)」された状態となり、SecurityErrorが発生してピクセルデータを取得できない",
+      "画像が自動的に同一オリジンのプロキシ経由で再取得され、正常にデータURLが生成される",
+      "画像部分だけが透明として扱われ、警告なくデータURLが生成される",
+      "toDataURL()はネットワークアクセスを行わないため、常に問題なく動作する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "適切なCORS許可なしにクロスオリジンの画像をcanvasへ描画すると、そのcanvasは「汚染」された状態になり、toDataURL()やgetImageData()などピクセル情報を読み出す操作を行うとSecurityErrorがスローされる。これは他オリジンの画像データが無断で読み取られることを防ぐためのセキュリティ機構である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/CORS_enabled_image"
+  },
+  {
+    "id": "l1-api-fundamentals-068",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "同じ図形をラスター画像(PNG)としてimg要素で表示する場合と、SVGをHTML内にインラインで直接記述する場合との違いとして正しいものはどれか。",
+    "choices": [
+      "インラインSVGは図形内の個々の要素に対してCSSでスタイルを適用したり、JavaScriptでイベントリスナーを設定したりできるが、img要素で表示した画像は全体としてしか扱えない",
+      "インラインSVGは拡大すると画質が劣化するが、PNGは劣化しない",
+      "img要素にはSVGファイルを指定できない",
+      "インラインSVGはHTTPリクエストを削減できないが、img要素によるPNG表示は必ずHTTPリクエストを削減できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SVGをHTML内にインラインで記述すると、DOMツリーの一部としてCSSやJavaScriptから個々のパスや図形要素に直接アクセス・操作できる。一方、img要素で表示された画像は単一の画像として扱われ、内部要素への個別アクセスはできない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/SVG"
+  },
+  {
+    "id": "l1-api-fundamentals-069",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTMLMediaElement(video/audio要素)のplay()メソッドの仕様として正しいものはどれか。",
+    "choices": [
+      "play()はPromiseを返し、ブラウザの自動再生ポリシーによって再生が拒否された場合はそのPromiseがrejectされる",
+      "play()は常に同期的にtrueかfalseを返し、再生の成否を即座に判定できる",
+      "play()はミュートされていない動画であっても、ユーザー操作なしに音声付きで自動再生されることを保証する",
+      "play()を呼び出すと、必ずcurrentTimeが0にリセットされてから再生が始まる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTMLMediaElement.play()はPromiseを返す仕様になっており、多くのブラウザの自動再生ポリシーによりミュートされていない自動再生などが拒否されるとそのPromiseがrejectされる。アプリケーションはcatch()でこの失敗を処理する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/play"
+  },
+  {
+    "id": "l1-api-fundamentals-070",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTMLMediaElementのbufferedプロパティに関する説明として正しいものはどれか。",
+    "choices": [
+      "ブラウザが既にダウンロード済みの再生可能範囲を、TimeRangesオブジェクトとして返す",
+      "現在の再生位置(秒)を表す数値を返す",
+      "動画の総再生時間を表す数値を返す",
+      "ユーザーがシークバー上でドラッグ可能な範囲を制限するために設定する属性である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "bufferedはTimeRangesオブジェクトを返し、start(index)/end(index)メソッドで、これまでにダウンロード(バッファリング)された時間範囲を(連続しない複数区間を含めて)取得できる。現在位置はcurrentTime、総時間はdurationプロパティで取得する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement/buffered"
+  },
+  {
+    "id": "l1-api-fundamentals-071",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HLSとMPEG-DASHで使用されるマニフェスト(プレイリスト)ファイルの形式の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "HLSはテキストベースのM3U8形式のプレイリスト、MPEG-DASHはXML形式のMPD(Media Presentation Description)ファイルを使用する",
+      "HLSとMPEG-DASHはどちらも同一のXML形式のマニフェストファイルを共有する",
+      "HLSはJSON形式、MPEG-DASHはCSV形式のマニフェストファイルを使用する",
+      "マニフェストファイルという概念はMPEG-DASHのみに存在し、HLSには存在しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HLSはテキストベースの.m3u8拡張子を持つプレイリストファイルでセグメント一覧やビットレート情報を記述し、MPEG-DASHはXML形式の.mpd(Media Presentation Description)ファイルで同等の情報を記述する。両者は策定団体・仕様の異なる別々のアダプティブストリーミング規格である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media"
+  },
+  {
+    "id": "l1-api-fundamentals-072",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Encrypted Media Extensions (EME) を利用してDRM保護されたコンテンツの再生準備を行う際、最初にキーシステム(例: Widevine等)のサポート状況をブラウザに問い合わせるために使用するメソッドとして正しいものはどれか。",
+    "choices": [
+      "navigator.requestMediaKeySystemAccess()",
+      "navigator.geolocation.getCurrentPosition()",
+      "document.requestStorageAccess()",
+      "navigator.serviceWorker.register()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "navigator.requestMediaKeySystemAccess()は、指定したキーシステム(DRMスキーム)とその構成をブラウザがサポートしているかを問い合わせ、対応していればMediaKeySystemAccessオブジェクトで解決するPromiseを返す。これがEMEにおけるDRM再生準備の最初のステップとなる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/requestMediaKeySystemAccess"
+  },
+  {
+    "id": "l1-api-fundamentals-073",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "ユーザーの位置情報を継続的に監視し、位置が変化するたびにコールバックを呼び出したい場合に使用すべきGeolocation APIのメソッドとして正しいものはどれか。",
+    "choices": [
+      "navigator.geolocation.watchPosition()(監視を終了する際は戻り値のIDをclearWatch()に渡す)",
+      "navigator.geolocation.getCurrentPosition()をsetInterval()で定期的に呼び出す以外に方法はない",
+      "navigator.geolocation.trackPosition()",
+      "navigator.geolocation.subscribe()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "watchPosition()は位置情報の変化を継続的に監視し、変化のたびに指定したコールバックを呼び出す。戻り値の監視IDをclearWatch()に渡すことで監視を停止できる。一方getCurrentPosition()は一度だけ現在位置を取得するメソッドである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Geolocation/watchPosition"
+  },
+  {
+    "id": "l1-api-fundamentals-074",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Geolocation APIの位置情報取得が失敗した際にエラーコールバックへ渡されるGeolocationPositionErrorのcodeプロパティが取り得る値として正しいものを全て選べ。",
+    "choices": [
+      "PERMISSION_DENIED(ユーザーが位置情報の取得を許可しなかった)",
+      "POSITION_UNAVAILABLE(内部エラー等により位置情報を取得できなかった)",
+      "TIMEOUT(指定した時間内に位置情報を取得できなかった)",
+      "QUOTA_EXCEEDED(位置情報取得のリクエスト回数上限を超えた)"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "GeolocationPositionErrorのcodeにはPERMISSION_DENIED(1)、POSITION_UNAVAILABLE(2)、TIMEOUT(3)の3種類が定義されている。QUOTA_EXCEEDEDはGeolocation APIのエラーコードには存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/GeolocationPositionError"
+  },
+  {
+    "id": "l1-api-fundamentals-075",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "DeviceOrientationEventに関する説明として正しいものはどれか。",
+    "choices": [
+      "alpha・beta・gammaはそれぞれZ軸・X軸・Y軸を中心とした端末の回転角度を表し、iOS 13以降のSafariではDeviceOrientationEvent.requestPermission()をユーザー操作(タップ等)の中で呼び出して許可を得る必要がある",
+      "alpha・beta・gammaは端末の緯度・経度・高度を表す",
+      "DeviceOrientationEventはすべてのブラウザで許可を求めることなく常に取得できる",
+      "beta値は常に0から100までの整数のみを取る"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "DeviceOrientationEventのalpha/beta/gammaはそれぞれZ軸・X軸・Y軸周りの回転角度(度)を表す。プライバシー保護のため、iOS 13以降のSafariではDeviceOrientationEvent.requestPermission()をユーザージェスチャー内で呼び出して明示的な許可を得る必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/DeviceOrientationEvent"
+  },
+  {
+    "id": "l1-api-fundamentals-076",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Battery Status API(navigator.getBattery())の現状に関する説明として最も適切なものはどれか。",
+    "choices": [
+      "端末のバッテリー残量や充電状態がユーザー識別(フィンガープリンティング)に悪用され得るとの懸念から、Firefoxなど多くの主要ブラウザで無効化・非対応となっている",
+      "全てのブラウザで無条件・無許可のまま利用でき、プライバシー上の懸念は指摘されていない",
+      "Battery Status APIはHTTPS環境でのみ動作し、HTTP環境では常に例外をスローする仕様として標準化されている",
+      "Battery Status APIはW3C勧告として広く普及し、モバイル・デスクトップを問わず標準的に使用されている"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Battery Status APIはバッテリー残量などの情報がユーザートラッキング(フィンガープリンティング)に利用され得るというプライバシー上の懸念から、Firefoxなど複数の主要ブラウザで既定で無効化・非実装となっており、現在は限定的なサポートにとどまっている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Battery_Status_API"
+  },
+  {
+    "id": "l1-api-fundamentals-077",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のコードの動作として正しいものはどれか。",
+    "code": "navigator.vibrate([200, 100, 200]);",
+    "choices": [
+      "200ミリ秒振動し、100ミリ秒停止し、その後さらに200ミリ秒振動する",
+      "200回の振動を100Hzの周波数で繰り返し、200回目で停止する",
+      "振動の強さを200、休止を100、再び強さ200に設定する",
+      "配列の要素数分(3回)、無条件に1秒ずつ振動する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "navigator.vibrate()に配列を渡すと、要素は振動時間と停止時間を交互に表すパターンとして解釈される。この例では200ミリ秒振動、100ミリ秒停止、200ミリ秒振動という一連のパターンが実行される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Navigator/vibrate"
+  },
+  {
+    "id": "l1-api-fundamentals-078",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Pointer Eventsが単一のイベントモデルとして統一的に扱う入力デバイスの種類として正しいものを全て選べ。",
+    "choices": [
+      "マウス",
+      "タッチ(指)",
+      "ペン/スタイラス",
+      "キーボード"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Pointer Eventsはマウス・タッチ・ペン(スタイラス)といった異なる種類のポインティングデバイスからの入力を、pointerdown/pointermove/pointerupなど共通のイベントセットとpointerTypeプロパティで統一的に扱えるようにする仕組みである。キーボード入力はポインターイベントの対象ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Pointer_events"
+  },
+  {
+    "id": "l1-api-fundamentals-079",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "要素に対してsetPointerCapture()を呼び出した場合の効果として正しいものはどれか。",
+    "choices": [
+      "指定したポインターに関する以降のイベントを、ポインターが実際にその要素の外に移動しても、そのキャプチャ元の要素へ送り続けるようにする",
+      "ページ全体のマウス操作を無効化し、キーボード操作のみを受け付けるようにする",
+      "指定した要素のCSSスタイルを固定(position: fixed相当)にする",
+      "ブラウザの標準スクロール処理を完全に無効化する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "setPointerCapture()を呼び出すと、指定したpointerIdに対応するポインターがその要素の境界外へ移動しても、以降のポインターイベント(pointermove等)はそのキャプチャした要素に対して発生し続けるようになる。ドラッグ操作などの実装でよく利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Element/setPointerCapture"
+  },
+  {
+    "id": "l1-api-fundamentals-080",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "あるタブでlocalStorageにデータを書き込んだ際に発生するstorageイベントに関する説明として正しいものはどれか。",
+    "choices": [
+      "同一オリジンを開いている他のタブ・ウィンドウのwindowオブジェクトに対して発火し、書き込みを行った当のタブ自身では発火しない",
+      "書き込みを行ったタブ自身に対してのみ発火し、他のタブには一切通知されない",
+      "異なるオリジン間であっても、ネットワークを介して自動的に通知される",
+      "storageイベントはsessionStorageの変更に対してのみ発火し、localStorageの変更では発火しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "storageイベントは、同一オリジンの他のブラウジングコンテキスト(別タブや別ウィンドウ)で該当ストレージが変更されたことを通知するために発火する。変更操作を行った当のドキュメント自身では発火しない点に注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Window/storage_event"
+  },
+  {
+    "id": "l1-api-fundamentals-081",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "IndexedDBでデータベースのバージョン番号を上げてopen()した際に発生し、その中でのみオブジェクトストアやインデックスの作成・変更を行うことが許可されるイベントとして正しいものはどれか。",
+    "choices": [
+      "onupgradeneeded",
+      "onversionchange(他の接続へバージョン変更を通知するためのイベントであり、スキーマ変更自体はこの中では行わない)",
+      "onstatechange",
+      "onschemaupdate"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "IndexedDBでは、指定したバージョン番号が既存のデータベースより新しい場合にonupgradeneededイベントが発火し、このイベントハンドラ内でのみオブジェクトストアの作成・削除やインデックスの追加といったスキーマ変更が許可される。onversionchangeは別の接続がバージョン変更を試みたことを既存の接続に通知するための別のイベントである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBOpenDBRequest/upgradeneeded_event"
+  },
+  {
+    "id": "l1-api-fundamentals-082",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "IndexedDBのオブジェクトストアにおいて、主キー(keyPath)以外のプロパティ値を条件に高速な検索を行いたい場合に作成すべきものとして正しいものはどれか。",
+    "choices": [
+      "createIndex()で作成するインデックス(IDBIndex)",
+      "トランザクション(IDBTransaction)",
+      "カーソル(IDBCursor)による全件走査のみで十分であり、追加の構造は不要である",
+      "セカンダリデータベース"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "IDBObjectStore.createIndex()でインデックスを作成すると、主キー以外のプロパティ値を条件とした検索を、全件走査(カーソルによる線形探索)よりも効率的に行えるようになる。トランザクションは操作の一貫性を保証する仕組みであり、検索の高速化とは別の役割を持つ。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/IDBObjectStore/createIndex"
+  },
+  {
+    "id": "l1-api-fundamentals-083",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "複数のタブから同時に接続し、MessagePortを介してそれぞれと個別に通信できる単一のワーカーインスタンスを提供するAPIとして正しいものはどれか。",
+    "choices": [
+      "SharedWorker",
+      "Dedicated Worker(通常のWorker。生成元のコンテキストとの1対1の関係に限定される)",
+      "Service Worker(ネットワークリクエストの制御を主目的とし、複数タブとのMessagePortによる直接通信を主用途とはしない)",
+      "Web Worker Pool(そのような名称のAPIは存在しない)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "SharedWorkerは複数のブラウジングコンテキスト(タブやiframe)から接続でき、各接続はportオブジェクトを介してメッセージをやり取りする単一の共有ワーカーインスタンスである。通常のWorker(専用ワーカー)は生成元のスクリプトとの1対1の関係に限定される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/SharedWorker"
+  },
+  {
+    "id": "l1-api-fundamentals-084",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Web Worker内のスクリプトから、別の外部JavaScriptファイルを同期的に読み込んで実行するために使用するグローバル関数として正しいものはどれか。",
+    "choices": [
+      "importScripts()",
+      "import文(ES Modules)のみが唯一の方法であり、importScripts()は存在しない",
+      "require()",
+      "document.write()"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WorkerのグローバルスコープにはimportScripts()関数が用意されており、1つ以上のスクリプトURLを指定して同期的に読み込み、実行することができる。なお、type: 'module'のワーカーではESモジュールのimport文も利用可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WorkerGlobalScope/importScripts"
+  },
+  {
+    "id": "l1-api-fundamentals-085",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "Service Workerのライフサイクルにおいて発生する主なイベントとして正しいものを全て選べ。",
+    "choices": [
+      "install",
+      "activate",
+      "fetch",
+      "resize"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Service Workerはinstall(登録・インストール時)、activate(有効化され制御を開始する時)、fetch(制御下のページからネットワークリクエストが発生した時)といったイベントを中心としたライフサイクルで動作する。resizeはウィンドウのリサイズ時に発生するイベントであり、Service Workerのライフサイクルとは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API/Using_Service_Workers"
+  },
+  {
+    "id": "l1-api-fundamentals-086",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Service Workerを登録できる実行環境の条件として正しいものはどれか。",
+    "choices": [
+      "HTTPSなどのセキュアコンテキストが必要である(ただし開発用途としてlocalhostは例外的に許可される)",
+      "HTTP・HTTPSを問わず、あらゆるオリジンで無条件に登録できる",
+      "セキュアコンテキストである必要はあるが、localhostであっても例外は一切認められない",
+      "Service Workerはfile://スキームでのみ動作する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Service Workerは通信内容の盗聴・改ざんを防ぐため、HTTPSなどのセキュアコンテキストでのみ登録・実行が許可される。ただし開発の利便性のため、localhost(および127.0.0.1等)はHTTPであってもセキュアコンテキストとして扱われる例外がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Service_Worker_API"
+  },
+  {
+    "id": "l1-api-fundamentals-087",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "Push APIを利用してプッシュ通知を受信可能にするための手順に関する説明として正しいものはどれか。",
+    "choices": [
+      "Notificationの許可をユーザーから得た上で、登録済みのService WorkerのregistrationオブジェクトからPushManager.subscribe()を呼び出し、プッシュサービスのエンドポイント情報を含むサブスクリプションを取得する必要がある",
+      "ユーザーの許可を得ることなく、任意のWebページから常にプッシュ通知を送信できる",
+      "PushManagerはService Workerとは独立しており、通常のwindowコンテキストのみで動作する",
+      "プッシュ通知の送信にはWebSocketの常時接続が必須であり、Push APIはWebSocketの別名にすぎない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Push通知を受け取るには、まずNotificationの許可を得た上で、登録済みのService WorkerのregistrationオブジェクトからPushManager.subscribe()を呼び出し、プッシュサービス(ブラウザベンダーが提供)のエンドポイントURLなどを含むPushSubscriptionを取得する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/PushManager/subscribe"
+  },
+  {
+    "id": "l1-api-fundamentals-088",
+    "category": "l1-api-fundamentals",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "クロスオリジンへのfetch/XHRリクエストが単純リクエストの条件(許可されたメソッド・ヘッダーのみ等)を満たさない場合に、ブラウザが本リクエストに先立って自動的に送信するHTTPリクエストとして正しいものはどれか。",
+    "choices": [
+      "OPTIONSメソッドによるプリフライトリクエスト",
+      "HEADメソッドによる事前確認リクエスト",
+      "TRACEメソッドによる経路確認リクエスト",
+      "CONNECTメソッドによるトンネル確立リクエスト"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "単純リクエストの条件を満たさないクロスオリジンリクエスト(独自ヘッダーの付与やPUT/DELETEメソッドの使用など)を行う場合、ブラウザは本リクエストの前にOPTIONSメソッドによるプリフライトリクエストを自動送信し、サーバーがそのオリジン・メソッド・ヘッダーを許可しているかをAccess-Control-Allow-*ヘッダーで確認する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTTP/CORS"
+  },
+  {
+    "id": "l1-api-fundamentals-089",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "fetch APIに関する説明として正しいものを全て選べ。",
+    "choices": [
+      "サーバーが404や500などのHTTPエラーステータスを返した場合でも、fetch()が返すPromiseはrejectされず、Responseオブジェクトのokプロパティやstatusを確認する必要がある",
+      "fetch()はネットワーク自体に到達できない(DNS解決失敗など)場合、返されたPromiseがrejectされる",
+      "fetch()はデフォルトで常にクッキーを送信しない設定であり、credentialsオプションを指定する必要は一切ない",
+      "fetch()はXMLHttpRequestと異なり、Promiseベースでレスポンスボディをストリームとして段階的に扱うことができる"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "fetch()はHTTPステータスがエラーであってもPromise自体はresolveされ、Response.okやstatusで判定する必要がある。一方、ネットワーク到達自体ができない場合はPromiseがrejectされる。またfetch()はレスポンスボディをReadableStreamとして段階的に読み取ることができる点もXMLHttpRequestとの違いである。credentialsの既定値は仕様変更の経緯もあり明示的な指定が推奨されるため、その選択肢は誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch"
+  },
+  {
+    "id": "l1-api-fundamentals-090",
+    "category": "l1-api-fundamentals",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "WebRTCにおいて、NAT(ネットワークアドレス変換)環境下にある端末同士がP2P接続を確立するために利用される技術・プロトコルとして正しいものを全て選べ。",
+    "choices": [
+      "STUN(自身のグローバルIPアドレス・ポートを知るために使用する)",
+      "TURN(P2P直接接続が確立できない場合に中継サーバーとして機能する)",
+      "ICE(STUNやTURNなどの情報を用いて最適な通信経路を選定する枠組み)",
+      "DHCP(ローカルネットワーク内でIPアドレスを動的に割り当てるプロトコル)"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "WebRTCはICE(Interactive Connectivity Establishment)フレームワークのもとで、STUNサーバーを使って自端末のグローバルIP・ポートを把握し、直接のP2P接続が確立できない場合はTURNサーバーを中継点として利用する。DHCPはIPアドレスの動的割り当てに使われるプロトコルであり、WebRTCの接続確立とは直接関係しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API/Protocols"
+  }
+]

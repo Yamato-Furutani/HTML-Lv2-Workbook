@@ -1,0 +1,1657 @@
+[
+  {
+    "id": "l1-elements-001",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ページのナビゲーションリンクをまとめるために使用するHTML5のセマンティック要素として正しいものはどれか。",
+    "choices": [
+      "<nav>",
+      "<div>",
+      "<section>",
+      "<aside>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<nav>要素はページ内やサイト全体のナビゲーションリンクをまとめるためのセマンティック要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/nav"
+  },
+  {
+    "id": "l1-elements-002",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "リンク先を新しいタブ(ウィンドウ)で開くためのa要素の属性値として正しいものはどれか。",
+    "choices": [
+      "target=\"_blank\"",
+      "target=\"_new\"",
+      "target=\"_top\"",
+      "target=\"_self\""
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "target=\"_blank\"を指定すると、リンク先が新しいブラウジングコンテキスト(通常は新しいタブ)で開かれる。target=\"_self\"は既定値で同じタブ内で開く。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/a"
+  },
+  {
+    "id": "l1-elements-003",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ブラウザ標準の再生・停止コントロールを表示するvideo要素の属性として正しいものはどれか。",
+    "choices": [
+      "controls",
+      "autoplay",
+      "loop",
+      "muted"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "controls属性を指定すると、ブラウザが提供する再生・一時停止・音量調整などのUIコントロールが表示される。autoplayは自動再生、loopは繰り返し再生、mutedはミュート再生の指定である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-004",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "クリックすることで詳細情報の表示・非表示を切り替えられる開閉パネル(ディスクロージャーウィジェット)を実現するHTML5要素の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "<details>と<summary>",
+      "<dialog>と<menu>",
+      "<fieldset>と<legend>",
+      "<optgroup>と<option>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<details>要素は開閉可能な詳細情報を表し、その中に<summary>要素で見出し(常に表示される部分)を指定する。ユーザーが見出しをクリックすると内容の表示・非表示が切り替わる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/details"
+  },
+  {
+    "id": "l1-elements-005",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "<section>要素と<div>要素の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "<section>は文書構造上意味のあるまとまり(セクション)を表すが、<div>は意味を持たない汎用コンテナである",
+      "<section>は非表示要素であり、<div>は表示要素である",
+      "<section>はスタイルを適用できないが、<div>はスタイルを適用できる",
+      "<section>とdivは同じ意味を持ち、完全に置き換え可能である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<section>はテーマごとにまとまったコンテンツのセクションを表すセマンティックな要素であるのに対し、<div>は特に意味を持たないスタイリング・スクリプティング用の汎用コンテナである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/section"
+  },
+  {
+    "id": "l1-elements-016",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ページや記事の冒頭に、見出しやロゴ、導入的なナビゲーションなどをまとめて配置するためのセマンティック要素として正しいものはどれか。",
+    "choices": [
+      "<header>",
+      "<head>",
+      "<title>",
+      "<top>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "header要素は文書やセクションの冒頭部分に導入コンテンツをまとめるためのセマンティック要素である。<head>は文書のメタデータを格納する別の要素であり画面には表示されない。<top>という要素はHTMLに存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/header"
+  },
+  {
+    "id": "l1-elements-017",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ページや記事の末尾に、著作権表示や関連リンクなどをまとめるためのセマンティック要素として正しいものはどれか。",
+    "choices": [
+      "<footer>",
+      "<bottom>",
+      "<aside>",
+      "<address>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "footer要素はその祖先のセクショニングコンテンツに関する情報(著作権表記、関連文書へのリンクなど)を表す。address要素は連絡先情報に特化した要素でありfooterとは目的が異なる。<bottom>という要素は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/footer"
+  },
+  {
+    "id": "l1-elements-018",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "文書の主要な内容を表し、原則として1つの文書内に1つだけ配置すべきとされるHTML5要素として正しいものはどれか。",
+    "choices": [
+      "<main>",
+      "<article>",
+      "<section>",
+      "<div>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "main要素は文書の中心的な主要コンテンツを表す要素であり、原則として1文書につき1つのみ使用する。article要素やsection要素は同じ文書内に複数配置することができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/main"
+  },
+  {
+    "id": "l1-elements-019",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "ニュース記事やブログの投稿など、単独で配信・再利用が可能な完結したコンテンツを表す要素として正しいものはどれか。",
+    "choices": [
+      "<article>",
+      "<section>",
+      "<aside>",
+      "<div>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "article要素は文書・ページ・アプリケーション内で単独に配信・再利用可能な完結したコンテンツを表す。section要素はテーマ的にまとまったコンテンツのブロックを表すが、独立して配信可能であることまでは要求されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/article"
+  },
+  {
+    "id": "l1-elements-020",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "主要な内容から切り離しても意味が通る、広告や関連リンク、用語解説などの補足的な内容を表す要素として正しいものはどれか。",
+    "choices": [
+      "<aside>",
+      "<section>",
+      "<nav>",
+      "<footer>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "aside要素は主コンテンツから独立させても意味が通る補足的な内容(サイドバー、広告、関連記事へのリンク集など)を表すための要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/aside"
+  },
+  {
+    "id": "l1-elements-021",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "HTML5において見出しを表す要素として正しいものを全て選べ。",
+    "choices": [
+      "<h1>",
+      "<h4>",
+      "<header>",
+      "<hgroup>"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "h1からh6までの要素が見出しレベルを表すHTML要素である。header要素はページやセクションの導入コンテンツをまとめる要素であり見出しそのものではなく、hgroup要素は見出しと副題などをグループ化する要素であって、それ自体は見出し要素ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/Heading_Elements"
+  },
+  {
+    "id": "l1-elements-022",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "単なる見た目の変更ではなく、内容として「強い重要性」を持つことを示す意味的なテキストレベル要素として正しいものはどれか。",
+    "choices": [
+      "<strong>",
+      "<b>",
+      "<em>",
+      "<mark>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "strong要素は内容が重要・深刻・緊急であることを示す意味的な要素である。b要素は特に意味を持たせず、注意を引きたい文字列を表すためだけの要素とされている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/strong"
+  },
+  {
+    "id": "l1-elements-023",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "文章中で、発音やニュアンスの変化を伴うような強調を表すための意味的な要素として正しいものはどれか。",
+    "choices": [
+      "<em>",
+      "<i>",
+      "<strong>",
+      "<b>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "em要素は文中の強調を表す意味的な要素であり、音読する際のアクセントの変化に相当する。i要素は技術用語や外国語表現など、他の文と区別されるが特に強調を意味しない文字列に用いる要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/em"
+  },
+  {
+    "id": "l1-elements-024",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "検索結果のキーワードなど、現在の文脈において参照・注目すべき部分をハイライト表示するための要素として正しいものはどれか。",
+    "choices": [
+      "<mark>",
+      "<strong>",
+      "<em>",
+      "<highlight>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "mark要素は他の文脈との関連で参照目的でハイライトされているテキストを表す要素である。<highlight>という要素はHTMLの仕様には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/mark"
+  },
+  {
+    "id": "l1-elements-025",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "time要素において、要素内の表示テキストとは別に、機械可読な形式で日時を指定するための属性として正しいものはどれか。",
+    "choices": [
+      "datetime",
+      "value",
+      "data",
+      "content"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "time要素のdatetime属性に機械可読な日時形式(例: 2026-07-10)を指定することで、表示上のテキスト表現に関わらず正確な日時情報をプログラムに伝えることができる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/time"
+  },
+  {
+    "id": "l1-elements-026",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "a要素にdownload属性を指定した場合の動作として正しいものはどれか。",
+    "choices": [
+      "リンク先のリソースをブラウザで表示せずファイルとしてダウンロードさせる",
+      "リンク先を必ず新しいタブで開く",
+      "リンクのテキストの文字色を変更する",
+      "リンク先ページの読み込みを高速化する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "a要素にdownload属性を指定すると、リンク先URLへ遷移する代わりにそのリソースをファイルとしてダウンロードするようブラウザに指示できる。属性値としてダウンロード時のファイル名を指定することも可能である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/a"
+  },
+  {
+    "id": "l1-elements-027",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "HTML5のtable要素において、表の行をグループ化するために使用する要素として正しいものを全て選べ。",
+    "choices": [
+      "<thead>",
+      "<tbody>",
+      "<tfoot>",
+      "<tgroup>"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "thead(見出し行グループ)、tbody(本体行グループ)、tfoot(フッター行グループ)はいずれも表の行をグループ化するための要素である。<tgroup>という要素はHTML5には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/thead"
+  },
+  {
+    "id": "l1-elements-028",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "th要素のscope属性で、そのセルが「同じ列にあるセルの見出し」であることを示す値として正しいものはどれか。",
+    "choices": [
+      "col",
+      "row",
+      "colgroup",
+      "rowgroup"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "scope=\"col\"は、そのth要素が同じ列にあるセルの見出しであることを示す。行の見出しである場合はscope=\"row\"を指定する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/th"
+  },
+  {
+    "id": "l1-elements-029",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "table要素内のセルを複数の列にまたがって結合するために、td要素やth要素に指定する属性として正しいものはどれか。",
+    "choices": [
+      "colspan",
+      "rowspan",
+      "span",
+      "colgroup"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "td要素やth要素にcolspan属性を指定すると、そのセルが指定した数の列分にまたがって結合される。行方向にまたがって結合する場合はrowspan属性を使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/td"
+  },
+  {
+    "id": "l1-elements-030",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "HTML文書全体の言語を「日本語」として宣言するための正しい記述はどれか。",
+    "choices": [
+      "<html lang=\"ja\">",
+      "<html lang=\"jp\">",
+      "<html language=\"japanese\">",
+      "<meta lang=\"ja\">"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "html要素のlang属性にはBCP 47に基づく言語タグを指定し、日本語の場合は\"ja\"を用いる。\"jp\"は国名を表すコードであり、言語タグとしては誤りである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/lang"
+  },
+  {
+    "id": "l1-elements-031",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "アラビア語やヘブライ語のように右から左へ書く言語のテキスト方向を指定するためのdir属性の値として正しいものはどれか。",
+    "choices": [
+      "rtl",
+      "ltr",
+      "auto",
+      "vertical"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "dir属性にrtl(right to left)を指定すると、要素内のテキストの方向が右から左になる。ltrは左から右(既定の方向)、autoはブラウザによる自動判定を意味する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/dir"
+  },
+  {
+    "id": "l1-elements-032",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "音声コンテンツをHTML文書に埋め込むための要素として正しいものはどれか。",
+    "choices": [
+      "<audio>",
+      "<sound>",
+      "<video>",
+      "<embed>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "audio要素は音声コンテンツを埋め込むための要素であり、controls・autoplay・loopなどvideo要素と共通する属性の多くをサポートする。<sound>という要素はHTMLに存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/audio"
+  },
+  {
+    "id": "l1-elements-033",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "video要素において、動画データがまだ再生できない間に表示しておく画像を指定する属性として正しいものはどれか。",
+    "choices": [
+      "poster",
+      "thumbnail",
+      "preview",
+      "cover"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "poster属性には、再生開始前やデータ読み込み中に表示しておく画像のURLを指定する。thumbnail・preview・coverといった属性はvideo要素には存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-034",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "再生終了後に自動的に最初から再生し直すloop属性を指定できる要素として正しいものを全て選べ。",
+    "choices": [
+      "<audio>",
+      "<video>",
+      "<img>",
+      "<iframe>"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "loop属性はメディアの再生が終了した際に自動的に最初から再生し直すことを指定する属性であり、audio要素とvideo要素の両方でサポートされている。img要素やiframe要素にはloop属性は存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-035",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "video要素で一般的にサポートされる動画のコンテナ形式として正しいものを全て選べ。",
+    "choices": [
+      "MP4",
+      "WebM",
+      "Ogg",
+      "BMP"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "video要素ではMP4、WebM、Ogg(Theora)などのコンテナ形式が主要なブラウザでサポートされている。BMPは静止画像のファイル形式であり、動画のコンテナ形式ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-036",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "basic",
+    "question": "track要素のkind属性に指定できる値として正しいものを全て選べ。",
+    "choices": [
+      "subtitles",
+      "captions",
+      "chapters",
+      "translation"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "track要素のkind属性にはsubtitles(字幕)、captions(聴覚障害者向けキャプション)、descriptions、chapters(章)、metadataといった値を指定できる。translationという値は定義されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "l1-elements-037",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "フォーム内の関連する入力項目をグループ化し、そのグループにキャプションを付けるための要素の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "<fieldset>と<legend>",
+      "<group>と<caption>",
+      "<section>と<h2>",
+      "<optgroup>と<option>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fieldset要素はフォームコントロールをグループ化するための要素であり、その最初の子要素としてlegend要素を配置することでグループの見出しを付けられる。optgroupとoptionはselect要素内の選択肢をグループ化する別の仕組みである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/fieldset"
+  },
+  {
+    "id": "l1-elements-038",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "label要素のfor属性に指定する値として正しいものはどれか。",
+    "choices": [
+      "関連付けたいフォームコントロールのid属性の値",
+      "フォームの送信先URL",
+      "関連付けたいフォームコントロールのname属性の値",
+      "ラベルとして表示するテキスト"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "label要素のfor属性には関連付ける対象のフォームコントロールのid属性の値を指定する。これにより、ラベルをクリックしたときに対応するコントロールへフォーカスが移動する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/label"
+  },
+  {
+    "id": "l1-elements-039",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "input要素のplaceholder属性の役割として正しいものはどれか。",
+    "choices": [
+      "未入力時にフィールド内に薄く表示される入力例やヒントを示す",
+      "フィールドの初期値としてフォーム送信時に送られる値を設定する",
+      "入力を必須にする",
+      "入力できる最大文字数を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "placeholder属性は入力欄が空のときに表示されるヒントテキストであり、フォーム送信時の値には含まれない。初期値として送信される値を設定したい場合はvalue属性を使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/input"
+  },
+  {
+    "id": "l1-elements-040",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "basic",
+    "question": "複数の選択肢からユーザーに1つ(または複数)を選ばせるドロップダウンリストを作成するための要素の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "<select>と<option>",
+      "<datalist>と<label>",
+      "<fieldset>と<option>",
+      "<output>と<option>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "select要素は選択肢の集合を表すコンテナ要素であり、その子要素としてoption要素で個々の選択肢を定義する。select要素にmultiple属性を指定すると複数選択が可能になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/select"
+  },
+  {
+    "id": "l1-elements-006",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "画像とそのキャプション(説明文)を関連付けて表現するHTML5要素の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "<figure>と<figcaption>",
+      "<img>と<caption>",
+      "<picture>と<label>",
+      "<article>と<summary>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<figure>要素は図・画像・コードなど自己完結したコンテンツを表し、その説明文を<figcaption>要素で関連付ける。<caption>はtable要素専用のキャプション要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/figure"
+  },
+  {
+    "id": "l1-elements-007",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "video要素に字幕(キャプション)を追加するために使用する要素として正しいものはどれか。",
+    "choices": [
+      "<track>",
+      "<subtitle>",
+      "<caption>",
+      "<source>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<track>要素はvideo/audio要素の子要素として、字幕・キャプション・章立てなどのタイムドテキストトラックを指定するために使用する。<source>はメディアファイル自体の候補を指定する要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "l1-elements-008",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTML5で新たに追加されたinput要素のtype属性値として正しいものを全て選べ。",
+    "choices": [
+      "email",
+      "date",
+      "range",
+      "text",
+      "password"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "email・date・rangeはHTML5で新たに追加されたinputタイプである。textとpasswordはHTML4から存在する従来のタイプである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/input"
+  },
+  {
+    "id": "l1-elements-009",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "別のHTML文書を現在のページ内に埋め込んで表示するための要素として正しいものはどれか。",
+    "choices": [
+      "<iframe>",
+      "<embed>",
+      "<object>",
+      "<frame>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<iframe>要素はネストされたブラウジングコンテキストを作成し、別のHTML文書をページ内に埋め込んで表示する。<frame>要素はHTML5では廃止(非推奨)されたframeset用の要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe"
+  },
+  {
+    "id": "l1-elements-010",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "table要素において、表の見出し(タイトル)を表すために使用する要素として正しいものはどれか。",
+    "choices": [
+      "<caption>",
+      "<thead>",
+      "<th>",
+      "<legend>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<caption>要素はtable要素の最初の子要素として配置し、表全体のタイトル・説明を表す。<thead>は見出し行のグループ、<th>は見出しセルを表す要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/caption"
+  },
+  {
+    "id": "l1-elements-041",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "header要素とfooter要素に関する説明として正しいものはどれか。",
+    "choices": [
+      "header要素とfooter要素は、article要素やsection要素の中にもそれぞれ配置でき、1つの文書内に複数回出現しうる",
+      "header要素は文書内に1つしか配置できない",
+      "footer要素は<body>要素の直下にのみ配置できる",
+      "header要素は必ずナビゲーションリンク(nav要素)を含まなければならない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "header・footer要素はarticleやsectionなどのセクショニングコンテンツの子として繰り返し使用でき、それぞれのセクションの導入部・末尾情報を表せるため、1つの文書内に複数回出現しうる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/header"
+  },
+  {
+    "id": "l1-elements-042",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "main要素に関する記述として正しいものはどれか。",
+    "choices": [
+      "hidden属性が指定されていないmain要素を1つの文書内に2つ以上配置してはならず、article・aside・footer・header・navの子孫にしてはならない",
+      "main要素はarticle要素の中で繰り返し使用することが推奨される",
+      "main要素はページのナビゲーション情報を表すための要素である",
+      "main要素はCSSでスタイリングできない特殊な要素である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "main要素は文書の主要な内容を表す要素であり、hidden属性のないmain要素は文書内で1つのみとされ、階層的に正しいmain要素として article・aside・footer・header・nav の子孫に配置してはならない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/main"
+  },
+  {
+    "id": "l1-elements-043",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "article要素とsection要素の使い分けとして最も適切なものはどれか。",
+    "choices": [
+      "article要素はブログ記事やニュース記事のように単独で配信・再利用可能な自己完結したコンテンツに使用し、section要素は文書内のテーマごとのまとまりを表すために使用する",
+      "article要素は装飾目的のみに使用し、section要素は意味を持たない汎用要素である",
+      "article要素とsection要素は完全に同義であり常に互換的に使用できる",
+      "article要素は1つの文書に1つしか使用できないが、section要素は複数使用できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "article要素はそれ単体で独立して配信・再利用できるコンテンツ(記事やコメントなど)を表し、section要素はより広い文脈の中でテーマ的にまとまったコンテンツの区分を表す。両者は意味が異なり、article要素も複数回使用できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/article"
+  },
+  {
+    "id": "l1-elements-044",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "time要素のdatetime属性の役割として正しいものはどれか。",
+    "choices": [
+      "要素内のテキストが「明日」のような人間向けの曖昧な表現であっても、機械可読な日時・期間の形式を別途指定する",
+      "表示される日時のフォントサイズを指定する",
+      "要素を非表示にする",
+      "リンク先のURLを指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "time要素のdatetime属性はISO 8601形式などの機械可読な日時や期間を指定でき、要素内のテキスト表現がどのようなものであっても、プログラムや検索エンジンが正確な日時を解釈できるようにする。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/time"
+  },
+  {
+    "id": "l1-elements-045",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "<abbr title=\"Hypertext Markup Language\">HTML</abbr> のように使用するabbr要素とtitle属性の目的として正しいものはどれか。",
+    "choices": [
+      "略語や頭字語の完全な形式(正式名称)をユーザーや支援技術に提供するため",
+      "要素へのリンク先URLを指定するため",
+      "要素の入力値を検証するため",
+      "スタイルシートで参照するクラス名を指定するため"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "code": "<p>今日は<abbr title=\"Hypertext Markup Language\">HTML</abbr>を学びます。</p>",
+    "explanation": "abbr要素は略語・頭字語を表すセマンティックな要素で、title属性にその完全形式を指定することで、マウスオーバー時のツールチップ表示やスクリーンリーダーでの読み上げに利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/abbr"
+  },
+  {
+    "id": "l1-elements-046",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "target=\"_blank\"でリンクを新しいタブで開く際に、a要素にrel=\"noopener\"を付与する主な目的として正しいものはどれか。",
+    "choices": [
+      "新しく開いたページのJavaScriptから window.opener を介して元のページを参照・操作できないようにし、セキュリティ上のリスクを防ぐため",
+      "リンク先を検索エンジンのクロール対象から除外するため",
+      "リンク先のページをキャッシュさせないようにするため",
+      "リンクにフォーカスが当たらないようにするため"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "target=\"_blank\"で開かれた別ページは既定でwindow.openerを通じ元のページを参照でき、悪意あるページによるリバースタブナビング攻撃のリスクがある。rel=\"noopener\"を指定するとwindow.openerがnullとなり、この参照を遮断できる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel/noopener"
+  },
+  {
+    "id": "l1-elements-047",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "a要素のdownload属性に関する説明として正しいものはどれか。",
+    "choices": [
+      "リンク先のリソースをハイパーリンクとして開く代わりにダウンロードさせることを示し、値を指定すると保存時のファイル名の候補となる",
+      "リンク先を新しいウィンドウで開くことを指定する",
+      "リンク先の文書の言語を指定する",
+      "リンク先の文字エンコーディングを指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "download属性を指定すると、ブラウザはリンク先をナビゲーションではなくダウンロードとして扱う。属性値を指定した場合は、それが保存時のファイル名の候補として使用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/a"
+  },
+  {
+    "id": "l1-elements-048",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "table要素の子要素のうち、表の行を「見出し行」「本体行」「フッタ行」としてグループ化するために使用する要素を全て選べ。",
+    "choices": [
+      "<thead>",
+      "<tbody>",
+      "<tfoot>",
+      "<caption>"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "thead・tbody・tfootはそれぞれ表の見出し行・本体行・フッタ行をグループ化する要素である。caption要素は表全体のタイトル・説明を表す要素であり、行のグループ化には関与しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/tbody"
+  },
+  {
+    "id": "l1-elements-049",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "th要素のscope属性に指定できる値の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "row, col, rowgroup, colgroup",
+      "top, bottom, left, right",
+      "header, footer, body, all",
+      "single, multiple, range, group"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "scope属性は見出しセルが行・列・行グループ・列グループのいずれの見出しであるかを支援技術に明示するための属性で、値はrow・col・rowgroup・colgroupのいずれかを取る。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/th"
+  },
+  {
+    "id": "l1-elements-050",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "html要素にlang=\"ja\"を指定することの効果として最も適切なものはどれか。",
+    "choices": [
+      "文書の主たる言語を宣言し、スクリーンリーダーの読み上げ言語の切り替えや検索エンジン・翻訳ツールなどが適切に処理できるようにする",
+      "ページの文字エンコーディングをUTF-8に固定する",
+      "ページ内のすべてのテキストを自動的に日本語へ翻訳する",
+      "CSSのfont-familyの既定値を変更する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "lang属性は文書やその一部の自然言語を宣言するグローバル属性であり、スクリーンリーダーの発音切り替え、検索エンジンの言語判定、翻訳ツールの動作などに利用される。文字エンコーディングやテキストの自動翻訳を行うものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/lang"
+  },
+  {
+    "id": "l1-elements-051",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "要素にdir=\"rtl\"を指定した場合の効果として正しいものはどれか。",
+    "choices": [
+      "テキストの表示方向を右から左(RTL)に指定する",
+      "テキストの文字色を赤色にする",
+      "text-align: rightと同様に要素内のテキストを右寄せで配置する",
+      "要素の読み上げ順序をランダムに変更する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "dir属性はテキストの方向性を指定するグローバル属性で、値ltr(左から右)・rtl(右から左)・autoを取り、双方向テキストアルゴリズムに影響する意味的な属性である。CSSのtext-alignのような見た目上の配置指定とは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/dir"
+  },
+  {
+    "id": "l1-elements-052",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "video要素のposter属性の役割として正しいものはどれか。",
+    "choices": [
+      "動画の再生が開始される前に表示する画像を指定する",
+      "動画のコーデックを指定する",
+      "動画の音量の初期値を指定する",
+      "字幕ファイルのURLを指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "poster属性は、ユーザーが再生を開始する、またはシークするまでの間に表示される画像のURLを指定する属性である。動画データそのものやコーデック、音量、字幕とは無関係である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-053",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "video/audio要素のpreload属性に指定できる値と意味の組み合わせとして、誤っているものはどれか。",
+    "choices": [
+      "\"auto\"は、ブラウザにメディアファイルを一切事前読み込みしないよう指示する",
+      "\"none\"は、ページ読み込み時にメディアファイルを事前読み込みしないよう指示する",
+      "\"metadata\"は、長さや寸法などのメタデータのみを事前に取得するよう指示する",
+      "属性値はブラウザに対する示唆であり、必ずしもその通りに動作するとは限らない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "preload=\"auto\"はブラウザにファイル全体を事前読み込みしてよいことを示す値であり、「一切事前読み込みしない」という説明は誤り。事前読み込みを抑制するのはpreload=\"none\"である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-054",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "track要素のkind属性に指定できる値として正しいものを全て選べ。",
+    "choices": [
+      "subtitles",
+      "captions",
+      "descriptions",
+      "translation"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "track要素のkind属性の値はsubtitles・captions・descriptions・chapters・metadataのいずれかであり、translationという値は定義されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "l1-elements-055",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "HTML5のvideo要素で広く利用されている主要な動画コンテナ形式(ファイル形式)として正しいものを全て選べ。",
+    "choices": [
+      "MP4(MPEG-4)",
+      "WebM",
+      "Ogg",
+      "BMP"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "MP4・WebM・Oggは主要ブラウザで広くサポートされている動画のメディアコンテナ形式である。BMPは静止画像用のビットマップ画像形式であり、動画のコンテナ形式ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Media/Formats/Containers"
+  },
+  {
+    "id": "l1-elements-056",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "select要素にmultiple属性を指定した場合の動作として正しいものはどれか。",
+    "choices": [
+      "複数のoption要素を同時に選択できるようになる",
+      "select要素内にoptgroup要素を配置できなくなる",
+      "フォーム送信時に最初に選択された値のみが送信される",
+      "ドロップダウンではなく必ずラジオボタンとして表示される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "multiple属性を指定すると、ユーザーは複数のoption要素を同時に選択できるようになり、通常は複数行のリストボックスとして表示される。フォーム送信時には選択されたすべての値が送信される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/select"
+  },
+  {
+    "id": "l1-elements-057",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のテキストレベル要素のうち、意味的な重要性・強調・関連性を表すセマンティックな要素として正しいものを全て選べ。",
+    "choices": [
+      "<strong>",
+      "<em>",
+      "<mark>",
+      "<b>"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "strongは内容の重要性、emは強調、markは文脈上の関連性やハイライトを表す意味的な要素である。b要素は特別な重要性や強調を意味させず、単に他の文章と視覚的に区別したいテキストに用いる要素と定義されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/mark"
+  },
+  {
+    "id": "l1-elements-058",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "textarea要素のrows属性とcols属性の役割として正しいものはどれか。",
+    "choices": [
+      "テキスト入力領域の表示上の行数と文字幅(列数)の目安を指定する",
+      "入力できる最大文字数を指定する",
+      "入力が必須かどうかを指定する",
+      "テキストの折り返し方法を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "rows属性とcols属性はtextareaの表示サイズ(可視の行数と1行あたりのおおよその文字数)を指定するものであり、入力値の検証や折り返し方法(wrap属性の役割)とは異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea"
+  },
+  {
+    "id": "l1-elements-059",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "フォーム内の関連する入力項目群を意味的・視覚的にグループ化し、その見出しを付けるための要素の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "<fieldset>と<legend>",
+      "<section>と<h1>",
+      "<optgroup>と<option>",
+      "<label>と<output>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fieldset要素は関連するフォームコントロールをグループ化する要素であり、その最初の子要素としてlegend要素を配置することでグループ全体の見出し(キャプション)を付けられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/fieldset"
+  },
+  {
+    "id": "l1-elements-060",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "label要素のfor属性の役割として正しいものはどれか。",
+    "choices": [
+      "関連付けるフォームコントロールのid属性値を指定し、ラベルをクリックすることでそのコントロールにフォーカスや操作を移せるようにする",
+      "フォームの送信先URLを指定する",
+      "ラベルのフォントサイズを指定する",
+      "入力値の検証パターンを指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "label要素のfor属性には関連付けたいフォームコントロールのid属性値を指定する。これによりラベルとコントロールがプログラム的に関連付けられ、ラベル部分をクリックしてもコントロールを操作できるようになりアクセシビリティが向上する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/label"
+  },
+  {
+    "id": "l1-elements-061",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "次のinput要素において、step属性の役割として正しいものはどれか。",
+    "code": "<input type=\"number\" min=\"0\" max=\"100\" step=\"5\">",
+    "choices": [
+      "値を増減させる際の増分(刻み幅)を指定する",
+      "入力欄の表示幅(文字数)を指定する",
+      "入力が必須かどうかを指定する",
+      "初期値(デフォルト値)を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "step属性はスピンボタンなどで値を増減させる際の刻み幅を指定する。この例ではmin=\"0\"からmax=\"100\"の範囲で5刻みの値のみが有効な値として扱われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/number"
+  },
+  {
+    "id": "l1-elements-062",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "intermediate",
+    "question": "次のinput要素の記述に関する説明として正しいものを全て選べ。",
+    "code": "<input type=\"text\" required pattern=\"[0-9]{3}-[0-9]{4}\" placeholder=\"123-4567\">",
+    "choices": [
+      "required属性により、この入力欄を空のままフォーム送信しようとすると検証エラーになる",
+      "pattern属性は、入力値が指定した正規表現全体に一致するかをフォーム送信前にブラウザ側で検証する",
+      "placeholder属性の文字列は、送信されるフォームデータの値の一部として扱われる",
+      "pattern属性はサーバー側でのみ検証され、ブラウザ側では検証されない"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "required属性は空欄のままの送信を防ぎ、pattern属性は指定した正規表現に入力値全体が一致するかをブラウザ側(クライアントサイド)で検証する。placeholderは入力欄が空のときに表示されるヒント文字列であり、送信データの値には含まれない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/pattern"
+  },
+  {
+    "id": "l1-elements-063",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "details要素にopen属性を指定した場合の効果として正しいものはどれか。",
+    "choices": [
+      "初期状態で詳細内容が展開された(表示された)状態になる",
+      "summary要素の内容を非表示にする",
+      "クリックによる開閉操作を無効化する",
+      "details要素をインライン要素として表示させる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "open属性を指定すると、details要素はページ読み込み時から詳細内容が展開された状態で表示される。open属性がない場合は既定で内容が折りたたまれた状態になる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/details"
+  },
+  {
+    "id": "l1-elements-064",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "progress要素とmeter要素の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "progress要素はタスクの進捗(完了度合い)を表すのに対し、meter要素は既知の範囲内での測定値(ディスク使用量など)を表す",
+      "progress要素とmeter要素は完全に同じ意味を持ち、常に置き換え可能である",
+      "progress要素は音声を再生するための要素であり、meter要素は動画を再生するための要素である",
+      "meter要素はフォーム内でのみ使用可能であり、フォーム外では使用できない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "progress要素はタスクの完了に向けた進捗を表す要素であり、meter要素はディスク使用量やアンケートの評価点のような既知の範囲を持つスカラー値(測定値)を表す要素である。両者は目的が異なり互換的ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/progress"
+  },
+  {
+    "id": "l1-elements-065",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "intermediate",
+    "question": "視覚的にテキストラベルを表示しないアイコンのみのボタンに対して、支援技術にアクセシブルな名前を提供するために使用する属性として最も適切なものはどれか。",
+    "choices": [
+      "aria-label",
+      "data-label",
+      "title属性のみで十分でありARIA属性は不要である",
+      "button要素にalt属性を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "aria-label属性は、要素に可視のテキストラベルがない場合でも、支援技術に伝えるアクセシブルな名前を文字列で直接指定できる。alt属性はimg要素などに用いるものでbutton要素には効果がなく、data-label属性はブラウザやARIAの標準的な仕組みとして解釈されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label"
+  },
+  {
+    "id": "l1-elements-011",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "audio要素やvideo要素の子要素であるsource要素にtype属性を指定する主な目的として正しいものはどれか。",
+    "choices": [
+      "ブラウザがファイルを実際にダウンロードする前に再生可能な形式かどうかを判定できるようにするため",
+      "再生速度を指定するため",
+      "字幕の言語を指定するため",
+      "音量の初期値を指定するため"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "source要素のtype属性にMIMEタイプ(コーデック情報を含む場合もある)を指定することで、ブラウザは対応可能な形式かどうかをファイルを取得する前に判断でき、非対応の形式のダウンロードを避けられる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/source"
+  },
+  {
+    "id": "l1-elements-012",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "見た目上はボタンのようにスタイリングした<div>要素に、支援技術(スクリーンリーダー等)へ「これはボタンである」ことを伝える方法として最も適切なものはどれか。",
+    "choices": [
+      "role=\"button\"属性を付与する",
+      "class=\"button\"を付与する",
+      "style=\"cursor:pointer\"を指定する",
+      "<div>を<button>に見えるようCSSでフォントを変更する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "WAI-ARIAのrole属性を用いてrole=\"button\"を指定すると、見た目のスタイリングとは独立して、その要素がボタンとしての役割を持つことを支援技術に伝えることができる。ただし可能な限り本来のセマンティックな<button>要素を使うことが推奨される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Reference/Roles/button_role"
+  },
+  {
+    "id": "l1-elements-013",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "input要素に入力候補のリストをドロップダウンで提示するために組み合わせて使用する要素として正しいものはどれか。",
+    "choices": [
+      "<datalist>",
+      "<select>",
+      "<optgroup>",
+      "<output>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<datalist>要素は<option>要素で候補値を列挙し、input要素のlist属性と関連付けることで、テキスト入力しながら候補を選択できるUIを実現する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/datalist"
+  },
+  {
+    "id": "l1-elements-014",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "フォーム内での計算結果など、スクリプトによる計算結果を表示するための要素として正しいものはどれか。",
+    "choices": [
+      "<output>",
+      "<result>",
+      "<meter>",
+      "<progress>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<output>要素はフォームの入力値に基づく計算結果など、スクリプトの実行結果を表示するための要素である。<meter>は既知の範囲内の値、<progress>は処理の進捗を表す別の要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/output"
+  },
+  {
+    "id": "l1-elements-015",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTML5でコンテキストメニューやツールバーとして使用することが意図されている要素として正しいものはどれか。",
+    "choices": [
+      "<menu>",
+      "<nav>",
+      "<aside>",
+      "<datalist>"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<menu>要素はコマンドの集合(コンテキストメニューやツールバーなど)を表す要素として定義されている。ナビゲーションリンクのまとまりを表す<nav>とは目的が異なる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/menu"
+  },
+  {
+    "id": "l1-elements-066",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "<hgroup>要素の用途に関する説明として最も適切なものはどれか。",
+    "choices": [
+      "見出し要素(h1〜h6のいずれか)と、それに付随するサブタイトルやタグラインなどを一つのまとまりとしてグループ化するための要素である",
+      "複数の<nav>要素をグループ化するための要素である",
+      "フォームの入力欄をグループ化するための要素であり、<fieldset>の別名である",
+      "テーブルの見出し行(<thead>)をグループ化するための要素である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "<hgroup>要素は、見出し(h1〜h6のいずれか1つ)とサブタイトル・タグラインなどの関連コンテンツを一つの見出し単位としてグループ化するための要素である。一時期仕様から削除された経緯があるが、現行のHTML Living Standardでは再定義されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/hgroup"
+  },
+  {
+    "id": "l1-elements-067",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "table要素内でth要素のscope属性に指定できる値として、仕様上存在しないものはどれか。",
+    "choices": [
+      "row",
+      "colgroup",
+      "group",
+      "col"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "scope属性に指定できる値はrow・col・rowgroup・colgroupの4種類であり、単独の「group」という値は仕様上定義されていない。rowgroupやcolgroupと混同しないよう注意が必要である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/th"
+  },
+  {
+    "id": "l1-elements-068",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "time要素のdatetime属性に関する記述として正しいものはどれか。",
+    "choices": [
+      "datetime属性を省略する場合、要素の内容(テキスト)自体が仕様で定められた有効な日付・時刻形式でなければならない",
+      "datetime属性には自由な形式の日付文字列を指定してよい",
+      "datetime属性は必須属性であり、省略するとtime要素として機能しない",
+      "datetime属性には数値のUNIXタイムスタンプのみ指定できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "datetime属性は省略可能だが、省略した場合は要素の内容そのものが仕様で定義された有効な日付・時刻文字列(例: 2023-07-10)の形式に従っている必要がある。指定する場合も自由形式ではなく、仕様に沿った文字列でなければならない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/time"
+  },
+  {
+    "id": "l1-elements-069",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "track要素のkind属性に指定できる値として正しいものを全て選べ。",
+    "choices": [
+      "subtitles",
+      "captions",
+      "descriptions",
+      "transcript"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "kind属性に指定できる値はsubtitles・captions・descriptions・chapters・metadataの5種類である。transcript(書き起こし)という値は仕様上定義されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/track"
+  },
+  {
+    "id": "l1-elements-070",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "JavaScriptからvideo要素の映像フレームをcanvasに描画し、getImageData等でピクセルデータを取得したい場合に注意すべき点として正しいものはどれか。",
+    "choices": [
+      "クロスオリジンの動画リソースを扱う場合、crossorigin属性を適切に設定しCORSで許可されていないと、描画先のcanvasが汚染(tainted)され、ピクセルデータの取得がブロックされる",
+      "video要素にはcrossorigin属性は存在せず、img要素専用の属性である",
+      "crossorigin属性はvideoの再生速度を制御するための属性である",
+      "動画ファイルの拡張子を.mp4にすれば自動的にCORS制限が解除される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "video要素にもimg要素と同様にcrossorigin属性が存在する。クロスオリジンのリソースをCORSで正しく取得しないままcanvasに描画すると、そのcanvasは汚染された状態となり、getImageData等によるピクセル取得がセキュリティ上ブロックされる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-071",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "video要素のpreload属性に指定できる値とその意味の組み合わせとして正しいものはどれか。",
+    "choices": [
+      "\"none\": ページ読み込み時に事前読み込みを行わない、\"metadata\": 動画の長さや寸法などのメタデータのみ事前取得する、\"auto\": ブラウザの判断で動画データ全体を事前取得してよい",
+      "\"none\": 動画全体を必ず事前取得する、\"metadata\": 何も取得しない、\"auto\": 自動再生を行う",
+      "\"none\"・\"metadata\"・\"auto\"はいずれもautoplay属性の別名であり動作に違いはない",
+      "preload属性はaudio要素専用であり、video要素には存在しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "preload属性はブラウザへの読み込みヒントであり、noneは事前読み込みなし、metadataはメタデータのみ、autoはブラウザの裁量で動画データ全体を事前取得してよいことを示す。あくまでヒントであり、実際の挙動を保証するものではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/video"
+  },
+  {
+    "id": "l1-elements-072",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "target=\"_blank\"で外部サイトへのリンクを開く際、リンク先ページが window.opener 経由で元のページを操作する「reverse tabnabbing」を防ぐために、a要素のrel属性に指定すべき値として正しいものを全て選べ。",
+    "choices": [
+      "noopener",
+      "noreferrer",
+      "nofollow",
+      "external"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "rel=\"noopener\"はリンク先ページからwindow.openerへの参照を無効化し、rel=\"noreferrer\"はこれに加えてReferrerヘッダーの送信も抑止する。いずれもtarget=\"_blank\"利用時のreverse tabnabbing対策として有効である。nofollowは検索エンジンのクローラーへの指示、externalは外部リンクであることの示唆に過ぎず、セキュリティ対策にはならない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/rel"
+  },
+  {
+    "id": "l1-elements-073",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "main要素の使用に関する制約の説明として正しいものはどれか。",
+    "choices": [
+      "1つの文書内で(hidden属性で非表示にされているものを除き)複数使用してはならず、article・aside・footer・header・nav要素の子孫として配置してはならない",
+      "main要素は1つの文書内にいくつ配置してもよい",
+      "main要素は必ずheader要素の直下の子要素でなければならない",
+      "main要素はCSSでdisplay:noneを指定した場合のみ複数配置できる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "main要素は文書の中心的な内容を表すため、原則として1文書につき1つのみ(hidden属性で隠されているものを除く)とし、article・aside・footer・header・nav要素の子孫にしてはならないとされている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/main"
+  },
+  {
+    "id": "l1-elements-074",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "address要素の意味的な用途として最も適切な説明はどれか。",
+    "choices": [
+      "それを含む最も近いarticleまたはbody要素の作者・運営者に関する連絡先情報を表すものであり、任意の郵便住所を表すための汎用要素ではない",
+      "ページ内に登場する全ての住所情報を表すための唯一の要素であり、郵便番号や住所であれば何でも囲むべきである",
+      "address要素は文字をイタリック体で表示するための装飾専用要素である",
+      "address要素はナビゲーションリンクのリストを表す要素である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "address要素は、それを含む最も近いarticleまたはbody要素の作者・運営者に関する連絡先情報(メールアドレスや連絡先へのリンクなど)を表すためのものであり、記事中に登場する任意の物理的な郵便住所を表す汎用要素ではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/address"
+  },
+  {
+    "id": "l1-elements-075",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "abbr要素のtitle属性の役割として正しいものはどれか。",
+    "choices": [
+      "省略形や頭字語の正式名称・展開形を提供し、多くのビジュアルブラウザではマウスホバー時にツールチップとして表示される",
+      "要素のリンク先URLを指定する",
+      "要素の表示言語(lang属性の代替)を切り替える",
+      "要素をクリック可能なボタンとして機能させる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "abbr要素のtitle属性には省略形の正式な展開形や説明を記述する。多くのビジュアルブラウザはこれをツールチップとして表示し、支援技術による読み上げの補助情報としても利用される。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/abbr"
+  },
+  {
+    "id": "l1-elements-076",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のマークアップにおけるdfn要素の役割として正しいものはどれか。",
+    "code": "<p><dfn>HTML</dfn>とは、Webページを記述するためのマークアップ言語である。</p>",
+    "choices": [
+      "その用語(ここでは「HTML」)が、それを含む文の中で定義されている「定義インスタンス」であることを示す",
+      "その用語が非推奨(deprecated)であることを示す",
+      "その用語を太字で強調表示するためだけの装飾要素である",
+      "その用語が外部サイトへのリンクであることを示す"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "dfn要素は、それを含むより大きな文脈(通常は最も近い祖先要素の内容)の中で、その用語が定義されている「定義インスタンス」であることを示すセマンティックな要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/dfn"
+  },
+  {
+    "id": "l1-elements-077",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "data要素とtime要素の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "time要素は日付・時刻を機械可読な形式で表すことに特化しているのに対し、data要素はvalue属性を用いて製品コードなど日付・時刻に限らない任意の値を機械可読な形式に関連付けることができる",
+      "data要素とtime要素は完全に同じ用途であり、相互に置き換え可能である",
+      "data要素は音声・動画データを埋め込むための要素である",
+      "time要素はvalue属性を持ち、data要素はdatetime属性を持つ"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "time要素は日付・時刻専用にdatetime属性で機械可読値を関連付けるのに対し、data要素はvalue属性を用いて日付・時刻に限らない任意のコンテンツ(商品コードなど)に機械可読な値を関連付けることができる、より汎用的な要素である。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/data"
+  },
+  {
+    "id": "l1-elements-078",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "bdi要素を使用する主な目的として正しいものはどれか。",
+    "choices": [
+      "ユーザー投稿名など、文字の方向(左から右/右から左)が不明であったり周囲と異なる可能性があるテキストを、周囲のテキストの表示方向の影響から分離するため",
+      "テキストを太字にして強調するため",
+      "テキストの読み上げに使う言語を指定するため",
+      "テキストが折り返されないようにするため"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "bdi(Bidirectional Isolation)要素は、方向性が不明であったり周囲と異なる可能性のあるテキスト(例えばユーザー生成コンテンツのユーザー名など)を、周囲のテキストの表示方向の影響から分離するために使用する。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/bdi"
+  },
+  {
+    "id": "l1-elements-079",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "wbr要素とbr要素の違いに関する説明として正しいものはどれか。",
+    "choices": [
+      "wbr要素は改行してもよい箇所(改行の機会)を示すのみで通常は改行を発生させないが、br要素は必ず改行を発生させる",
+      "wbr要素とbr要素はいずれも必ず改行を発生させる同じ意味の要素である",
+      "wbr要素は改行を完全に禁止するための要素である",
+      "br要素が改行機会を示すのみで、wbr要素が強制改行を行う"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "wbr要素(word break opportunity)は、必要であればその位置で改行してもよいという「改行の機会」を示すのみで、通常は改行を発生させない。一方br要素は常に強制的な改行を発生させる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/wbr"
+  },
+  {
+    "id": "l1-elements-080",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "HTML5におけるsmall要素の意味的な用途として最も適切なものはどれか。",
+    "choices": [
+      "著作権表示や免責事項、法的な注記などの「側注・小さな文字(fine print)」で表現される内容を表す",
+      "単に文字サイズを視覚的に小さくするためだけの装飾要素であり、意味は持たない",
+      "見出しレベルを1段階下げるための要素である",
+      "小さいサイズの画像を表示するための要素である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTML5においてsmall要素は、単なる見た目の縮小ではなく、著作権表示・免責事項・法的注記などの「側注(side comments)」的な内容を意味的に表す要素として再定義されている。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/small"
+  },
+  {
+    "id": "l1-elements-081",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "blockquote要素のcite属性に関する説明として正しいものはどれか。",
+    "choices": [
+      "引用元を示すURLを指定する属性だが、ブラウザは通常この値を画面上に可視化しない",
+      "cite属性の値はブラウザによって自動的に脚注として画面に表示される",
+      "cite属性は引用文そのものを格納するための属性である",
+      "cite属性は必須属性であり、省略するとblockquoteとして機能しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "blockquote要素(および行内引用のq要素)のcite属性には引用元を示すURLを指定できるが、多くのブラウザはこの値を可視化せず、主に機械可読なメタデータやツールでの利用を意図したものである。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/blockquote"
+  },
+  {
+    "id": "l1-elements-082",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のマークアップにおけるcol要素のspan属性の働きとして正しいものはどれか。",
+    "code": "<table>\n  <colgroup>\n    <col span=\"2\" style=\"background:#eee\">\n    <col style=\"background:#fff\">\n  </colgroup>\n  <tr><td>A</td><td>B</td><td>C</td></tr>\n</table>",
+    "choices": [
+      "1つのcol要素が複数(この例では2つ)の列に対してまとめてスタイルなどの設定を適用できるようにする",
+      "span属性はセルの結合(rowspanと同じ意味)を行うための属性である",
+      "span属性はテーブル全体の列数の上限を制限する属性である",
+      "span属性は指定した列を非表示にする属性である"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "col要素のspan属性は、その1つのcol要素が何列分の設定(スタイルなど)をまとめて表すかを指定する。この例では最初のcol要素が2列分の背景色設定をまとめて適用している。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/col"
+  },
+  {
+    "id": "l1-elements-083",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "meter要素のlow・high・optimum属性に関する説明として正しいものはどれか。",
+    "choices": [
+      "low・highは値が「低い」「高い」とみなされる範囲の境界を定義し、optimumは最適とされる値を示すことで、ブラウザが表示色などを変える際の判断材料になる",
+      "low・highはメーターの最小値・最大値そのものを表す属性であり、min・max属性は存在しない",
+      "optimum属性は必須であり、指定しないとmeter要素は描画されない",
+      "low・high・optimumはいずれもaudio/video要素専用の属性であり、meter要素には存在しない"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "meter要素はmin/max属性で値の範囲を定義した上で、low/highでその範囲内の「低い」「高い」とみなす境界を、optimumで最適値を示す。この情報を用いてブラウザは視覚的な表現(色分けなど)を変えることがある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/meter"
+  },
+  {
+    "id": "l1-elements-084",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "progress要素を、進捗がどの程度か不明な「不確定(indeterminate)」な状態として表示したい場合の方法として正しいものはどれか。",
+    "choices": [
+      "value属性を指定せずにprogress要素を記述する",
+      "value属性に-1を指定する",
+      "max属性を0に設定する",
+      "value属性に\"unknown\"という文字列を指定する"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "progress要素はvalue属性を省略すると、進捗が確定していない「不確定」な状態として扱われ、多くのブラウザではアニメーションするインジケーターとして表示される。value属性に負の値や文字列を指定する方法は仕様上定義されていない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/progress"
+  },
+  {
+    "id": "l1-elements-085",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "fieldset要素にdisabled属性を指定した場合の挙動として正しいものはどれか。",
+    "choices": [
+      "その子孫にあるフォームコントロール(input・select・textareaなど)がまとめて無効化されるが、最初の子であるlegend要素内のフォームコントロールは例外として無効化の対象外となる",
+      "disabled属性はfieldset要素には指定できない",
+      "fieldset内の見た目にのみ影響し、フォームコントロールの値は無効化後も送信される",
+      "disabled属性を指定すると、fieldset要素全体が文書から削除される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "fieldset要素にdisabled属性を指定すると、その子孫のフォームコントロールがまとめて無効化されるが、仕様上、最初の子であるlegend要素の内部にあるフォームコントロールはこの無効化の影響を受けない例外として扱われる。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/fieldset"
+  },
+  {
+    "id": "l1-elements-086",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "input要素とlabel要素を関連付ける方法として、仕様上正しいものを全て選べ。",
+    "choices": [
+      "label要素のfor属性の値をinput要素のid属性の値と一致させる",
+      "input要素をlabel要素の中に入れ子にして配置する(暗黙的な関連付け)",
+      "input要素とlabel要素の両方に同じname属性を指定する",
+      "input要素とlabel要素をCSSのdisplay:flexで隣接させて配置する"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "label要素とフォームコントロールの関連付けは、for属性とid属性を一致させる明示的な方法と、フォームコントロールをlabel要素内に入れ子にする暗黙的な方法の2通りが仕様で定められている。name属性の一致や見た目上の配置は関連付けの手段として機能しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/label"
+  },
+  {
+    "id": "l1-elements-087",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "次のiframe要素のsandbox属性に指定できるトークン(値)として正しいものを全て選べ。",
+    "code": "<iframe src=\"https://example.com/embed\" sandbox=\"allow-scripts allow-forms\"></iframe>",
+    "choices": [
+      "allow-scripts",
+      "allow-same-origin",
+      "allow-cookies",
+      "allow-forms"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "sandbox属性のトークンにはallow-scripts(スクリプト実行の許可)、allow-same-origin(同一オリジンとして扱うことの許可)、allow-forms(フォーム送信の許可)などが定義されているが、allow-cookiesというトークンは仕様上存在しない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe"
+  },
+  {
+    "id": "l1-elements-088",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "次のform内にあるbutton要素に関する記述として正しいものはどれか。",
+    "code": "<form>\n  <input type=\"text\" name=\"q\">\n  <button>検索</button>\n</form>",
+    "choices": [
+      "type属性を省略しているため、このbutton要素は既定でtype=\"submit\"として扱われ、クリックするとフォームが送信される",
+      "type属性を省略した場合、button要素は既定でtype=\"button\"として扱われ、何も起こらない",
+      "form内のbutton要素はtype属性を省略するとエラーになり描画されない",
+      "type属性を省略した場合、既定でtype=\"reset\"として扱われフォームがリセットされる"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "button要素はtype属性を省略した場合の既定値が\"submit\"であるため、form要素内に配置すると意図せずフォーム送信ボタンとして機能してしまう。JavaScriptのみで動作を制御したいボタンには、明示的にtype=\"button\"を指定する必要がある。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/button"
+  },
+  {
+    "id": "l1-elements-089",
+    "category": "l1-elements",
+    "type": "multiple",
+    "difficulty": "advanced",
+    "question": "HTML5のセマンティック要素と、それが持つ暗黙のARIAランドマークロールの対応として正しい組み合わせを全て選べ。",
+    "choices": [
+      "文書のルートレベルにあるheader要素は暗黙のbannerロールを持つ",
+      "文書のルートレベルにあるfooter要素は暗黙のcontentinfoロールを持つ",
+      "nav要素は暗黙のnavigationロールを持つ",
+      "aside要素は暗黙のbannerロールを持つ"
+    ],
+    "correctAnswers": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "文書のルートレベル(article・aside・main・nav・sectionの子孫でない位置)に置かれたheader要素は暗黙のbannerロール、同様のfooter要素は暗黙のcontentinfoロールを持つ。nav要素は常にnavigationロールを持つ。一方aside要素の暗黙ロールはcomplementaryであり、bannerではない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/Accessibility/ARIA/Reference/Roles/banner_role"
+  },
+  {
+    "id": "l1-elements-090",
+    "category": "l1-elements",
+    "type": "single",
+    "difficulty": "advanced",
+    "question": "input要素のtype属性がpasswordの場合に、list属性でdatalist要素と関連付けて入力候補を表示することに関する記述として正しいものはどれか。",
+    "choices": [
+      "仕様上、type=\"password\"のinput要素にはlist属性は適用されず、datalistによる入力候補の提示は行われない",
+      "type=\"password\"であってもlist属性は他のテキスト系タイプと全く同様に機能し、入力候補が表示される",
+      "list属性はtype=\"password\"の場合のみ有効になる特別な属性である",
+      "list属性を指定するとtype=\"password\"は自動的にtype=\"text\"に変換され候補が表示される"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "HTML仕様ではlist属性はtext・search・url・tel・email・number・rangeなど多くの入力タイプに適用されるが、password・hidden・checkbox・radioなどのタイプには適用されないと定義されており、パスワード入力欄に入力候補を表示する仕組みは提供されない。",
+    "reference": "https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/password"
+  }
+]

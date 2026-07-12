@@ -9,6 +9,13 @@ export type CategoryId =
   | 'performance-offline'
   | 'security'
   | 'comprehensive'
+  | 'l1-web-fundamentals'
+  | 'l1-css'
+  | 'l1-elements'
+  | 'l1-responsive'
+  | 'l1-api-fundamentals'
+
+export type ExamLevel = 'L1' | 'L2'
 
 export type QuestionType = 'single' | 'multiple'
 export type Difficulty = 'basic' | 'intermediate' | 'advanced'
@@ -33,6 +40,7 @@ export interface Category {
   shortName: string
   description: string
   color: string
+  level: ExamLevel
 }
 
 export interface AttemptRecord {
@@ -46,7 +54,7 @@ export type QuizMode = 'study' | 'exam'
 
 export interface HistoryEntry {
   at: string
-  categoryId: CategoryId | 'all'
+  categoryId: CategoryId | 'all' | 'all-l1' | 'all-l2'
   mode: QuizMode
   score: number
   total: number
